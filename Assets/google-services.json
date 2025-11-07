@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "91826969339",
+    "project_id": "cozystudycorner2",
+    "storage_bucket": "cozystudycorner2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91826969339:android:cb565e94af02b047aaae5e",
+        "android_client_info": {
+          "package_name": "com.CozyStudyCorner2.Firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtsgo9m1DyssbmSeXyGw_QwDHOnyls7JA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
