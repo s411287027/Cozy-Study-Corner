@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Firebase.Extensions;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class FirebaseController : MonoBehaviour
 {
@@ -66,11 +67,43 @@ public class FirebaseController : MonoBehaviour
 
     public void OpenProfliePanel()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Additive);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "SampleScene") return;
+
+        // 設 Active Scene
+        SceneManager.SetActiveScene(scene);
+
+        // 抓 Canvas
+        Canvas canvasB = null;
+        foreach (var rootObj in scene.GetRootGameObjects())
+        {
+            canvasB = rootObj.GetComponentInChildren<Canvas>();
+            if (canvasB != null) break;
+        }
+        if (canvasB != null) canvasB.sortingOrder = 1;
+
+        // 關閉舊場景 Camera
+        Scene oldScene = SceneManager.GetActiveScene(); // 或指定 Scene A
+        foreach (var rootObj in oldScene.GetRootGameObjects())
+        {
+            Camera cam = rootObj.GetComponentInChildren<Camera>();
+            if (cam != null) cam.enabled = false;
+        }
+
+        // 顯示 UI
         loginPanel.SetActive(false);
         signupPanel.SetActive(false);
-        profilePanel.SetActive(true);
+        //profilePanel.SetActive(true);
         forgetPasswordPanel.SetActive(false);
         shopPanel.SetActive(false);
+
+        // 移除事件，避免重複觸發
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void OpenForgetPassPanel()

@@ -3,13 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    // ������ ShopScene
+    // 載入 Classroom，但保留 CozyStudyCorner（好友系統）
     public void GoToClassroom()
     {
-        SceneManager.LoadScene("classroom");
+        // 若 CozyStudyCorner 尚未載入，就一起載入
+        if (!SceneManager.GetSceneByName("CozyStudyCorner").isLoaded)
+        {
+            SceneManager.LoadScene("CozyStudyCorner", LoadSceneMode.Additive);
+        }
+
+        // 切換到 Classroom（主視場景）
+        SceneManager.LoadScene("classroom", LoadSceneMode.Single);
     }
 
-    // �p�G�n���^ MainScene
     public void BackToMain()
     {
         SceneManager.LoadScene("SampleScene");
@@ -20,5 +26,36 @@ public class SceneChange : MonoBehaviour
         SceneManager.LoadScene("world");
     }
 
+    public void LoadWithFriendSystem()
+    {
+        SceneManager.LoadScene("CozyStudyCorner", LoadSceneMode.Additive);
+    }
 
+    public void GoToFriend()
+    {
+        // 嘗試取得 FriendSystemController
+        FriendSystemController fs = FindObjectOfType<FriendSystemController>();
+        if (fs != null)
+        {
+            fs.OpenFriendSystemController();
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ FriendSystemController 尚未載入！");
+        }
+    }
+
+    public void GoToShop()
+    {
+        // 嘗試取得 FriendSystemController
+        ShopController shop = FindObjectOfType<ShopController>();
+        if (shop != null)
+        {
+            shop.OpenShopPanel();
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ ShopController 尚未載入！");
+        }
+    }
 }
