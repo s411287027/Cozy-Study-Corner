@@ -106,6 +106,11 @@ public class FirebaseController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    public void OpenMapPanel()
+    {
+        profilePanel.SetActive(true);
+    }
+
     public void OpenForgetPassPanel()
     {
         loginPanel.SetActive(false);

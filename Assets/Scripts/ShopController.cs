@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class ShopItem
@@ -177,6 +178,13 @@ public class ShopController : MonoBehaviour
 
     public void OpenShopPanel()
     {
+        Scene sceneA = SceneManager.GetSceneByName("CozyStudyCorner");
+        foreach (var rootObj in sceneA.GetRootGameObjects())
+        {
+            Canvas canvas = rootObj.GetComponentInChildren<Canvas>();
+            if (canvas != null)
+                canvas.sortingOrder = 2; // 高於 SceneA
+        }
         loginPanel.SetActive(false);
         signupPanel.SetActive(false);
         profilePanel.SetActive(false);

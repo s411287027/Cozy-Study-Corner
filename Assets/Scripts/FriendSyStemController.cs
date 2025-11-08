@@ -4,6 +4,7 @@ using Firebase.Extensions;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FriendSystemController : MonoBehaviour
 {
@@ -372,10 +373,19 @@ public class FriendSystemController : MonoBehaviour
 
     public void OpenFriendSystemController()
     {
+        Scene sceneA = SceneManager.GetSceneByName("CozyStudyCorner");
+        foreach (var rootObj in sceneA.GetRootGameObjects())
+        {
+            Canvas canvas = rootObj.GetComponentInChildren<Canvas>();
+            if (canvas != null)
+                canvas.sortingOrder = 2; // 高於 SceneA
+        }
+
         FriendSystemPanel.SetActive(true);
         if (playerUIDText != null)
             playerUIDText.text = dbController.userId;
         LoadFriends();
+
     }
 
     public void CloseFriendSystemController()

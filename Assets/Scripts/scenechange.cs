@@ -31,6 +31,19 @@ public class SceneChange : MonoBehaviour
         SceneManager.LoadScene("CozyStudyCorner", LoadSceneMode.Additive);
     }
 
+    public void GoToMap()
+    {
+        // 嘗試取得 FriendSystemController
+        FirebaseController au = FindObjectOfType<FirebaseController>();
+        if (au != null)
+        {
+            au.OpenMapPanel();
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ FriendSystemController 尚未載入！");
+        }
+    }
     public void GoToFriend()
     {
         // 嘗試取得 FriendSystemController
