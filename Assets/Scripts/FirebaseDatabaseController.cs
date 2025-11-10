@@ -62,6 +62,7 @@ public class FriendRequests
 
 public class FirebaseDatabaseController : MonoBehaviour
 {
+    public static FirebaseDatabaseController Instance;
     public DataToSave dts;
     public string userId;
     DatabaseReference dbRef;
@@ -72,7 +73,17 @@ public class FirebaseDatabaseController : MonoBehaviour
 
     private void Awake()
     {
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void SaveDataFn()

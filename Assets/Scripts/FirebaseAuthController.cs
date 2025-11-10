@@ -25,6 +25,12 @@ public class FirebaseController : MonoBehaviour
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject); // 🔥 FirebaseController 永久存在
+    }
+
+
     void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -108,7 +114,17 @@ public class FirebaseController : MonoBehaviour
 
     public void OpenMapPanel()
     {
+        Scene sceneA = SceneManager.GetSceneByName("CozyStudyCorner");
+        foreach (var rootObj in sceneA.GetRootGameObjects())
+        {
+            Canvas canvas = rootObj.GetComponentInChildren<Canvas>();
+            if (canvas != null)
+                canvas.sortingOrder = 2; // 高於 SceneA
+        }
+        loginPanel.SetActive(false);
+        signupPanel.SetActive(false);
         profilePanel.SetActive(true);
+        forgetPasswordPanel.SetActive(false);
     }
 
     public void OpenForgetPassPanel()
