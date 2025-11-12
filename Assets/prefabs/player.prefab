@@ -133,15 +133,43 @@ MonoBehaviour:
   clickIndicatorPrefab: {fileID: 0}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
-  farY: 10
-  nearY: -10
-  baseScale: 1.8
-  farScale: 1.6
-  nearScale: 2
+    m_Bits: 4294967295
   maxSortingOrder: 100
   minSortingOrder: 0
-  spawnPoint: {fileID: 0}
+  pseudo3DScenes:
+  - classroom
+  - CafeScene
+  - LibraryScene
+  - ForestScene
+  sceneConfigs:
+  - sceneName: classroom
+    baseY: 0
+    baseScale: 1.8
+    farScale: 1.6
+    nearScale: 2
+    farY: 10
+    nearY: -10
+  - sceneName: CafeScene
+    baseY: 0
+    baseScale: 2
+    farScale: 1.6
+    nearScale: 2.2
+    farY: 10
+    nearY: -10
+  - sceneName: LibraryScene
+    baseY: 0
+    baseScale: 2.3
+    farScale: 2.3
+    nearScale: 2.8
+    farY: 10
+    nearY: -10
+  - sceneName: ForestScene
+    baseY: 0
+    baseScale: 2.3
+    farScale: 2.3
+    nearScale: 2.8
+    farY: 10
+    nearY: -10
 --- !u!50 &7510175049499412044
 Rigidbody2D:
   serializedVersion: 5

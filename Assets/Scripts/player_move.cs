@@ -2,6 +2,18 @@
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class Pseudo3DConfig
+{
+    public string sceneName;
+    public float baseY = 0f;     // 偽3D基準Y
+    public float baseScale = 1.8f;
+    public float farScale = 1.6f;
+    public float nearScale = 2f;
+    public float farY = 10f;
+    public float nearY = -10f;
+}
+
 public class player_move : MonoBehaviour
 {
     [Header("角色設定")]
@@ -19,59 +31,53 @@ public class player_move : MonoBehaviour
     [Header("碰撞設定")]
     public LayerMask obstacleLayer;
 
-    [Header("Classroom 偽3D縮放設定")]
-    public float farY = 10f;       // 最遠（往後）
-    public float nearY = -10f;     // 最近（往前）
-    public float baseScale = 1.8f; // Classroom 生成點比例
-    public float farScale = 1.6f;  // 往後最小
-    public float nearScale = 2f;   // 往前最大
+    [Header("圖層設定")]
+    public int maxSortingOrder = 100;
+    public int minSortingOrder = 0;
 
-    [Header("Classroom 圖層設定")]
-    public int maxSortingOrder = 100; // spawnPoint往前最大
-    public int minSortingOrder = 0;   // spawnPoint往後最小
+    [Header("啟用偽3D的場景")]
+    public string[] pseudo3DScenes = { "classroom", "CafeScene", "LibraryScene", "ForestScene" };
 
-    public Transform spawnPoint; // Classroom 生成點
+    [Header("場景偽3D配置")]
+    public Pseudo3DConfig[] sceneConfigs;
 
-    private float baseY;            // Classroom 基準點 y
-    private Vector3 originalScale;  // prefab 原始 scale
-    private bool isClassroom = false;
+    private float baseY;
+    private float baseScale;
+    private float farScale;
+    private float nearScale;
+    private float farY;
+    private float nearY;
+
+    private Vector3 originalScale;
+    private bool isPseudo3D = false;
     private SpriteRenderer sr;
+    private bool canMove = true;
 
     void Awake()
     {
         originalScale = transform.localScale;
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        UpdateSceneFlag();
     }
 
     void Start()
     {
         ani = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         targetPosition = rb.position;
 
         if (clickIndicatorPrefab != null)
         {
-            clickIndicatorInstance = Instantiate(clickIndicatorPrefab, rb.position, Quaternion.identity);
+            clickIndicatorInstance = Instantiate(clickIndicatorPrefab, targetPosition, Quaternion.identity);
             clickIndicatorInstance.SetActive(false);
         }
 
-        if (isClassroom)
-        {
-            baseY = spawnPoint != null ? spawnPoint.position.y : transform.position.y;
-            transform.localScale = originalScale * baseScale; // 初始 Classroom scale
-            UpdateSortingOrder();
-        }
-        else
-        {
-            transform.localScale = originalScale; // 其他場景
-        }
+        UpdateSceneFlag(); // 初始化偽3D
     }
 
     void Update()
     {
-        UpdateSceneFlag();
+        if (!canMove) return;
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -103,6 +109,8 @@ public class player_move : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canMove) return;
+
         Vector2 dir = targetPosition - rb.position;
         if (dir.magnitude <= stopThreshold)
         {
@@ -118,10 +126,9 @@ public class player_move : MonoBehaviour
         int hitCount = rb.Cast(moveDir, hits, distance);
 
         bool blocked = false;
-        if (hitCount > 0)
+        if (hitCount > 0 && ((1 << hits[0].collider.gameObject.layer) & obstacleLayer) != 0)
         {
-            if (((1 << hits[0].collider.gameObject.layer) & obstacleLayer) != 0)
-                blocked = true;
+            blocked = true;
         }
 
         if (blocked)
@@ -139,54 +146,86 @@ public class player_move : MonoBehaviour
 
     void ApplyPseudo3DScaleAndSorting()
     {
-        if (!isClassroom) return;
-
-        float y = rb.position.y;
-        float scaleFactor;
-
-        // 偽3D縮放
-        if (y > baseY)
+        if (isPseudo3D)
         {
-            float t = Mathf.InverseLerp(baseY, farY, y);
-            scaleFactor = Mathf.Lerp(baseScale, farScale, t);
+            float y = rb.position.y;
+            float scaleFactor;
+
+            if (y > baseY)
+            {
+                float t = Mathf.InverseLerp(baseY, farY, y);
+                scaleFactor = Mathf.Lerp(baseScale, farScale, t);
+            }
+            else
+            {
+                float t = Mathf.InverseLerp(baseY, nearY, y);
+                scaleFactor = Mathf.Lerp(baseScale, nearScale, t);
+            }
+
+            transform.localScale = originalScale * scaleFactor;
+
+            float tLayer = Mathf.InverseLerp(farY, nearY, y);
+            sr.sortingOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
         }
         else
         {
-            float t = Mathf.InverseLerp(baseY, nearY, y);
-            scaleFactor = Mathf.Lerp(baseScale, nearScale, t);
+            // 沒有偽3D的場景，恢復原始圖層與大小
+            transform.localScale = originalScale;
+            if (sr != null)
+                sr.sortingOrder = 5; // 設回預設圖層
         }
-
-        transform.localScale = originalScale * scaleFactor;
-
-        // 圖層排序
-        float tLayer = Mathf.InverseLerp(farY, nearY, y); // 0~1 往前越大
-        sr.sortingOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
     }
 
     void UpdateSceneFlag()
     {
-        bool currentClassroom = SceneManager.GetActiveScene().name == "classroom";
-        if (currentClassroom != isClassroom)
+        string sceneName = SceneManager.GetActiveScene().name;
+        bool pseudo3D = System.Array.Exists(pseudo3DScenes, s => s.Equals(sceneName, System.StringComparison.OrdinalIgnoreCase));
+
+        if (pseudo3D != isPseudo3D)
         {
-            isClassroom = currentClassroom;
-            if (isClassroom)
+            isPseudo3D = pseudo3D;
+
+            if (isPseudo3D)
             {
-                baseY = spawnPoint != null ? spawnPoint.position.y : transform.position.y;
+                // 尋找場景專屬配置
+                Pseudo3DConfig config = System.Array.Find(sceneConfigs, c => c.sceneName.Equals(sceneName, System.StringComparison.OrdinalIgnoreCase));
+                if (config != null)
+                {
+                    baseY = config.baseY;
+                    baseScale = config.baseScale;
+                    farScale = config.farScale;
+                    nearScale = config.nearScale;
+                    farY = config.farY;
+                    nearY = config.nearY;
+                }
+                else
+                {
+                    baseY = transform.position.y;
+                    baseScale = 1.8f;
+                    farScale = 1.6f;
+                    nearScale = 2f;
+                    farY = 10f;
+                    nearY = -10f;
+                }
+
+                originalScale = transform.localScale;
                 transform.localScale = originalScale * baseScale;
                 UpdateSortingOrder();
             }
             else
             {
+                // 沒有偽3D場景，恢復原始大小和圖層
                 transform.localScale = originalScale;
                 if (sr != null)
-                    sr.sortingOrder = 0;
+                    sr.sortingOrder = 5;
             }
         }
     }
 
+
     void UpdateSortingOrder()
     {
-        if (!isClassroom || sr == null) return;
+        if (!isPseudo3D || sr == null) return;
         float y = rb.position.y;
         float tLayer = Mathf.InverseLerp(farY, nearY, y);
         sr.sortingOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
@@ -195,6 +234,34 @@ public class player_move : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateSceneFlag();
+        SetCanMove(false);
+        if (clickIndicatorInstance != null)
+            clickIndicatorInstance.SetActive(false);
+        Invoke(nameof(EnableMove), 0.01f);
+    }
+
+    public void SetPositionInstant(Vector3 pos)
+    {
+        canMove = false;
+        targetPosition = pos;
+        rb.position = pos;
+        transform.position = pos;
+        rb.linearVelocity = Vector2.zero;
+
+        UpdateSceneFlag();
+        Invoke(nameof(EnableMove), 0.01f);
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        if (!value && rb != null)
+            rb.linearVelocity = Vector2.zero;
+    }
+
+    void EnableMove()
+    {
+        SetCanMove(true);
     }
 
     void OnDestroy()

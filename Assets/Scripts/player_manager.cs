@@ -8,15 +8,12 @@ public class PlayerManager : MonoBehaviour
 
     [Header("角色設定")]
     public GameObject playerPrefab;
-    private GameObject playerInstance;
+    [HideInInspector] public GameObject playerInstance;
 
     [Header("初始生成點")]
     public Transform spawnPoint;
 
-    private bool isClassroomScene = false;
-    private Rigidbody2D rb;
-
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -41,7 +38,7 @@ public class PlayerManager : MonoBehaviour
         DontDestroyOnLoad(playerInstance);
 
         // 確保 Rigidbody2D 存在
-        rb = playerInstance.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = playerInstance.GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             Debug.LogWarning("⚠ PlayerPrefab 缺少 Rigidbody2D，自動新增。");
@@ -50,35 +47,45 @@ public class PlayerManager : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        isClassroomScene = SceneManager.GetActiveScene().name == "classroom";
+        // 初始化 player_move targetPosition
+        var moveScript = playerInstance.GetComponent<player_move>();
+        if (moveScript != null)
+        {
+            moveScript.SetPositionInstant(spawnPos);
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(HandleSceneLoad(scene.name));
+        StartCoroutine(HandleSceneLoad());
     }
 
-    IEnumerator HandleSceneLoad(string sceneName)
+    IEnumerator HandleSceneLoad()
     {
-        // 等待一幀，確保新場景內物件都生成完
+        // 等待一幀，確保新場景物件生成完成
         yield return null;
 
-        // 找新的生成點
-        Transform newSpawn = GameObject.Find("PlayerSpawnPoint")?.transform;
-        if (newSpawn != null && playerInstance != null)
+        if (playerInstance != null)
         {
-            playerInstance.transform.position = newSpawn.position;
-        }
-        else
-        {
-            Debug.LogWarning($"⚠ 找不到 PlayerSpawnPoint（Scene: {sceneName}）");
-        }
+            Transform newSpawn = GameObject.Find("PlayerSpawnPoint")?.transform;
+            Vector3 spawnPos = newSpawn != null ? newSpawn.position : playerInstance.transform.position;
 
-        // 更新場景旗標
-        isClassroomScene = sceneName == "classroom";
+            // 直接設置位置，並同步 targetPosition
+            player_move pm = FindObjectOfType<player_move>();
+            if (pm != null)
+            {
+                Debug.Log("11");
+                pm.SetPositionInstant(spawnPos);
+            }
+            else
+            {
+                Debug.Log("22");
+                pm.transform.position = spawnPos;
+            }
+        }
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

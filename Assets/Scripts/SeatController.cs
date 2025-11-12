@@ -1,83 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
 using System.Collections.Generic;
 
-public class SeatController : MonoBehaviour
+public class SeatManager : MonoBehaviour
 {
-    public int seatNumber;             // 座位編號 (1~8)
-    public Button seatButton;          // 座位按鈕
-    public Image playerIcon;           // 玩家圖示
-    public Sprite[] avatarSprites;     // 可選的頭像圖片 (在 Inspector 設定)
-
+    public Transform seatsParent;  // 所有座位的父物件
     private DatabaseReference dbRef;
-    private string userId;
-    private int myAvatarId;
+    private string currentUID;
+
+    private Dictionary<string, GameObject> seatObjects = new Dictionary<string, GameObject>();
 
     void Start()
     {
-        // 取得 Firebase DB 根目錄
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
-        Debug.Log("PlayerIcon: " + (playerIcon != null));
-        // 取得登入玩家 ID
-        FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
-        if (user != null)
+        currentUID = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+
+        // 收集所有座位
+        foreach (Transform seat in seatsParent)
         {
-            //Debug.LogError("PlayerId:" + user.UserId);
-            userId = user.UserId;
+            string seatId = seat.name.Replace("Seat_", "");
+            seatObjects[seatId] = seat.gameObject;
+
+            // 找到按鈕並綁定事件
+            Button sitBtn = seat.Find("SitButton").GetComponent<Button>();
+            sitBtn.onClick.AddListener(() => OnSitButtonClicked(seatId));
         }
-        else
-        {
-            Debug.LogError("Player not logged in!");
-            return;
-        }
 
-        // 隨機給玩家一個頭像 ID
-        myAvatarId = Random.Range(0, avatarSprites.Length);
-
-        // 設定按鈕點擊事件
-        seatButton.onClick.AddListener(OnSeatClicked);
-
-        // 監聽這個座位的變化（即時同步）
+        // 開始監聽資料變化
         FirebaseDatabase.DefaultInstance
-            .GetReference("Seats")
-            .Child(seatNumber.ToString())
-            .ValueChanged += HandleSeatChanged;
+            .GetReference("Seat/Classroom")
+            .ValueChanged += OnSeatDataChanged;
     }
 
-    void OnSeatClicked()
-    {
-        Debug.Log($"Try occupy seat {seatNumber} with userId: {userId}");
-
-        dbRef.Child("Seats").Child(seatNumber.ToString()).RunTransaction(mutableData =>
-        {
-            var seatData = mutableData.Value as Dictionary<string, object>;
-            if (seatData == null)
-            {
-                seatData = new Dictionary<string, object>();
-            }
-
-            string occupiedBy = seatData.ContainsKey("occupiedBy") ? seatData["occupiedBy"] as string : null;
-
-            if (!string.IsNullOrEmpty(occupiedBy))
-            {
-                Debug.Log($"座位 {seatNumber} 已被 {occupiedBy} 佔用");
-                return TransactionResult.Abort(); // 已有人佔用 → 停止寫入
-            }
-
-            // 設定座位資料
-            seatData["occupiedBy"] = userId;
-            seatData["avatarId"] = myAvatarId;
-
-            mutableData.Value = seatData;
-            Debug.Log($"座位 {seatNumber} 成功佔用，userId: {userId}");
-            return TransactionResult.Success(mutableData);
-        });
-    }
-
-
-    void HandleSeatChanged(object sender, ValueChangedEventArgs args)
+    private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
     {
         if (args.DatabaseError != null)
         {
@@ -85,41 +43,45 @@ public class SeatController : MonoBehaviour
             return;
         }
 
-        if (!args.Snapshot.Exists || string.IsNullOrEmpty(args.Snapshot.Child("occupiedBy").Value as string))
+        foreach (var seatData in args.Snapshot.Children)
         {
-            playerIcon.gameObject.SetActive(false);
-            seatButton.interactable = true;
-            return;
-        }
+            string seatId = seatData.Key;
+            string uid = seatData.Value?.ToString();
 
-        var occupiedBy = args.Snapshot.Child("occupiedBy").Value as string;
-        var avatarId = args.Snapshot.Child("avatarId").Value;
+            if (seatObjects.TryGetValue(seatId, out GameObject seat))
+            {
+                Button sitBtn = seat.transform.Find("SitButton").GetComponent<Button>();
+                TMP_Text label = seat.transform.Find("Label").GetComponent<TMP_Text>();
 
-        Debug.Log($"座位 {seatNumber} 被 {occupiedBy} 佔用");
-
-        if (!string.IsNullOrEmpty(occupiedBy))
-        {
-            int id = avatarId != null ? int.Parse(avatarId.ToString()) : 0;
-            if (id >= 0 && id < avatarSprites.Length)
-                playerIcon.sprite = avatarSprites[id];
-            playerIcon.gameObject.SetActive(true);
-
-            seatButton.interactable = false; // 已被佔 → 按鈕不能點
-        }
-        else
-        {
-            playerIcon.gameObject.SetActive(false);
-            seatButton.interactable = true;
+                if (string.IsNullOrEmpty(uid) || uid == "null")
+                {
+                    label.text = "空位";
+                    sitBtn.gameObject.SetActive(true);
+                }
+                else
+                {
+                    label.text = $"UID: {uid}";
+                    sitBtn.gameObject.SetActive(false);
+                }
+            }
         }
     }
 
-
-    private void OnDestroy()
+    private void OnSitButtonClicked(string seatId)
     {
-        // 取消監聽，避免記憶體洩漏
-        FirebaseDatabase.DefaultInstance
-            .GetReference("Seats")
-            .Child(seatNumber.ToString())
-            .ValueChanged -= HandleSeatChanged;
+        string seatPath = $"Seat/Classroom/{seatId}";
+
+        // 寫入自己的 UID
+        dbRef.Child(seatPath).SetValueAsync(currentUID).ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log($"✅ 已坐下：{seatId}");
+            }
+            else
+            {
+                Debug.LogError($"❌ 坐下失敗：{seatId}, {task.Exception}");
+            }
+        });
     }
 }

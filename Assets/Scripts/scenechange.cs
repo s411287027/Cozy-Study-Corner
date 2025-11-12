@@ -71,4 +71,19 @@ public class SceneChange : MonoBehaviour
             Debug.LogWarning("⚠️ ShopController 尚未載入！");
         }
     }
+
+    public void GoToCafe()
+    {
+        SceneManager.LoadScene("CafeScene");
+    }
+
+    public void GoToLibrary()
+    {
+        SceneManager.LoadScene("LibraryScene");
+    }
+
+    public void GoToForest()
+    {
+        SceneManager.LoadScene("ForestScene");
+    }
 }
