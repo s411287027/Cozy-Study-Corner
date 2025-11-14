@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [ExecuteAlways]
 public class HairController : MonoBehaviour
@@ -48,6 +49,14 @@ public class HairController : MonoBehaviour
 
     void Start()
     {
+        //  在 DressScene 中關閉頭髮動態更新
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "DressScene")
+        {
+            enabled = false; // 停用整個 HairController
+            return;
+        }
+
         playerTransform = transform.parent;
 
         if (playerTransform == null)

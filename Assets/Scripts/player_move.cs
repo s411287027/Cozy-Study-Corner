@@ -78,10 +78,33 @@ public class player_move : MonoBehaviour
         }
 
         UpdateSceneFlag(); // 初始化偽3D
+
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            canMove = false;
+            freezeHair = true;   // 停止頭髮方向更新
+            rb.linearVelocity = Vector2.zero;
+
+            // 設定面向正面（朝下）
+            ani.SetFloat("Horizontal", 0);
+            ani.SetFloat("Vertical", -1);
+            ani.SetFloat("Speed", 0);
+
+            if (hairController != null)
+                hairController.UpdateHairDirection(0f, -1f);
+        }
     }
 
     void Update()
     {
+        //  DressScene 永遠不能動（保險鎖）
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            rb.linearVelocity = Vector2.zero;
+            ani.SetFloat("Speed", 0);
+            return;
+        }
+
         if (!canMove) return;
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -266,7 +289,7 @@ public class player_move : MonoBehaviour
             clickIndicatorInstance.SetActive(false);
 
         //  如果是 Dress 場景，禁止移動
-        if (scene.name == "Dress")
+        if (scene.name == "DressScene")
         {
             canMove = false;
             Debug.Log("玩家進入 Dress 場景，停止移動");

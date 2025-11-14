@@ -1,102 +1,71 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public class HairSelectionUI : MonoBehaviour
 {
-    [Header("UI 參考")]
-    public GameObject hairButtonPrefab;       // 單一髮型按鈕 prefab
-    public Transform hairButtonContainer;     // 放髮型按鈕的父物件
-    public Button openHairMenuButton;         // 「Hair」按鈕
+    [Header("UI Prefab")]
+    public GameObject hairButtonPrefab;       // 髮型按鈕 prefab
+    public Transform content;                 // ScrollView Content
 
-    [Header("可選髮型清單")]
-    public List<HairData> availableHairs = new List<HairData>();
-
-    [Header("右側 Player 的相機或定位")]
-    public Transform playerDisplayPosition;   // 顯示 player 的位置（可在場景裡擺）
-
-    private GameObject playerInstance;
+    [Header("Player 設定")]
+    public Transform playerDisplayPosition;   // Player 顯示位置（右側）
+    private GameObject player;
     private HairController hairController;
-    private bool menuOpen = false;
+
+    [Header("所有可選髮型")]
+    public List<HairData> hairList = new List<HairData>();
 
     void Start()
     {
-        // 找到目前 Player（從 PlayerManager）
-        playerInstance = PlayerManager.Instance?.playerInstance;
-        if (playerInstance == null)
+        player = PlayerManager.Instance.playerInstance;
+
+        if (player == null)
         {
-            Debug.LogError("❌ 找不到 Player 實例！");
+            Debug.LogError("找不到 Player !");
             return;
         }
 
-        hairController = playerInstance.GetComponentInChildren<HairController>();
+        hairController = player.GetComponentInChildren<HairController>();
 
-        // 移動 Player 到畫面右半邊顯示
+        // 移動到展示位置
         if (playerDisplayPosition != null)
-            playerInstance.transform.position = playerDisplayPosition.position;
+            player.transform.position = playerDisplayPosition.position;
 
-        // 關閉清單
-        hairButtonContainer.gameObject.SetActive(false);
-
-        // 綁定開關按鈕
-        if (openHairMenuButton != null)
-            openHairMenuButton.onClick.AddListener(ToggleHairMenu);
-
-        // 建立所有髮型按鈕
-        PopulateHairButtons();
+        GenerateHairUI();
     }
 
-    void ToggleHairMenu()
+    void GenerateHairUI()
     {
-        menuOpen = !menuOpen;
-        hairButtonContainer.gameObject.SetActive(menuOpen);
-    }
-
-    void PopulateHairButtons()
-    {
-        // 清除原本的按鈕
-        foreach (Transform child in hairButtonContainer)
+        foreach (Transform child in content)
             Destroy(child.gameObject);
 
-        // 動態生成每個髮型按鈕
-        foreach (var hair in availableHairs)
+        foreach (var hair in hairList)
         {
-            var btnObj = Instantiate(hairButtonPrefab, hairButtonContainer);
-            var txt = btnObj.GetComponentInChildren<Text>();
-            if (txt != null)
-                txt.text = hair.hairName;
-
-            var img = btnObj.GetComponentInChildren<Image>();
-            if (img != null && hair.hairDown != null)
-                img.sprite = hair.hairDown;
-
-            var button = btnObj.GetComponent<Button>();
-            button.onClick.AddListener(() => OnSelectHair(hair));
+            GameObject obj = Instantiate(hairButtonPrefab, content);
+            HairButtonUI ui = obj.GetComponent<HairButtonUI>();
+            ui.Setup(hair, this);
         }
     }
 
-    void OnSelectHair(HairData newHair)
+    public void SelectHair(HairData hair)
     {
-        if (hairController == null)
-        {
-            Debug.LogError("⚠ HairController 不存在於 Player 身上。");
-            return;
-        }
+        if (hairController == null) return;
 
-        // 套用新的髮型資料
-        hairController.hairUp = newHair.hairUp;
-        hairController.hairDown = newHair.hairDown;
-        hairController.hairLeft = newHair.hairLeft;
-        hairController.hairRight = newHair.hairRight;
+        // 替換髮型
+        hairController.hairUp = hair.hairUp;
+        hairController.hairDown = hair.hairDown;
+        hairController.hairLeft = hair.hairLeft;
+        hairController.hairRight = hair.hairRight;
 
-        hairController.hairUpFrames = newHair.hairUpFrames;
-        hairController.hairDownFrames = newHair.hairDownFrames;
-        hairController.hairLeftFrames = newHair.hairLeftFrames;
-        hairController.hairRightFrames = newHair.hairRightFrames;
+        hairController.hairUpFrames = hair.hairUpFrames;
+        hairController.hairDownFrames = hair.hairDownFrames;
+        hairController.hairLeftFrames = hair.hairLeftFrames;
+        hairController.hairRightFrames = hair.hairRightFrames;
 
-        // 立即更新顯示
         hairController.UpdateHairDirection(0, -1);
 
-        Debug.Log($"🎀 已換髮型：{newHair.hairName}");
+        Debug.Log($"成功替換髮型：{hair.hairName}");
     }
 }
