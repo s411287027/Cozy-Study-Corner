@@ -141,6 +141,7 @@ MonoBehaviour:
   - CafeScene
   - LibraryScene
   - ForestScene
+  - SwimmingPool
   sceneConfigs:
   - sceneName: classroom
     baseY: 0
@@ -151,16 +152,16 @@ MonoBehaviour:
     nearY: -10
   - sceneName: CafeScene
     baseY: 0
-    baseScale: 2
-    farScale: 1.6
-    nearScale: 2.2
+    baseScale: 2.2
+    farScale: 1.8
+    nearScale: 2.4
     farY: 10
     nearY: -10
   - sceneName: LibraryScene
     baseY: 0
     baseScale: 2.3
     farScale: 2.3
-    nearScale: 2.8
+    nearScale: 3
     farY: 10
     nearY: -10
   - sceneName: ForestScene
@@ -168,6 +169,13 @@ MonoBehaviour:
     baseScale: 2.3
     farScale: 2.3
     nearScale: 2.8
+    farY: 10
+    nearY: -10
+  - sceneName: SwimmingPool
+    baseY: 0
+    baseScale: 2
+    farScale: 1.8
+    nearScale: 2.3
     farY: 10
     nearY: -10
 --- !u!50 &7510175049499412044

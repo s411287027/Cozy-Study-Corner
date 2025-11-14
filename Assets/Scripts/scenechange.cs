@@ -86,4 +86,9 @@ public class SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene("ForestScene");
     }
+
+    public void GoToPool()
+    {
+        SceneManager.LoadScene("SwimmingPool");
+    }
 }
