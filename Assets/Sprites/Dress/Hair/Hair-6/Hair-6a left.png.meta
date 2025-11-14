@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 03633d02b4ed1f1479f91109fea313e7
+guid: 9d050dce5b6f33a4992f082c3f5fc1b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2599709213559182325
-    second: Naked down_0000_0
+      213: 3151889258694256227
+    second: Hair-6a left_0
   - first:
-      213: -8743022898346606536
-    second: Naked down_0000_1
+      213: 8571030070760617149
+    second: Hair-6a left_1
+  - first:
+      213: 471004017418716634
+    second: Hair-6a left_2
+  - first:
+      213: 3295956125762059929
+    second: Hair-6a left_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,11 +55,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.49161077, y: 0.5186429}
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -103,45 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Naked down_0000_0
+      name: Hair-6a left_0
       rect:
         serializedVersion: 2
-        x: 653
-        y: 607
-        width: 13
-        height: 22
+        x: 696
+        y: 771
+        width: 197
+        height: 226
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f3518181c5041420800000000000000
-      internalID: 2599709213559182325
+      spriteID: 36627d3d492cdbb20800000000000000
+      internalID: 3151889258694256227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Naked down_0000_1
+      name: Hair-6a left_1
       rect:
         serializedVersion: 2
-        x: 674
-        y: 438
-        width: 231
-        height: 554
+        x: 749
+        y: 994
+        width: 25
+        height: 10
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 830c1f81ffa8aa680800000000000000
-      internalID: -8743022898346606536
+      spriteID: db4b0e6207a62f670800000000000000
+      internalID: 8571030070760617149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-6a left_2
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 791
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5460a88a7598600800000000000000
+      internalID: 471004017418716634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-6a left_3
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 770
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99ef15732a69dbd20800000000000000
+      internalID: 3295956125762059929
       vertices: []
       indices: 
       edges: []
@@ -150,8 +200,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -160,8 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Naked down_0000_0: 2599709213559182325
-      Naked down_0000_1: -8743022898346606536
+      Hair-6a left_0: 3151889258694256227
+      Hair-6a left_1: 8571030070760617149
+      Hair-6a left_2: 471004017418716634
+      Hair-6a left_3: 3295956125762059929
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

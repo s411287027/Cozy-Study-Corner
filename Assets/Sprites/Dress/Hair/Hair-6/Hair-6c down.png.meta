@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 03633d02b4ed1f1479f91109fea313e7
+guid: b255a8e65216a7e45b47ff07be783ba6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2599709213559182325
-    second: Naked down_0000_0
-  - first:
-      213: -8743022898346606536
-    second: Naked down_0000_1
+      213: -588130414122423400
+    second: Hair-6c down_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,11 +46,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.49161077, y: 0.5186429}
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -103,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Naked down_0000_0
+      name: Hair-6c down_0
       rect:
         serializedVersion: 2
-        x: 653
-        y: 607
-        width: 13
-        height: 22
+        x: 628
+        y: 769
+        width: 330
+        height: 249
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f3518181c5041420800000000000000
-      internalID: 2599709213559182325
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Naked down_0000_1
-      rect:
-        serializedVersion: 2
-        x: 674
-        y: 438
-        width: 231
-        height: 554
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 830c1f81ffa8aa680800000000000000
-      internalID: -8743022898346606536
+      spriteID: 89b21a0218a86d7f0800000000000000
+      internalID: -588130414122423400
       vertices: []
       indices: 
       edges: []
@@ -150,8 +125,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Naked down_0000_0: 2599709213559182325
-      Naked down_0000_1: -8743022898346606536
+      Hair-6c down_0: -588130414122423400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

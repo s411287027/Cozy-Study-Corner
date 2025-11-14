@@ -91,4 +91,9 @@ public class SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene("SwimmingPool");
     }
+
+    public void GoToDress()
+    {
+        SceneManager.LoadScene("DressScene");
+    }
 }

@@ -20,6 +20,9 @@ public class player_move : MonoBehaviour
     public float moveSpeed = 5f;
     public float stopThreshold = 0.05f;
 
+    [Header("頭髮設定")]
+    public HairController hairController;
+
     [Header("點擊指示器")]
     public GameObject clickIndicatorPrefab;
     private GameObject clickIndicatorInstance;
@@ -52,6 +55,7 @@ public class player_move : MonoBehaviour
     private bool isPseudo3D = false;
     private SpriteRenderer sr;
     private bool canMove = true;
+    private bool freezeHair = false;
 
     void Awake()
     {
@@ -104,6 +108,20 @@ public class player_move : MonoBehaviour
             ani.SetFloat("Speed", 0);
             if (clickIndicatorInstance != null)
                 clickIndicatorInstance.SetActive(false);
+        }
+        if (hairController != null && !freezeHair)
+        {
+            if (dir.magnitude > stopThreshold)
+            {
+                float hx = ani.GetFloat("Horizontal");
+                float hy = ani.GetFloat("Vertical");
+                hairController.UpdateHairDirection(hx, hy);
+            }
+            else
+            {
+                // 🟢 玩家停止移動時傳 (0,0) → Hair 停止動畫
+                hairController.UpdateHairDirection(0f, 0f);
+            }
         }
     }
 
@@ -235,9 +253,44 @@ public class player_move : MonoBehaviour
     {
         UpdateSceneFlag();
         SetCanMove(false);
+        freezeHair = true;
         if (clickIndicatorInstance != null)
             clickIndicatorInstance.SetActive(false);
-        Invoke(nameof(EnableMove), 0.01f);
+
+        //  如果是 DressScene，禁止移動
+        if (scene.name == "DressScene")
+        {
+            canMove = false;
+            freezeHair = true;   // 🧊 停止頭髮更新
+
+            Debug.Log("玩家進入 Dress 場景，停止移動");
+
+            // 🛑 停止 Rigidbody2D 移動（立刻鎖定位置）
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                targetPosition = rb.position;  
+            }
+
+            // 🧍‍♀️ 固定動畫為面向正面（朝下）
+            if (ani != null)
+            {
+                ani.SetFloat("Horizontal", 0);
+                ani.SetFloat("Vertical", -1);
+                ani.SetFloat("Speed", 0);
+
+                ani.updateMode = AnimatorUpdateMode.Normal; // 🔒 不讓 FixedUpdate 影響動畫
+            }
+
+            // 💇‍♀️ 頭髮固定正面（down）
+            if (hairController != null)
+                hairController.UpdateHairDirection(0f, -1f);
+
+            // ❌ 不要呼叫 EnableMove
+            return;
+        }
+
+        //Invoke(nameof(EnableMove), 0.01f);
     }
 
     public void SetPositionInstant(Vector3 pos)
