@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: f95887b6b1cf0274eaac614d0adc6825
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 837038544358891886
+    second: Library chair2 top_0
+  - first:
+      213: 2655172890488057852
+    second: Library chair2 top_1
+  - first:
+      213: 519948380058940849
+    second: Library chair2 top_2
+  - first:
+      213: 8960617093709834367
+    second: Library chair2 top_3
+  - first:
+      213: -193811551050740163
+    second: Library chair2 top_4
+  - first:
+      213: -8485556372729186054
+    second: Library chair2 top_5
+  - first:
+      213: 314088783582682386
+    second: Library chair2 top_6
+  - first:
+      213: 3953368591850794555
+    second: Library chair2 top_7
+  - first:
+      213: 5116570255635627043
+    second: Library chair2 top_8
+  - first:
+      213: -3923110698138030558
+    second: Library chair2 top_9
+  - first:
+      213: 1288949850445111764
+    second: Library chair2 top_10
+  - first:
+      213: 619225548260017994
+    second: Library chair2 top_11
+  - first:
+      213: 5340309279266096485
+    second: Library chair2 top_12
+  - first:
+      213: 5396661554212342204
+    second: Library chair2 top_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.15044743, y: 0.753542}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 393, y: 2070, z: 3204, w: 572}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Library chair2 top_0
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 2440
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6162db0f12cd9b00800000000000000
+      internalID: 837038544358891886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_1
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 2439
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cffa9ca1da119d420800000000000000
+      internalID: 2655172890488057852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_2
+      rect:
+        serializedVersion: 2
+        x: 3076
+        y: 2425
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5f3fefb4a373700800000000000000
+      internalID: 519948380058940849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_3
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 2096
+        width: 339
+        height: 317
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f782ed675c18a5c70800000000000000
+      internalID: 8960617093709834367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_4
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 2408
+        width: 27
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3ec042db617f4df0800000000000000
+      internalID: -193811551050740163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_5
+      rect:
+        serializedVersion: 2
+        x: 3066
+        y: 2399
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8bce9ff6f3d3a80800000000000000
+      internalID: -8485556372729186054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_6
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 2055
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21d5165a51edb5400800000000000000
+      internalID: 314088783582682386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_7
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1974
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3ee377d9cf2dd630800000000000000
+      internalID: 3953368591850794555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_8
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 1941
+        width: 38
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32cbd7be985b10740800000000000000
+      internalID: 5116570255635627043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_9
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1932
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ea2f60b9f4e89c0800000000000000
+      internalID: -3923110698138030558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1946
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d1e2115f0543e110800000000000000
+      internalID: 1288949850445111764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_11
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1911
+        width: 54
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4782e7fa5ee79800800000000000000
+      internalID: 619225548260017994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_12
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 1901
+        width: 39
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 565c06dcef69c1a40800000000000000
+      internalID: 5340309279266096485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library chair2 top_13
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1903
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb985df371bc4ea40800000000000000
+      internalID: 5396661554212342204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c96e2e822cfe6454aa7507dd5b8a0fbc
+    internalID: 929238649
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Library chair2 top_0: 837038544358891886
+      Library chair2 top_1: 2655172890488057852
+      Library chair2 top_10: 1288949850445111764
+      Library chair2 top_11: 619225548260017994
+      Library chair2 top_12: 5340309279266096485
+      Library chair2 top_13: 5396661554212342204
+      Library chair2 top_2: 519948380058940849
+      Library chair2 top_3: 8960617093709834367
+      Library chair2 top_4: -193811551050740163
+      Library chair2 top_5: -8485556372729186054
+      Library chair2 top_6: 314088783582682386
+      Library chair2 top_7: 3953368591850794555
+      Library chair2 top_8: 5116570255635627043
+      Library chair2 top_9: -3923110698138030558
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

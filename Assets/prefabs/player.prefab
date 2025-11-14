@@ -448,7 +448,7 @@ MonoBehaviour:
   - {fileID: -4969060760376158352, guid: 4032b027ab6579d43b333f4ead4f1c61, type: 3}
   - {fileID: 1427918710420765265, guid: 6554a2dd93c2bd44faa84a20e6bbf90e, type: 3}
   - {fileID: -7087723965929965937, guid: d9dda0f2049d96f4abc8c093bb278f55, type: 3}
-  animationInterval: 0.15
+  animationInterval: 0.3
   baseLocalOffset: {x: -0.100000024, y: 2.6, z: 0}
   movementThreshold: 0.001
   enableDebug: 1

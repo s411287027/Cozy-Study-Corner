@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 [System.Serializable]
 public class Pseudo3DConfig
@@ -96,9 +97,15 @@ public class player_move : MonoBehaviour
         }
 
         Vector2 dir = targetPosition - rb.position;
+        float dirX = 0f;
+        float dirY = 0f;
+
         if (dir.magnitude > stopThreshold)
         {
             Vector2 dirNormalized = dir.normalized;
+            dirX = dirNormalized.x;
+            dirY = dirNormalized.y;
+
             ani.SetFloat("Horizontal", dirNormalized.x);
             ani.SetFloat("Vertical", dirNormalized.y);
             ani.SetFloat("Speed", dir.magnitude);
@@ -123,6 +130,7 @@ public class player_move : MonoBehaviour
                 hairController.UpdateHairDirection(0f, 0f);
             }
         }
+
     }
 
     void FixedUpdate()
@@ -257,40 +265,33 @@ public class player_move : MonoBehaviour
         if (clickIndicatorInstance != null)
             clickIndicatorInstance.SetActive(false);
 
-        //  如果是 DressScene，禁止移動
-        if (scene.name == "DressScene")
+        //  如果是 Dress 場景，禁止移動
+        if (scene.name == "Dress")
         {
             canMove = false;
-            freezeHair = true;   // 🧊 停止頭髮更新
-
             Debug.Log("玩家進入 Dress 場景，停止移動");
-
-            // 🛑 停止 Rigidbody2D 移動（立刻鎖定位置）
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-                targetPosition = rb.position;  
-            }
-
-            // 🧍‍♀️ 固定動畫為面向正面（朝下）
+            //  設定角色面向「正面（朝下）」
             if (ani != null)
             {
                 ani.SetFloat("Horizontal", 0);
-                ani.SetFloat("Vertical", -1);
-                ani.SetFloat("Speed", 0);
-
-                ani.updateMode = AnimatorUpdateMode.Normal; // 🔒 不讓 FixedUpdate 影響動畫
+                ani.SetFloat("Vertical", -1);  // -1 代表朝下
+                ani.SetFloat("Speed", 0);      // 停止移動動畫
             }
 
-            // 💇‍♀️ 頭髮固定正面（down）
+            //  同步更新髮型方向（顯示正面髮型）
             if (hairController != null)
+            {
                 hairController.UpdateHairDirection(0f, -1f);
+            }
 
-            // ❌ 不要呼叫 EnableMove
-            return;
+            return; // 不要重新啟用移動
+        }
+        else
+        {
+            freezeHair = false; //  其他場景恢復頭髮更新
         }
 
-        //Invoke(nameof(EnableMove), 0.01f);
+        Invoke(nameof(EnableMove), 0.01f);
     }
 
     public void SetPositionInstant(Vector3 pos)
@@ -321,4 +322,6 @@ public class player_move : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+
 }
