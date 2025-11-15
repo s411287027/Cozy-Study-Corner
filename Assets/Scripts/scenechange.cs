@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneChange : MonoBehaviour
 {
@@ -33,43 +34,73 @@ public class SceneChange : MonoBehaviour
 
     public void GoToMap()
     {
-        // 嘗試取得 FriendSystemController
-        FirebaseController au = FindObjectOfType<FirebaseController>();
-        if (au != null)
-        {
-            au.OpenMapPanel();
-        }
-        else
-        {
-            Debug.LogWarning("⚠️ FriendSystemController 尚未載入！");
-        }
+        SceneManager.LoadScene("Map");
     }
     public void GoToFriend()
     {
-        // 嘗試取得 FriendSystemController
-        FriendSystemController fs = FindObjectOfType<FriendSystemController>();
-        if (fs != null)
-        {
-            fs.OpenFriendSystemController();
-        }
-        else
-        {
-            Debug.LogWarning("⚠️ FriendSystemController 尚未載入！");
-        }
+        StartCoroutine(EnsureCozyLoadedAndOpenFriend());
     }
+
+    private IEnumerator EnsureCozyLoadedAndOpenFriend()
+    {
+        // 先確保 CozyStudyCorner 載入
+        Scene cozyScene = SceneManager.GetSceneByName("CozyStudyCorner");
+        if (!cozyScene.isLoaded)
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("CozyStudyCorner", LoadSceneMode.Additive);
+            yield return asyncLoad;
+        }
+
+        // 等單例初始化
+        while (FriendSystemController.Instance == null)
+            yield return null;
+
+        // 開啟 FriendSystem
+        FriendSystemController.Instance.OpenFriendSystemController();
+
+        // 將 CozyStudyCorner 設為 active scene，確保 UI 事件正常
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("CozyStudyCorner"));
+    }
+
+
 
     public void GoToShop()
     {
-        // 嘗試取得 FriendSystemController
-        ShopController shop = FindObjectOfType<ShopController>();
+        StartCoroutine(LoadCSceneAndOpenShop());
+    }
+
+    private IEnumerator LoadCSceneAndOpenShop()
+    {
+        // 先檢查 CozyStudyCorner 是否已載入
+        Scene cozyScene = SceneManager.GetSceneByName("CozyStudyCorner");
+        if (!cozyScene.isLoaded)
+        {
+            var asyncLoad = SceneManager.LoadSceneAsync("CozyStudyCorner", LoadSceneMode.Additive);
+            yield return new WaitUntil(() => asyncLoad.isDone);
+        }
+
+        // 等場景完全載入
+        cozyScene = SceneManager.GetSceneByName("CozyStudyCorner");
+
+        // 找 ShopController
+        ShopController shop = null;
+        foreach (var root in cozyScene.GetRootGameObjects())
+        {
+            shop = root.GetComponentInChildren<ShopController>();
+            if (shop != null) break;
+        }
+
         if (shop != null)
         {
             shop.OpenShopPanel();
         }
         else
         {
-            Debug.LogWarning("⚠️ ShopController 尚未載入！");
+            Debug.LogWarning("⚠️ ShopController not found in CozyStudyCorner!");
         }
+
+        // 可選：設定 CozyStudyCorner 為 active scene，確保 UI 事件正常
+        SceneManager.SetActiveScene(cozyScene);
     }
 
     public void GoToCafe()

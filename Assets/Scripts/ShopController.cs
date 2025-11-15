@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class ShopItem
@@ -14,16 +13,65 @@ public class ShopItem
 
 public class ShopController : MonoBehaviour
 {
-    public GameObject loginPanel, signupPanel, profilePanel, forgetPasswordPanel, notificationPanel, shopPanel;
-    public FirebaseDatabaseController dbController;
+    [Header("Panels")]
+    public GameObject loginPanel;
+    public GameObject signupPanel;
+    public GameObject profilePanel;
+    public GameObject forgetPasswordPanel;
+    public GameObject notificationPanel;
+    public GameObject shopPanel;
+
+    [Header("Shop")]
     public GameObject shopItemPrefab;
     public Transform shopContent;
-    public TMP_Text UserCoins_Text, UserName_Text, UserLevel_Text;
+
+    [Header("User Info")]
+    public TMP_Text UserCoins_Text;
+    public TMP_Text UserName_Text;
+    public TMP_Text UserLevel_Text;
+
+    private FirebaseDatabaseController dbController;
 
     public List<ShopItem> shopItems = new List<ShopItem>();
 
-    void Awake()
+    private void OnEnable()
     {
+        // 每次啟用場景都抓 Singleton
+        dbController = FirebaseDatabaseController.Instance;
+
+        if (dbController != null)
+        {
+            // 避免事件重複綁定
+            dbController.OnDataLoaded -= OnDataLoaded;
+            dbController.OnDataLoaded += OnDataLoaded;
+
+            // 如果資料已經存在，直接更新 UI
+            if (dbController.dts != null)
+                OnDataLoaded();
+            else
+                dbController.LoadDataFn(); // 開始讀資料
+        }
+
+        InitializeShopItems();
+    }
+
+    private void OnDisable()
+    {
+        // 避免事件殘留
+        if (dbController != null)
+            dbController.OnDataLoaded -= OnDataLoaded;
+    }
+
+    private void OnDataLoaded()
+    {
+        GenerateShopUI();
+        UpdateCoinsUI();
+        RefreshOwnedItemsUI();
+    }
+
+    private void InitializeShopItems()
+    {
+        // 你的 shopItems 初始化程式...
         shopItems = new List<ShopItem>
         {
             new ShopItem { itemType = "face", itemId = 1, price = 100, icon = Resources.Load<Sprite>("face_1") },
@@ -73,21 +121,14 @@ public class ShopController : MonoBehaviour
             new ShopItem { itemType = "furniture", itemId = 20, price = 100, icon = Resources.Load<Sprite>("Toy-1-1") },
             new ShopItem { itemType = "furniture", itemId = 21, price = 100, icon = Resources.Load<Sprite>("Window-1-1") },
             new ShopItem { itemType = "furniture", itemId = 22, price = 100, icon = Resources.Load<Sprite>("Window-2-1") }
+
         };
     }
 
-    void Start()
+    private void GenerateShopUI()
     {
-        GenerateShopUI();
-        dbController.OnDataLoaded += () =>
-        {
-            UpdateCoinsUI();
-            RefreshOwnedItemsUI();
-        };
-    }
+        if (shopContent == null || shopItemPrefab == null) return;
 
-    void GenerateShopUI()
-    {
         foreach (Transform child in shopContent)
             Destroy(child.gameObject);
 
@@ -95,7 +136,8 @@ public class ShopController : MonoBehaviour
         {
             GameObject obj = Instantiate(shopItemPrefab, shopContent);
             ShopItemUI ui = obj.GetComponent<ShopItemUI>();
-            ui.Setup(item, this);
+            if (ui != null)
+                ui.Setup(item, this);
         }
     }
 
@@ -112,25 +154,11 @@ public class ShopController : MonoBehaviour
 
         if (dbController.dts.TotalCoins >= item.price)
         {
-            List<int> OwnedList = dbController.dts.ownedItems.GetList(item.itemType);
-
-            if (!OwnedList.Contains(item.itemId))
+            if (!ownedList.Contains(item.itemId))
             {
-                // 🔹 改成這樣（不再呼叫 SaveDataFn）
                 dbController.UpdatePurchase(item.itemType, item.itemId, item.price);
-
                 UpdateCoinsUI();
-
-                // ✅ 灰化購買的物品 UI
-                foreach (Transform child in shopContent)
-                {
-                    var ui = child.GetComponent<ShopItemUI>();
-                    if (ui != null && ui.item.itemId == item.itemId && ui.item.itemType == item.itemType)
-                    {
-                        ui.SetPurchased(true);
-                        Debug.Log($"✅ 灰化成功: {item.itemType} {item.itemId}");
-                    }
-                }
+                RefreshOwnedItemsUI();
             }
             else
             {
@@ -141,12 +169,11 @@ public class ShopController : MonoBehaviour
         {
             Debug.Log("❌ 金幣不足");
         }
-
     }
 
-    void RefreshOwnedItemsUI()
+    private void RefreshOwnedItemsUI()
     {
-        if (dbController == null || dbController.dts == null) return;
+        if (shopContent == null || dbController == null || dbController.dts == null) return;
 
         foreach (Transform child in shopContent)
         {
@@ -162,34 +189,30 @@ public class ShopController : MonoBehaviour
 
     public void UpdateCoinsUI()
     {
-        if (dbController != null && dbController.dts != null)
-        {
-            UserCoins_Text.text = dbController.dts.TotalCoins.ToString();
-            UserName_Text.text = dbController.dts.UserName;
-            UserLevel_Text.text = dbController.dts.CrrLevel.ToString();
-        }
-        else
-        {
-            UserCoins_Text.text = "Loading...";
-            UserName_Text.text = "Loading...";
-            UserLevel_Text.text = "Loading...";
-        }
+        if (UserCoins_Text != null)
+            UserCoins_Text.text = dbController != null && dbController.dts != null ? dbController.dts.TotalCoins.ToString() : "Loading...";
+        if (UserName_Text != null)
+            UserName_Text.text = dbController != null && dbController.dts != null ? dbController.dts.UserName : "Loading...";
+        if (UserLevel_Text != null)
+            UserLevel_Text.text = dbController != null && dbController.dts != null ? dbController.dts.CrrLevel.ToString() : "Loading...";
     }
 
     public void OpenShopPanel()
     {
-        Scene sceneA = SceneManager.GetSceneByName("CozyStudyCorner");
-        foreach (var rootObj in sceneA.GetRootGameObjects())
-        {
-            Canvas canvas = rootObj.GetComponentInChildren<Canvas>();
-            if (canvas != null)
-                canvas.sortingOrder = 2; // 高於 SceneA
-        }
-        loginPanel.SetActive(false);
-        signupPanel.SetActive(false);
-        profilePanel.SetActive(false);
-        forgetPasswordPanel.SetActive(false);
-        shopPanel.SetActive(true);
-        dbController.LoadDataFn();
+        // 隱藏其他面板
+        loginPanel?.SetActive(false);
+        signupPanel?.SetActive(false);
+        profilePanel?.SetActive(false);
+        forgetPasswordPanel?.SetActive(false);
+
+        // 顯示商店
+        shopPanel?.SetActive(true);
+
+        // 生成 UI
+        GenerateShopUI();
+        RefreshOwnedItemsUI();
+        UpdateCoinsUI();
     }
 }
+
+

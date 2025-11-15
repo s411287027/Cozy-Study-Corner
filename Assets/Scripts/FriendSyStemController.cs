@@ -32,12 +32,20 @@ public class FriendSystemController : MonoBehaviour
     [Header("Friend List UI")]
     public GameObject friendListItemPrefab; // Prefab 用於顯示好友
     public Transform friendListContainer; // 容器
+    public static FriendSystemController Instance;
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 永遠保留
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-
     private void Start()
     {
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
@@ -373,6 +381,12 @@ public class FriendSystemController : MonoBehaviour
 
     public void OpenFriendSystemController()
     {
+        if (FriendSystemPanel == null)
+        {
+            Debug.LogError("FriendSystemPanel 尚未指派！");
+            return;
+        }
+
         Scene sceneA = SceneManager.GetSceneByName("CozyStudyCorner");
         foreach (var rootObj in sceneA.GetRootGameObjects())
         {
@@ -384,9 +398,10 @@ public class FriendSystemController : MonoBehaviour
         FriendSystemPanel.SetActive(true);
         if (playerUIDText != null)
             playerUIDText.text = dbController.userId;
-        LoadFriends();
 
+        LoadFriends();
     }
+
 
     public void CloseFriendSystemController()
     {
