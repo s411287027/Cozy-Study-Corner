@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: c03245e47adc0cd4a9eee969ba0ae3fc
+guid: 39bc739fcef070d4a89920fe7ebfac68
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2128671213411455916
-    second: Main school_0
+      213: -7469470738588422091
+    second: Face-3 down_0
   - first:
-      213: -4657347845801730917
-    second: Main school_1
+      213: 8651970603395732912
+    second: Face-3 down_1
+  - first:
+      213: -4623283801514248419
+    second: Face-3 down_2
+  - first:
+      213: 7886291267222141907
+    second: Face-3 down_3
+  - first:
+      213: 4748617509804361139
+    second: Face-3 down_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +112,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main school_0
+      name: Face-3 down_0
       rect:
         serializedVersion: 2
-        x: 2722
-        y: 76
-        width: 870
-        height: 752
+        x: 740
+        y: 889
+        width: 14
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45ca2014fc07572e0800000000000000
-      internalID: -2128671213411455916
+      spriteID: 530334e20fb175890800000000000000
+      internalID: -7469470738588422091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main school_1
+      name: Face-3 down_1
       rect:
         serializedVersion: 2
-        x: 2733
-        y: 82
-        width: 855
-        height: 750
+        x: 740
+        y: 849
+        width: 31
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9c9e875fc6cd5fb0800000000000000
-      internalID: -4657347845801730917
+      spriteID: 0b556867c69f11870800000000000000
+      internalID: 8651970603395732912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face-3 down_2
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 888
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d17fce2b0ebc6dfb0800000000000000
+      internalID: -4623283801514248419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face-3 down_3
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 827
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db7a0acf1cb17d60800000000000000
+      internalID: 7886291267222141907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face-3 down_4
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 850
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b5c616477a76e140800000000000000
+      internalID: 4748617509804361139
       vertices: []
       indices: 
       edges: []
@@ -150,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4849a5c05245d0c48b941fd2d50b0277
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Main school_0: -2128671213411455916
-      Main school_1: -4657347845801730917
+      Face-3 down_0: -7469470738588422091
+      Face-3 down_1: 8651970603395732912
+      Face-3 down_2: -4623283801514248419
+      Face-3 down_3: 7886291267222141907
+      Face-3 down_4: 4748617509804361139
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: c03245e47adc0cd4a9eee969ba0ae3fc
+guid: b12a389911eb47544ab21c9703b424d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2128671213411455916
-    second: Main school_0
-  - first:
-      213: -4657347845801730917
-    second: Main school_1
+      213: -4160174794612618643
+    second: Shirt-1a down_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main school_0
+      name: Shirt-1a down_0
       rect:
         serializedVersion: 2
-        x: 2722
-        y: 76
-        width: 870
-        height: 752
+        x: 685
+        y: 657
+        width: 210
+        height: 135
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45ca2014fc07572e0800000000000000
-      internalID: -2128671213411455916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main school_1
-      rect:
-        serializedVersion: 2
-        x: 2733
-        y: 82
-        width: 855
-        height: 750
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b9c9e875fc6cd5fb0800000000000000
-      internalID: -4657347845801730917
+      spriteID: d6ac49bd0171446c0800000000000000
+      internalID: -4160174794612618643
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4849a5c05245d0c48b941fd2d50b0277
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Main school_0: -2128671213411455916
-      Main school_1: -4657347845801730917
+      Shirt-1a down_0: -4160174794612618643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

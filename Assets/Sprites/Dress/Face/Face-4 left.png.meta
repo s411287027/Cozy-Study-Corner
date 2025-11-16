@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: c03245e47adc0cd4a9eee969ba0ae3fc
+guid: 889856ebfc7d3fb4c8055b9c03ac1678
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2128671213411455916
-    second: Main school_0
+      213: -5520008809825375745
+    second: Face-4 left_0
   - first:
-      213: -4657347845801730917
-    second: Main school_1
+      213: -7793654676836347780
+    second: Face-4 left_1
+  - first:
+      213: 5799848159618265863
+    second: Face-4 left_2
+  - first:
+      213: 4898818078506025063
+    second: Face-4 left_3
+  - first:
+      213: 3306228154239663110
+    second: Face-4 left_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +112,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main school_0
+      name: Face-4 left_0
       rect:
         serializedVersion: 2
-        x: 2722
-        y: 76
-        width: 870
-        height: 752
+        x: 732
+        y: 849
+        width: 33
+        height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45ca2014fc07572e0800000000000000
-      internalID: -2128671213411455916
+      spriteID: ff9e455db3df463b0800000000000000
+      internalID: -5520008809825375745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main school_1
+      name: Face-4 left_1
       rect:
         serializedVersion: 2
-        x: 2733
-        y: 82
-        width: 855
-        height: 750
+        x: 742
+        y: 893
+        width: 22
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9c9e875fc6cd5fb0800000000000000
-      internalID: -4657347845801730917
+      spriteID: c709b1d2d5067d390800000000000000
+      internalID: -7793654676836347780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face-4 left_2
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 831
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 703ff391c233d7050800000000000000
+      internalID: 5799848159618265863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face-4 left_3
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 827
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7600d9c56191cf340800000000000000
+      internalID: 4898818078506025063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Face-4 left_4
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 827
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60cb9d73df412ed20800000000000000
+      internalID: 3306228154239663110
       vertices: []
       indices: 
       edges: []
@@ -150,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4849a5c05245d0c48b941fd2d50b0277
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Main school_0: -2128671213411455916
-      Main school_1: -4657347845801730917
+      Face-4 left_0: -5520008809825375745
+      Face-4 left_1: -7793654676836347780
+      Face-4 left_2: 5799848159618265863
+      Face-4 left_3: 4898818078506025063
+      Face-4 left_4: 3306228154239663110
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

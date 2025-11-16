@@ -24,6 +24,9 @@ public class player_move : MonoBehaviour
     [Header("頭髮設定")]
     public HairController hairController;
 
+    [Header("衣服設定")]
+    public ShirtController shirtController;
+
     [Header("點擊指示器")]
     public GameObject clickIndicatorPrefab;
     private GameObject clickIndicatorInstance;
@@ -57,6 +60,7 @@ public class player_move : MonoBehaviour
     private SpriteRenderer sr;
     private bool canMove = true;
     private bool freezeHair = false;
+    private bool freezeShirt = false;
 
     void Awake()
     {
@@ -92,6 +96,8 @@ public class player_move : MonoBehaviour
 
             if (hairController != null)
                 hairController.UpdateHairDirection(0f, -1f);
+            if (shirtController != null)
+                shirtController.UpdateShirtDirection(0f, -1f);
         }
     }
 
@@ -139,20 +145,25 @@ public class player_move : MonoBehaviour
             if (clickIndicatorInstance != null)
                 clickIndicatorInstance.SetActive(false);
         }
+
+        float hx = ani.GetFloat("Horizontal");
+        float hy = ani.GetFloat("Vertical");
         if (hairController != null && !freezeHair)
         {
             if (dir.magnitude > stopThreshold)
-            {
-                float hx = ani.GetFloat("Horizontal");
-                float hy = ani.GetFloat("Vertical");
                 hairController.UpdateHairDirection(hx, hy);
-            }
             else
-            {
-                // 🟢 玩家停止移動時傳 (0,0) → Hair 停止動畫
                 hairController.UpdateHairDirection(0f, 0f);
-            }
         }
+
+        if (shirtController != null && !freezeShirt)
+        {
+            if (dir.magnitude > stopThreshold)
+                shirtController.UpdateShirtDirection(hx, hy);
+            else
+                shirtController.UpdateShirtDirection(0f, 0f);
+        }
+
 
     }
 
@@ -285,6 +296,8 @@ public class player_move : MonoBehaviour
         UpdateSceneFlag();
         SetCanMove(false);
         freezeHair = true;
+        freezeShirt = true;
+
         if (clickIndicatorInstance != null)
             clickIndicatorInstance.SetActive(false);
 
@@ -306,12 +319,17 @@ public class player_move : MonoBehaviour
             {
                 hairController.UpdateHairDirection(0f, -1f);
             }
+            if (shirtController != null)
+            {
+                shirtController.UpdateShirtDirection(0f, -1f);
+            }
 
             return; // 不要重新啟用移動
         }
         else
         {
             freezeHair = false; //  其他場景恢復頭髮更新
+            freezeShirt = false;
         }
 
         Invoke(nameof(EnableMove), 0.01f);
