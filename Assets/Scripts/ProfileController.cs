@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ProfileUIController : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class ProfileUIController : MonoBehaviour
             FirebaseDatabaseController.Instance.OnDataLoaded -= UpdateUI;
     }
 
-    public void LogOut()
+    public void LogOut1()
     {
         FirebaseController au = FindObjectOfType<FirebaseController>();
         if (au != null)
@@ -53,5 +54,6 @@ public class ProfileUIController : MonoBehaviour
         {
             Debug.LogWarning("⚠️ FriendSystemController 尚未載入！");
         }
+        SceneManager.LoadScene("CozyStudyCorner");
     }
 }

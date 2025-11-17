@@ -43,26 +43,34 @@ public class SceneChange : MonoBehaviour
 
     private IEnumerator EnsureCozyLoadedAndOpenFriend()
     {
-        // 先確保 CozyStudyCorner 載入
         Scene cozyScene = SceneManager.GetSceneByName("CozyStudyCorner");
         if (!cozyScene.isLoaded)
         {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("CozyStudyCorner", LoadSceneMode.Additive);
             yield return asyncLoad;
+            cozyScene = SceneManager.GetSceneByName("CozyStudyCorner");
+        }
+
+        // 找到登入面板並隱藏
+        foreach (var rootObj in cozyScene.GetRootGameObjects())
+        {
+            var loginPanel = rootObj.transform.Find("LoginPage");
+            var FriendPanel = rootObj.transform.Find("FriendPage");
+            if (loginPanel != null)
+            {
+                loginPanel.gameObject.SetActive(false);
+                FriendPanel.gameObject.SetActive(true);
+            }
         }
 
         // 等單例初始化
         while (FriendSystemController.Instance == null)
             yield return null;
 
-        // 開啟 FriendSystem
         FriendSystemController.Instance.OpenFriendSystemController();
 
-        // 將 CozyStudyCorner 設為 active scene，確保 UI 事件正常
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("CozyStudyCorner"));
+        SceneManager.SetActiveScene(cozyScene);
     }
-
-
 
     public void GoToShop()
     {

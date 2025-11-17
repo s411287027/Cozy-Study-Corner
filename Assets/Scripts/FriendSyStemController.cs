@@ -33,23 +33,54 @@ public class FriendSystemController : MonoBehaviour
     public GameObject friendListItemPrefab; // Prefab 用於顯示好友
     public Transform friendListContainer; // 容器
     public static FriendSystemController Instance;
+    private bool isListeningFriendRequests = false;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 永遠保留
+            //DontDestroyOnLoad(gameObject); // 永遠保留
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    private void Start()
+    private void OnEnable()
     {
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        if (FirebaseDatabaseController.Instance == null)
+        {
+            Debug.LogWarning("FirebaseDatabaseController 尚未初始化，延遲 1 秒再嘗試...");
+            Invoke(nameof(OnEnable), 1f);
+            return;
+        }
+
+        dbController = FirebaseDatabaseController.Instance;
+
+        dbController.OnDataLoaded -= OnDataLoaded;
+        dbController.OnDataLoaded += OnDataLoaded;
+
+        if (dbController.dts != null)
+            OnDataLoaded();
+        else
+            dbController.LoadDataFn();
     }
+
+
+    private void OnDataLoaded()
+    {
+        // 確保 dbRef 初始化
+        if (dbRef == null)
+            dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
+        // 開始監聽好友邀請
+        StartListeningForFriendRequests();
+
+        // 載入好友
+        LoadFriends();
+    }
+
 
     public void SearchUser()
     {
@@ -209,6 +240,12 @@ public class FriendSystemController : MonoBehaviour
 
     private void CreateFriendListItem(string friendUid)
     {
+        foreach (Transform child in friendListContainer)
+        {
+            TMP_Text uidText2 = child.Find("UIDText")?.GetComponent<TMP_Text>();
+            if (uidText2 != null && uidText2.text == friendUid)
+                return;
+        }
         GameObject item = Instantiate(friendListItemPrefab, friendListContainer);
 
         // 設定 FriendListItem 腳本
@@ -381,26 +418,53 @@ public class FriendSystemController : MonoBehaviour
 
     public void OpenFriendSystemController()
     {
+        // 初始化 dbRef
+        if (dbRef == null)
+            dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
         if (FriendSystemPanel == null)
         {
             Debug.LogError("FriendSystemPanel 尚未指派！");
             return;
         }
 
+        // 更新 Canvas sortingOrder
         Scene sceneA = SceneManager.GetSceneByName("CozyStudyCorner");
         foreach (var rootObj in sceneA.GetRootGameObjects())
         {
             Canvas canvas = rootObj.GetComponentInChildren<Canvas>();
             if (canvas != null)
-                canvas.sortingOrder = 2; // 高於 SceneA
+                canvas.sortingOrder = 10; // 高於 SceneA
         }
 
+        // 啟用面板
         FriendSystemPanel.SetActive(true);
+
+        // 如果 dbController 尚未初始化，延遲顯示 UID 與載入好友
+        if (dbController == null || string.IsNullOrEmpty(dbController.userId) || dbController.dts == null)
+        {
+            Debug.Log("Firebase 尚未初始化，延遲顯示 UID 與載入好友...");
+            Invoke(nameof(DelayedLoadUI), 1f); // 1 秒後再嘗試
+            return;
+        }
+
+        // 直接顯示 UID 與載入好友
         if (playerUIDText != null)
             playerUIDText.text = dbController.userId;
 
         LoadFriends();
     }
+
+    // 延遲載入 UI
+    private void DelayedLoadUI()
+    {
+        if (playerUIDText != null && dbController != null)
+            playerUIDText.text = dbController.userId;
+
+        if (dbController != null)
+            LoadFriends();
+    }
+
 
 
     public void CloseFriendSystemController()

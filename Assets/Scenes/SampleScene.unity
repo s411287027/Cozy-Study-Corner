@@ -4582,7 +4582,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 637519451}
         m_TargetAssemblyTypeName: ProfileUIController, Assembly-CSharp
-        m_MethodName: LogOut
+        m_MethodName: LogOut1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
