@@ -120,7 +120,6 @@ public class ShirtController : MonoBehaviour
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
             isMoving = false;
-            
             return;
         }
 
@@ -149,11 +148,11 @@ public class ShirtController : MonoBehaviour
                 ShowStaticShirt(currentMoveDir);
         }
 
-        if (enableDebug && newDir != lastDir)
-        {
+        //if (enableDebug && newDir != lastDir)
+        //{
             Debug.Log($"ShirtController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
             lastDir = newDir;
-        }
+        //}
     }
 
     private Sprite[] GetFramesForDirection(string dir)

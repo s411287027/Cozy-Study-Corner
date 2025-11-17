@@ -27,6 +27,15 @@ public class player_move : MonoBehaviour
     [Header("衣服設定")]
     public ShirtController shirtController;
 
+    [Header("褲子設定")]
+    public PantsController pantsController;
+
+    [Header("鞋子設定")]
+    public ShoesController shoesController;
+
+    [Header("表情設定")]
+    public FaceController faceController;
+
     [Header("點擊指示器")]
     public GameObject clickIndicatorPrefab;
     private GameObject clickIndicatorInstance;
@@ -61,6 +70,9 @@ public class player_move : MonoBehaviour
     private bool canMove = true;
     private bool freezeHair = false;
     private bool freezeShirt = false;
+    private bool freezePants = false;
+    private bool freezeShoes = false;
+    //private bool freezeFace = false;
 
     void Awake()
     {
@@ -87,6 +99,10 @@ public class player_move : MonoBehaviour
         {
             canMove = false;
             freezeHair = true;   // 停止頭髮方向更新
+            freezeShirt = true;
+            freezePants = true;
+            freezeShoes = true;
+            //freezeFace = true;
             rb.linearVelocity = Vector2.zero;
 
             // 設定面向正面（朝下）
@@ -98,6 +114,12 @@ public class player_move : MonoBehaviour
                 hairController.UpdateHairDirection(0f, -1f);
             if (shirtController != null)
                 shirtController.UpdateShirtDirection(0f, -1f);
+            if (pantsController != null)
+                pantsController.UpdatePantsDirection(0f, -1f);
+            if (shoesController != null)
+                shoesController.UpdateShoesDirection(0f, -1f);
+            //if (faceController != null)
+            //    faceController.UpdateFacdDirection(0f, -1f);
         }
     }
 
@@ -155,7 +177,6 @@ public class player_move : MonoBehaviour
             else
                 hairController.UpdateHairDirection(0f, 0f);
         }
-
         if (shirtController != null && !freezeShirt)
         {
             if (dir.magnitude > stopThreshold)
@@ -163,6 +184,27 @@ public class player_move : MonoBehaviour
             else
                 shirtController.UpdateShirtDirection(0f, 0f);
         }
+        if (pantsController != null && !freezeHair)
+        {
+            if (dir.magnitude > stopThreshold)
+                pantsController.UpdatePantsDirection(hx, hy);
+            else
+                pantsController.UpdatePantsDirection(0f, 0f);
+        }
+        if (shoesController != null && !freezeShirt)
+        {
+            if (dir.magnitude > stopThreshold)
+                shoesController.UpdateShoesDirection(hx, hy);
+            else
+                shoesController.UpdateShoesDirection(0f, 0f);
+        }
+        //if (faceController != null && !freezeShirt)
+        //{
+        //    if (dir.magnitude > stopThreshold)
+        //        faceController.UpdateFaceDirection(hx, hy);
+        //    else
+        //        faceController.UpdateFaceDirection(0f, 0f);
+        //}
 
 
     }
@@ -297,6 +339,9 @@ public class player_move : MonoBehaviour
         SetCanMove(false);
         freezeHair = true;
         freezeShirt = true;
+        freezePants = true;
+        freezeShoes = true;
+        //freezeFace = true;
 
         if (clickIndicatorInstance != null)
             clickIndicatorInstance.SetActive(false);
@@ -316,13 +361,15 @@ public class player_move : MonoBehaviour
 
             //  同步更新髮型方向（顯示正面髮型）
             if (hairController != null)
-            {
                 hairController.UpdateHairDirection(0f, -1f);
-            }
             if (shirtController != null)
-            {
                 shirtController.UpdateShirtDirection(0f, -1f);
-            }
+            if (pantsController != null)
+                pantsController.UpdatePantsDirection(0f, -1f);
+            if (shoesController != null)
+                shoesController.UpdateShoesDirection(0f, -1f);
+            //if (faceController != null)
+            //    faceController.UpdateFaceDirection(0f, -1f);
 
             return; // 不要重新啟用移動
         }
@@ -330,6 +377,9 @@ public class player_move : MonoBehaviour
         {
             freezeHair = false; //  其他場景恢復頭髮更新
             freezeShirt = false;
+            freezePants = false;
+            freezeShoes = false;
+            //freezeFace = false;
         }
 
         Invoke(nameof(EnableMove), 0.01f);

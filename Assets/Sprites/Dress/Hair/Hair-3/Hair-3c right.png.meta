@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 2d9a44b6be8599e4e96e7676e7957833
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6037173852891347233
+    second: Hair-3c right_0
+  - first:
+      213: -4810797391721670562
+    second: Hair-3c right_1
+  - first:
+      213: -468491977148461490
+    second: Hair-3c right_2
+  - first:
+      213: -4922417047783026174
+    second: Hair-3c right_3
+  - first:
+      213: 1263084528083824528
+    second: Hair-3c right_4
+  - first:
+      213: -1330467484650426800
+    second: Hair-3c right_5
+  - first:
+      213: -4587165031127684580
+    second: Hair-3c right_6
+  - first:
+      213: 1755364655734380154
+    second: Hair-3c right_7
+  - first:
+      213: -4625905009880413896
+    second: Hair-3c right_8
+  - first:
+      213: -4157333674126963715
+    second: Hair-3c right_9
+  - first:
+      213: 3691271941014362798
+    second: Hair-3c right_10
+  - first:
+      213: -3707494179558504016
+    second: Hair-3c right_11
+  - first:
+      213: 2189329937562413854
+    second: Hair-3c right_12
+  - first:
+      213: 2483481944497626642
+    second: Hair-3c right_13
+  - first:
+      213: 5401424951408240989
+    second: Hair-3c right_14
+  - first:
+      213: 1734130928742515125
+    second: Hair-3c right_15
+  - first:
+      213: 2755217842019046854
+    second: Hair-3c right_16
+  - first:
+      213: 3854477764463469830
+    second: Hair-3c right_17
+  - first:
+      213: 1140606997394381474
+    second: Hair-3c right_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hair-3c right_0
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 768
+        width: 197
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1297dd402a958c350800000000000000
+      internalID: 6037173852891347233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_1
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 893
+        width: 55
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58dd0cc24d9c3db0800000000000000
+      internalID: -4810797391721670562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_2
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 998
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e02f967059f79f0800000000000000
+      internalID: -468491977148461490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_3
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 987
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 202d09e66cf00bbb0800000000000000
+      internalID: -4922417047783026174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_4
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 963
+        width: 20
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f6ab9afa0678110800000000000000
+      internalID: 1263084528083824528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_5
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 798
+        width: 39
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e24303fda398de0800000000000000
+      internalID: -1330467484650426800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_6
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 946
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a6a8145bd1750c0800000000000000
+      internalID: -4587165031127684580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_7
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 883
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76d254aade4c5810800000000000000
+      internalID: 1755364655734380154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_8
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 887
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839c06117eb7dcfb0800000000000000
+      internalID: -4625905009880413896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_9
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 834
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfb84e4cc0f2e46c0800000000000000
+      internalID: -4157333674126963715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_10
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 827
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa178de5480a3330800000000000000
+      internalID: 3691271941014362798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_11
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 753
+        width: 49
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b94694dfa55c8cc0800000000000000
+      internalID: -3707494179558504016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_12
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 794
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b29888aff026e10800000000000000
+      internalID: 2189329937562413854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_13
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 723
+        width: 47
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21e90e3aba9177220800000000000000
+      internalID: 2483481944497626642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_14
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 772
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59ae951067b5fa40800000000000000
+      internalID: 5401424951408240989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_15
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 764
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b147b154eed01810800000000000000
+      internalID: 1734130928742515125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_16
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 712
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c51d5097008c3620800000000000000
+      internalID: 2755217842019046854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_17
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 744
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 605ac79da1bdd7530800000000000000
+      internalID: 3854477764463469830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hair-3c right_18
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 730
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa540c550044df00800000000000000
+      internalID: 1140606997394381474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hair-3c right_0: 6037173852891347233
+      Hair-3c right_1: -4810797391721670562
+      Hair-3c right_10: 3691271941014362798
+      Hair-3c right_11: -3707494179558504016
+      Hair-3c right_12: 2189329937562413854
+      Hair-3c right_13: 2483481944497626642
+      Hair-3c right_14: 5401424951408240989
+      Hair-3c right_15: 1734130928742515125
+      Hair-3c right_16: 2755217842019046854
+      Hair-3c right_17: 3854477764463469830
+      Hair-3c right_18: 1140606997394381474
+      Hair-3c right_2: -468491977148461490
+      Hair-3c right_3: -4922417047783026174
+      Hair-3c right_4: 1263084528083824528
+      Hair-3c right_5: -1330467484650426800
+      Hair-3c right_6: -4587165031127684580
+      Hair-3c right_7: 1755364655734380154
+      Hair-3c right_8: -4625905009880413896
+      Hair-3c right_9: -4157333674126963715
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

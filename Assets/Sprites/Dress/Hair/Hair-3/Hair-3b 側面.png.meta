@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: f826021b1124ccd4cb8ed8cd90cd4f11
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 742781867420929262
+    second: "Hair-3b \u5074\u9762_0"
+  - first:
+      213: 8013751227731861846
+    second: "Hair-3b \u5074\u9762_1"
+  - first:
+      213: -5461040056038218582
+    second: "Hair-3b \u5074\u9762_2"
+  - first:
+      213: 7369467139948837963
+    second: "Hair-3b \u5074\u9762_3"
+  - first:
+      213: 4093907035584946615
+    second: "Hair-3b \u5074\u9762_4"
+  - first:
+      213: 3813600214570332058
+    second: "Hair-3b \u5074\u9762_5"
+  - first:
+      213: -6838019466374822942
+    second: "Hair-3b \u5074\u9762_6"
+  - first:
+      213: 1297900035117863
+    second: "Hair-3b \u5074\u9762_7"
+  - first:
+      213: -839830922225914483
+    second: "Hair-3b \u5074\u9762_8"
+  - first:
+      213: -8828453096140930033
+    second: "Hair-3b \u5074\u9762_9"
+  - first:
+      213: -7083592783094631949
+    second: "Hair-3b \u5074\u9762_10"
+  - first:
+      213: -1426297434631123113
+    second: "Hair-3b \u5074\u9762_11"
+  - first:
+      213: 5680005100845577769
+    second: "Hair-3b \u5074\u9762_12"
+  - first:
+      213: 6032933422708906216
+    second: "Hair-3b \u5074\u9762_13"
+  - first:
+      213: -4673150387118423687
+    second: "Hair-3b \u5074\u9762_14"
+  - first:
+      213: 9032875786696276517
+    second: "Hair-3b \u5074\u9762_15"
+  - first:
+      213: 6552038626146073191
+    second: "Hair-3b \u5074\u9762_16"
+  - first:
+      213: -3888359324184263250
+    second: "Hair-3b \u5074\u9762_17"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_0"
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 765
+        width: 197
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eecc9394c24ee4a00800000000000000
+      internalID: 742781867420929262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_1"
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 987
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 651ee4f6840963f60800000000000000
+      internalID: 8013751227731861846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_2"
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 998
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa4a9abb00d7634b0800000000000000
+      internalID: -5461040056038218582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_3"
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 893
+        width: 55
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c7094915b954660800000000000000
+      internalID: 7369467139948837963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_4"
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 768
+        width: 197
+        height: 235
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b1638722ca70d830800000000000000
+      internalID: 4093907035584946615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_5"
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 946
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9f61d89031ace430800000000000000
+      internalID: 3813600214570332058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_6"
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 798
+        width: 39
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e3c58356897a11a0800000000000000
+      internalID: -6838019466374822942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_7"
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 887
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7231c86ee6c940000800000000000000
+      internalID: 1297900035117863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_8"
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 883
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8de551d9325854f0800000000000000
+      internalID: -839830922225914483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_9"
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 827
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0482582fa80b7580800000000000000
+      internalID: -8828453096140930033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_10"
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 834
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f1bf1ee4e502bd90800000000000000
+      internalID: -7083592783094631949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_11"
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 794
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75fc2c04a06c43ce0800000000000000
+      internalID: -1426297434631123113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_12"
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 753
+        width: 51
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 926be469b8e63de40800000000000000
+      internalID: 5680005100845577769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_13"
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 764
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8552eebf849b350800000000000000
+      internalID: 6032933422708906216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_14"
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 723
+        width: 47
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 971c3d97b72a52fb0800000000000000
+      internalID: -4673150387118423687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_15"
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 744
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a32467ba83b5d70800000000000000
+      internalID: 9032875786696276517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_16"
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 712
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76a33129a648dea50800000000000000
+      internalID: 6552038626146073191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hair-3b \u5074\u9762_17"
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 730
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea54beacbc5c90ac0800000000000000
+      internalID: -3888359324184263250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dfec82a53813eda4cace9ef62aef5a9c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Hair-3b \u5074\u9762_0": 742781867420929262
+      "Hair-3b \u5074\u9762_1": 8013751227731861846
+      "Hair-3b \u5074\u9762_10": -7083592783094631949
+      "Hair-3b \u5074\u9762_11": -1426297434631123113
+      "Hair-3b \u5074\u9762_12": 5680005100845577769
+      "Hair-3b \u5074\u9762_13": 6032933422708906216
+      "Hair-3b \u5074\u9762_14": -4673150387118423687
+      "Hair-3b \u5074\u9762_15": 9032875786696276517
+      "Hair-3b \u5074\u9762_16": 6552038626146073191
+      "Hair-3b \u5074\u9762_17": -3888359324184263250
+      "Hair-3b \u5074\u9762_2": -5461040056038218582
+      "Hair-3b \u5074\u9762_3": 7369467139948837963
+      "Hair-3b \u5074\u9762_4": 4093907035584946615
+      "Hair-3b \u5074\u9762_5": 3813600214570332058
+      "Hair-3b \u5074\u9762_6": -6838019466374822942
+      "Hair-3b \u5074\u9762_7": 1297900035117863
+      "Hair-3b \u5074\u9762_8": -839830922225914483
+      "Hair-3b \u5074\u9762_9": -8828453096140930033
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
