@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8c5956ebbb87646be8291d253cca23, type: 3}
+  m_Name: PantsData-7
+  m_EditorClassIdentifier: Assembly-CSharp::PantsData
+  pantsName: Pants-7
+  pantsUp: {fileID: -4612444832546491132, guid: d1c84887795dc8a45ac1c7217c844fee, type: 3}
+  pantsDown: {fileID: 2144711740468476862, guid: fa70d9a415643384882cfebc1a750f38, type: 3}
+  pantsLeft: {fileID: 3089978392600488933, guid: dc0c439475cf2ec42884d686af1fe844, type: 3}
+  pantsRight: {fileID: -2456925660766792677, guid: 66a3e08260360554b8badc4dad3077c6, type: 3}
+  pantsUpFrames:
+  - {fileID: -4612444832546491132, guid: d1c84887795dc8a45ac1c7217c844fee, type: 3}
+  - {fileID: -514379856201998767, guid: ef76bdf491cc2f14695570175ae925c5, type: 3}
+  - {fileID: -4612444832546491132, guid: d1c84887795dc8a45ac1c7217c844fee, type: 3}
+  - {fileID: 8077309540186449284, guid: 90b738b452049d249ac4165eb194842d, type: 3}
+  pantsDownFrames:
+  - {fileID: 2144711740468476862, guid: fa70d9a415643384882cfebc1a750f38, type: 3}
+  - {fileID: 8576147518726834052, guid: 5c0a64cd7a4baea429e05a43fc169f83, type: 3}
+  - {fileID: 2144711740468476862, guid: fa70d9a415643384882cfebc1a750f38, type: 3}
+  - {fileID: 9177421985993448654, guid: 320dc307b051c9244a3ebd0a979792c7, type: 3}
+  pantsLeftFrames:
+  - {fileID: 3089978392600488933, guid: dc0c439475cf2ec42884d686af1fe844, type: 3}
+  - {fileID: -8941589646593650458, guid: f3f10f3838d3efa4291ead9b24f47dbd, type: 3}
+  - {fileID: 3089978392600488933, guid: dc0c439475cf2ec42884d686af1fe844, type: 3}
+  - {fileID: -2164593927643395451, guid: ae613e5013f3ba245bda48eac5877d76, type: 3}
+  pantsRightFrames:
+  - {fileID: -2456925660766792677, guid: 66a3e08260360554b8badc4dad3077c6, type: 3}
+  - {fileID: 1547860369200323450, guid: 36782d9f34ecd0e4c98d510ea55520f2, type: 3}
+  - {fileID: -2456925660766792677, guid: 66a3e08260360554b8badc4dad3077c6, type: 3}
+  - {fileID: 8938626497266916279, guid: 876cdb5be8da72444917a71554c710bb, type: 3}

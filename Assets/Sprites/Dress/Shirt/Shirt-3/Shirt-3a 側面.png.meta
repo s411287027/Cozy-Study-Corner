@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 004b9ced37c045b449e0a19ebd41747b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4522362162974898404
+    second: "Shirt-3a \u5074\u9762_0"
+  - first:
+      213: 5477507928201337124
+    second: "Shirt-3a \u5074\u9762_1"
+  - first:
+      213: 7600040950057393061
+    second: "Shirt-3a \u5074\u9762_2"
+  - first:
+      213: 121821044976367515
+    second: "Shirt-3a \u5074\u9762_3"
+  - first:
+      213: -4626513750471779497
+    second: "Shirt-3a \u5074\u9762_4"
+  - first:
+      213: 2332357828423297890
+    second: "Shirt-3a \u5074\u9762_5"
+  - first:
+      213: 7094490154358858412
+    second: "Shirt-3a \u5074\u9762_6"
+  - first:
+      213: 6801272530072904451
+    second: "Shirt-3a \u5074\u9762_7"
+  - first:
+      213: -2109396355973800145
+    second: "Shirt-3a \u5074\u9762_8"
+  - first:
+      213: 7688669668997428377
+    second: "Shirt-3a \u5074\u9762_9"
+  - first:
+      213: -4487518973704094579
+    second: "Shirt-3a \u5074\u9762_10"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_0"
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 660
+        width: 137
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e839cd3d68a2ce30800000000000000
+      internalID: 4522362162974898404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_1"
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 774
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42993da8074040c40800000000000000
+      internalID: 5477507928201337124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_2"
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 659
+        width: 136
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5abd7923af4c87960800000000000000
+      internalID: 7600040950057393061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_3"
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 789
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b97bbff489bc0b100800000000000000
+      internalID: 121821044976367515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_4"
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 757
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b5baa91425bcfb0800000000000000
+      internalID: -4626513750471779497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_5"
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 726
+        width: 25
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26ba54c66133e5020800000000000000
+      internalID: 2332357828423297890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_6"
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 754
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca2e0190531b47260800000000000000
+      internalID: 7094490154358858412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_7"
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 746
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3032e97d459f26e50800000000000000
+      internalID: 6801272530072904451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_8"
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 724
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2f9da7b03be9b2e0800000000000000
+      internalID: -2109396355973800145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_9"
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 714
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99479efd354a3ba60800000000000000
+      internalID: 7688669668997428377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shirt-3a \u5074\u9762_10"
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 701
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8cba81f44129b1c0800000000000000
+      internalID: -4487518973704094579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: bd677cc9f310bb2479ed9ef91064fba3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Shirt-3a \u5074\u9762_0": 4522362162974898404
+      "Shirt-3a \u5074\u9762_1": 5477507928201337124
+      "Shirt-3a \u5074\u9762_10": -4487518973704094579
+      "Shirt-3a \u5074\u9762_2": 7600040950057393061
+      "Shirt-3a \u5074\u9762_3": 121821044976367515
+      "Shirt-3a \u5074\u9762_4": -4626513750471779497
+      "Shirt-3a \u5074\u9762_5": 2332357828423297890
+      "Shirt-3a \u5074\u9762_6": 7094490154358858412
+      "Shirt-3a \u5074\u9762_7": 6801272530072904451
+      "Shirt-3a \u5074\u9762_8": -2109396355973800145
+      "Shirt-3a \u5074\u9762_9": 7688669668997428377
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324e35602368389498bb3bba1d2767c5, type: 3}
+  m_Name: ShirtData-7
+  m_EditorClassIdentifier: Assembly-CSharp::ShirtData
+  shirtName: Shirt-7
+  shirtUp: {fileID: 6244027783245944501, guid: 35f9f475c06a7684ca85dcc335801618, type: 3}
+  shirtDown: {fileID: 2168702491233040204, guid: 19eaa9660bb077346b01844dc8a1cdbe, type: 3}
+  shirtLeft: {fileID: 1510634823292199601, guid: e80ea3d25af999e4a9036cee88636808, type: 3}
+  shirtRight: {fileID: 4445438068265664363, guid: bf0337800fdd47748a9dbb9dc8617adf, type: 3}
+  shirtUpFrames:
+  - {fileID: 6244027783245944501, guid: 35f9f475c06a7684ca85dcc335801618, type: 3}
+  - {fileID: 7144634507448027587, guid: 6c21896fa3826e24c934b7357a0941ba, type: 3}
+  - {fileID: 6244027783245944501, guid: 35f9f475c06a7684ca85dcc335801618, type: 3}
+  - {fileID: -4810415818281562419, guid: 1d1d862c8b0556f42b4dd5db55f92d6b, type: 3}
+  shirtDownFrames:
+  - {fileID: 2168702491233040204, guid: 19eaa9660bb077346b01844dc8a1cdbe, type: 3}
+  - {fileID: 8438754040358343552, guid: 4160611193c33bd4ca45c4bcbbf6b670, type: 3}
+  - {fileID: 2168702491233040204, guid: 19eaa9660bb077346b01844dc8a1cdbe, type: 3}
+  - {fileID: 8194374135721410025, guid: 3eb10ae7f91c2e749bc7448aa20aa380, type: 3}
+  shirtLeftFrames:
+  - {fileID: 1510634823292199601, guid: e80ea3d25af999e4a9036cee88636808, type: 3}
+  - {fileID: 2150387704534768913, guid: ff9709899a92d76438a01465b7aeffdf, type: 3}
+  - {fileID: 1510634823292199601, guid: e80ea3d25af999e4a9036cee88636808, type: 3}
+  - {fileID: 5289882991397262502, guid: 18fbeb75f6cc77e448877e6bfd3b5d20, type: 3}
+  shirtRightFrames:
+  - {fileID: 4445438068265664363, guid: bf0337800fdd47748a9dbb9dc8617adf, type: 3}
+  - {fileID: -8193721245688073120, guid: 0275913581718cc46bb9899f26e4f7bd, type: 3}
+  - {fileID: 4445438068265664363, guid: bf0337800fdd47748a9dbb9dc8617adf, type: 3}
+  - {fileID: -7480616364028195284, guid: 9408bd7c9df6ae34ab136aea78609299, type: 3}

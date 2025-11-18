@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c47f5470213d3641b81b36e4748a12b, type: 3}
+  m_Name: ShoesData-5
+  m_EditorClassIdentifier: Assembly-CSharp::ShoesData
+  shoesName: Shoes-5
+  shoesUp: {fileID: -7510120118918923414, guid: b93c531185f8f4845b7f61c839680b23, type: 3}
+  shoesDown: {fileID: 2950640101568305288, guid: fddf629fbf622274c949e1b2ef2b437a, type: 3}
+  shoesLeft: {fileID: 5568472660445967890, guid: 692cfda9d6983c042a68946346d5dc2c, type: 3}
+  shoesRight: {fileID: 1203692320188298467, guid: 4eed044fcec6794448a9a8bbf9ec3cd9, type: 3}
+  shoesUpFrames:
+  - {fileID: -7510120118918923414, guid: b93c531185f8f4845b7f61c839680b23, type: 3}
+  - {fileID: 7492771060954659747, guid: 8c8e9a4d59ccc274294cc3c01ecd52fd, type: 3}
+  - {fileID: -7510120118918923414, guid: b93c531185f8f4845b7f61c839680b23, type: 3}
+  - {fileID: -6122038580122431561, guid: 544f9ad6f9d3e8a41923710935f0a679, type: 3}
+  shoesDownFrames:
+  - {fileID: 2950640101568305288, guid: fddf629fbf622274c949e1b2ef2b437a, type: 3}
+  - {fileID: -3547549783759579097, guid: a438ba42c2781b740b8c76fcd420d3dc, type: 3}
+  - {fileID: 2950640101568305288, guid: fddf629fbf622274c949e1b2ef2b437a, type: 3}
+  - {fileID: 6390527985800859489, guid: 996dcf3846e4a684b8d0b1790860c805, type: 3}
+  shoesLeftFrames:
+  - {fileID: 5568472660445967890, guid: 692cfda9d6983c042a68946346d5dc2c, type: 3}
+  - {fileID: -574902193354380882, guid: 002820773862634429708a836351284d, type: 3}
+  - {fileID: 5568472660445967890, guid: 692cfda9d6983c042a68946346d5dc2c, type: 3}
+  - {fileID: -7038624173920518655, guid: cda8cf122afaef347919606965009326, type: 3}
+  shoesRightFrames:
+  - {fileID: 1203692320188298467, guid: 4eed044fcec6794448a9a8bbf9ec3cd9, type: 3}
+  - {fileID: 5854635825070133022, guid: a3544c523dd010f4880b3da706a2180d, type: 3}
+  - {fileID: 1203692320188298467, guid: 4eed044fcec6794448a9a8bbf9ec3cd9, type: 3}
+  - {fileID: 3675782392366769142, guid: 0674b05d5797d314cb3c26ad5b986820, type: 3}

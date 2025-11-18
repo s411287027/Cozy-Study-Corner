@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: 3bdb97abce14f1644814659325e6fe31
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7168813796795619422
+    second: "Shoes-8b \u80CC\u9762_0"
+  - first:
+      213: 8992042543816590402
+    second: "Shoes-8b \u80CC\u9762_1"
+  - first:
+      213: 7491216230709200829
+    second: "Shoes-8b \u80CC\u9762_2"
+  - first:
+      213: -3373524976561627811
+    second: "Shoes-8b \u80CC\u9762_3"
+  - first:
+      213: 6708815439983265774
+    second: "Shoes-8b \u80CC\u9762_4"
+  - first:
+      213: -2056727948476829121
+    second: "Shoes-8b \u80CC\u9762_5"
+  - first:
+      213: 5444471696696429663
+    second: "Shoes-8b \u80CC\u9762_6"
+  - first:
+      213: -5273877943582127321
+    second: "Shoes-8b \u80CC\u9762_7"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_0"
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 420
+        width: 114
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e581cea8a2ebc7360800000000000000
+      internalID: 7168813796795619422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_1"
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 419
+        width: 65
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 244436d3d072acc70800000000000000
+      internalID: 8992042543816590402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_2"
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 497
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7001fb87526f760800000000000000
+      internalID: 7491216230709200829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_3"
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 482
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5dd22358e4de21d0800000000000000
+      internalID: -3373524976561627811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_4"
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 483
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee7cbdb09108a1d50800000000000000
+      internalID: 6708815439983265774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_5"
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 445
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32bb6fe3d80573e0800000000000000
+      internalID: -2056727948476829121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_6"
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 436
+        width: 9
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5c424f7926ae8b40800000000000000
+      internalID: 5444471696696429663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-8b \u80CC\u9762_7"
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 403
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b0508d3fb6fc6b0800000000000000
+      internalID: -5273877943582127321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ccee66242d1703349a35d410ad58b6f2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Shoes-8b \u80CC\u9762_0": 7168813796795619422
+      "Shoes-8b \u80CC\u9762_1": 8992042543816590402
+      "Shoes-8b \u80CC\u9762_2": 7491216230709200829
+      "Shoes-8b \u80CC\u9762_3": -3373524976561627811
+      "Shoes-8b \u80CC\u9762_4": 6708815439983265774
+      "Shoes-8b \u80CC\u9762_5": -2056727948476829121
+      "Shoes-8b \u80CC\u9762_6": 5444471696696429663
+      "Shoes-8b \u80CC\u9762_7": -5273877943582127321
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

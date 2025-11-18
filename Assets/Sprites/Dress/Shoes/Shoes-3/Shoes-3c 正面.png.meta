@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 55b8d058219abbc4889557114660a8ad
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3382983118421350140
+    second: "Shoes-3c \u6B63\u9762_0"
+  - first:
+      213: -2777025812259601679
+    second: "Shoes-3c \u6B63\u9762_1"
+  - first:
+      213: 6357329634388359087
+    second: "Shoes-3c \u6B63\u9762_2"
+  - first:
+      213: 4182448866212518898
+    second: "Shoes-3c \u6B63\u9762_3"
+  - first:
+      213: -6959946526299616360
+    second: "Shoes-3c \u6B63\u9762_4"
+  - first:
+      213: -8379422082268032494
+    second: "Shoes-3c \u6B63\u9762_5"
+  - first:
+      213: 3998484455454411924
+    second: "Shoes-3c \u6B63\u9762_6"
+  - first:
+      213: 4850571435435886855
+    second: "Shoes-3c \u6B63\u9762_7"
+  - first:
+      213: 6213427305255423799
+    second: "Shoes-3c \u6B63\u9762_8"
+  - first:
+      213: -7976335340393332056
+    second: "Shoes-3c \u6B63\u9762_9"
+  - first:
+      213: 3409534303305774555
+    second: "Shoes-3c \u6B63\u9762_10"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_0"
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 421
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4092a5117ca3d01d0800000000000000
+      internalID: -3382983118421350140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_1"
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 519
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f20d20bcb50679d0800000000000000
+      internalID: -2777025812259601679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_2"
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 420
+        width: 58
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa738c1be95c93850800000000000000
+      internalID: 6357329634388359087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_3"
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 503
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb15d1951b0b0a30800000000000000
+      internalID: 4182448866212518898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_4"
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 473
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89b823c728d496f90800000000000000
+      internalID: -6959946526299616360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_5"
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 440
+        width: 14
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2129953230056bb80800000000000000
+      internalID: -8379422082268032494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_6"
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 442
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49c08476d687d7730800000000000000
+      internalID: 3998484455454411924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_7"
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 444
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70900d66501b05340800000000000000
+      internalID: 4850571435435886855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_8"
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 448
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73f4677c6378a3650800000000000000
+      internalID: 6213427305255423799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_9"
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 428
+        width: 7
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a20672b44d5e4190800000000000000
+      internalID: -7976335340393332056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Shoes-3c \u6B63\u9762_10"
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 443
+        width: 6
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd5bc066269115f20800000000000000
+      internalID: 3409534303305774555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4b8a48c00d9a9d64a8c85aede3e7ae5a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Shoes-3c \u6B63\u9762_0": -3382983118421350140
+      "Shoes-3c \u6B63\u9762_1": -2777025812259601679
+      "Shoes-3c \u6B63\u9762_10": 3409534303305774555
+      "Shoes-3c \u6B63\u9762_2": 6357329634388359087
+      "Shoes-3c \u6B63\u9762_3": 4182448866212518898
+      "Shoes-3c \u6B63\u9762_4": -6959946526299616360
+      "Shoes-3c \u6B63\u9762_5": -8379422082268032494
+      "Shoes-3c \u6B63\u9762_6": 3998484455454411924
+      "Shoes-3c \u6B63\u9762_7": 4850571435435886855
+      "Shoes-3c \u6B63\u9762_8": 6213427305255423799
+      "Shoes-3c \u6B63\u9762_9": -7976335340393332056
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

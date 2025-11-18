@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42681a7ec294c24b910ef684a62d348, type: 3}
+  m_Name: FaceData-7
+  m_EditorClassIdentifier: Assembly-CSharp::FaceData
+  faceName: Face-7
+  faceUp: {fileID: 1354533647139122503, guid: 4f971a765b98092428e57c4b3b23e5b2, type: 3}
+  faceDown: {fileID: 1354533647139122503, guid: ad35c531b0499544780a75e1c8605ffd, type: 3}
+  faceLeft: {fileID: 1481502990990244014, guid: 182816befa6c1054e8e113b76eb92827, type: 3}
+  faceRight: {fileID: -3457306373563735603, guid: 8775734cbc8f22e45b0dad6bb8d6ed7a, type: 3}

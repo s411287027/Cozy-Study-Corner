@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c47f5470213d3641b81b36e4748a12b, type: 3}
+  m_Name: ShoesData-3
+  m_EditorClassIdentifier: Assembly-CSharp::ShoesData
+  shoesName: Shoes-3
+  shoesUp: {fileID: -9027194800218007718, guid: cb36770a98240d141a4bb893c7cf6297, type: 3}
+  shoesDown: {fileID: 1215709590577058463, guid: da8d9c6a5afca344892f0fb16f3eb567, type: 3}
+  shoesLeft: {fileID: 4202974927031405828, guid: d7bbf03b7b485e640aa6cae29095c67a, type: 3}
+  shoesRight: {fileID: -3862409440297845446, guid: 604d7a7c8d9fe6445a1bf3a9ff9afeaa, type: 3}
+  shoesUpFrames:
+  - {fileID: -9027194800218007718, guid: cb36770a98240d141a4bb893c7cf6297, type: 3}
+  - {fileID: -5559340165655951692, guid: f4369857929fa264dad78d6269da6e2b, type: 3}
+  - {fileID: -9027194800218007718, guid: cb36770a98240d141a4bb893c7cf6297, type: 3}
+  - {fileID: 7501499842301434135, guid: c2e181dc5232b0f49b28669a65a6e39d, type: 3}
+  shoesDownFrames:
+  - {fileID: 1215709590577058463, guid: da8d9c6a5afca344892f0fb16f3eb567, type: 3}
+  - {fileID: 58612611332162607, guid: f30826b8454da394db6c4eb6319d815e, type: 3}
+  - {fileID: 1215709590577058463, guid: da8d9c6a5afca344892f0fb16f3eb567, type: 3}
+  - {fileID: -3382983118421350140, guid: 55b8d058219abbc4889557114660a8ad, type: 3}
+  shoesLeftFrames:
+  - {fileID: 4202974927031405828, guid: d7bbf03b7b485e640aa6cae29095c67a, type: 3}
+  - {fileID: -2819746257897574566, guid: 9a8daa4704a992e4fb478c463b247d68, type: 3}
+  - {fileID: 4202974927031405828, guid: d7bbf03b7b485e640aa6cae29095c67a, type: 3}
+  - {fileID: 7627107566308533127, guid: 7dd2f977cdf70634196fd4941e9a0b0d, type: 3}
+  shoesRightFrames:
+  - {fileID: -3862409440297845446, guid: 604d7a7c8d9fe6445a1bf3a9ff9afeaa, type: 3}
+  - {fileID: -3492928073725173914, guid: 6044ba33d6ca8094f8c44c0a904d732a, type: 3}
+  - {fileID: -3862409440297845446, guid: 604d7a7c8d9fe6445a1bf3a9ff9afeaa, type: 3}
+  - {fileID: -8094120535470047976, guid: 00476b30f116e484eae760c3d6b9a056, type: 3}

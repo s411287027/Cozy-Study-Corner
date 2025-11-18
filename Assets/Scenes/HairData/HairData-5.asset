@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21d1a4c33a7ec046b39974624fb39bf, type: 3}
+  m_Name: HairData-5
+  m_EditorClassIdentifier: Assembly-CSharp::HairData
+  hairName: Hair-5
+  hairUp: {fileID: 4052160286585971197, guid: c07ecd81812934e4f8e669d9f7b0e181, type: 3}
+  hairDown: {fileID: -2797342343252407475, guid: 3622a632634071d45bbda84b3af9037b, type: 3}
+  hairLeft: {fileID: 4529233736815421020, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
+  hairRight: {fileID: -8276699398154621519, guid: 2fdd0c9365f15b44f9cfc743300bec6e, type: 3}
+  hairUpFrames:
+  - {fileID: 4052160286585971197, guid: c07ecd81812934e4f8e669d9f7b0e181, type: 3}
+  - {fileID: 3401189315011324666, guid: 670d7a43d3b09264fafc2ea714dfbaf8, type: 3}
+  - {fileID: 4052160286585971197, guid: c07ecd81812934e4f8e669d9f7b0e181, type: 3}
+  - {fileID: 3421530750627722314, guid: 083c71293822f0f409c47fb48bbf48ad, type: 3}
+  hairDownFrames:
+  - {fileID: -2797342343252407475, guid: 3622a632634071d45bbda84b3af9037b, type: 3}
+  - {fileID: 9024497653556488373, guid: 6060100b7d4303a449949659ff2650df, type: 3}
+  - {fileID: -2797342343252407475, guid: 3622a632634071d45bbda84b3af9037b, type: 3}
+  - {fileID: -3864105831186230176, guid: d9a1846307373ba4fb6858179002994e, type: 3}
+  hairLeftFrames:
+  - {fileID: 4529233736815421020, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
+  - {fileID: 6041033770218149595, guid: 8b173a23097640c40b6ffa87b087680a, type: 3}
+  - {fileID: 4529233736815421020, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
+  - {fileID: -7129638458225039185, guid: a82cb57190293ce43b790b902534bf75, type: 3}
+  hairRightFrames:
+  - {fileID: -8276699398154621519, guid: 2fdd0c9365f15b44f9cfc743300bec6e, type: 3}
+  - {fileID: 796183635343835521, guid: 848995c89135f1f44a336458ad14724b, type: 3}
+  - {fileID: -8276699398154621519, guid: 2fdd0c9365f15b44f9cfc743300bec6e, type: 3}
+  - {fileID: -7842165158328026615, guid: 26758b3aec5f36448b52e25f124a3250, type: 3}
