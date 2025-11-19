@@ -393,11 +393,14 @@ public class FriendSystemController : MonoBehaviour
     }
     public void SendPrivateMessage()
     {
-        Debug.Log("🔹 SendPrivateMessage triggered!");
+        //Debug.Log("🔹 SendPrivateMessage triggered!");
         if (dbRef == null)
             dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        //Debug.Log($"currentChatFriendUid = {currentChatFriendUid}, message = '{messageInput.text}'");
 
         string msg = messageInput.text.Trim();
+        //Debug.Log($"[SendPrivateMessage] msg='{messageInput.text}'");
+
         if (string.IsNullOrEmpty(msg)) return;
 
         if (string.IsNullOrEmpty(currentChatFriendUid))
@@ -407,28 +410,28 @@ public class FriendSystemController : MonoBehaviour
         }
 
         string myUid = dbController.userId;
+        //Debug.Log(myUid);
         string roomId = GetMessageRoomId(myUid, currentChatFriendUid);
-
+        Debug.Log($"[roomId] roomId='{roomId}'");
+        string key = DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
         DatabaseReference msgRef = dbRef.Child("private_messages")
                                         .Child(roomId)
                                         .Child("messages")
-                                        .Push();
+                                        .Child(key);
 
         var msgData = new
         {
             from = myUid,
             to = currentChatFriendUid,
             text = msg,
-            time = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+            time = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
         };
-
         msgRef.SetValueAsync(msgData).ContinueWithOnMainThread(task =>
         {
-            Debug.Log("✔ Message sent to Firebase!");
-            messageInput.text = "";
-
-            // 立刻刷新訊息列表
-            LoadPrivateMessages(roomId, myUid);
+            if (task.IsCompleted)
+                Debug.Log("✔ Message sent!");
+            else if (task.IsFaulted)
+                Debug.LogError("❌ Failed: " + task.Exception);
         });
     }
 
