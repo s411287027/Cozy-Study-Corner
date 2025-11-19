@@ -202,12 +202,12 @@ public class FirebaseController : MonoBehaviour
         {
             if (task.IsCanceled)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+                //Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                // Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
 
                 foreach (Exception exception in task.Exception.Flatten().InnerExceptions)
                 {
@@ -236,6 +236,8 @@ public class FirebaseController : MonoBehaviour
                     UserName = Username,
                     TotalCoins = 0,   // 初始金幣
                     CrrLevel = 1,    // 初始等級
+                    TomorrowReservationTime = "",
+                    Message = "",
                     currentEquip = new EquipData()
                     {
                         hair = 0,
@@ -264,11 +266,11 @@ public class FirebaseController : MonoBehaviour
                 };
                 dbController.SaveDataFn();  // 呼叫存檔
                 Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference.Child("users").Child(dbController.userId).Child("Status").SetValueAsync("Offline");
-                Debug.Log("✅ Initial user data saved to Realtime Database");
+                //Debug.Log("✅ Initial user data saved to Realtime Database");
             }
             else
             {
-                Debug.LogError("❌ dbController is null! Did you assign it in Inspector?");
+                //Debug.LogError("❌ dbController is null! Did you assign it in Inspector?");
             }
         });
     }
@@ -281,7 +283,7 @@ public class FirebaseController : MonoBehaviour
         {
             if (task.IsCanceled)
             {
-                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                //Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
                 return;
             }
             if (task.IsFaulted)
@@ -309,7 +311,7 @@ public class FirebaseController : MonoBehaviour
             //Debug.Log("UserID: " + result.User.UserId);
             if (dbController != null)
             {
-                Debug.Log("UserID: " + result.User.UserId);
+                //Debug.Log("UserID: " + result.User.UserId);
                 dbController.userId = result.User.UserId;  // 確保 userId 設定正確
                 dbController.LoadDataFn();// 呼叫你的 Database 載入資料
                 StartCoroutine(WaitAndStartFriendListener());
@@ -328,11 +330,11 @@ public class FirebaseController : MonoBehaviour
         if (friendSystem != null)
         {
             friendSystem.StartListeningForFriendRequests();
-            Debug.Log($"🚀 Friend request listener started for {dbController.userId}");
+            //Debug.Log($"🚀 Friend request listener started for {dbController.userId}");
         }
         else
         {
-            Debug.LogWarning("⚠️ FriendSystemController not found in scene!");
+            //Debug.LogWarning("⚠️ FriendSystemController not found in scene!");
         }
     }
 
@@ -383,16 +385,16 @@ public class FirebaseController : MonoBehaviour
             {
                 if (task.IsCanceled)
                 {
-                    Debug.LogError("UpdateUserProfileAsync was canceled.");
+                    //Debug.LogError("UpdateUserProfileAsync was canceled.");
                     return;
                 }
                 if (task.IsFaulted)
                 {
-                    Debug.LogError("UpdateUserProfileAsync encountered an error: " + task.Exception);
+                    //Debug.LogError("UpdateUserProfileAsync encountered an error: " + task.Exception);
                     return;
                 }
 
-                Debug.Log("User profile updated successfully.");
+                //Debug.Log("User profile updated successfully.");
                 ShowNotificationMessage("Alert", "Account Successfully Created!");
             });
         }
@@ -452,7 +454,7 @@ public class FirebaseController : MonoBehaviour
         {
             if (task.IsCanceled)
             {
-                Debug.LogError("SendPasswordResetEmailAsync was canceled");
+                //Debug.LogError("SendPasswordResetEmailAsync was canceled");
             }
             if (task.IsFaulted)
             {

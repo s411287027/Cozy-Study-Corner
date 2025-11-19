@@ -46,6 +46,8 @@ public class DataToSave
     public string UserName;
     public int TotalCoins;
     public int CrrLevel;
+    public string TomorrowReservationTime;
+    public string Message;
     public EquipData currentEquip = new EquipData();
     public OwnedItems ownedItems = new OwnedItems();
 

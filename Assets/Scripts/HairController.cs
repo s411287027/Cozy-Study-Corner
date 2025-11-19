@@ -113,7 +113,7 @@ public class HairController : MonoBehaviour
 
         if (enableDebug && moved < (movementThreshold * movementThreshold))
         {
-            Debug.Log("HairController: Player idle (detected by movement).");
+            //Debug.Log("HairController: Player idle (detected by movement).");
         }
         // else: 如果 parent 有動，isMoving 應該在 UpdateHairDirection 被設為 true（或也可在此強制）
         // 若你想完全以位移為準，可以改成 isMoving = parentIsMoving;

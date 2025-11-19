@@ -34,6 +34,14 @@ public class FriendSystemController : MonoBehaviour
     public Transform friendListContainer; // 容器
     public static FriendSystemController Instance;
     private bool isListeningFriendRequests = false;
+    [Header("Friend Info UI")]
+    public GameObject friendInfoPanel;
+    public TMP_Text infoNameText;
+    public TMP_Text infoReservationText;
+    public TMP_Text infoMessageText;
+    public TMP_InputField messageInput;
+    public Transform messageContent;
+    public GameObject messageItemPrefab;
 
     void Awake()
     {
@@ -246,9 +254,9 @@ public class FriendSystemController : MonoBehaviour
             if (uidText2 != null && uidText2.text == friendUid)
                 return;
         }
+
         GameObject item = Instantiate(friendListItemPrefab, friendListContainer);
 
-        // 設定 FriendListItem 腳本
         FriendListItem listItem = item.GetComponent<FriendListItem>();
         listItem.friendUID = friendUid;
 
@@ -258,6 +266,7 @@ public class FriendSystemController : MonoBehaviour
         friendNameText.text = "Loading...";
         uidText.text = friendUid;
 
+        // 查詢好友名稱
         dbRef.Child("users").Child(friendUid).Child("UserName")
             .GetValueAsync().ContinueWithOnMainThread(task =>
             {
@@ -271,6 +280,7 @@ public class FriendSystemController : MonoBehaviour
                     friendNameText.text = "Unknown";
                 }
             });
+
         // 查詢狀態
         TMP_Text statusText = item.transform.Find("StatusText").GetComponent<TMP_Text>();
         statusText.text = "Loading...";
@@ -282,11 +292,7 @@ public class FriendSystemController : MonoBehaviour
                 {
                     string status = statusTask.Result.Value.ToString();
                     statusText.text = status;
-
-                    if (status == "Online")
-                        statusText.color = Color.green;
-                    else
-                        statusText.color = Color.gray;
+                    statusText.color = (status == "Online") ? Color.green : Color.gray;
                 }
                 else
                 {
@@ -294,8 +300,142 @@ public class FriendSystemController : MonoBehaviour
                     statusText.color = Color.gray;
                 }
             });
+
+        // ⭐⭐ Info Button 設定 ⭐⭐
+        Button infoButton = item.transform.Find("InfoButton").GetComponent<Button>();
+        infoButton.onClick.RemoveAllListeners();
+        infoButton.onClick.AddListener(() =>
+        {
+            LoadFriendInfo(friendUid);
+        });
+    }
+    private string currentChatFriendUid;
+
+    public void LoadFriendInfo(string friendUid)
+    {
+        friendInfoPanel.SetActive(true);
+        currentChatFriendUid = friendUid;
+
+        infoNameText.text = "Loading...";
+        infoReservationText.text = "Loading...";
+        infoMessageText.text = "";
+
+        string myUid = dbController.userId;
+        string roomId = GetMessageRoomId(myUid, friendUid);
+
+        // 讀取好友基本資料
+        dbRef.Child("users").Child(friendUid)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (!task.IsCompleted || !task.Result.Exists)
+                {
+                    infoNameText.text = "Unknown User";
+                    infoReservationText.text = "No Data";
+                    infoMessageText.text = "No Message";
+                    return;
+                }
+
+                DataSnapshot snapshot = task.Result;
+
+                string name = snapshot.Child("UserName").Exists ?
+                    snapshot.Child("UserName").Value.ToString() : friendUid;
+                string reservation = snapshot.Child("TomorrowReservationTime").Exists ?
+                    snapshot.Child("TomorrowReservationTime").Value.ToString() : "No Reservation";
+                string message = snapshot.Child("Message").Exists ?
+                    snapshot.Child("Message").Value.ToString() : "No Message";
+
+                infoNameText.text = name;
+                infoReservationText.text = reservation;
+                infoMessageText.text = message;
+            });
+        LoadPrivateMessages(roomId, myUid);
     }
 
+    public void LoadPrivateMessages(string roomId, string myUid)
+    {
+        // 清空舊訊息
+        foreach (Transform child in messageContent)
+            Destroy(child.gameObject);
+
+        dbRef.Child("private_messages")
+             .Child(roomId)
+             .Child("messages")
+             .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (!task.IsCompleted || !task.Result.Exists)
+            {
+                infoMessageText.text = "No Messages";
+                return;
+            }
+
+            infoMessageText.text = "";
+
+            foreach (var msg in task.Result.Children)
+            {
+                string from = msg.Child("from").Value.ToString();
+                string text = msg.Child("text").Value.ToString();
+
+                GameObject item = Instantiate(messageItemPrefab, messageContent);
+                TMP_Text t = item.GetComponentInChildren<TMP_Text>();
+
+                if (from == myUid)
+                    t.text = $"You: {text}";
+                else
+                    t.text = $"{from}: {text}";
+            }
+        });
+    }
+
+    private string GetMessageRoomId(string uid1, string uid2)
+    {
+        // 排序兩個 UID，避免「A_B」與「B_A」重複
+        return string.Compare(uid1, uid2) < 0 ? uid1 + "_" + uid2 : uid2 + "_" + uid1;
+    }
+    public void SendPrivateMessage()
+    {
+        Debug.Log("🔹 SendPrivateMessage triggered!");
+        if (dbRef == null)
+            dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
+        string msg = messageInput.text.Trim();
+        if (string.IsNullOrEmpty(msg)) return;
+
+        if (string.IsNullOrEmpty(currentChatFriendUid))
+        {
+            Debug.LogError("❌ currentChatFriendUid is NULL!");
+            return;
+        }
+
+        string myUid = dbController.userId;
+        string roomId = GetMessageRoomId(myUid, currentChatFriendUid);
+
+        DatabaseReference msgRef = dbRef.Child("private_messages")
+                                        .Child(roomId)
+                                        .Child("messages")
+                                        .Push();
+
+        var msgData = new
+        {
+            from = myUid,
+            to = currentChatFriendUid,
+            text = msg,
+            time = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+        };
+
+        msgRef.SetValueAsync(msgData).ContinueWithOnMainThread(task =>
+        {
+            Debug.Log("✔ Message sent to Firebase!");
+            messageInput.text = "";
+
+            // 立刻刷新訊息列表
+            LoadPrivateMessages(roomId, myUid);
+        });
+    }
+
+    public void CloseFriendInfoPanel()
+    {
+        friendInfoPanel.SetActive(false);
+    }
 
     private void ClearFriendListUI()
     {

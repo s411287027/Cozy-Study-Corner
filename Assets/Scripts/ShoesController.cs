@@ -106,7 +106,7 @@ public class ShoesController : MonoBehaviour
 
         if (enableDebug && moved < (movementThreshold * movementThreshold))
         {
-            Debug.Log("ShoesController: Player idle (detected by movement).");
+            //Debug.Log("ShoesController: Player idle (detected by movement).");
         }
 
         if (isMoving)
@@ -150,8 +150,8 @@ public class ShoesController : MonoBehaviour
 
         //if (enableDebug && newDir != lastDir)
         //{
-            Debug.Log($"ShoesController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
-            lastDir = newDir;
+        Debug.Log($"ShoesController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+        lastDir = newDir;
         //}
     }
 

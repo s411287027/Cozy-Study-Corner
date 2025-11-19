@@ -106,7 +106,7 @@ public class ShirtController : MonoBehaviour
 
         if (enableDebug && moved < (movementThreshold * movementThreshold))
         {
-            Debug.Log("ShirtController: Player idle (detected by movement).");
+            //Debug.Log("ShirtController: Player idle (detected by movement).");
         }
 
         if (isMoving)
@@ -150,8 +150,8 @@ public class ShirtController : MonoBehaviour
 
         //if (enableDebug && newDir != lastDir)
         //{
-            Debug.Log($"ShirtController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
-            lastDir = newDir;
+        Debug.Log($"ShirtController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+        lastDir = newDir;
         //}
     }
 

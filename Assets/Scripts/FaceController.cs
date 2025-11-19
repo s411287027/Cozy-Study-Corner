@@ -52,7 +52,7 @@ public class FaceController : MonoBehaviour
             playerTransform = FindObjectOfType<player_move>()?.transform;
             if (playerTransform == null)
             {
-                Debug.LogError("FaceController: 找不到 player_move 或無 parent!");
+                //Debug.LogError("FaceController: 找不到 player_move 或無 parent!");
                 return;
             }
         }
@@ -115,7 +115,7 @@ public class FaceController : MonoBehaviour
             newDir = (dirY > 0f) ? "Up" : "Down";
         }
 
-        if (newDir == lastDir) 
+        if (newDir == lastDir)
             return;
 
         lastDir = newDir;
