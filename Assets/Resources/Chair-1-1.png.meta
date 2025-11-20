@@ -129,12 +129,12 @@ TextureImporter:
       name: Chair-1-1_0
       rect:
         serializedVersion: 2
-        x: 697
-        y: 97
+        x: 695
+        y: 136
         width: 145
         height: 275
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 48daa0271533a2149ae0b70e9eaf29d1
     internalID: 0
     vertices: []
     indices: 

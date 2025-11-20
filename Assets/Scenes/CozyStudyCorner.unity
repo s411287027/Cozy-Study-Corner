@@ -5317,6 +5317,8 @@ MonoBehaviour:
   userNameText: {fileID: 518385099}
   coinsText: {fileID: 148520770}
   levelText: {fileID: 826748903}
+  startTimeDropdown: {fileID: 0}
+  endTimeDropdown: {fileID: 0}
 --- !u!1 &614914263
 GameObject:
   m_ObjectHideFlags: 0
@@ -8229,13 +8231,13 @@ MonoBehaviour:
       pants: 0
       shoes: 0
       face: 0
-      other: 0
+      shirt: 0
     ownedItems:
       hair: 
       pants: 
       shoes: 
       face: 
-      other: 
+      shirt: 
       furniture: 
     Friends: []
     FriendRequests:
@@ -13261,7 +13263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6777784579648330923, guid: 869b531de4448cb44b67379910fd8be8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

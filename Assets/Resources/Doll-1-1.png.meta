@@ -129,12 +129,12 @@ TextureImporter:
       name: Doll-1-1_0
       rect:
         serializedVersion: 2
-        x: 762
-        y: 628
+        x: 761
+        y: 631
         width: 55
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1731c7e86601fa74bbcbbc2f04f560b4
     internalID: 0
     vertices: []
     indices: 

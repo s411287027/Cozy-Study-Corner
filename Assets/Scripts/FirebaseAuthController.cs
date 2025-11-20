@@ -245,7 +245,7 @@ public class FirebaseController : MonoBehaviour
                         pants = 0,
                         shoes = 0,
                         face = 0,
-                        other = -1
+                        shirt = -1
                     },
 
                     ownedItems = new OwnedItems()
@@ -254,7 +254,7 @@ public class FirebaseController : MonoBehaviour
                         pants = new List<int> { 0 },
                         shoes = new List<int> { 0 },
                         face = new List<int> { 0 },
-                        other = new List<int> { -1 },
+                        shirt = new List<int> { -1 },
                         furniture = new List<int> { -1 } // 空的
                     },
                     Friends = new List<string>() { "init" },

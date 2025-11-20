@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: ef15c9cee4eb46e4fbb83ac515c8cf46
+guid: e0cb192cfca785d4fb8a9ea53cffcf74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5243387622441410145
-    second: hair_3_0
+      213: -815298013932528885
+    second: "Shoes-1a \u6B63\u9762_0"
+  - first:
+      213: -4340779014080982810
+    second: "Shoes-1a \u6B63\u9762_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,43 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hair_3_0
+      name: "Shoes-1a \u6B63\u9762_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1600
-        height: 1200
+        x: 708
+        y: 417
+        width: 160
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16edc4f034144c840800000000000000
-      internalID: 5243387622441410145
+      spriteID: b0b5875a6ca7fa4f0800000000000000
+      internalID: -815298013932528885
       vertices: []
       indices: 
       edges: []
@@ -151,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 728844f27f9e8254d87fb40027450939
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +138,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hair_3_0: 5243387622441410145
+      "Shoes-1a \u6B63\u9762_0": -815298013932528885
+      "Shoes-1a \u6B63\u9762_1": -4340779014080982810
+      "Shoes-1a \u6B63\u9762_2": -1880571858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

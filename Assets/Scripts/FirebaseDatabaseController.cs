@@ -13,7 +13,7 @@ public class EquipData
     public int pants;
     public int shoes;
     public int face;
-    public int other;
+    public int shirt;
 }
 
 [Serializable]
@@ -23,7 +23,7 @@ public class OwnedItems
     public List<int> pants = new List<int>();
     public List<int> shoes = new List<int>();
     public List<int> face = new List<int>();
-    public List<int> other = new List<int>();
+    public List<int> shirt = new List<int>();
     public List<int> furniture = new List<int>();
 
     public List<int> GetList(string itemType)
@@ -34,7 +34,7 @@ public class OwnedItems
             "pants" => pants,
             "shoes" => shoes,
             "face" => face,
-            "other" => other,
+            "shirt" => shirt,
             "furniture" => furniture,
             _ => null
         };
