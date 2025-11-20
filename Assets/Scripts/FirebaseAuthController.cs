@@ -33,6 +33,7 @@ public class FirebaseController : MonoBehaviour
 
     void Start()
     {
+
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
             var dependencyStatus = task.Result;

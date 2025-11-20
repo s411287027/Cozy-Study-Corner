@@ -150,7 +150,7 @@ public class ShirtController : MonoBehaviour
 
         //if (enableDebug && newDir != lastDir)
         //{
-        Debug.Log($"ShirtController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+        //Debug.Log($"ShirtController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
         lastDir = newDir;
         //}
     }

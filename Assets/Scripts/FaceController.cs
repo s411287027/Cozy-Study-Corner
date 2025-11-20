@@ -128,8 +128,5 @@ public class FaceController : MonoBehaviour
             case "Left": sr.sprite = faceLeft; break;
             case "Right": sr.sprite = faceRight; break;
         }
-
-        if (enableDebug)
-            Debug.Log("FaceController Facing → " + newDir);
     }
 }

@@ -150,7 +150,7 @@ public class PantsController : MonoBehaviour
 
         //if (enableDebug && newDir != lastDir)
         //{
-        Debug.Log($"PantsController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+        //Debug.Log($"PantsController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
         lastDir = newDir;
         //}
     }

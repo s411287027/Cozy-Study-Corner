@@ -48,7 +48,7 @@ public class FriendSystemController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject); // 永遠保留
+            DontDestroyOnLoad(gameObject); // 永遠保留
         }
         else
         {
@@ -393,14 +393,9 @@ public class FriendSystemController : MonoBehaviour
     }
     public void SendPrivateMessage()
     {
-        //Debug.Log("🔹 SendPrivateMessage triggered!");
         if (dbRef == null)
             dbRef = FirebaseDatabase.DefaultInstance.RootReference;
-        //Debug.Log($"currentChatFriendUid = {currentChatFriendUid}, message = '{messageInput.text}'");
-
         string msg = messageInput.text.Trim();
-        //Debug.Log($"[SendPrivateMessage] msg='{messageInput.text}'");
-
         if (string.IsNullOrEmpty(msg)) return;
 
         if (string.IsNullOrEmpty(currentChatFriendUid))
@@ -410,14 +405,13 @@ public class FriendSystemController : MonoBehaviour
         }
 
         string myUid = dbController.userId;
-        //Debug.Log(myUid);
         string roomId = GetMessageRoomId(myUid, currentChatFriendUid);
-        Debug.Log($"[roomId] roomId='{roomId}'");
-        string key = DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+
+        // ⭐ 使用 Push 產生唯一 key
         DatabaseReference msgRef = dbRef.Child("private_messages")
                                         .Child(roomId)
                                         .Child("messages")
-                                        .Child(key);
+                                        .Push();
 
         var msgData = new
         {
@@ -426,14 +420,24 @@ public class FriendSystemController : MonoBehaviour
             text = msg,
             time = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
         };
+
         msgRef.SetValueAsync(msgData).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
+            {
                 Debug.Log("✔ Message sent!");
-            else if (task.IsFaulted)
+                messageInput.text = "";
+
+                // ⚠ 自動刷新聊天室
+                LoadPrivateMessages(roomId, myUid);
+            }
+            else
+            {
                 Debug.LogError("❌ Failed: " + task.Exception);
+            }
         });
     }
+
 
     public void CloseFriendInfoPanel()
     {

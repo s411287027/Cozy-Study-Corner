@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using Firebase.Database;
 using System.Collections;
+using Firebase.Extensions;
 using TMPro;
 using System.Collections.Generic;
 
@@ -188,6 +189,33 @@ public class FirebaseDatabaseController : MonoBehaviour
         // 4️⃣ 執行局部更新，不會覆蓋整筆資料
         await dbRef.Child("users").Child(userId).UpdateChildrenAsync(updates);
         Debug.Log($"✅ 成功購買 {itemType} {itemId}，剩餘金幣 {dts.TotalCoins}");
+    }
+
+    public void SetTomorrowReservationTime(string uid, string time)
+    {
+        if (string.IsNullOrEmpty(uid))
+        {
+            Debug.LogError("❌ Cannot set reservation time, UID is empty!");
+            return;
+        }
+
+        DatabaseReference userRef = FirebaseDatabase.DefaultInstance
+            .RootReference
+            .Child("users")
+            .Child(uid)
+            .Child("TomorrowReservationTime");
+
+        userRef.SetValueAsync(time).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted && !task.IsFaulted)
+            {
+                Debug.Log("✔ Reservation time saved: " + time);
+            }
+            else
+            {
+                Debug.LogError("❌ Failed to write reservation time: " + task.Exception);
+            }
+        });
     }
 
 }

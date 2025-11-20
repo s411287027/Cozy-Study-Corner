@@ -7,6 +7,8 @@ public class ProfileUIController : MonoBehaviour
     public TMP_Text userNameText;
     public TMP_Text coinsText;
     public TMP_Text levelText;
+    public TMP_Dropdown startTimeDropdown;
+    public TMP_Dropdown endTimeDropdown;
 
     private void Start()
     {
@@ -56,4 +58,24 @@ public class ProfileUIController : MonoBehaviour
         }
         SceneManager.LoadScene("CozyStudyCorner");
     }
+
+    public void SetReservationTime()
+    {
+        string uid = FirebaseDatabaseController.Instance.userId;
+        if (string.IsNullOrEmpty(uid))
+        {
+            Debug.LogError("❌ UID not found!");
+            return;
+        }
+
+        string start = startTimeDropdown.options[startTimeDropdown.value].text;
+        string end = endTimeDropdown.options[endTimeDropdown.value].text;
+
+        string time = start + "-" + end;
+
+        Debug.Log("📌 Setting reservation time: " + time);
+
+        FirebaseDatabaseController.Instance.SetTomorrowReservationTime(uid, time);
+    }
+
 }

@@ -173,7 +173,7 @@ public class HairController : MonoBehaviour
 
         if (enableDebug && newDir != lastDir)
         {
-            Debug.Log($"HairController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+            //Debug.Log($"HairController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
             lastDir = newDir;
         }
     }
