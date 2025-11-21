@@ -10,6 +10,7 @@ public class SeatManager_Forest : MonoBehaviour
     public Transform seatsParent;  // Coffee 場景的座位父物件
     private DatabaseReference dbRef;
     private string currentUID;
+    public GameObject homeButton;
 
     private string currentSeat = null;
     private Dictionary<string, GameObject> seatObjects = new Dictionary<string, GameObject>();
@@ -76,6 +77,7 @@ public class SeatManager_Forest : MonoBehaviour
                         currentSeat = seatId;
                         sitBtn.gameObject.SetActive(false);
                         leaveBtn.gameObject.SetActive(true);
+                        if (homeButton != null) homeButton.SetActive(false);
                     }
                     else
                     {
@@ -97,13 +99,17 @@ public class SeatManager_Forest : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (homeButton != null) homeButton.SetActive(true);
+        }
     }
 
     private void OnSitButtonClicked(string seatId)
     {
         if (currentSeat != null)
             return;
-
+        if (homeButton != null) homeButton.SetActive(false);
         string seatPath = $"Seat/Forest/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
     }
@@ -112,7 +118,7 @@ public class SeatManager_Forest : MonoBehaviour
     {
         if (seatId != currentSeat)
             return;
-
+        if (homeButton != null) homeButton.SetActive(true);
         string seatPath = $"Seat/Forest/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;

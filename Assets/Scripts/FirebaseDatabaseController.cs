@@ -49,6 +49,7 @@ public class DataToSave
     public int CrrLevel;
     public string TomorrowReservationTime;
     public string Message;
+    public string StudyAtHome;
     public EquipData currentEquip = new EquipData();
     public OwnedItems ownedItems = new OwnedItems();
 

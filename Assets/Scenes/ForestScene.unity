@@ -1990,6 +1990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   seatsParent: {fileID: 877223725}
+  homeButton: {fileID: 287422120}
 --- !u!1 &957827286
 GameObject:
   m_ObjectHideFlags: 0

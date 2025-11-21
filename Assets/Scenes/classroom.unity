@@ -8063,6 +8063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeatManager
   seatsParent: {fileID: 1778331001}
+  homeButton: {fileID: 1629800516}
 --- !u!4 &1866543837
 Transform:
   m_ObjectHideFlags: 0

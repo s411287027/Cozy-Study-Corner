@@ -34,7 +34,7 @@ public class SeatManager_Room : MonoBehaviour
 
         // 監聽 Coffee 資料變化
         FirebaseDatabase.DefaultInstance
-            .GetReference("Seat/Room")
+            .GetReference($"users/{currentUID}/StudyAtHome/")
             .ValueChanged += OnSeatDataChanged;
     }
 
@@ -104,7 +104,7 @@ public class SeatManager_Room : MonoBehaviour
         if (currentSeat != null)
             return;
 
-        string seatPath = $"Seat/Room/{seatId}";
+        string seatPath = $"users/{currentUID}/StudyAtHome/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
     }
 
@@ -113,7 +113,7 @@ public class SeatManager_Room : MonoBehaviour
         if (seatId != currentSeat)
             return;
 
-        string seatPath = $"Seat/Room/{seatId}";
+        string seatPath = $"users/{currentUID}/StudyAtHome/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;
     }

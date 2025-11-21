@@ -5556,6 +5556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   seatsParent: {fileID: 8010878}
+  homeButton: {fileID: 1624598891}
 --- !u!4 &1112428660
 Transform:
   m_ObjectHideFlags: 0

@@ -7,11 +7,13 @@ using System.Collections.Generic;
 
 public class SeatManager_Classroom : MonoBehaviour
 {
-    public Transform seatsParent;  // 所有座位的父物件
+    public Transform seatsParent;
+    public GameObject homeButton;   // ⭐ 新增：Home 按鈕
+
     private DatabaseReference dbRef;
     private string currentUID;
 
-    private string currentSeat = null;  // ⭐ 記錄玩家現在坐在哪個位置
+    private string currentSeat = null;
     private Dictionary<string, GameObject> seatObjects = new Dictionary<string, GameObject>();
 
     void Start()
@@ -19,7 +21,6 @@ public class SeatManager_Classroom : MonoBehaviour
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
         currentUID = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
-        // 收集所有座位
         foreach (Transform seat in seatsParent)
         {
             string seatId = seat.name.Replace("Seat ", "").Replace("Seat_", "");
@@ -32,7 +33,6 @@ public class SeatManager_Classroom : MonoBehaviour
             leaveBtn.onClick.AddListener(() => OnLeaveButtonClicked(seatId));
         }
 
-        // 監聽資料變化
         FirebaseDatabase.DefaultInstance
             .GetReference("Seat/Classroom")
             .ValueChanged += OnSeatDataChanged;
@@ -46,10 +46,8 @@ public class SeatManager_Classroom : MonoBehaviour
             return;
         }
 
-        // ⭐ 必須重置，重新從資料決定玩家的座位
         currentSeat = null;
 
-        // 更新所有座位狀態
         foreach (var seatData in args.Snapshot.Children)
         {
             string seatId = seatData.Key;
@@ -65,28 +63,25 @@ public class SeatManager_Classroom : MonoBehaviour
 
                 if (isEmpty)
                 {
-                    // 空位
                     label.text = "No person";
                     leaveBtn.gameObject.SetActive(false);
-
-                    // ⭐ 若玩家沒坐，才允許按其他座位的 Sit
                     sitBtn.gameObject.SetActive(currentSeat == null);
                 }
                 else
                 {
-                    // 有玩家坐下
                     label.text = $"UID: {uid}";
 
                     if (uid == currentUID)
                     {
-                        // 玩家自己坐在這
                         currentSeat = seatId;
                         sitBtn.gameObject.SetActive(false);
                         leaveBtn.gameObject.SetActive(true);
+
+                        // ⭐ 玩家已坐下 → 隱藏 HomeButton
+                        if (homeButton != null) homeButton.SetActive(false);
                     }
                     else
                     {
-                        // 別人坐
                         sitBtn.gameObject.SetActive(false);
                         leaveBtn.gameObject.SetActive(false);
                     }
@@ -94,7 +89,6 @@ public class SeatManager_Classroom : MonoBehaviour
             }
         }
 
-        // ⭐ 第二輪調整：若玩家已坐下，所有其他空位要把 SitButton 關閉
         if (currentSeat != null)
         {
             foreach (var kv in seatObjects)
@@ -108,6 +102,11 @@ public class SeatManager_Classroom : MonoBehaviour
                     sitBtn.gameObject.SetActive(false);
                 }
             }
+        }
+        else
+        {
+            // ⭐ 玩家沒有坐任何位置 → 顯示 HomeButton
+            if (homeButton != null) homeButton.SetActive(true);
         }
     }
 
@@ -125,6 +124,9 @@ public class SeatManager_Classroom : MonoBehaviour
             if (task.IsCompleted)
             {
                 Debug.Log($"✅ 已坐下：{seatId}");
+
+                // ⭐ 玩家按下 Sit → 立即隱藏 HomeButton
+                if (homeButton != null) homeButton.SetActive(false);
             }
             else
             {
@@ -140,13 +142,15 @@ public class SeatManager_Classroom : MonoBehaviour
 
         string seatPath = $"Seat/Classroom/{seatId}";
 
-        // ⭐ 清空座位
         dbRef.Child(seatPath).SetValueAsync("").ContinueWith(task =>
         {
             if (task.IsCompleted)
             {
                 Debug.Log($"🏃 已離開座位：{seatId}");
                 currentSeat = null;
+
+                // ⭐ 玩家按下 Leave → 顯示 HomeButton
+                if (homeButton != null) homeButton.SetActive(true);
             }
             else
             {

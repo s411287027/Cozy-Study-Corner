@@ -5821,6 +5821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   seatsParent: {fileID: 1648598915}
+  homeButton: {fileID: 1791640658}
 --- !u!1 &1841345628
 GameObject:
   m_ObjectHideFlags: 0
