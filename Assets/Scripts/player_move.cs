@@ -15,6 +15,9 @@ public class Pseudo3DConfig
     public float nearY = -10f;
 }
 
+
+
+
 public class player_move : MonoBehaviour
 {
     [Header("角色設定")]
@@ -416,3 +419,5 @@ public class player_move : MonoBehaviour
 
 
 }
+
+

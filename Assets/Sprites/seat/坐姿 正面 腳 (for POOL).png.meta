@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: d1370fed6b8c2f64c8a73992ddd0acc7
+guid: 4a1708148b079334d8b31d7c42e74277
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2832092447248141509
-    second: Library chair1 bottom_0
+      213: -7477882771497870730
+    second: "\u5750\u59FF \u6B63\u9762 \u8173 (for POOL)_0"
   - first:
-      213: 7696975345308609753
-    second: Library chair1 bottom_1
-  - first:
-      213: 3416949589071707513
-    second: Library chair1 bottom_2
-  - first:
-      213: -1146996769525466568
-    second: Library chair1 bottom_3
-  - first:
-      213: 2539327449198762413
-    second: Library chair1 bottom_4
+      213: 7898057123367935031
+    second: "\u5750\u59FF \u6B63\u9762 \u8173 (for POOL)_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,10 +52,10 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.89802366, y: 0.22657214}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 3320, y: 367, z: 139, w: 2082}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -112,111 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Library chair1 bottom_0
+      name: "\u5750\u59FF \u6B63\u9762 \u8173 (for POOL)_0"
       rect:
         serializedVersion: 2
-        x: 3219
-        y: 305
-        width: 616
-        height: 576
+        x: 713
+        y: 492
+        width: 73
+        height: 139
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ccca41631d9d4720800000000000000
-      internalID: 2832092447248141509
+      spriteID: 67a1bd42d39393890800000000000000
+      internalID: -7477882771497870730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Library chair1 bottom_1
+      name: "\u5750\u59FF \u6B63\u9762 \u8173 (for POOL)_1"
       rect:
         serializedVersion: 2
-        x: 3446
-        y: 836
-        width: 67
-        height: 49
+        x: 794
+        y: 494
+        width: 60
+        height: 140
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9dc2f06db4621da60800000000000000
-      internalID: 7696975345308609753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Library chair1 bottom_2
-      rect:
-        serializedVersion: 2
-        x: 3570
-        y: 865
-        width: 282
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 97d39082c817b6f20800000000000000
-      internalID: 3416949589071707513
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Library chair1 bottom_3
-      rect:
-        serializedVersion: 2
-        x: 3835
-        y: 534
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83af9e1e38c0510f0800000000000000
-      internalID: -1146996769525466568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Library chair1 bottom_4
-      rect:
-        serializedVersion: 2
-        x: 3307
-        y: 300
-        width: 48
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da914e17cd08d3320800000000000000
-      internalID: 2539327449198762413
+      spriteID: 73cd616ab198b9d60800000000000000
+      internalID: 7898057123367935031
       vertices: []
       indices: 
       edges: []
@@ -226,7 +151,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -235,11 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Library chair1 bottom_0: 2832092447248141509
-      Library chair1 bottom_1: 7696975345308609753
-      Library chair1 bottom_2: 3416949589071707513
-      Library chair1 bottom_3: -1146996769525466568
-      Library chair1 bottom_4: 2539327449198762413
+      "\u5750\u59FF \u6B63\u9762 \u8173 (for POOL)_0": -7477882771497870730
+      "\u5750\u59FF \u6B63\u9762 \u8173 (for POOL)_1": 7898057123367935031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -256,6 +256,39 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.3609333, y: 2.6537943}
   m_EdgeRadius: 0
+--- !u!1 &52650548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1490950892546104935, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+  m_PrefabInstance: {fileID: 942109176319927206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &52650555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52650548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff069269d9860f04a820fc292c1f0866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSitController
+  sitParts:
+  - name: body
+    renderer: {fileID: 2132701514}
+    originalPosition: {x: 0, y: 0, z: 0}
+    originalSortingOrder: 0
+    originalSprite: {fileID: 0}
+  - name: hand
+    renderer: {fileID: 772664013}
+    originalPosition: {x: 0, y: 0, z: 0}
+    originalSortingOrder: 0
+    originalSprite: {fileID: 0}
+  - name: leg
+    renderer: {fileID: 332291940}
+    originalPosition: {x: 0, y: 0, z: 0}
+    originalSortingOrder: 0
+    originalSprite: {fileID: 0}
 --- !u!1 &62459345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,6 +1646,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.0730162, y: 0.7789335}
   m_EdgeRadius: 0
+--- !u!212 &332291940 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7334635244308384369, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+  m_PrefabInstance: {fileID: 942109176319927206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341719476
 GameObject:
   m_ObjectHideFlags: 0
@@ -4019,6 +4057,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.4140644, y: 0.6588974}
   m_EdgeRadius: 0
+--- !u!212 &772664013 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3768448225262188206, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+  m_PrefabInstance: {fileID: 942109176319927206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &783817174
 GameObject:
   m_ObjectHideFlags: 0
@@ -9711,6 +9754,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127712706}
   m_CullTransparentMesh: 1
+--- !u!212 &2132701514 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 216535139132025315, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+  m_PrefabInstance: {fileID: 942109176319927206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &942109176319927206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9794,7 +9842,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1490950892546104935, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 52650555}
   m_SourcePrefab: {fileID: 100100000, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
