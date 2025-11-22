@@ -10,9 +10,11 @@ public class ProfileUIController : MonoBehaviour
     public TMP_Dropdown startTimeDropdown;
     public TMP_Dropdown endTimeDropdown;
 
+    // 新增訊息輸入框與送出按鈕
+    public TMP_InputField messageInput;
+
     private void Start()
     {
-        // 🔹 從 Singleton 抓資料
         var data = FirebaseDatabaseController.Instance.dts;
 
         if (data != null)
@@ -26,7 +28,6 @@ public class ProfileUIController : MonoBehaviour
             userNameText.text = "No Data";
         }
 
-        // 🔹 若資料在進入 Scene 後才更新，可監聽事件
         FirebaseDatabaseController.Instance.OnDataLoaded += UpdateUI;
     }
 
@@ -40,7 +41,6 @@ public class ProfileUIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 記得解除監聽
         if (FirebaseDatabaseController.Instance != null)
             FirebaseDatabaseController.Instance.OnDataLoaded -= UpdateUI;
     }
@@ -70,7 +70,6 @@ public class ProfileUIController : MonoBehaviour
 
         string start = startTimeDropdown.options[startTimeDropdown.value].text;
         string end = endTimeDropdown.options[endTimeDropdown.value].text;
-
         string time = start + "-" + end;
 
         Debug.Log("📌 Setting reservation time: " + time);
@@ -78,4 +77,29 @@ public class ProfileUIController : MonoBehaviour
         FirebaseDatabaseController.Instance.SetTomorrowReservationTime(uid, time);
     }
 
+    // 🔹 新增：送出訊息到 Firebase
+    public void SendMessageToFirebase()
+    {
+        string uid = FirebaseDatabaseController.Instance.userId;
+        if (string.IsNullOrEmpty(uid))
+        {
+            Debug.LogError("❌ UID not found!");
+            return;
+        }
+
+        string message = messageInput.text;
+        if (string.IsNullOrEmpty(message))
+        {
+            Debug.LogWarning("⚠️ 訊息為空，無法送出！");
+            return;
+        }
+
+        // 將訊息寫入 Firebase Database
+        FirebaseDatabaseController.Instance.SetUserMessage(uid, message);
+
+        Debug.Log("📩 Sent message: " + message);
+
+        // 清空輸入框
+        messageInput.text = "";
+    }
 }

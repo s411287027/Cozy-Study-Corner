@@ -38,6 +38,13 @@ public class SeatManager_Classroom : MonoBehaviour
             .ValueChanged += OnSeatDataChanged;
     }
 
+    private void OnDestroy()
+    {
+        if (dbRef != null)
+            dbRef.ValueChanged -= OnSeatDataChanged;
+    }
+
+
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
     {
         if (args.DatabaseError != null)

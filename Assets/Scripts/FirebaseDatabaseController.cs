@@ -218,5 +218,11 @@ public class FirebaseDatabaseController : MonoBehaviour
             }
         });
     }
+    public void SetUserMessage(string uid, string message)
+    {
+        DatabaseReference userRef = FirebaseDatabase.DefaultInstance
+            .GetReference("users").Child(uid).Child("Message");
+        userRef.SetValueAsync(message);
+    }
 
 }

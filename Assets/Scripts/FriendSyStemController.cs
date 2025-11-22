@@ -454,11 +454,20 @@ public class FriendSystemController : MonoBehaviour
 
     private void ClearRequestListUI()
     {
-        foreach (Transform child in requestListContainer)
+        if (requestListContainer == null) return; // 容器已被 Destroy
+
+        // 先把 child 收到 list 再刪，避免 foreach 直接操作被 Destroy 的物件
+        Transform[] children = new Transform[requestListContainer.childCount];
+        for (int i = 0; i < children.Length; i++)
+            children[i] = requestListContainer.GetChild(i);
+
+        foreach (Transform child in children)
         {
-            Destroy(child.gameObject);
+            if (child != null)
+                Destroy(child.gameObject);
         }
     }
+
 
     private void CreateFriendRequestItem(string fromUid)
     {

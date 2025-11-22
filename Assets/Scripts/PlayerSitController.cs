@@ -5,8 +5,8 @@ public class PlayerSitController : MonoBehaviour
     [System.Serializable]
     public class SitPart
     {
-        public string name;                 // ³¡¦ì¦WºÙ¡A¨Ò¦p Body¡BLeg
-        public SpriteRenderer renderer;     // ¹ïÀ³ SpriteRenderer
+        public string name;                 // ï¿½ï¿½ï¿½ï¿½Wï¿½Ù¡Aï¿½Ò¦p Bodyï¿½BLeg
+        public SpriteRenderer renderer;     // ï¿½ï¿½ï¿½ï¿½ SpriteRenderer
 
         [HideInInspector] public Vector3 originalPosition;
         [HideInInspector] public int originalSortingOrder;
@@ -25,7 +25,7 @@ public class PlayerSitController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
 
-        // °O¿ý¦U³¡¦ì­ì©lª¬ºA
+        // ï¿½Oï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½A
         foreach (var p in sitParts)
         {
             if (p.renderer != null)
@@ -34,13 +34,13 @@ public class PlayerSitController : MonoBehaviour
                 p.originalSortingOrder = p.renderer.sortingOrder;
                 p.originalSprite = p.renderer.sprite;
 
-                // ªì©lÁôÂÃ
+                // ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½
                 p.renderer.gameObject.SetActive(false);
             }
         }
     }
 
-    // ===================== §¤¤U =====================
+    // ===================== ï¿½ï¿½ï¿½U =====================
     public void Sit(SitButton.SitPartData[] partsData)
     {
         if (isSitting) return;
@@ -54,19 +54,19 @@ public class PlayerSitController : MonoBehaviour
             var part = System.Array.Find(sitParts, p => p.name == data.partName);
             if (part == null) continue;
 
-            // ³]©w¦ì¸m¡B¹Ï¤ù¡B±Æ§Ç
+            // ï¿½]ï¿½wï¿½ï¿½mï¿½Bï¿½Ï¤ï¿½ï¿½Bï¿½Æ§ï¿½
             part.renderer.transform.position = data.position.position;
             part.renderer.sprite = data.sprite;
             part.renderer.sortingOrder = data.sortingOrder;
 
-            // ®M¥Î§¤¤UÁY©ñ
+            // ï¿½Mï¿½Î§ï¿½ï¿½Uï¿½Yï¿½ï¿½
             part.renderer.transform.localScale = data.scale;
 
             part.renderer.gameObject.SetActive(true);
         }
     }
 
-    // ===================== ¯¸°_ =====================
+    // ===================== ï¿½ï¿½ï¿½_ =====================
     public void StandUp()
     {
         if (!isSitting) return;
@@ -83,7 +83,7 @@ public class PlayerSitController : MonoBehaviour
                 part.renderer.sortingOrder = part.originalSortingOrder;
                 part.renderer.sprite = part.originalSprite;
 
-                // «ì´_­ì©l¤j¤p
+                // ï¿½ï¿½_ï¿½ï¿½lï¿½jï¿½p
                 part.renderer.transform.localScale = Vector3.one;
 
                 part.renderer.gameObject.SetActive(false);
