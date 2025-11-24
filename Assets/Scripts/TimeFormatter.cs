@@ -1,4 +1,4 @@
-using UnityEngine;  // ← 這行一定要有！
+using UnityEngine;
 
 public static class TimeFormatter
 {
