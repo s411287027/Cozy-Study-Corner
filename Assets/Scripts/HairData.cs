@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HairData", menuName = "DressScene/Hair Data", order = 0)]
 public class HairData : ScriptableObject
 {
+    public int hairID;
     [Header("髮型名稱")]
     public string hairName;
 

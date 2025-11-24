@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42681a7ec294c24b910ef684a62d348, type: 3}
   m_Name: FaceData-7
   m_EditorClassIdentifier: Assembly-CSharp::FaceData
+  faceID: 7
   faceName: Face-7
   faceUp: {fileID: 1354533647139122503, guid: 4f971a765b98092428e57c4b3b23e5b2, type: 3}
   faceDown: {fileID: 1354533647139122503, guid: ad35c531b0499544780a75e1c8605ffd, type: 3}

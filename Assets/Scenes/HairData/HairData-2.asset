@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21d1a4c33a7ec046b39974624fb39bf, type: 3}
   m_Name: HairData-2
   m_EditorClassIdentifier: Assembly-CSharp::HairData
+  hairID: 2
   hairName: Hair-2
   hairUp: {fileID: 3944267644156876503, guid: fcd8755908a5dfc4499931e4faf72de4, type: 3}
   hairDown: {fileID: 7627437197267415977, guid: 253b197402cc16448ade92b00a24ace6, type: 3}

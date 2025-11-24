@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FaceData", menuName = "DressScene/Face Data", order = 0)]
 public class FaceData : ScriptableObject
 {
+    public int faceID;
     [Header("臉部名稱")]
     public string faceName;
 

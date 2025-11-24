@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8c5956ebbb87646be8291d253cca23, type: 3}
   m_Name: PantsData-2
   m_EditorClassIdentifier: Assembly-CSharp::PantsData
+  pantsID: 2
   pantsName: Pants-2
   pantsUp: {fileID: 322344787528876642, guid: c9691a70b82eeea458e020535ea8e3de, type: 3}
   pantsDown: {fileID: 2566732718187321206, guid: 38bf4748fa365d046b9c3ffe47f80d29, type: 3}

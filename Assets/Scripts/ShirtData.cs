@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ShirtData", menuName = "DressScene/Shirt Data", order = 0)]
 public class ShirtData : ScriptableObject
 {
+    public int shirtID;
     [Header("衣服名稱")]
     public string shirtName;
 

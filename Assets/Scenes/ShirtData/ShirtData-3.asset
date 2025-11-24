@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324e35602368389498bb3bba1d2767c5, type: 3}
   m_Name: ShirtData-3
   m_EditorClassIdentifier: Assembly-CSharp::ShirtData
+  shirtID: 3
   shirtName: Shirt-3
   shirtUp: {fileID: -2310204999847530025, guid: 210c4cdd7e5967041b81eeb565041bce, type: 3}
   shirtDown: {fileID: -5833066490920402176, guid: 8c51f11d190d0a94aa884430f3ed06f0, type: 3}

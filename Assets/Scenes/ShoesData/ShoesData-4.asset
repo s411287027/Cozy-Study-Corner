@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c47f5470213d3641b81b36e4748a12b, type: 3}
   m_Name: ShoesData-4
   m_EditorClassIdentifier: Assembly-CSharp::ShoesData
+  shoesID: 4
   shoesName: Shoes-4
   shoesUp: {fileID: -185724737603908659, guid: 5ce998609dd5adc49813767768eea973, type: 3}
   shoesDown: {fileID: -3006245564210247068, guid: 99ed52777a84d7c419394f1742adcc83, type: 3}
