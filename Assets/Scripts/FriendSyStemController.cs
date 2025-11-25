@@ -5,6 +5,7 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class FriendSystemController : MonoBehaviour
 {
@@ -45,15 +46,15 @@ public class FriendSystemController : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 永遠保留
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        // 移除單例模式 (Singleton) 的強制保留邏輯
+        // 因為 UI 元素 (FriendSystemPanel) 會隨場景銷毀，
+        // 所以這個控制器也應該隨場景銷毀並重新建立。
+
+        Instance = this;
+
+        // 確保剛開始時面板是關閉的 (視需求而定)
+        if (FriendSystemPanel != null)
+            FriendSystemPanel.SetActive(false);
     }
     private void OnEnable()
     {
@@ -353,13 +354,20 @@ public class FriendSystemController : MonoBehaviour
 
     public void LoadPrivateMessages(string roomId, string myUid)
     {
-        // 清空舊訊息
-        foreach (Transform child in messageContent)
-            Destroy(child.gameObject);
+        // 1. ✅ 使用 DestroyImmediate 確保舊訊息立刻被刪除
+        int childCount = messageContent.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(messageContent.GetChild(i).gameObject);
+        }
 
+        infoMessageText.text = "Loading...";
+
+        // 2. 限制載入數量 (例如只載入最後 50 筆)，避免訊息太多卡頓
         dbRef.Child("private_messages")
              .Child(roomId)
              .Child("messages")
+             .LimitToLast(50) // ⭐ 建議加上這個
              .GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (!task.IsCompleted || !task.Result.Exists)
@@ -368,22 +376,50 @@ public class FriendSystemController : MonoBehaviour
                 return;
             }
 
-            infoMessageText.text = "";
+            infoMessageText.text = ""; // 清空狀態文字
 
             foreach (var msg in task.Result.Children)
             {
+                // 加上安全檢查，避免資料缺漏報錯
+                if (!msg.Child("from").Exists || !msg.Child("text").Exists) continue;
+
                 string from = msg.Child("from").Value.ToString();
                 string text = msg.Child("text").Value.ToString();
 
                 GameObject item = Instantiate(messageItemPrefab, messageContent);
                 TMP_Text t = item.GetComponentInChildren<TMP_Text>();
 
+                // 這裡可以依據是否為自己，改變文字顏色或對齊方式
                 if (from == myUid)
-                    t.text = $"You: {text}";
+                {
+                    t.text = $"<color=black>You:</color> {text}"; // 簡單上色區分
+                                                                  // 如果你有做靠右對齊的 Prefab 變體，可以在這裡控制
+                }
                 else
-                    t.text = $"{from}: {text}";
+                {
+                    // 這裡顯示 Uid 比較醜，建議之後改成顯示 Friend Name
+                    t.text = $"<color=black>Friend:</color> {text}";
+                }
             }
+
+            // 3. ✅ 強制滾動到最底部 (顯示最新訊息)
+            // 需要等待一幀讓 UI Layout 重建完成
+            StartCoroutine(ScrollToBottom());
         });
+    }
+
+    // 輔助函式：滾動到底部
+    private System.Collections.IEnumerator ScrollToBottom()
+    {
+        yield return new WaitForEndOfFrame(); // 等待 UI 生成完畢
+
+        // 假設 messageContent 的 parent 是 ScrollRect 的 Content
+        // 你需要找到 ScrollRect 組件
+        ScrollRect sr = messageContent.GetComponentInParent<ScrollRect>();
+        if (sr != null)
+        {
+            sr.verticalNormalizedPosition = 0f; // 0 代表最底部，1 代表最頂部
+        }
     }
 
     private string GetMessageRoomId(string uid1, string uid2)
@@ -395,6 +431,7 @@ public class FriendSystemController : MonoBehaviour
     {
         if (dbRef == null)
             dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
         string msg = messageInput.text.Trim();
         if (string.IsNullOrEmpty(msg)) return;
 
@@ -407,33 +444,37 @@ public class FriendSystemController : MonoBehaviour
         string myUid = dbController.userId;
         string roomId = GetMessageRoomId(myUid, currentChatFriendUid);
 
-        // ⭐ 使用 Push 產生唯一 key
         DatabaseReference msgRef = dbRef.Child("private_messages")
                                         .Child(roomId)
                                         .Child("messages")
                                         .Push();
 
-        var msgData = new
+        // ⭐⭐⭐ 修改重點：改用 Dictionary <string, object> ⭐⭐⭐
+        Dictionary<string, object> msgData = new Dictionary<string, object>
         {
-            from = myUid,
-            to = currentChatFriendUid,
-            text = msg,
-            time = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+            { "from", myUid },
+            { "to", currentChatFriendUid },
+            { "text", msg },
+            { "time", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") }
         };
 
+        // 這裡加上了上一則回應提到的「錯誤判斷修正」，請一併使用
         msgRef.SetValueAsync(msgData).ContinueWithOnMainThread(task =>
         {
-            if (task.IsCompleted)
+            if (task.IsFaulted)
+            {
+                // 這裡會抓到連線錯誤或權限錯誤
+                Debug.LogError("❌ 寫入失敗: " + task.Exception);
+            }
+            else if (task.IsCanceled)
+            {
+                Debug.LogError("❌ 寫入被取消");
+            }
+            else if (task.IsCompleted)
             {
                 Debug.Log("✔ Message sent!");
                 messageInput.text = "";
-
-                // ⚠ 自動刷新聊天室
                 LoadPrivateMessages(roomId, myUid);
-            }
-            else
-            {
-                Debug.LogError("❌ Failed: " + task.Exception);
             }
         });
     }
@@ -446,25 +487,27 @@ public class FriendSystemController : MonoBehaviour
 
     private void ClearFriendListUI()
     {
-        foreach (Transform child in friendListContainer)
+        // 必須從後往前刪除，且使用 DestroyImmediate 以確保在生成新列表前，舊的已經完全消失
+        int childCount = friendListContainer.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
         {
-            Destroy(child.gameObject);
+            GameObject child = friendListContainer.GetChild(i).gameObject;
+            // 使用 DestroyImmediate 強制當下刪除，避免擋住後面的重複檢查邏輯
+            DestroyImmediate(child);
         }
     }
 
     private void ClearRequestListUI()
     {
-        if (requestListContainer == null) return; // 容器已被 Destroy
+        if (requestListContainer == null) return;
 
-        // 先把 child 收到 list 再刪，避免 foreach 直接操作被 Destroy 的物件
-        Transform[] children = new Transform[requestListContainer.childCount];
-        for (int i = 0; i < children.Length; i++)
-            children[i] = requestListContainer.GetChild(i);
-
-        foreach (Transform child in children)
+        // 改用 DestroyImmediate
+        int childCount = requestListContainer.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
         {
+            Transform child = requestListContainer.GetChild(i);
             if (child != null)
-                Destroy(child.gameObject);
+                DestroyImmediate(child.gameObject);
         }
     }
 

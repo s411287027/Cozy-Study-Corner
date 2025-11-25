@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Firebase.Extensions;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using Firebase.Database;
 
 public class FirebaseController : MonoBehaviour
 {
@@ -186,14 +187,51 @@ public class FirebaseController : MonoBehaviour
         notificationPanel.SetActive(false);
     }
 
-    public void LogOut()
+    public Task LogOutAsync()
     {
-        auth.SignOut();
-        Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference.Child("users").Child(dbController.userId).Child("Status").SetValueAsync("Offline");
-        profilePanel.SetActive(false);
-        profileUserName_Text.text = "";
-        profileUserEmail_Text.text = "";
-        OpenLoginPanel();
+        // 1. 先抓取 UserID (因為等下登出後 auth.CurrentUser 就會變成 null 了)
+        string targetUid = "";
+        if (auth.CurrentUser != null)
+        {
+            targetUid = auth.CurrentUser.UserId;
+        }
+        else if (dbController != null)
+        {
+            targetUid = dbController.userId;
+        }
+
+        if (string.IsNullOrEmpty(targetUid))
+        {
+            // 如果抓不到 ID，直接登出並回傳完成的 Task
+            auth.SignOut();
+            return Task.CompletedTask;
+        }
+
+        Debug.Log($"準備將用戶 {targetUid} 設為 Offline...");
+
+        // 2. 先寫入 Offline (還沒登出，所以有權限寫入)
+        // 使用 Return 讓外部可以等待這個 Task
+        return FirebaseDatabase.DefaultInstance.RootReference
+            .Child("users").Child(targetUid).Child("Status")
+            .SetValueAsync("Offline")
+            .ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("設定 Offline 失敗: " + task.Exception);
+                }
+                else
+                {
+                    Debug.Log("設定 Offline 成功！");
+                }
+
+                // 3. 確定寫入動作結束後，才執行登出
+                auth.SignOut();
+
+                // 清空 UI (非必要，因為馬上要切場景了，但留著也無妨)
+                // 這裡因為是在非主執行緒，操作 UI 可能會報錯，建議移除或用 Dispatcher
+                // profilePanel.SetActive(false); 
+            });
     }
 
     void CreateUser(string email, string password, string Username)
