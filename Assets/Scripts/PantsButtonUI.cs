@@ -8,20 +8,20 @@ public class PantsButtonUI : MonoBehaviour
     public TMP_Text pantsNameText;
     public Button button;
 
-    private PantsData data;
+    public PantsData data;
     private PantsSelectionUI controller;
 
-    public void Setup(PantsData p, PantsSelectionUI c)
+    public void Setup(PantsData pants, PantsSelectionUI ctrl)
     {
-        data = p;
-        controller = c;
+        data = pants;
+        controller = ctrl;
 
-        pantsNameText.text = p.pantsName;
-        icon.sprite = p.pantsDown;
+        pantsNameText.text = pants.pantsName;
+        icon.sprite = pants.pantsDown;
 
         button.onClick.AddListener(() =>
         {
-            controller.SelectPants(p);
+            controller.SelectPants(pants);
         });
     }
 }

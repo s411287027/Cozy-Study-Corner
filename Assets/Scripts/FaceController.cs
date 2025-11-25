@@ -10,6 +10,16 @@ public class FaceController : MonoBehaviour
     public Sprite faceLeft;
     public Sprite faceRight;
 
+    [Header("不同方向的動態動畫幀（可多張）")]
+    public Sprite[] faceUpFrames;
+    public Sprite[] faceDownFrames;
+    public Sprite[] faceLeftFrames;
+    public Sprite[] faceRightFrames;
+
+    [Header("動畫設定")]
+    [Tooltip("當持續朝同方向移動時，幀與幀之間的時間（秒）")]
+    public float animationInterval = 0.15f;
+
     [Header("位置 offset（相對 parent 的 localPosition）")]
     public Vector3 baseLocalOffset = Vector3.zero;
 
@@ -24,7 +34,12 @@ public class FaceController : MonoBehaviour
     private string lastDir = "";
     private bool initializedOffset = false;
 
-    private Vector3 prevPlayerPos;
+    // 🔹 動畫控制變數
+    private float animTimer = 0f;
+    private int animIndex = 0;
+    private string currentMoveDir = "";
+    private bool isMoving = false; // 是否正在移動（會播放動畫）
+    private Vector3 prevPlayerPos; // 用來偵測 parent 是否移動
 
     void Awake()
     {
@@ -38,8 +53,8 @@ public class FaceController : MonoBehaviour
         // 👉 在 DressScene：Face 停住 + 面向前（Down）
         if (sceneName == "DressScene")
         {
-            if (sr != null && faceDown != null)
-                sr.sprite = faceDown;
+            //if (sr != null && faceDown != null)
+            //    sr.sprite = faceDown;
 
             enabled = false;
             return;
@@ -63,6 +78,9 @@ public class FaceController : MonoBehaviour
             initializedOffset = true;
         }
 
+        if (sr != null && sr.sprite == null && faceDown != null)
+            sr.sprite = faceDown;
+
         prevPlayerPos = playerTransform.position;
 
         // 初始面朝前
@@ -80,13 +98,21 @@ public class FaceController : MonoBehaviour
 
         // 跟隨 sorting layer
         var playerSR = playerTransform.GetComponent<SpriteRenderer>();
-        var mySR = GetComponent<SpriteRenderer>();
+        var faceSR = GetComponent<SpriteRenderer>();
 
-        if (playerSR != null && mySR != null)
+        if (playerSR != null && faceSR != null)
         {
-            mySR.sortingLayerName = playerSR.sortingLayerName;
-            mySR.sortingOrder = playerSR.sortingOrder + 1;
+            faceSR.sortingLayerName = playerSR.sortingLayerName;
+            faceSR.sortingOrder = playerSR.sortingOrder + 1;
         }
+
+        // ===== 自行偵測 parent 是否移動（若 player_move 忘了每幀傳 0,0，這能保障） =====
+        Vector3 currPos = playerTransform.position;
+        float moved = (currPos - prevPlayerPos).sqrMagnitude;
+        prevPlayerPos = currPos;
+
+        if (isMoving)
+            AnimateFace();
     }
 
     /// <summary>
@@ -98,13 +124,18 @@ public class FaceController : MonoBehaviour
 
         // 沒輸入 → idle，不換面
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
+        {
+            isMoving = false;
             return;
+        }
+        // 有輸入方向 -> 表示正在移動（要播放動畫）
+        isMoving = true;
 
         // 修正 flip 狀態（若玩家左右翻轉）
         bool parentFlipped = playerTransform != null && playerTransform.localScale.x < 0f;
         float effectiveDirX = parentFlipped ? -dirX : dirX;
 
-        string newDir;
+        string newDir = "";
 
         if (Mathf.Abs(effectiveDirX) > Mathf.Abs(dirY))
         {
@@ -115,18 +146,68 @@ public class FaceController : MonoBehaviour
             newDir = (dirY > 0f) ? "Up" : "Down";
         }
 
-        if (newDir == lastDir)
-            return;
+       if (newDir != currentMoveDir)
+        {
+            currentMoveDir = newDir;
+            animIndex = 0;
+            animTimer = 0f;
 
-        lastDir = newDir;
+            // 顯示第一張（如果有幀陣列就顯示第一張，否則顯示靜態圖）
+            Sprite[] frames = GetFramesForDirection(currentMoveDir);
+            if (frames != null && frames.Length > 0)
+                sr.sprite = frames[animIndex];
+            else
+                ShowStaticFace(currentMoveDir);
+        }
 
-        // 換 sprite
-        switch (newDir)
+        if (enableDebug && newDir != lastDir)
+        {
+            //Debug.Log($"FaceController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+            lastDir = newDir;
+        }
+    }
+
+    private Sprite[] GetFramesForDirection(string dir)
+    {
+        switch (dir)
+        {
+            case "Up": return faceUpFrames;
+            case "Down": return faceDownFrames;
+            case "Left": return faceLeftFrames;
+            case "Right": return faceRightFrames;
+            default: return null;
+        }
+    }
+
+    private void AnimateFace()
+    {
+        animTimer += Time.deltaTime;
+
+        if (animTimer >= animationInterval)
+        {
+            animTimer = 0f;
+            Sprite[] frames = GetFramesForDirection(currentMoveDir);
+
+            // 若該方向沒動畫幀，保留目前 sprite（不改為靜態）
+            if (frames == null || frames.Length == 0)
+            {
+                return;
+            }
+
+            animIndex = (animIndex + 1) % frames.Length;
+            sr.sprite = frames[animIndex];
+        }
+    }
+
+    private void ShowStaticFace(string dir)
+    {
+        switch (dir)
         {
             case "Up": sr.sprite = faceUp; break;
             case "Down": sr.sprite = faceDown; break;
             case "Left": sr.sprite = faceLeft; break;
             case "Right": sr.sprite = faceRight; break;
+            default: sr.sprite = faceDown; break;
         }
     }
 }

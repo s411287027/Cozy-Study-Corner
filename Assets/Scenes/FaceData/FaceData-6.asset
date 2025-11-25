@@ -18,3 +18,11 @@ MonoBehaviour:
   faceDown: {fileID: 5413044406942738623, guid: 98e3d65b0f5644146a2b86345659fa7d, type: 3}
   faceLeft: {fileID: -311937770739146010, guid: 830901850a318cb408545b8a48c7494f, type: 3}
   faceRight: {fileID: 170065107542551360, guid: 30c1b73134b268346b25ccc65ffa90cb, type: 3}
+  faceUpFrames:
+  - {fileID: 5413044406942738623, guid: cea60455411d3c046bb0ea4e25b97046, type: 3}
+  faceDownFrames:
+  - {fileID: 5413044406942738623, guid: 98e3d65b0f5644146a2b86345659fa7d, type: 3}
+  faceLeftFrames:
+  - {fileID: -311937770739146010, guid: 830901850a318cb408545b8a48c7494f, type: 3}
+  faceRightFrames:
+  - {fileID: 170065107542551360, guid: 30c1b73134b268346b25ccc65ffa90cb, type: 3}

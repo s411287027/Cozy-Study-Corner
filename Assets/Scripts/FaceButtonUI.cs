@@ -19,7 +19,7 @@ public class FaceButtonUI : MonoBehaviour
         faceNameText.text = face.faceName;
         icon.sprite = face.faceDown;
 
-        button.onClick.RemoveAllListeners();
+        //button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
         {
             controller.SelectFace(face);

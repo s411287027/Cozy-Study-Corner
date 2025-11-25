@@ -936,7 +936,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291909241496556611}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d108a58cf6c6a2f498a0ab62fcd59772, type: 3}
   m_Name: 
@@ -945,6 +945,15 @@ MonoBehaviour:
   faceDown: {fileID: 3037873482306237581, guid: b1823868970930243a0075e48f9e1880, type: 3}
   faceLeft: {fileID: 8555269896663764265, guid: 512c724328532ea49ac696bef3e09474, type: 3}
   faceRight: {fileID: -8045874827877089262, guid: 12190de52116dc84ea1be58e10c43cc6, type: 3}
+  faceUpFrames:
+  - {fileID: 3037873482306237581, guid: 2c214e47c1cf6fd4abe325e5f9fe1674, type: 3}
+  faceDownFrames:
+  - {fileID: 3037873482306237581, guid: b1823868970930243a0075e48f9e1880, type: 3}
+  faceLeftFrames:
+  - {fileID: 8555269896663764265, guid: 512c724328532ea49ac696bef3e09474, type: 3}
+  faceRightFrames:
+  - {fileID: -8045874827877089262, guid: 12190de52116dc84ea1be58e10c43cc6, type: 3}
+  animationInterval: 0.15
   baseLocalOffset: {x: 0, y: 2.78, z: 0}
   movementThreshold: 0.001
   enableDebug: 0
@@ -1046,7 +1055,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984422597294340010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110b9cadc8f5dd74e94a8bf96f8f1590, type: 3}
   m_Name: 
@@ -1177,7 +1186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5485192777474117320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2163c0570af4ddf478f40d0d58eb9df1, type: 3}
   m_Name: 
@@ -1308,7 +1317,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5551112594056909356}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec20af8f808d668439b9eca9ffb2b29c, type: 3}
   m_Name: 
@@ -1534,7 +1543,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7541931647347401525}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde34dcb6268a7c43b681e7a990ea359, type: 3}
   m_Name: 

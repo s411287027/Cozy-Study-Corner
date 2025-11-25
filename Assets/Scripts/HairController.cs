@@ -85,7 +85,7 @@ public class HairController : MonoBehaviour
             sr.sprite = hairDown;
 
         prevPlayerPos = playerTransform.position;
-        UpdateHairDirection(1f, 0f);
+        UpdateHairDirection(0f, -1f);
     }
 
     void LateUpdate()

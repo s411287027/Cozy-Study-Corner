@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 3358749507875728016}
   - component: {fileID: 3190489396685006851}
   - component: {fileID: 450130058897122138}
-  - component: {fileID: 5241286306750669872}
+  - component: {fileID: 8842233314301072696}
   m_Layer: 5
   m_Name: PantsButtonPrefab
   m_TagString: Untagged
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5241286306750669872
+--- !u!114 &8842233314301072696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,10 +419,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9015824204603889770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2637b5dc1461a149a32cd41fa6a1348, type: 3}
+  m_Script: {fileID: 11500000, guid: d86feedca911c9c4386c7f542e3a0ef0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShirtButtonUI
+  m_EditorClassIdentifier: Assembly-CSharp::PantsButtonUI
   icon: {fileID: 1857552368153649454}
-  shirtNameText: {fileID: 8900861708357547731}
+  pantsNameText: {fileID: 8900861708357547731}
   button: {fileID: 450130058897122138}
-  data: {fileID: 11400000, guid: 53891d1d0ca9b464581e6cf1e8baf6a4, type: 2}
+  data: {fileID: 11400000, guid: 6572eabc7b061b3458f145f57cd7313b, type: 2}

@@ -12,4 +12,10 @@ public class FaceData : ScriptableObject
     public Sprite faceDown;
     public Sprite faceLeft;
     public Sprite faceRight;
+
+    [Header("動畫幀")]
+    public Sprite[] faceUpFrames;
+    public Sprite[] faceDownFrames;
+    public Sprite[] faceLeftFrames;
+    public Sprite[] faceRightFrames;
 }

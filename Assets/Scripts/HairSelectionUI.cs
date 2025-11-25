@@ -87,8 +87,8 @@ public class HairSelectionUI : MonoBehaviour
         foreach (var hair in hairList)
         {
             // 只顯示玩家擁有的髮型
-            if (!ownedHairIDs.Contains(hair.hairID))
-                continue;
+            //if (!ownedHairIDs.Contains(hair.hairID))
+            //    continue;
 
             GameObject obj = Instantiate(hairButtonPrefab, content);
             HairButtonUI ui = obj.GetComponent<HairButtonUI>();

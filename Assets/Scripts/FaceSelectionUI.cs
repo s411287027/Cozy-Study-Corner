@@ -84,8 +84,8 @@ public class FaceSelectionUI : MonoBehaviour
         foreach (var face in faceList)
         {
             // 只顯示玩家擁有的 faceID
-            if (!ownedFaceIDs.Contains(face.faceID))
-                continue;
+            //if (!ownedFaceIDs.Contains(face.faceID))
+            //    continue;
 
             GameObject obj = Instantiate(faceButtonPrefab, content);
             FaceButtonUI ui = obj.GetComponent<FaceButtonUI>();
@@ -101,6 +101,11 @@ public class FaceSelectionUI : MonoBehaviour
         faceController.faceDown = face.faceDown;
         faceController.faceLeft = face.faceLeft;
         faceController.faceRight = face.faceRight;
+
+        //faceController.faceUpFrames = face.faceUpFrames;
+        //faceController.faceDownFrames = face.faceDownFrames;
+        //faceController.faceLeftFrames = face.faceLeftFrames;
+        //faceController.faceRightFrames = face.faceRightFrames;
 
         faceController.UpdateFaceDirection(0f, -1f);
         Debug.Log($"成功替換臉部：{face.faceName}");

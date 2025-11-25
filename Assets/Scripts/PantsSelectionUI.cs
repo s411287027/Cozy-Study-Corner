@@ -87,8 +87,8 @@ public class PantsSelectionUI : MonoBehaviour
         foreach (var pants in pantsList)
         {
             // 只顯示玩家擁有的褲子
-            if (!ownedPantsIDs.Contains(pants.pantsID))
-                continue;
+            //if (!ownedPantsIDs.Contains(pants.pantsID))
+            //    continue;
 
             GameObject obj = Instantiate(pantsButtonPrefab, content);
             PantsButtonUI ui = obj.GetComponent<PantsButtonUI>();

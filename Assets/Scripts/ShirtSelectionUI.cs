@@ -89,8 +89,8 @@ public class ShirtSelectionUI : MonoBehaviour
         foreach (var shirt in shirtList)
         {
             // 只顯示玩家擁有的衣服
-            if (!ownedShirtIDs.Contains(shirt.shirtID))
-                continue;
+            //if (!ownedShirtIDs.Contains(shirt.shirtID))
+            //    continue;
 
             GameObject obj = Instantiate(shirtButtonPrefab, content);
             ShirtButtonUI ui = obj.GetComponent<ShirtButtonUI>();
