@@ -91,7 +91,7 @@ public class PantsController : MonoBehaviour
             sr.sprite = pantsDown;
 
         prevPlayerPos = playerTransform.position;
-        UpdatePantsDirection(1f, 0f);
+        UpdatePantsDirection(0f, -1f);
     }
     
     void LateUpdate()
@@ -140,12 +140,28 @@ public class PantsController : MonoBehaviour
 
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            if (isMoving) // 只有當它剛從移動轉為停止時才執行一次
+            {
+                // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
+                animIndex = 0;
+                animTimer = 0f;
+                
+                Sprite[] frames = GetFramesForDirection(currentMoveDir);
+                if (frames != null && frames.Length > 0)
+                    sr.sprite = frames[animIndex]; // 顯示動畫第一幀
+                else
+                    ShowStaticPants(currentMoveDir); // 顯示靜態圖
+
+                if (enableDebug)
+                    Debug.Log($"Pants: Idle. Displaying first frame for direction {currentMoveDir}");
+            }
+            
             if (enabled)
                 enabled = false;
             isMoving = false;
             return;
         }
-        if (enabled)
+        if (!enabled)
             enabled = true;
         isMoving = true;
 
@@ -172,11 +188,11 @@ public class PantsController : MonoBehaviour
                 ShowStaticPants(currentMoveDir);
         }
 
-        //if (enableDebug && newDir != lastDir)
-        //{
-        //Debug.Log($"PantsController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
-        lastDir = newDir;
-        //}
+        if (enableDebug && newDir != lastDir)
+        {
+            //Debug.Log($"PantsController: dirX={dirX:F2}, dirY={dirY:F2}, flipped={parentFlipped} => {newDir}, sprite={sr.sprite?.name}");
+            lastDir = newDir;
+        }
     }
 
     private Sprite[] GetFramesForDirection(string dir)

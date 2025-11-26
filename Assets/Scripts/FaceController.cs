@@ -53,9 +53,8 @@ public class FaceController : MonoBehaviour
         //  在 DressScene：Face 停住 + 面向前（Down）
         if (sceneName == "DressScene")
         {
-            if (sr != null && faceDown != null)
-                sr.sprite = faceDown;
-
+            if (sr != null) sr = GetComponent<SpriteRenderer>();
+            sr.sprite = faceDown;
             enabled = false;
             return;
         }
@@ -140,18 +139,35 @@ public class FaceController : MonoBehaviour
             return; 
         }
 
-        if (sr == null) return;
+        if (sr == null) sr = GetComponent<SpriteRenderer>();
+        //if (sr == null) return;
 
         // 沒輸入 → idle，不換面
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            if (isMoving) // 只有當它剛從移動轉為停止時才執行一次
+            {
+                // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
+                animIndex = 0;
+                animTimer = 0f;
+                
+                Sprite[] frames = GetFramesForDirection(currentMoveDir);
+                if (frames != null && frames.Length > 0)
+                    sr.sprite = frames[animIndex]; // 顯示動畫第一幀
+                else
+                    ShowStaticFace(currentMoveDir); // 顯示靜態圖
+
+                if (enableDebug)
+                    Debug.Log($"Face: Idle. Displaying first frame for direction {currentMoveDir}");
+            }
+            
             if (enabled)
                 enabled = false;
             isMoving = false;
             return;
         }
         // 有輸入方向 -> 表示正在移動（要播放動畫）
-        if (enabled)
+        if (!enabled)
             enabled = true;
         isMoving = true;
 
@@ -249,7 +265,7 @@ public class FaceController : MonoBehaviour
             currentDir = (dirY > 0f) ? "Up" : "Down";
         }
 
-        // 💡 保持內部狀態同步
+        //  保持內部狀態同步
         currentMoveDir = currentDir;
         animIndex = 0;
         animTimer = 0f;

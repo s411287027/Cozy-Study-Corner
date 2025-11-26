@@ -127,10 +127,10 @@ public class HairController : MonoBehaviour
         float moved = (currPos - prevPlayerPos).sqrMagnitude;
         prevPlayerPos = currPos;
 
-        if (enableDebug && moved < (movementThreshold * movementThreshold))
+        /*if (enableDebug && moved < (movementThreshold * movementThreshold))
         {
-            //Debug.Log("HairController: Player idle (detected by movement).");
-        }
+            Debug.Log("HairController: Player idle (detected by movement).");
+        }*/
         // else: 如果 parent 有動，isMoving 應該在 UpdateHairDirection 被設為 true（或也可在此強制）
         // 若你想完全以位移為準，可以改成 isMoving = parentIsMoving;
 
@@ -160,6 +160,23 @@ public class HairController : MonoBehaviour
         // 外部有明確傳入方向：用輸入判斷是否在移動（優先於 position 偵測）
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            //  角色停止移動 (dirX, dirY 趨近於 0) 的邏輯塊
+            if (isMoving) // 只有當它剛從移動轉為停止時才執行一次
+            {
+                // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
+                animIndex = 0;
+                animTimer = 0f;
+                
+                Sprite[] frames = GetFramesForDirection(currentMoveDir);
+                if (frames != null && frames.Length > 0)
+                    sr.sprite = frames[animIndex]; // 顯示動畫第一幀
+                else
+                    ShowStaticHair(currentMoveDir); // 顯示靜態圖
+
+                if (enableDebug)
+                    Debug.Log($"Hair: Idle. Displaying first frame for direction {currentMoveDir}");
+            }
+            
             if (enabled)
                 enabled = false;
             // player_move 有傳 (0,0) -> 表示停止：保留最後一幀（不要改 sprite）

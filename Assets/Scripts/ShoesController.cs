@@ -140,6 +140,22 @@ public class ShoesController : MonoBehaviour
 
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            if (isMoving) // 只有當它剛從移動轉為停止時才執行一次
+            {
+                // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
+                animIndex = 0;
+                animTimer = 0f;
+                
+                Sprite[] frames = GetFramesForDirection(currentMoveDir);
+                if (frames != null && frames.Length > 0)
+                    sr.sprite = frames[animIndex]; // 顯示動畫第一幀
+                else
+                    ShowStaticShoes(currentMoveDir); // 顯示靜態圖
+
+                if (enableDebug)
+                    Debug.Log($"Shoes: Idle. Displaying first frame for direction {currentMoveDir}");
+            }
+            
             if (enabled)
                 enabled = false;
             isMoving = false;

@@ -121,8 +121,8 @@ public class player_move : MonoBehaviour
                 pantsController.UpdatePantsDirection(0f, -1f);
             if (shoesController != null)
                 shoesController.UpdateShoesDirection(0f, -1f);
-            //if (faceController != null)
-            //    faceController.UpdateFacdDirection(0f, -1f);
+            if (faceController != null)
+                faceController.UpdateFaceDirection(0f, -1f);
         }
     }
 
