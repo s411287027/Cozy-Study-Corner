@@ -87,8 +87,8 @@ public class PantsSelectionUI : MonoBehaviour
         foreach (var pants in pantsList)
         {
             // 只顯示玩家擁有的褲子
-            //if (!ownedPantsIDs.Contains(pants.pantsID))
-            //    continue;
+            if (!ownedPantsIDs.Contains(pants.pantsID))
+                continue;
 
             GameObject obj = Instantiate(pantsButtonPrefab, content);
             PantsButtonUI ui = obj.GetComponent<PantsButtonUI>();
@@ -114,7 +114,7 @@ public class PantsSelectionUI : MonoBehaviour
         pantsController.pantsRightFrames = p.pantsRightFrames;
 
         // 顯示向下姿勢
-        pantsController.UpdatePantsDirection(0f, -1f);
+        pantsController.ForceUpdatePantsSprite(0f, -1f);
 
         Debug.Log($"成功替換褲子：{p.pantsName}");
     }

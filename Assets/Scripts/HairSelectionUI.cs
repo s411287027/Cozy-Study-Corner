@@ -25,15 +25,23 @@ public class HairSelectionUI : MonoBehaviour
 
     void Start()
     {
-        player = PlayerManager.Instance.playerInstance;
-        if (player == null)
+        this.player = PlayerManager.Instance.playerInstance;
+        if (this.player == null)
         {
             Debug.LogError("找不到 Player!");
             return;
         }
 
-        hairController = player.GetComponentInChildren<HairController>();
+        hairController = this.player.GetComponentInChildren<HairController>();
 
+        var playerSR = this.player.GetComponent<SpriteRenderer>();
+        var hairSR = hairController?.GetComponent<SpriteRenderer>();
+        if (playerSR != null && hairSR != null)
+        {
+            //  確保配件在 Player 上方 (Player 的 Order + 1)
+            hairSR.sortingLayerName = playerSR.sortingLayerName;
+            hairSR.sortingOrder = playerSR.sortingOrder + 1; 
+        }
         if (playerDisplayPosition != null)
             player.transform.position = playerDisplayPosition.position;
 
@@ -87,8 +95,8 @@ public class HairSelectionUI : MonoBehaviour
         foreach (var hair in hairList)
         {
             // 只顯示玩家擁有的髮型
-            //if (!ownedHairIDs.Contains(hair.hairID))
-            //    continue;
+            if (!ownedHairIDs.Contains(hair.hairID))
+                continue;
 
             GameObject obj = Instantiate(hairButtonPrefab, content);
             HairButtonUI ui = obj.GetComponent<HairButtonUI>();
@@ -114,7 +122,7 @@ public class HairSelectionUI : MonoBehaviour
         hairController.hairRightFrames = hair.hairRightFrames;
 
         // 顯示向下姿勢
-        hairController.UpdateHairDirection(0f, -1f);
+        hairController.ForceUpdateHairSprite(0f, -1f);
 
         Debug.Log($"成功替換髮型：{hair.hairName}");
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[ExecuteAlways]
 public class HairController : MonoBehaviour
 {
     [Header("不同方向的靜態頭髮圖片（預設用）")]
@@ -53,13 +52,15 @@ public class HairController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "DressScene")
         {
+            if (sr == null) sr = GetComponent<SpriteRenderer>();
+            sr.sprite = hairDown; // 強制顯示正面靜態圖
             enabled = false; // 停用整個 HairController
             return;
         }
 
         playerTransform = transform.parent;
 
-        if (playerTransform == null)
+        /*if (playerTransform == null)
         {
             if (enableDebug)
                 Debug.LogWarning("⚠ HairController: Hair 不是 Player 的子物件，將自動搜尋 player_move。");
@@ -70,8 +71,18 @@ public class HairController : MonoBehaviour
                 Debug.LogError("❌ 找不到 player_move！請確保 Hair 是 Player 的子物件。");
                 return;
             }
-        }
+        }*/
 
+        // DressScene 只顯示正面，不播放走路動畫
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            // 強制顯示正面
+            if (sr == null) sr = GetComponent<SpriteRenderer>();
+            sr.sprite = hairDown;
+            enabled = false;
+            return;
+        }
+        
         if (!initializedOffset)
         {
             baseLocalOffset = transform.localPosition;
@@ -90,6 +101,11 @@ public class HairController : MonoBehaviour
 
     void LateUpdate()
     {
+        //  由於 Start 已經 enabled = false，這個檢查是備用。
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            return; 
+        }
         if (playerTransform == null)
             return;
 
@@ -97,14 +113,14 @@ public class HairController : MonoBehaviour
         transform.position = playerTransform.TransformPoint(baseLocalOffset);
         transform.localScale = Vector3.one;
 
-        // 固定在 parent 的上層 sorting
+        /*// 固定在 parent 的上層 sorting
         var playerSR = playerTransform.GetComponent<SpriteRenderer>();
         var hairSR = GetComponent<SpriteRenderer>();
         if (playerSR != null && hairSR != null)
         {
             hairSR.sortingLayerName = playerSR.sortingLayerName;
-            hairSR.sortingOrder = playerSR.sortingOrder + 1;
-        }
+            hairSR.sortingOrder = playerSR.sortingOrder + 5;
+        }*/
 
         // ===== 自行偵測 parent 是否移動（若 player_move 忘了每幀傳 0,0，這能保障） =====
         Vector3 currPos = playerTransform.position;
@@ -120,6 +136,7 @@ public class HairController : MonoBehaviour
 
         // 播放動畫（只有在 isMoving = true）
         if (isMoving)
+            //Debug.Log($"Hair: AnimateHair called. Current Dir: {currentMoveDir}");
             AnimateHair();
     }
 
@@ -129,18 +146,33 @@ public class HairController : MonoBehaviour
     /// </summary>
     public void UpdateHairDirection(float dirX, float dirY)
     {
+        // 在 DressScene 中被呼叫時，僅顯示靜態圖，不啟用 isMoving
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            isMoving = false; // 確保動畫停止
+            ShowStaticHair("Down"); // 強制顯示 Down（正面）靜態圖
+            // 且因為 Start 已經 disabled 整個 Component， LateUpdate 不會執行 AnimateHair
+            return; 
+        }
+        
         if (sr == null) sr = GetComponent<SpriteRenderer>();
 
         // 外部有明確傳入方向：用輸入判斷是否在移動（優先於 position 偵測）
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            if (enabled)
+                enabled = false;
             // player_move 有傳 (0,0) -> 表示停止：保留最後一幀（不要改 sprite）
             isMoving = false;
+            //.Log("Hair: Idle.");
             return;
         }
 
+        if (!enabled)
+            enabled = true;
         // 有輸入方向 -> 表示正在移動（要播放動畫）
         isMoving = true;
+        //Debug.Log($"Hair: Moving, dir=({dirX:F2}, {dirY:F2}).");
 
         bool parentFlipped = playerTransform != null && playerTransform.localScale.x < 0f;
         float effectiveDirX = parentFlipped ? -dirX : dirX;
@@ -202,13 +234,15 @@ public class HairController : MonoBehaviour
             // 若該方向沒動畫幀，保留目前 sprite（不改為靜態）
             if (frames == null || frames.Length == 0)
             {
+                //Debug.LogError($"Hair: Direction {currentMoveDir} has no animation frames set!");
                 return;
             }
 
             animIndex = (animIndex + 1) % frames.Length;
+            //Debug.Log($"Hair: Swapping to frame {animIndex}");
             sr.sprite = frames[animIndex];
         }
-    }
+    }   
 
     private void ShowStaticHair(string dir)
     {
@@ -219,6 +253,49 @@ public class HairController : MonoBehaviour
             case "Left": sr.sprite = hairLeft; break;
             case "Right": sr.sprite = hairRight; break;
             default: sr.sprite = hairDown; break;
+        }
+    }
+    public void ForceUpdateHairSprite(float dirX, float dirY)
+    {
+        if (sr == null) sr = GetComponent<SpriteRenderer>();
+
+        // 沿用 UpdateHairDirection 的方向判斷邏輯
+        string currentDir = "";
+        if (Mathf.Abs(dirX) > Mathf.Abs(dirY))
+        {
+            currentDir = (dirX > 0f) ? "Right" : "Left";
+        }
+        else
+        {
+            currentDir = (dirY > 0f) ? "Up" : "Down";
+        }
+
+        //  保持內部狀態同步
+        currentMoveDir = currentDir;
+        animIndex = 0;
+        animTimer = 0f;
+
+        // 顯示第一張（如果有幀陣列就顯示第一張，否則顯示靜態圖）
+        Sprite[] frames = GetFramesForDirection(currentDir);
+        if (frames != null && frames.Length > 0)
+        {
+            sr.sprite = frames[animIndex];
+        }
+        else
+        {
+            ShowStaticHair(currentDir);
+        }
+    }
+    ///  UpdateSortingOrder 方法，由 player_move 呼叫來設定圖層。
+    /// player_move 傳入的是身體的 Order in Layer。
+    /// <param name="playerSortingOrder">角色身體的 Sorting Order。</param>
+    public void UpdateSortingOrder(int newOrder)
+    {
+        if (sr != null)
+        {
+            // player_move 已經在呼叫時加上了偏移量 (playerSortingOrder + 5)，
+            // 所以這裡直接賦值即可。
+            sr.sortingOrder = newOrder;
         }
     }
 }

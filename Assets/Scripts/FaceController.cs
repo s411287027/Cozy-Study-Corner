@@ -50,11 +50,11 @@ public class FaceController : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        // 👉 在 DressScene：Face 停住 + 面向前（Down）
+        //  在 DressScene：Face 停住 + 面向前（Down）
         if (sceneName == "DressScene")
         {
-            //if (sr != null && faceDown != null)
-            //    sr.sprite = faceDown;
+            if (sr != null && faceDown != null)
+                sr.sprite = faceDown;
 
             enabled = false;
             return;
@@ -62,7 +62,7 @@ public class FaceController : MonoBehaviour
 
         playerTransform = transform.parent;
 
-        if (playerTransform == null)
+        /*if (playerTransform == null)
         {
             playerTransform = FindObjectOfType<player_move>()?.transform;
             if (playerTransform == null)
@@ -70,8 +70,16 @@ public class FaceController : MonoBehaviour
                 //Debug.LogError("FaceController: 找不到 player_move 或無 parent!");
                 return;
             }
+        }*/
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            // 強制顯示正面
+            if (sr == null) sr = GetComponent<SpriteRenderer>();
+            sr.sprite = faceDown;
+            enabled = false;
+            return;
         }
-
+        
         if (!initializedOffset)
         {
             baseLocalOffset = transform.localPosition;
@@ -86,9 +94,13 @@ public class FaceController : MonoBehaviour
         // 初始面朝前
         UpdateFaceDirection(0f, -1f);
     }
-
+    
     void LateUpdate()
     {
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            return; 
+        }
         if (playerTransform == null)
             return;
 
@@ -96,15 +108,15 @@ public class FaceController : MonoBehaviour
         transform.position = playerTransform.TransformPoint(baseLocalOffset);
         transform.localScale = Vector3.one;
 
-        // 跟隨 sorting layer
+        /*// 跟隨 sorting layer
         var playerSR = playerTransform.GetComponent<SpriteRenderer>();
         var faceSR = GetComponent<SpriteRenderer>();
 
         if (playerSR != null && faceSR != null)
         {
             faceSR.sortingLayerName = playerSR.sortingLayerName;
-            faceSR.sortingOrder = playerSR.sortingOrder + 1;
-        }
+            faceSR.sortingOrder = playerSR.sortingOrder + 4;
+        }*/
 
         // ===== 自行偵測 parent 是否移動（若 player_move 忘了每幀傳 0,0，這能保障） =====
         Vector3 currPos = playerTransform.position;
@@ -120,15 +132,27 @@ public class FaceController : MonoBehaviour
     /// </summary>
     public void UpdateFaceDirection(float dirX, float dirY)
     {
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            isMoving = false; // 確保動畫停止
+            ShowStaticFace("Down"); // 強制顯示 Down（正面）靜態圖
+            // 且因為 Start 已經 disabled 整個 Component， LateUpdate 不會執行 AnimateHair
+            return; 
+        }
+
         if (sr == null) return;
 
         // 沒輸入 → idle，不換面
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            if (enabled)
+                enabled = false;
             isMoving = false;
             return;
         }
         // 有輸入方向 -> 表示正在移動（要播放動畫）
+        if (enabled)
+            enabled = true;
         isMoving = true;
 
         // 修正 flip 狀態（若玩家左右翻轉）
@@ -208,6 +232,44 @@ public class FaceController : MonoBehaviour
             case "Left": sr.sprite = faceLeft; break;
             case "Right": sr.sprite = faceRight; break;
             default: sr.sprite = faceDown; break;
+        }
+    }
+    public void ForceUpdateFaceSprite(float dirX, float dirY)
+    {
+        if (sr == null) sr = GetComponent<SpriteRenderer>();
+
+        // 沿用 UpdateFaceDirection 的方向判斷邏輯
+        string currentDir = "";
+        if (Mathf.Abs(dirX) > Mathf.Abs(dirY))
+        {
+            currentDir = (dirX > 0f) ? "Right" : "Left";
+        }
+        else
+        {
+            currentDir = (dirY > 0f) ? "Up" : "Down";
+        }
+
+        // 💡 保持內部狀態同步
+        currentMoveDir = currentDir;
+        animIndex = 0;
+        animTimer = 0f;
+
+        // 顯示第一張（如果有幀陣列就顯示第一張，否則顯示靜態圖）
+        Sprite[] frames = GetFramesForDirection(currentDir);
+        if (frames != null && frames.Length > 0)
+        {
+            sr.sprite = frames[animIndex];
+        }
+        else
+        {
+            ShowStaticFace(currentDir);
+        }
+    }
+    public void UpdateSortingOrder(int newOrder)
+    {
+        if (sr != null)
+        {
+            sr.sortingOrder = newOrder;
         }
     }
 }

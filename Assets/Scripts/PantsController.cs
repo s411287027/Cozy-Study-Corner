@@ -49,13 +49,15 @@ public class PantsController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "DressScene")
         {
+            if (sr == null) sr = GetComponent<SpriteRenderer>();
+            sr.sprite = pantsDown;
             enabled = false;
             return;
         }
 
         playerTransform = transform.parent;
 
-        if (playerTransform == null)
+        /*if (playerTransform == null)
         {
             if (enableDebug)
                 Debug.LogWarning("⚠ PantsController: Pants 不是 Player 的子物件，將自動搜尋 player_move。");
@@ -66,8 +68,16 @@ public class PantsController : MonoBehaviour
                 Debug.LogError("❌ 找不到 player_move！請確保 Pants 是 Player 的子物件。");
                 return;
             }
+        }*/
+        // DressScene 只顯示正面，不播放走路動畫
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            // 強制顯示正面
+            if (sr == null) sr = GetComponent<SpriteRenderer>();
+            sr.sprite = pantsDown;
+            enabled = false;
+            return;
         }
-
         if (!initializedOffset)
         {
             baseLocalOffset = transform.localPosition;
@@ -83,22 +93,26 @@ public class PantsController : MonoBehaviour
         prevPlayerPos = playerTransform.position;
         UpdatePantsDirection(1f, 0f);
     }
-
+    
     void LateUpdate()
     {
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            return; 
+        }
         if (playerTransform == null)
             return;
 
         transform.position = playerTransform.TransformPoint(baseLocalOffset);
         transform.localScale = Vector3.one;
 
-        var playerSR = playerTransform.GetComponent<SpriteRenderer>();
+        /*var playerSR = playerTransform.GetComponent<SpriteRenderer>();
         var pantsSR = GetComponent<SpriteRenderer>();
         if (playerSR != null && pantsSR != null)
         {
             pantsSR.sortingLayerName = playerSR.sortingLayerName;
-            pantsSR.sortingOrder = playerSR.sortingOrder + 1;
-        }
+            pantsSR.sortingOrder = playerSR.sortingOrder + 2;
+        }*/
 
         Vector3 currPos = playerTransform.position;
         float moved = (currPos - prevPlayerPos).sqrMagnitude;
@@ -115,14 +129,24 @@ public class PantsController : MonoBehaviour
 
     public void UpdatePantsDirection(float dirX, float dirY)
     {
+        if (SceneManager.GetActiveScene().name == "DressScene")
+        {
+            isMoving = false; // 確保動畫停止
+            ShowStaticPants("Down"); // 強制顯示 Down（正面）靜態圖
+            // 且因為 Start 已經 disabled 整個 Component， LateUpdate 不會執行 AnimateHair
+            return; 
+        }
         if (sr == null) sr = GetComponent<SpriteRenderer>();
 
         if (Mathf.Abs(dirX) < 0.001f && Mathf.Abs(dirY) < 0.001f)
         {
+            if (enabled)
+                enabled = false;
             isMoving = false;
             return;
         }
-
+        if (enabled)
+            enabled = true;
         isMoving = true;
 
         bool parentFlipped = playerTransform != null && playerTransform.localScale.x < 0f;
@@ -193,6 +217,44 @@ public class PantsController : MonoBehaviour
             case "Left": sr.sprite = pantsLeft; break;
             case "Right": sr.sprite = pantsRight; break;
             default: sr.sprite = pantsDown; break;
+        }
+    }
+    public void ForceUpdatePantsSprite(float dirX, float dirY)
+    {
+        if (sr == null) sr = GetComponent<SpriteRenderer>();
+
+        // 沿用 UpdatePantsDirection 的方向判斷邏輯
+        string currentDir = "";
+        if (Mathf.Abs(dirX) > Mathf.Abs(dirY))
+        {
+            currentDir = (dirX > 0f) ? "Right" : "Left";
+        }
+        else
+        {
+            currentDir = (dirY > 0f) ? "Up" : "Down";
+        }
+
+        // 💡 保持內部狀態同步
+        currentMoveDir = currentDir;
+        animIndex = 0;
+        animTimer = 0f;
+
+        // 顯示第一張（如果有幀陣列就顯示第一張，否則顯示靜態圖）
+        Sprite[] frames = GetFramesForDirection(currentDir);
+        if (frames != null && frames.Length > 0)
+        {
+            sr.sprite = frames[animIndex];
+        }
+        else
+        {
+            ShowStaticPants(currentDir);
+        }
+    }
+    public void UpdateSortingOrder(int newOrder)
+    {
+        if (sr != null)
+        {
+            sr.sortingOrder = newOrder;
         }
     }
 }

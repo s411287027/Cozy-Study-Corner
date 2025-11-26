@@ -89,8 +89,8 @@ public class ShirtSelectionUI : MonoBehaviour
         foreach (var shirt in shirtList)
         {
             // 只顯示玩家擁有的衣服
-            //if (!ownedShirtIDs.Contains(shirt.shirtID))
-            //    continue;
+            if (!ownedShirtIDs.Contains(shirt.shirtID))
+                continue;
 
             GameObject obj = Instantiate(shirtButtonPrefab, content);
             ShirtButtonUI ui = obj.GetComponent<ShirtButtonUI>();
@@ -116,7 +116,7 @@ public class ShirtSelectionUI : MonoBehaviour
         shirtController.shirtRightFrames = shirt.shirtRightFrames;
 
         // 顯示向下姿勢
-        shirtController.UpdateShirtDirection(0f, -1f);
+        shirtController.ForceUpdateShirtSprite(0f, -1f);
 
         Debug.Log($"成功替換衣服：{shirt.shirtName}");
     }

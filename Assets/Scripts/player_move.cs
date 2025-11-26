@@ -75,7 +75,7 @@ public class player_move : MonoBehaviour
     private bool freezeShirt = false;
     private bool freezePants = false;
     private bool freezeShoes = false;
-    //private bool freezeFace = false;
+    private bool freezeFace = false;
 
     void Awake()
     {
@@ -187,27 +187,27 @@ public class player_move : MonoBehaviour
             else
                 shirtController.UpdateShirtDirection(0f, 0f);
         }
-        if (pantsController != null && !freezeHair)
+        if (pantsController != null && !freezePants)
         {
             if (dir.magnitude > stopThreshold)
                 pantsController.UpdatePantsDirection(hx, hy);
             else
                 pantsController.UpdatePantsDirection(0f, 0f);
         }
-        if (shoesController != null && !freezeShirt)
+        if (shoesController != null && !freezeShoes)
         {
             if (dir.magnitude > stopThreshold)
                 shoesController.UpdateShoesDirection(hx, hy);
             else
                 shoesController.UpdateShoesDirection(0f, 0f);
         }
-        //if (faceController != null && !freezeShirt)
-        //{
-        //    if (dir.magnitude > stopThreshold)
-        //        faceController.UpdateFaceDirection(hx, hy);
-        //    else
-        //        faceController.UpdateFaceDirection(0f, 0f);
-        //}
+        if (faceController != null && !freezeFace)
+        {
+            if (dir.magnitude > stopThreshold)
+                faceController.UpdateFaceDirection(hx, hy);
+            else
+                faceController.UpdateFaceDirection(0f, 0f);
+        }
 
 
     }
@@ -251,9 +251,11 @@ public class player_move : MonoBehaviour
 
     void ApplyPseudo3DScaleAndSorting()
     {
+        float y = rb.position.y;
+        int currentOrder = 5;
         if (isPseudo3D)
         {
-            float y = rb.position.y;
+            //float y = rb.position.y;
             float scaleFactor;
 
             if (y > baseY)
@@ -270,6 +272,7 @@ public class player_move : MonoBehaviour
             transform.localScale = originalScale * scaleFactor;
 
             float tLayer = Mathf.InverseLerp(farY, nearY, y);
+            currentOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
             sr.sortingOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
         }
         else
@@ -278,8 +281,41 @@ public class player_move : MonoBehaviour
             transform.localScale = originalScale;
             if (sr != null)
                 sr.sortingOrder = 5; // 設回預設圖層
+            currentOrder = sr.sortingOrder;
         }
+        UpdateAllAccessoriesSorting(currentOrder);
     }
+
+    void UpdateAllAccessoriesSorting(int playerSortingOrder)
+    {
+        // 確保 Sorting Layer 名稱一致
+        // 配件 Order in Layer = Player.Order + 偏移量
+        // 5: Hair (最上層)
+        // 4: Face 
+        // 3: Shirt 
+        // 2: Pants 
+        // 1: Shoes (最下層)
+        
+        // 警告: 這需要您的 HairController, ShirtController, PantsController, ShoesController, 
+        // FaceController 都有一個公共方法 public void UpdateSortingOrder(int newOrder) 
+        // 且該方法必須設定 SpriteRenderer 的 sortingLayerName 和 sortingOrder。
+
+        if (hairController != null)
+            hairController.UpdateSortingOrder(playerSortingOrder + 5); 
+
+        if (faceController != null)
+            faceController.UpdateSortingOrder(playerSortingOrder + 4); 
+
+        if (shirtController != null)
+            shirtController.UpdateSortingOrder(playerSortingOrder + 3); 
+
+        if (pantsController != null)
+            pantsController.UpdateSortingOrder(playerSortingOrder + 2); 
+        
+        if (shoesController != null)
+            shoesController.UpdateSortingOrder(playerSortingOrder + 1); 
+    }
+
 
     void UpdateSceneFlag()
     {
@@ -344,7 +380,7 @@ public class player_move : MonoBehaviour
         freezeShirt = true;
         freezePants = true;
         freezeShoes = true;
-        //freezeFace = true;
+        freezeFace = true;
 
         if (clickIndicatorInstance != null)
             clickIndicatorInstance.SetActive(false);
@@ -353,14 +389,19 @@ public class player_move : MonoBehaviour
         if (scene.name == "DressScene")
         {
             canMove = false;
+            //  隱藏 Player 身體 SpriteRenderer
+            if (sr != null)
+            {
+                sr.enabled = false;
+            }
             Debug.Log("玩家進入 Dress 場景，停止移動");
-            //  設定角色面向「正面（朝下）」
+            /*//  設定角色面向「正面（朝下）」
             if (ani != null)
             {
                 ani.SetFloat("Horizontal", 0);
                 ani.SetFloat("Vertical", -1);  // -1 代表朝下
                 ani.SetFloat("Speed", 0);      // 停止移動動畫
-            }
+            }*/
 
             //  同步更新髮型方向（顯示正面髮型）
             if (hairController != null)
@@ -371,18 +412,23 @@ public class player_move : MonoBehaviour
                 pantsController.UpdatePantsDirection(0f, -1f);
             if (shoesController != null)
                 shoesController.UpdateShoesDirection(0f, -1f);
-            //if (faceController != null)
-            //    faceController.UpdateFaceDirection(0f, -1f);
+            if (faceController != null)
+                faceController.UpdateFaceDirection(0f, -1f);
 
             return; // 不要重新啟用移動
         }
         else
-        {
+        {   
+            // 在其他場景，確保 SpriteRenderer 重新啟用
+            if (sr != null)
+            {
+                sr.enabled = true;
+            }
             freezeHair = false; //  其他場景恢復頭髮更新
             freezeShirt = false;
             freezePants = false;
             freezeShoes = false;
-            //freezeFace = false;
+            freezeFace = false;
         }
 
         Invoke(nameof(EnableMove), 0.01f);

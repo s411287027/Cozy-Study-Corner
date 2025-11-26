@@ -87,8 +87,8 @@ public class ShoesSelectionUI : MonoBehaviour
         foreach (var shoes in shoesList)
         {
             // 只顯示玩家擁有的鞋子
-            //if (!ownedShoesIDs.Contains(shoes.shoesID))
-            //    continue;
+            if (!ownedShoesIDs.Contains(shoes.shoesID))
+                continue;
 
             GameObject obj = Instantiate(shoesButtonPrefab, content);
             ShoesButtonUI ui = obj.GetComponent<ShoesButtonUI>();
@@ -113,7 +113,7 @@ public class ShoesSelectionUI : MonoBehaviour
         shoesController.shoesLeftFrames = shoes.shoesLeftFrames;
         shoesController.shoesRightFrames = shoes.shoesRightFrames;
 
-        shoesController.UpdateShoesDirection(0f, -1f);
+        shoesController.ForceUpdateShoesSprite(0f, -1f);
 
         Debug.Log($"成功替換鞋子：{shoes.shoesName}");
     }
