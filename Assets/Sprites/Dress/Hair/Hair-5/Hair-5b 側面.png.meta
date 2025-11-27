@@ -108,10 +108,10 @@ TextureImporter:
         serializedVersion: 2
         x: 690
         y: 790
-        width: 197
+        width: 205
         height: 228
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

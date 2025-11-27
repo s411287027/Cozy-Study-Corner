@@ -109,28 +109,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Hair-5a \u5074\u9762_0"
-      rect:
-        serializedVersion: 2
-        x: 690
-        y: 782
-        width: 205
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c56299336121bde30800000000000000
-      internalID: 4529233736815421020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: "Hair-5a \u5074\u9762_1"
       rect:
         serializedVersion: 2
@@ -138,8 +116,8 @@ TextureImporter:
         y: 784
         width: 197
         height: 235
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.45, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -148,28 +126,6 @@ TextureImporter:
       bones: []
       spriteID: 5ff005e6fbb0d4860800000000000000
       internalID: 7515676269968625653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Hair-5a \u5074\u9762_2"
-      rect:
-        serializedVersion: 2
-        x: 695
-        y: 950
-        width: 43
-        height: 47
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d406c867e94622cc0800000000000000
-      internalID: -3737314109007568819
       vertices: []
       indices: 
       edges: []

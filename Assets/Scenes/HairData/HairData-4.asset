@@ -30,9 +30,9 @@ MonoBehaviour:
   - {fileID: -1322154067641115074, guid: 9d179a602d29d2745b14dabce1d23ac0, type: 3}
   hairLeftFrames:
   - {fileID: 1052436487516801612, guid: 9a8aa6264462ac44d984527c9da03bc0, type: 3}
-  - {fileID: -7959779564053935337, guid: ad4f67c6e49d891499ed394aaf4fc3c6, type: 3}
+  - {fileID: -702671753440298549, guid: 75e1d2674fc325d4aa6fc3b464a36a4f, type: 3}
   - {fileID: 1052436487516801612, guid: 9a8aa6264462ac44d984527c9da03bc0, type: 3}
-  - {fileID: 2330496971045334307, guid: 30d737290edb35740a83004bd8836019, type: 3}
+  - {fileID: -1497961927732883576, guid: c6e888c9e51c1ba489183bae152d1067, type: 3}
   hairRightFrames:
   - {fileID: 7536343122758292179, guid: ac04b8c5ccebee849813772abdd7532d, type: 3}
   - {fileID: -7959779564053935337, guid: ad4f67c6e49d891499ed394aaf4fc3c6, type: 3}

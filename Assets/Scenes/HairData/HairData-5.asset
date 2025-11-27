@@ -16,7 +16,7 @@ MonoBehaviour:
   hairName: Hair-5
   hairUp: {fileID: 4052160286585971197, guid: c07ecd81812934e4f8e669d9f7b0e181, type: 3}
   hairDown: {fileID: -2797342343252407475, guid: 3622a632634071d45bbda84b3af9037b, type: 3}
-  hairLeft: {fileID: 4529233736815421020, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
+  hairLeft: {fileID: 7515676269968625653, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
   hairRight: {fileID: -8276699398154621519, guid: 2fdd0c9365f15b44f9cfc743300bec6e, type: 3}
   hairUpFrames:
   - {fileID: 4052160286585971197, guid: c07ecd81812934e4f8e669d9f7b0e181, type: 3}
@@ -29,9 +29,9 @@ MonoBehaviour:
   - {fileID: -2797342343252407475, guid: 3622a632634071d45bbda84b3af9037b, type: 3}
   - {fileID: -3864105831186230176, guid: d9a1846307373ba4fb6858179002994e, type: 3}
   hairLeftFrames:
-  - {fileID: 4529233736815421020, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
+  - {fileID: 7515676269968625653, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
   - {fileID: 6041033770218149595, guid: 8b173a23097640c40b6ffa87b087680a, type: 3}
-  - {fileID: 4529233736815421020, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
+  - {fileID: 7515676269968625653, guid: 7f06f6a59fbf1ab4eb1f4182ce7d4f3e, type: 3}
   - {fileID: -7129638458225039185, guid: a82cb57190293ce43b790b902534bf75, type: 3}
   hairRightFrames:
   - {fileID: -8276699398154621519, guid: 2fdd0c9365f15b44f9cfc743300bec6e, type: 3}
