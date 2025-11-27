@@ -17,7 +17,7 @@ public class HairController : MonoBehaviour
 
     [Header("動畫設定")]
     [Tooltip("當持續朝同方向移動時，幀與幀之間的時間（秒）")]
-    public float animationInterval = 0.15f;
+    public float animationInterval = 0.05f;
 
     [Header("位置 offset（相對 parent 的 localPosition）")]
     public Vector3 baseLocalOffset = Vector3.zero;
@@ -82,7 +82,7 @@ public class HairController : MonoBehaviour
             enabled = false;
             return;
         }
-        
+
         if (!initializedOffset)
         {
             baseLocalOffset = transform.localPosition;
@@ -104,7 +104,7 @@ public class HairController : MonoBehaviour
         //  由於 Start 已經 enabled = false，這個檢查是備用。
         if (SceneManager.GetActiveScene().name == "DressScene")
         {
-            return; 
+            return;
         }
         if (playerTransform == null)
             return;
@@ -152,9 +152,9 @@ public class HairController : MonoBehaviour
             isMoving = false; // 確保動畫停止
             ShowStaticHair("Down"); // 強制顯示 Down（正面）靜態圖
             // 且因為 Start 已經 disabled 整個 Component， LateUpdate 不會執行 AnimateHair
-            return; 
+            return;
         }
-        
+
         if (sr == null) sr = GetComponent<SpriteRenderer>();
 
         // 外部有明確傳入方向：用輸入判斷是否在移動（優先於 position 偵測）
@@ -166,7 +166,7 @@ public class HairController : MonoBehaviour
                 // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
                 animIndex = 0;
                 animTimer = 0f;
-                
+
                 Sprite[] frames = GetFramesForDirection(currentMoveDir);
                 if (frames != null && frames.Length > 0)
                     sr.sprite = frames[animIndex]; // 顯示動畫第一幀
@@ -176,7 +176,7 @@ public class HairController : MonoBehaviour
                 if (enableDebug)
                     Debug.Log($"Hair: Idle. Displaying first frame for direction {currentMoveDir}");
             }
-            
+
             if (enabled)
                 enabled = false;
             // player_move 有傳 (0,0) -> 表示停止：保留最後一幀（不要改 sprite）
@@ -259,7 +259,7 @@ public class HairController : MonoBehaviour
             //Debug.Log($"Hair: Swapping to frame {animIndex}");
             sr.sprite = frames[animIndex];
         }
-    }   
+    }
 
     private void ShowStaticHair(string dir)
     {

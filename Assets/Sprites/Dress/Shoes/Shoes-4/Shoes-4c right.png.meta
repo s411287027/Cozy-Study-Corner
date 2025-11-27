@@ -109,12 +109,12 @@ TextureImporter:
       name: Shoes-4c right_0
       rect:
         serializedVersion: 2
-        x: 741
-        y: 436
-        width: 160
-        height: 119
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 750
+        y: 433
+        width: 158
+        height: 111
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

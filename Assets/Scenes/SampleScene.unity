@@ -10819,10 +10819,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 88144286402070826, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
-      propertyPath: animationInterval
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 88144286402070826, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
       propertyPath: baseLocalOffset.y
       value: 0.2
       objectReference: {fileID: 0}

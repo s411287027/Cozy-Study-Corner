@@ -103,12 +103,12 @@ TextureImporter:
       name: "Shirt-5b \u80CC\u9762_0"
       rect:
         serializedVersion: 2
-        x: 666
-        y: 645
-        width: 230
-        height: 154
+        x: 668
+        y: 641
+        width: 250
+        height: 156
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c736b7b4103be6849a5a20c30277142b
     internalID: 0
     vertices: []
     indices: 

@@ -17,7 +17,7 @@ public class ShoesController : MonoBehaviour
     public Sprite[] shoesRightFrames;
 
     [Header("動畫設定")]
-    public float animationInterval = 0.15f;
+    public float animationInterval = 0.05f;
 
     [Header("位置 offset（相對 parent 的 localPosition）")]
     public Vector3 baseLocalOffset = Vector3.zero;
@@ -77,7 +77,7 @@ public class ShoesController : MonoBehaviour
             enabled = false;
             return;
         }
-        
+
         if (!initializedOffset)
         {
             baseLocalOffset = transform.localPosition;
@@ -91,14 +91,14 @@ public class ShoesController : MonoBehaviour
             sr.sprite = shoesDown;
 
         prevPlayerPos = playerTransform.position;
-        UpdateShoesDirection(1f, 0f);
+        UpdateShoesDirection(0f, -1f);
     }
-    
+
     void LateUpdate()
     {
         if (SceneManager.GetActiveScene().name == "DressScene")
         {
-            return; 
+            return;
         }
         if (playerTransform == null)
             return;
@@ -134,7 +134,7 @@ public class ShoesController : MonoBehaviour
             isMoving = false; // 確保動畫停止
             ShowStaticShoes("Down"); // 強制顯示 Down（正面）靜態圖
             // 且因為 Start 已經 disabled 整個 Component， LateUpdate 不會執行 AnimateHair
-            return; 
+            return;
         }
         if (sr == null) sr = GetComponent<SpriteRenderer>();
 
@@ -145,7 +145,7 @@ public class ShoesController : MonoBehaviour
                 // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
                 animIndex = 0;
                 animTimer = 0f;
-                
+
                 Sprite[] frames = GetFramesForDirection(currentMoveDir);
                 if (frames != null && frames.Length > 0)
                     sr.sprite = frames[animIndex]; // 顯示動畫第一幀
@@ -155,7 +155,7 @@ public class ShoesController : MonoBehaviour
                 if (enableDebug)
                     Debug.Log($"Shoes: Idle. Displaying first frame for direction {currentMoveDir}");
             }
-            
+
             if (enabled)
                 enabled = false;
             isMoving = false;

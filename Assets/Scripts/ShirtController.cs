@@ -17,7 +17,7 @@ public class ShirtController : MonoBehaviour
     public Sprite[] shirtRightFrames;
 
     [Header("動畫設定")]
-    public float animationInterval = 0.15f;
+    public float animationInterval = 0.05f;
 
     [Header("位置 offset（相對 parent 的 localPosition）")]
     public Vector3 baseLocalOffset = Vector3.zero;
@@ -93,12 +93,12 @@ public class ShirtController : MonoBehaviour
         prevPlayerPos = playerTransform.position;
         UpdateShirtDirection(1f, 0f);
     }
-    
+
     void LateUpdate()
     {
         if (SceneManager.GetActiveScene().name == "DressScene")
         {
-            return; 
+            return;
         }
 
         if (playerTransform == null)
@@ -119,10 +119,10 @@ public class ShirtController : MonoBehaviour
         float moved = (currPos - prevPlayerPos).sqrMagnitude;
         prevPlayerPos = currPos;
 
-        if (enableDebug && moved < (movementThreshold * movementThreshold))
+        /*if (enableDebug && moved < (movementThreshold * movementThreshold))
         {
-            //Debug.Log("ShirtController: Player idle (detected by movement).");
-        }
+            Debug.Log("ShirtController: Player idle (detected by movement).");
+        }*/
 
         if (isMoving)
             AnimateShirt();
@@ -135,7 +135,7 @@ public class ShirtController : MonoBehaviour
             isMoving = false; // 確保動畫停止
             ShowStaticShirt("Down"); // 強制顯示 Down（正面）靜態圖
             // 且因為 Start 已經 disabled 整個 Component， LateUpdate 不會執行 AnimateHair
-            return; 
+            return;
         }
         if (sr == null) sr = GetComponent<SpriteRenderer>();
 
@@ -146,7 +146,7 @@ public class ShirtController : MonoBehaviour
                 // 保留 currentMoveDir，並顯示該方向的第一幀（或靜態圖）
                 animIndex = 0;
                 animTimer = 0f;
-                
+
                 Sprite[] frames = GetFramesForDirection(currentMoveDir);
                 if (frames != null && frames.Length > 0)
                     sr.sprite = frames[animIndex]; // 顯示動畫第一幀
@@ -156,7 +156,7 @@ public class ShirtController : MonoBehaviour
                 if (enableDebug)
                     Debug.Log($"Shirt: Idle. Displaying first frame for direction {currentMoveDir}");
             }
-            
+
             if (enabled)
                 enabled = false;
             isMoving = false;

@@ -1132,7 +1132,7 @@ MonoBehaviour:
   - {fileID: -7764506355894228733, guid: 982cbf536450caf4a9023edef0368821, type: 3}
   - {fileID: -6720669963494291574, guid: bdb2456ac65eff44f963b75dd0173fd3, type: 3}
   - {fileID: -4390408405462441200, guid: 1a6437ee3118abc489886ce716dbd774, type: 3}
-  animationInterval: 0.15
+  animationInterval: 0.05
   baseLocalOffset: {x: -0.060000002, y: 0.19999981, z: 0}
   movementThreshold: 0.001
   enableDebug: 1
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   - {fileID: 4465788055714104267, guid: f5f34f1aaf21cc14a876736addaba440, type: 3}
   - {fileID: 9062142038487498663, guid: 271e5aa61be7c364a95ed585daea0f30, type: 3}
   - {fileID: 1234931754793249965, guid: 23d2d99b7e2aa9048ab0fc67d65bc015, type: 3}
-  animationInterval: 0.15
+  animationInterval: 0.05
   baseLocalOffset: {x: -0.100000024, y: -1.2800002, z: 0}
   movementThreshold: 0.001
   enableDebug: 1
