@@ -121,12 +121,12 @@ TextureImporter:
       name: Face-3 right_0
       rect:
         serializedVersion: 2
-        x: 836
-        y: 828
-        width: 44
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 755
+        y: 803
+        width: 127
+        height: 123
+      alignment: 9
+      pivot: {x: 0.3, y: 0.53}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

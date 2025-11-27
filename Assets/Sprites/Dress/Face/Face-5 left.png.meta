@@ -109,12 +109,12 @@ TextureImporter:
       name: Face-5 left_0
       rect:
         serializedVersion: 2
-        x: 723
-        y: 831
-        width: 43
-        height: 70
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 721
+        y: 796
+        width: 174
+        height: 139
+      alignment: 9
+      pivot: {x: 0.45, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
