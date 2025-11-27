@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: d5985a3b64896c84eaf43888d8b1ed9c
+guid: a6d1a37e24181344eb74fc3af2528b58
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5614931194325299901
-    second: "Hair-7b \u5074\u9762_0"
+      213: 1354533647139122503
+    second: Face-7 down_0
   - first:
-      213: 6153714034359457752
-    second: "Hair-7b \u5074\u9762_1"
+      213: -2408817718274005488
+    second: Face-7 down_1
+  - first:
+      213: -1290065234143373260
+    second: Face-7 down_2
+  - first:
+      213: -1409434861318157416
+    second: Face-7 down_3
+  - first:
+      213: -7028880725703567596
+    second: Face-7 down_4
+  - first:
+      213: 8255178043709978205
+    second: Face-7 down_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +115,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Hair-7b \u5074\u9762_0"
+      name: Face-7 down_0
       rect:
         serializedVersion: 2
-        x: 693
-        y: 814
-        width: 201
-        height: 189
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db2f40c0c2e3ced40800000000000000
-      internalID: 5614931194325299901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Hair-7b \u5074\u9762_1"
-      rect:
-        serializedVersion: 2
-        x: 728
-        y: 994
-        width: 44
-        height: 17
+        x: 731
+        y: 811
+        width: 131
+        height: 106
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d7d45b7f42666550800000000000000
-      internalID: 6153714034359457752
+      spriteID: 74daa0aec254cc210800000000000000
+      internalID: 1354533647139122503
       vertices: []
       indices: 
       edges: []
@@ -150,7 +140,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 499242843968da74fa2bc1a0c225b227
+    spriteID: 8de31de333e575642a29c8187dd3707c
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +150,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Hair-7b \u5074\u9762_0": 5614931194325299901
-      "Hair-7b \u5074\u9762_1": 6153714034359457752
+      Face-7 down_0: 1354533647139122503
+      Face-7 down_1: -2408817718274005488
+      Face-7 down_2: -1290065234143373260
+      Face-7 down_3: -1409434861318157416
+      Face-7 down_4: -7028880725703567596
+      Face-7 down_5: 8255178043709978205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

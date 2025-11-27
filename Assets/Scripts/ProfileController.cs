@@ -16,28 +16,34 @@ public class ProfileUIController : MonoBehaviour
 
     private void Start()
     {
+        // 初始化時先更新一次
+        UpdateUI();
+
+        // 訂閱事件，當資料庫有變動通知時自動更新
+        if (FirebaseDatabaseController.Instance != null)
+        {
+            FirebaseDatabaseController.Instance.OnDataLoaded += UpdateUI;
+        }
+    }
+
+    // 🔥 修改重點：將 private 改為 public
+    // 這樣其他的腳本 (例如 ShopController) 就可以在購買後呼叫這個方法
+    public void UpdateUI()
+    {
+        if (FirebaseDatabaseController.Instance == null) return;
+
         var data = FirebaseDatabaseController.Instance.dts;
 
         if (data != null)
         {
             userNameText.text = data.UserName;
-            coinsText.text = data.TotalCoins.ToString();
+            coinsText.text = data.TotalCoins.ToString(); // 更新金幣
             levelText.text = data.CrrLevel.ToString();
         }
         else
         {
             userNameText.text = "No Data";
         }
-
-        FirebaseDatabaseController.Instance.OnDataLoaded += UpdateUI;
-    }
-
-    private void UpdateUI()
-    {
-        var data = FirebaseDatabaseController.Instance.dts;
-        userNameText.text = data.UserName;
-        coinsText.text = data.TotalCoins.ToString();
-        levelText.text = data.CrrLevel.ToString();
     }
 
     private void OnDestroy()
@@ -46,16 +52,16 @@ public class ProfileUIController : MonoBehaviour
             FirebaseDatabaseController.Instance.OnDataLoaded -= UpdateUI;
     }
 
+    // ... (LogOut1, SetReservationTime, SendMessageToFirebase 等函式保持不變) ...
+
     public void LogOut1()
     {
+        // ... (保持原本的登出邏輯) ...
         FirebaseController au = FindObjectOfType<FirebaseController>();
 
-        // 定義一個切換場景與銷毀的函式 (避免代碼重複)
         void FinishLogoutProcess()
         {
-            // --- 銷毀舊物件 ---
             if (au != null) Destroy(au.gameObject);
-
             if (FirebaseDatabaseController.Instance != null)
                 Destroy(FirebaseDatabaseController.Instance.gameObject);
             else
@@ -63,23 +69,18 @@ public class ProfileUIController : MonoBehaviour
                 var db = FindObjectOfType<FirebaseDatabaseController>();
                 if (db != null) Destroy(db.gameObject);
             }
-
             if (FriendSystemController.Instance != null)
                 Destroy(FriendSystemController.Instance.gameObject);
 
-            // --- 切換場景 ---
             Debug.Log("👋以此狀態切換場景...");
-            SceneManager.LoadScene("CozyStudyCorner"); // 請確認這是你的登入場景名稱
+            SceneManager.LoadScene("CozyStudyCorner");
         }
 
         if (au != null)
         {
             Debug.Log("⏳ 開始執行登出程序...");
-
-            // ⭐ 呼叫改寫後的 Async 版本，並等待它完成
             au.LogOutAsync().ContinueWithOnMainThread(task =>
             {
-                // 無論 Firebase 寫入成功或失敗，最後都要執行銷毀與切換
                 FinishLogoutProcess();
             });
         }
@@ -92,45 +93,23 @@ public class ProfileUIController : MonoBehaviour
 
     public void SetReservationTime()
     {
+        // ... (保持原本邏輯) ...
         string uid = FirebaseDatabaseController.Instance.userId;
-        if (string.IsNullOrEmpty(uid))
-        {
-            Debug.LogError("❌ UID not found!");
-            return;
-        }
-
+        if (string.IsNullOrEmpty(uid)) return;
         string start = startTimeDropdown.options[startTimeDropdown.value].text;
         string end = endTimeDropdown.options[endTimeDropdown.value].text;
         string time = start + "-" + end;
-
-        Debug.Log("📌 Setting reservation time: " + time);
-
         FirebaseDatabaseController.Instance.SetTomorrowReservationTime(uid, time);
     }
 
-    // 🔹 新增：送出訊息到 Firebase
     public void SendMessageToFirebase()
     {
+        // ... (保持原本邏輯) ...
         string uid = FirebaseDatabaseController.Instance.userId;
-        if (string.IsNullOrEmpty(uid))
-        {
-            Debug.LogError("❌ UID not found!");
-            return;
-        }
-
+        if (string.IsNullOrEmpty(uid)) return;
         string message = messageInput.text;
-        if (string.IsNullOrEmpty(message))
-        {
-            Debug.LogWarning("⚠️ 訊息為空，無法送出！");
-            return;
-        }
-
-        // 將訊息寫入 Firebase Database
+        if (string.IsNullOrEmpty(message)) return;
         FirebaseDatabaseController.Instance.SetUserMessage(uid, message);
-
-        Debug.Log("📩 Sent message: " + message);
-
-        // 清空輸入框
         messageInput.text = "";
     }
 }

@@ -2,12 +2,16 @@
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
+using Firebase.Database;
+using Firebase.Auth;
+using System.Linq;
 
 [System.Serializable]
 public class Pseudo3DConfig
 {
     public string sceneName;
-    public float baseY = 0f;     // 偽3D基準Y
+    public float baseY = 0f;
     public float baseScale = 1.8f;
     public float farScale = 1.6f;
     public float nearScale = 2f;
@@ -15,28 +19,24 @@ public class Pseudo3DConfig
     public float nearY = -10f;
 }
 
-
-
-
 public class player_move : MonoBehaviour
 {
     [Header("角色設定")]
     public float moveSpeed = 5f;
     public float stopThreshold = 0.05f;
 
-    [Header("頭髮設定")]
+    [Header("裝備資料庫 (請確認這裡有東西！)")]
+    public List<HairData> allHairList;
+    public List<ShirtData> allShirtList;
+    public List<PantsData> allPantsList;
+    public List<ShoesData> allShoesList;
+    public List<FaceData> allFaceList;
+
+    [Header("控制器")]
     public HairController hairController;
-
-    [Header("衣服設定")]
     public ShirtController shirtController;
-
-    [Header("褲子設定")]
     public PantsController pantsController;
-
-    [Header("鞋子設定")]
     public ShoesController shoesController;
-
-    [Header("表情設定")]
     public FaceController faceController;
 
     [Header("點擊指示器")]
@@ -77,18 +77,27 @@ public class player_move : MonoBehaviour
     private bool freezeShoes = false;
     private bool freezeFace = false;
 
+    private DatabaseReference dbRef;
+
     void Awake()
     {
         originalScale = transform.localScale;
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (hairController == null) hairController = GetComponentInChildren<HairController>();
+        if (shirtController == null) shirtController = GetComponentInChildren<ShirtController>();
+        if (pantsController == null) pantsController = GetComponentInChildren<PantsController>();
+        if (shoesController == null) shoesController = GetComponentInChildren<ShoesController>();
+        if (faceController == null) faceController = GetComponentInChildren<FaceController>();
     }
 
     void Start()
     {
         ani = GetComponent<Animator>();
         targetPosition = rb.position;
+        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
 
         if (clickIndicatorPrefab != null)
         {
@@ -96,39 +105,208 @@ public class player_move : MonoBehaviour
             clickIndicatorInstance.SetActive(false);
         }
 
-        UpdateSceneFlag(); // 初始化偽3D
+        UpdateSceneFlag();
 
+        // ================================================================
+        // 🔥 [修正重點] 這裡要把強制轉正面的程式碼「搬出來」！
+        // 讓它在任何場景（不只是 DressScene）一開始都先面向正面 (0, -1)
+        // ================================================================
+        if (ani != null)
+        {
+            ani.SetFloat("Horizontal", 0);
+            ani.SetFloat("Vertical", -1); // 設定動畫參數為正面
+        }
+
+        // 強制所有控制器立刻刷新成正面圖片
+        // 這樣在等待 Firebase 下載的那幾秒，玩家也會是正面的
+        if (hairController != null) hairController.ForceUpdateHairSprite(0f, -1f);
+        if (shirtController != null) shirtController.ForceUpdateShirtSprite(0f, -1f);
+        if (pantsController != null) pantsController.ForceUpdatePantsSprite(0f, -1f);
+        if (shoesController != null) shoesController.ForceUpdateShoesSprite(0f, -1f);
+        if (faceController != null) faceController.ForceUpdateFaceSprite(0f, -1f);
+
+        // 🔥 設定好方向後，再開始下載裝備
+        StartCoroutine(LoadAndEquipFromFirebase());
+
+        // 原本的 DressScene 邏輯 (只剩下鎖定移動的功能)
         if (SceneManager.GetActiveScene().name == "DressScene")
         {
             canMove = false;
-            freezeHair = true;   // 停止頭髮方向更新
+            freezeHair = true;
             freezeShirt = true;
             freezePants = true;
             freezeShoes = true;
             //freezeFace = true;
             rb.linearVelocity = Vector2.zero;
-
-            // 設定面向正面（朝下）
-            ani.SetFloat("Horizontal", 0);
-            ani.SetFloat("Vertical", -1);
             ani.SetFloat("Speed", 0);
 
-            if (hairController != null)
-                hairController.UpdateHairDirection(0f, -1f);
-            if (shirtController != null)
-                shirtController.UpdateShirtDirection(0f, -1f);
-            if (pantsController != null)
-                pantsController.UpdatePantsDirection(0f, -1f);
-            if (shoesController != null)
-                shoesController.UpdateShoesDirection(0f, -1f);
-            if (faceController != null)
-                faceController.UpdateFaceDirection(0f, -1f);
+            // 上面已經轉過正面了，這裡不用再寫一次
         }
     }
 
+    // ================================================================
+    // 🔥 偵錯版：讀取 Firebase
+    // ================================================================
+    IEnumerator LoadAndEquipFromFirebase()
+    {
+        // 1. 檢查登入
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null)
+        {
+            Debug.LogError("⛔【失敗】檢測不到使用者登入！請先執行 Login 場景，或確認 Firebase 初始化。");
+            yield break;
+        }
+
+        string uid = currentUser.UserId;
+        Debug.Log($"🔍 開始讀取玩家 {uid} 的裝備...");
+
+        // 2. 讀取資料
+        var task = dbRef.Child("users").Child(uid).Child("currentEquip").GetValueAsync();
+        yield return new WaitUntil(() => task.IsCompleted);
+
+        if (task.Exception != null)
+        {
+            Debug.LogError("❌ Firebase 連線錯誤：" + task.Exception);
+            yield break;
+        }
+
+        DataSnapshot snapshot = task.Result;
+        if (snapshot.Exists)
+        {
+            Debug.Log($"✅ 讀取成功！找到 {snapshot.ChildrenCount} 筆裝備資料。");
+
+            if (snapshot.HasChild("hair")) EquipHair(int.Parse(snapshot.Child("hair").Value.ToString()));
+            else Debug.LogWarning("⚠️ Firebase 中沒有 'hair' 的紀錄");
+
+            if (snapshot.HasChild("face")) EquipFace(int.Parse(snapshot.Child("face").Value.ToString()));
+            if (snapshot.HasChild("shirt")) EquipShirt(int.Parse(snapshot.Child("shirt").Value.ToString()));
+            if (snapshot.HasChild("pants")) EquipPants(int.Parse(snapshot.Child("pants").Value.ToString()));
+            if (snapshot.HasChild("shoes")) EquipShoes(int.Parse(snapshot.Child("shoes").Value.ToString()));
+        }
+        else
+        {
+            Debug.LogWarning($"⚠️ 路徑 users/{uid}/currentEquip 不存在！請確認資料庫是否為空。");
+        }
+    }
+
+    // ================================================================
+    // 🔥 偵錯版：裝備邏輯
+    // ================================================================
+    void EquipHair(int id)
+    {
+        Debug.Log($"📥 嘗試穿上髮型 ID: {id}");
+
+        if (hairController == null)
+        {
+            Debug.LogError("❌ HairController 遺失！");
+            return;
+        }
+        if (allHairList == null || allHairList.Count == 0)
+        {
+            Debug.LogError("❌ Inspector 中的 AllHairList 是空的！請拖入 Data 檔案！");
+            return;
+        }
+
+        HairData data = allHairList.FirstOrDefault(x => x.hairID == id);
+
+        if (data != null)
+        {
+            hairController.hairUp = data.hairUp;
+            hairController.hairDown = data.hairDown;
+            hairController.hairLeft = data.hairLeft;
+            hairController.hairRight = data.hairRight;
+            hairController.hairUpFrames = data.hairUpFrames;
+            hairController.hairDownFrames = data.hairDownFrames;
+            hairController.hairLeftFrames = data.hairLeftFrames;
+            hairController.hairRightFrames = data.hairRightFrames;
+
+            hairController.ForceUpdateHairSprite(0f, -1f);
+            Debug.Log($"✅ 成功穿上髮型：{data.name}");
+        }
+        else
+        {
+            Debug.LogError($"❌ 在 AllHairList 中找不到 ID 為 {id} 的資料。請檢查 ScriptableObject 內的 ID 數值。");
+        }
+    }
+
+    // (其他裝備函式邏輯相同，省略重複 Log 以保持簡潔，但建議你也檢查其他部位)
+    void EquipFace(int id)
+    {
+        if (faceController == null) return;
+        FaceData data = allFaceList.FirstOrDefault(x => x.faceID == id);
+        if (data != null)
+        {
+            faceController.faceUp = data.faceUp;
+            faceController.faceDown = data.faceDown;
+            faceController.faceLeft = data.faceLeft;
+            faceController.faceRight = data.faceRight;
+            faceController.faceUpFrames = data.faceUpFrames;
+            faceController.faceDownFrames = data.faceDownFrames;
+            faceController.faceLeftFrames = data.faceLeftFrames;
+            faceController.faceRightFrames = data.faceRightFrames;
+            faceController.ForceUpdateFaceSprite(0f, -1f);
+        }
+    }
+
+    void EquipShirt(int id)
+    {
+        if (shirtController == null) return;
+        ShirtData data = allShirtList.FirstOrDefault(x => x.shirtID == id);
+        if (data != null)
+        {
+            shirtController.shirtUp = data.shirtUp;
+            shirtController.shirtDown = data.shirtDown;
+            shirtController.shirtLeft = data.shirtLeft;
+            shirtController.shirtRight = data.shirtRight;
+            shirtController.shirtUpFrames = data.shirtUpFrames;
+            shirtController.shirtDownFrames = data.shirtDownFrames;
+            shirtController.shirtLeftFrames = data.shirtLeftFrames;
+            shirtController.shirtRightFrames = data.shirtRightFrames;
+            shirtController.ForceUpdateShirtSprite(0f, -1f);
+        }
+    }
+
+    void EquipPants(int id)
+    {
+        if (pantsController == null) return;
+        PantsData data = allPantsList.FirstOrDefault(x => x.pantsID == id);
+        if (data != null)
+        {
+            pantsController.pantsUp = data.pantsUp;
+            pantsController.pantsDown = data.pantsDown;
+            pantsController.pantsLeft = data.pantsLeft;
+            pantsController.pantsRight = data.pantsRight;
+            pantsController.pantsUpFrames = data.pantsUpFrames;
+            pantsController.pantsDownFrames = data.pantsDownFrames;
+            pantsController.pantsLeftFrames = data.pantsLeftFrames;
+            pantsController.pantsRightFrames = data.pantsRightFrames;
+            pantsController.ForceUpdatePantsSprite(0f, -1f);
+        }
+    }
+
+    void EquipShoes(int id)
+    {
+        if (shoesController == null) return;
+        ShoesData data = allShoesList.FirstOrDefault(x => x.shoesID == id);
+        if (data != null)
+        {
+            shoesController.shoesUp = data.shoesUp;
+            shoesController.shoesDown = data.shoesDown;
+            shoesController.shoesLeft = data.shoesLeft;
+            shoesController.shoesRight = data.shoesRight;
+            shoesController.shoesUpFrames = data.shoesUpFrames;
+            shoesController.shoesDownFrames = data.shoesDownFrames;
+            shoesController.shoesLeftFrames = data.shoesLeftFrames;
+            shoesController.shoesRightFrames = data.shoesRightFrames;
+            shoesController.ForceUpdateShoesSprite(0f, -1f);
+        }
+    }
+
+    // ================================================================
+    // 原有 Update
+    // ================================================================
     void Update()
     {
-        //  DressScene 永遠不能動（保險鎖）
         if (SceneManager.GetActiveScene().name == "DressScene")
         {
             rb.linearVelocity = Vector2.zero;
@@ -142,7 +320,6 @@ public class player_move : MonoBehaviour
         {
             Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             targetPosition = mouseWorld;
-
             if (clickIndicatorInstance != null)
             {
                 clickIndicatorInstance.transform.position = targetPosition;
@@ -151,15 +328,9 @@ public class player_move : MonoBehaviour
         }
 
         Vector2 dir = targetPosition - rb.position;
-        float dirX = 0f;
-        float dirY = 0f;
-
         if (dir.magnitude > stopThreshold)
         {
             Vector2 dirNormalized = dir.normalized;
-            dirX = dirNormalized.x;
-            dirY = dirNormalized.y;
-
             ani.SetFloat("Horizontal", dirNormalized.x);
             ani.SetFloat("Vertical", dirNormalized.y);
             ani.SetFloat("Speed", dir.magnitude);
@@ -167,55 +338,27 @@ public class player_move : MonoBehaviour
         else
         {
             ani.SetFloat("Speed", 0);
-            if (clickIndicatorInstance != null)
-                clickIndicatorInstance.SetActive(false);
+            if (clickIndicatorInstance != null) clickIndicatorInstance.SetActive(false);
         }
 
         float hx = ani.GetFloat("Horizontal");
         float hy = ani.GetFloat("Vertical");
+
         if (hairController != null && !freezeHair)
-        {
-            if (dir.magnitude > stopThreshold)
-                hairController.UpdateHairDirection(hx, hy);
-            else
-                hairController.UpdateHairDirection(0f, 0f);
-        }
+            hairController.UpdateHairDirection(dir.magnitude > stopThreshold ? hx : 0f, dir.magnitude > stopThreshold ? hy : 0f);
         if (shirtController != null && !freezeShirt)
-        {
-            if (dir.magnitude > stopThreshold)
-                shirtController.UpdateShirtDirection(hx, hy);
-            else
-                shirtController.UpdateShirtDirection(0f, 0f);
-        }
+            shirtController.UpdateShirtDirection(dir.magnitude > stopThreshold ? hx : 0f, dir.magnitude > stopThreshold ? hy : 0f);
         if (pantsController != null && !freezePants)
-        {
-            if (dir.magnitude > stopThreshold)
-                pantsController.UpdatePantsDirection(hx, hy);
-            else
-                pantsController.UpdatePantsDirection(0f, 0f);
-        }
+            pantsController.UpdatePantsDirection(dir.magnitude > stopThreshold ? hx : 0f, dir.magnitude > stopThreshold ? hy : 0f);
         if (shoesController != null && !freezeShoes)
-        {
-            if (dir.magnitude > stopThreshold)
-                shoesController.UpdateShoesDirection(hx, hy);
-            else
-                shoesController.UpdateShoesDirection(0f, 0f);
-        }
+            shoesController.UpdateShoesDirection(dir.magnitude > stopThreshold ? hx : 0f, dir.magnitude > stopThreshold ? hy : 0f);
         if (faceController != null && !freezeFace)
-        {
-            if (dir.magnitude > stopThreshold)
-                faceController.UpdateFaceDirection(hx, hy);
-            else
-                faceController.UpdateFaceDirection(0f, 0f);
-        }
-
-
+            faceController.UpdateFaceDirection(dir.magnitude > stopThreshold ? hx : 0f, dir.magnitude > stopThreshold ? hy : 0f);
     }
 
     void FixedUpdate()
     {
         if (!canMove) return;
-
         Vector2 dir = targetPosition - rb.position;
         if (dir.magnitude <= stopThreshold)
         {
@@ -223,28 +366,20 @@ public class player_move : MonoBehaviour
             ApplyPseudo3DScaleAndSorting();
             return;
         }
-
         Vector2 moveDir = dir.normalized;
         float distance = moveSpeed * Time.fixedDeltaTime;
-
         RaycastHit2D[] hits = new RaycastHit2D[1];
         int hitCount = rb.Cast(moveDir, hits, distance);
-
         bool blocked = false;
-        if (hitCount > 0 && ((1 << hits[0].collider.gameObject.layer) & obstacleLayer) != 0)
-        {
-            blocked = true;
-        }
+        if (hitCount > 0 && ((1 << hits[0].collider.gameObject.layer) & obstacleLayer) != 0) blocked = true;
 
         if (blocked)
         {
             targetPosition = rb.position;
-            if (clickIndicatorInstance != null)
-                clickIndicatorInstance.SetActive(false);
+            if (clickIndicatorInstance != null) clickIndicatorInstance.SetActive(false);
             ApplyPseudo3DScaleAndSorting();
             return;
         }
-
         rb.MovePosition(rb.position + moveDir * distance);
         ApplyPseudo3DScaleAndSorting();
     }
@@ -255,9 +390,7 @@ public class player_move : MonoBehaviour
         int currentOrder = 5;
         if (isPseudo3D)
         {
-            //float y = rb.position.y;
             float scaleFactor;
-
             if (y > baseY)
             {
                 float t = Mathf.InverseLerp(baseY, farY, y);
@@ -268,19 +401,15 @@ public class player_move : MonoBehaviour
                 float t = Mathf.InverseLerp(baseY, nearY, y);
                 scaleFactor = Mathf.Lerp(baseScale, nearScale, t);
             }
-
             transform.localScale = originalScale * scaleFactor;
-
             float tLayer = Mathf.InverseLerp(farY, nearY, y);
             currentOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
-            sr.sortingOrder = Mathf.RoundToInt(Mathf.Lerp(minSortingOrder, maxSortingOrder, tLayer));
+            sr.sortingOrder = currentOrder;
         }
         else
         {
-            // 沒有偽3D的場景，恢復原始圖層與大小
             transform.localScale = originalScale;
-            if (sr != null)
-                sr.sortingOrder = 5; // 設回預設圖層
+            if (sr != null) sr.sortingOrder = 5;
             currentOrder = sr.sortingOrder;
         }
         UpdateAllAccessoriesSorting(currentOrder);
@@ -288,81 +417,42 @@ public class player_move : MonoBehaviour
 
     void UpdateAllAccessoriesSorting(int playerSortingOrder)
     {
-        // 確保 Sorting Layer 名稱一致
-        // 配件 Order in Layer = Player.Order + 偏移量
-        // 5: Hair (最上層)
-        // 4: Face 
-        // 3: Shirt 
-        // 2: Pants 
-        // 1: Shoes (最下層)
-
-        // 警告: 這需要您的 HairController, ShirtController, PantsController, ShoesController, 
-        // FaceController 都有一個公共方法 public void UpdateSortingOrder(int newOrder) 
-        // 且該方法必須設定 SpriteRenderer 的 sortingLayerName 和 sortingOrder。
-
-        if (hairController != null)
-            hairController.UpdateSortingOrder(playerSortingOrder + 5);
-
-        if (faceController != null)
-            faceController.UpdateSortingOrder(playerSortingOrder + 4);
-
-        if (shirtController != null)
-            shirtController.UpdateSortingOrder(playerSortingOrder + 3);
-
-        if (pantsController != null)
-            pantsController.UpdateSortingOrder(playerSortingOrder + 2);
-
-        if (shoesController != null)
-            shoesController.UpdateSortingOrder(playerSortingOrder + 1);
+        if (hairController != null) hairController.UpdateSortingOrder(playerSortingOrder + 5);
+        if (faceController != null) faceController.UpdateSortingOrder(playerSortingOrder + 4);
+        if (shirtController != null) shirtController.UpdateSortingOrder(playerSortingOrder + 3);
+        if (pantsController != null) pantsController.UpdateSortingOrder(playerSortingOrder + 2);
+        if (shoesController != null) shoesController.UpdateSortingOrder(playerSortingOrder + 1);
     }
-
 
     void UpdateSceneFlag()
     {
         string sceneName = SceneManager.GetActiveScene().name;
         bool pseudo3D = System.Array.Exists(pseudo3DScenes, s => s.Equals(sceneName, System.StringComparison.OrdinalIgnoreCase));
-
         if (pseudo3D != isPseudo3D)
         {
             isPseudo3D = pseudo3D;
-
             if (isPseudo3D)
             {
-                // 尋找場景專屬配置
                 Pseudo3DConfig config = System.Array.Find(sceneConfigs, c => c.sceneName.Equals(sceneName, System.StringComparison.OrdinalIgnoreCase));
                 if (config != null)
                 {
-                    baseY = config.baseY;
-                    baseScale = config.baseScale;
-                    farScale = config.farScale;
-                    nearScale = config.nearScale;
-                    farY = config.farY;
-                    nearY = config.nearY;
+                    baseY = config.baseY; baseScale = config.baseScale; farScale = config.farScale; nearScale = config.nearScale; farY = config.farY; nearY = config.nearY;
                 }
                 else
                 {
-                    baseY = transform.position.y;
-                    baseScale = 1.8f;
-                    farScale = 1.6f;
-                    nearScale = 2f;
-                    farY = 10f;
-                    nearY = -10f;
+                    baseY = transform.position.y; baseScale = 1.8f; farScale = 1.6f; nearScale = 2f; farY = 10f; nearY = -10f;
                 }
-
                 originalScale = transform.localScale;
                 transform.localScale = originalScale * baseScale;
                 UpdateSortingOrder();
             }
             else
             {
-                // 沒有偽3D場景，恢復原始大小和圖層
                 transform.localScale = originalScale;
-                if (sr != null)
-                    sr.sortingOrder = 5;
+                if (sr != null) sr.sortingOrder = 5;
             }
         }
     }
-
 
     void UpdateSortingOrder()
     {
@@ -376,72 +466,30 @@ public class player_move : MonoBehaviour
     {
         UpdateSceneFlag();
         SetCanMove(false);
-        freezeHair = true;
-        freezeShirt = true;
-        freezePants = true;
-        freezeShoes = true;
-        freezeFace = true;
-
-        if (clickIndicatorInstance != null)
-            clickIndicatorInstance.SetActive(false);
-
-        //  如果是 Dress 場景，禁止移動
+        freezeHair = true; freezeShirt = true; freezePants = true; freezeShoes = true; freezeFace = true;
+        if (clickIndicatorInstance != null) clickIndicatorInstance.SetActive(false);
         if (scene.name == "DressScene")
         {
             canMove = false;
-            //  隱藏 Player 身體 SpriteRenderer
-            if (sr != null)
-            {
-                sr.enabled = false;
-            }
-            Debug.Log("玩家進入 Dress 場景，停止移動");
-            /*//  設定角色面向「正面（朝下）」
-            if (ani != null)
-            {
-                ani.SetFloat("Horizontal", 0);
-                ani.SetFloat("Vertical", -1);  // -1 代表朝下
-                ani.SetFloat("Speed", 0);      // 停止移動動畫
-            }*/
-
-            //  同步更新髮型方向（顯示正面髮型）
-            if (hairController != null)
-                hairController.UpdateHairDirection(0f, -1f);
-            if (shirtController != null)
-                shirtController.UpdateShirtDirection(0f, -1f);
-            if (pantsController != null)
-                pantsController.UpdatePantsDirection(0f, -1f);
-            if (shoesController != null)
-                shoesController.UpdateShoesDirection(0f, -1f);
-            if (faceController != null)
-                faceController.UpdateFaceDirection(0f, -1f);
-
-            return; // 不要重新啟用移動
+            if (sr != null) sr.enabled = false;
+            if (hairController != null) hairController.ForceUpdateHairSprite(0f, -1f);
+            if (shirtController != null) shirtController.ForceUpdateShirtSprite(0f, -1f);
+            if (pantsController != null) pantsController.ForceUpdatePantsSprite(0f, -1f);
+            if (shoesController != null) shoesController.ForceUpdateShoesSprite(0f, -1f);
+            if (faceController != null) faceController.ForceUpdateFaceSprite(0f, -1f);
+            return;
         }
         else
         {
-            // 在其他場景，確保 SpriteRenderer 重新啟用
-            if (sr != null)
-            {
-                sr.enabled = true;
-            }
-            freezeHair = false; //  其他場景恢復頭髮更新
-            freezeShirt = false;
-            freezePants = false;
-            freezeShoes = false;
-            freezeFace = false;
+            if (sr != null) sr.enabled = true;
+            freezeHair = false; freezeShirt = false; freezePants = false; freezeShoes = false; freezeFace = false;
         }
-
         Invoke(nameof(EnableMove), 0.01f);
     }
 
     public void SetPositionInstant(Vector3 pos)
     {
-        canMove = false;
-        targetPosition = pos;
-        rb.position = pos;
-        transform.position = pos;
-        rb.linearVelocity = Vector2.zero;
-
+        canMove = false; targetPosition = pos; rb.position = pos; transform.position = pos; rb.linearVelocity = Vector2.zero;
         UpdateSceneFlag();
         Invoke(nameof(EnableMove), 0.01f);
     }
@@ -449,17 +497,9 @@ public class player_move : MonoBehaviour
     public void SetCanMove(bool value)
     {
         canMove = value;
-        if (!value && rb != null)
-            rb.linearVelocity = Vector2.zero;
+        if (!value && rb != null) rb.linearVelocity = Vector2.zero;
     }
 
-    void EnableMove()
-    {
-        SetCanMove(true);
-    }
-
-    void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    void EnableMove() { SetCanMove(true); }
+    void OnDestroy() { SceneManager.sceneLoaded -= OnSceneLoaded; }
 }

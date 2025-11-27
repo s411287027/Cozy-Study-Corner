@@ -79,6 +79,8 @@ public class ShopController : MonoBehaviour
             new ShopItem { itemType = "face", itemId = 3, price = 300, icon = Resources.Load<Sprite>("Face-3 down") },
             new ShopItem { itemType = "face", itemId = 4, price = 400, icon = Resources.Load<Sprite>("Face-4 down") },
             new ShopItem { itemType = "face", itemId = 5, price = 500, icon = Resources.Load<Sprite>("Face-5 down") },
+            new ShopItem { itemType = "face", itemId = 6, price = 400, icon = Resources.Load<Sprite>("Face-6 down") },
+            new ShopItem { itemType = "face", itemId = 7, price = 500, icon = Resources.Load<Sprite>("Face-7 down") },
             new ShopItem { itemType = "hair", itemId = 1, price = 100, icon = Resources.Load<Sprite>("Hair-1a down") },
             new ShopItem { itemType = "hair", itemId = 2, price = 200, icon = Resources.Load<Sprite>("Hair-2a down") },
             new ShopItem { itemType = "hair", itemId = 3, price = 300, icon = Resources.Load<Sprite>("Hair-3a 正面") },
@@ -161,6 +163,7 @@ public class ShopController : MonoBehaviour
     {
         if (dbController == null || dbController.dts == null) return;
 
+        // 取得本地端該類別的擁有清單
         List<int> ownedList = dbController.dts.ownedItems.GetList(item.itemType);
         if (ownedList == null)
         {
@@ -168,13 +171,35 @@ public class ShopController : MonoBehaviour
             return;
         }
 
+        // 1. 檢查金幣是否足夠
         if (dbController.dts.TotalCoins >= item.price)
         {
+            // 2. 檢查是否尚未擁有
             if (!ownedList.Contains(item.itemId))
             {
+                // 🔥 [修改 1] 先扣除本地端金幣 (Local Update)
+                //dbController.dts.TotalCoins -= item.price;
+
+                // 🔥 [修改 2] 先將物品加入本地清單 (Local Update)
+                // 這樣 RefreshOwnedItemsUI 才能馬上把按鈕變灰色
+                ownedList.Add(item.itemId);
+
+                // 🔥 [修改 3] 呼叫 Firebase 進行雲端存檔 (Background Sync)
+                // 這裡只負責送出請求，不需要等它回來 UI 就已經變了
                 dbController.UpdatePurchase(item.itemType, item.itemId, item.price);
+
+                // 🔥 [修改 4] 立即更新商店介面 (Coin & Buttons)
                 UpdateCoinsUI();
                 RefreshOwnedItemsUI();
+
+                // 🔥 [修改 5] 同步通知 ProfileUIController 更新 (如果有掛載的話)
+                var profileUI = FindObjectOfType<ProfileUIController>();
+                if (profileUI != null)
+                {
+                    profileUI.UpdateUI();
+                }
+
+                Debug.Log("✅ 購買成功 (本地已更新，正在同步雲端)");
             }
             else
             {
