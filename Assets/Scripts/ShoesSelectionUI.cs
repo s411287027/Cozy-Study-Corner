@@ -48,7 +48,9 @@ public class ShoesSelectionUI : MonoBehaviour
     // ============================================================
     IEnumerator LoadOwnedShoesFromFirebase()
     {
-        string uid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null) yield break;
+        string uid = currentUser.UserId;
 
         var task = dbRef.Child("users").Child(uid).Child("ownedItems").Child("shoes")
                         .GetValueAsync();
@@ -97,12 +99,13 @@ public class ShoesSelectionUI : MonoBehaviour
     }
 
     // ============================================================
-    // 🔥 玩家點擊更換鞋子
+    // 🔥 玩家點擊更換鞋子 (已修改：加入儲存功能)
     // ============================================================
     public void SelectShoes(ShoesData shoes)
     {
         if (shoesController == null) return;
 
+        // 1. 更新視覺顯示
         shoesController.shoesUp = shoes.shoesUp;
         shoesController.shoesDown = shoes.shoesDown;
         shoesController.shoesLeft = shoes.shoesLeft;
@@ -116,5 +119,38 @@ public class ShoesSelectionUI : MonoBehaviour
         shoesController.ForceUpdateShoesSprite(0f, -1f);
 
         Debug.Log($"成功替換鞋子：{shoes.shoesName}");
+
+        // 2. [新增] 儲存 ID 到 Firebase
+        SaveCurrentShoesToFirebase(shoes.shoesID);
+    }
+
+    // ============================================================
+    // 🔥 [新增] 儲存當前鞋子 ID 到 Firebase
+    // 路徑: users/UID/currentEquip/shoes
+    // ============================================================
+    private void SaveCurrentShoesToFirebase(int shoesID)
+    {
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null)
+        {
+            Debug.LogError("尚未登入，無法儲存鞋子裝備");
+            return;
+        }
+
+        string uid = currentUser.UserId;
+
+        // 設定路徑並寫入 ID
+        dbRef.Child("users").Child(uid).Child("currentEquip").Child("shoes")
+             .SetValueAsync(shoesID).ContinueWith(task =>
+             {
+                 if (task.IsFaulted)
+                 {
+                     Debug.LogError("❌ 鞋子儲存失敗：" + task.Exception);
+                 }
+                 else
+                 {
+                     Debug.Log($"✅ 鞋子 ID [{shoesID}] 已儲存至 currentEquip/shoes");
+                 }
+             });
     }
 }

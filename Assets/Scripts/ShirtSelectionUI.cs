@@ -48,7 +48,9 @@ public class ShirtSelectionUI : MonoBehaviour
     // ============================================================
     IEnumerator LoadOwnedShirtsFromFirebase()
     {
-        string uid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null) yield break;
+        string uid = currentUser.UserId;
 
         var task = dbRef.Child("users").Child(uid).Child("ownedItems").Child("shirt")
                         .GetValueAsync();
@@ -68,8 +70,6 @@ public class ShirtSelectionUI : MonoBehaviour
         // Firebase 格式：0:0, 1:1, 2:2 → 代表擁有衣服 ID = 0,1,2
         foreach (var child in snapshot.Children)
         {
-            // ⚠️ 根據你 Firebase 存的是 value 或 key 決定使用哪個
-            // 如果像你說的 0:0, 1:1, 2:2 → value 即是衣服 ID
             int id = int.Parse(child.Value.ToString());
             ownedShirtIDs.Add(id);
         }
@@ -99,12 +99,13 @@ public class ShirtSelectionUI : MonoBehaviour
     }
 
     // ============================================================
-    // 🔥 玩家點擊更換衣服
+    // 🔥 玩家點擊更換衣服 (已修改：加入儲存功能)
     // ============================================================
     public void SelectShirt(ShirtData shirt)
     {
         if (shirtController == null) return;
 
+        // 1. 更新視覺顯示
         shirtController.shirtUp = shirt.shirtUp;
         shirtController.shirtDown = shirt.shirtDown;
         shirtController.shirtLeft = shirt.shirtLeft;
@@ -119,5 +120,38 @@ public class ShirtSelectionUI : MonoBehaviour
         shirtController.ForceUpdateShirtSprite(0f, -1f);
 
         Debug.Log($"成功替換衣服：{shirt.shirtName}");
+
+        // 2. [新增] 儲存 ID 到 Firebase
+        SaveCurrentShirtToFirebase(shirt.shirtID);
+    }
+
+    // ============================================================
+    // 🔥 [新增] 儲存當前衣服 ID 到 Firebase
+    // 路徑: users/UID/currentEquip/shirt
+    // ============================================================
+    private void SaveCurrentShirtToFirebase(int shirtID)
+    {
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null)
+        {
+            Debug.LogError("尚未登入，無法儲存衣服裝備");
+            return;
+        }
+
+        string uid = currentUser.UserId;
+
+        // 設定路徑並寫入 ID
+        dbRef.Child("users").Child(uid).Child("currentEquip").Child("shirt")
+             .SetValueAsync(shirtID).ContinueWith(task =>
+             {
+                 if (task.IsFaulted)
+                 {
+                     Debug.LogError("❌ 衣服儲存失敗：" + task.Exception);
+                 }
+                 else
+                 {
+                     Debug.Log($"✅ 衣服 ID [{shirtID}] 已儲存至 currentEquip/shirt");
+                 }
+             });
     }
 }

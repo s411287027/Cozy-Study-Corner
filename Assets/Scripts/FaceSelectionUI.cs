@@ -46,10 +46,12 @@ public class FaceSelectionUI : MonoBehaviour
     // ✔ 正確使用 IEnumerator（不是 IEnumerator<T>）
     IEnumerator LoadOwnedFacesFromFirebase()
     {
-        string uid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null) yield break;
+        string uid = currentUser.UserId;
 
         var task = dbRef.Child("users").Child(uid).Child("ownedItems").Child("face")
-                       .GetValueAsync();
+                        .GetValueAsync();
 
         // 等待 Firebase 回傳
         yield return new WaitUntil(() => task.IsCompleted);
@@ -93,10 +95,14 @@ public class FaceSelectionUI : MonoBehaviour
         }
     }
 
+    // ============================================================
+    // 🔥 玩家點擊更換臉部 (已修改：加入儲存功能)
+    // ============================================================
     public void SelectFace(FaceData face)
     {
         if (faceController == null) return;
 
+        // 1. 更新視覺顯示
         faceController.faceUp = face.faceUp;
         faceController.faceDown = face.faceDown;
         faceController.faceLeft = face.faceLeft;
@@ -109,5 +115,38 @@ public class FaceSelectionUI : MonoBehaviour
 
         faceController.ForceUpdateFaceSprite(0f, -1f);
         Debug.Log($"成功替換臉部：{face.faceName}");
+
+        // 2. [新增] 儲存 ID 到 Firebase
+        SaveCurrentFaceToFirebase(face.faceID);
+    }
+
+    // ============================================================
+    // 🔥 [新增] 儲存當前臉部 ID 到 Firebase
+    // 路徑: users/UID/currentEquip/face
+    // ============================================================
+    private void SaveCurrentFaceToFirebase(int faceID)
+    {
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null)
+        {
+            Debug.LogError("尚未登入，無法儲存臉部裝備");
+            return;
+        }
+
+        string uid = currentUser.UserId;
+
+        // 設定路徑並寫入 ID
+        dbRef.Child("users").Child(uid).Child("currentEquip").Child("face")
+             .SetValueAsync(faceID).ContinueWith(task =>
+             {
+                 if (task.IsFaulted)
+                 {
+                     Debug.LogError("❌ 臉部儲存失敗：" + task.Exception);
+                 }
+                 else
+                 {
+                     Debug.Log($"✅ 臉部 ID [{faceID}] 已儲存至 currentEquip/face");
+                 }
+             });
     }
 }

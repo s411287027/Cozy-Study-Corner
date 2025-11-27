@@ -40,7 +40,7 @@ public class HairSelectionUI : MonoBehaviour
         {
             //  確保配件在 Player 上方 (Player 的 Order + 1)
             hairSR.sortingLayerName = playerSR.sortingLayerName;
-            hairSR.sortingOrder = playerSR.sortingOrder + 1; 
+            hairSR.sortingOrder = playerSR.sortingOrder + 1;
         }
         if (playerDisplayPosition != null)
             player.transform.position = playerDisplayPosition.position;
@@ -52,11 +52,13 @@ public class HairSelectionUI : MonoBehaviour
     }
 
     // ============================================================
-    // 🔥 從 Firebase 讀 "ownedItems/hair"（和 Face 版本一致）
+    // 🔥 從 Firebase 讀 "ownedItems/hair"
     // ============================================================
     IEnumerator LoadOwnedHairFromFirebase()
     {
-        string uid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null) yield break;
+        string uid = currentUser.UserId;
 
         var task = dbRef.Child("users").Child(uid).Child("ownedItems").Child("hair")
                         .GetValueAsync();
@@ -105,12 +107,13 @@ public class HairSelectionUI : MonoBehaviour
     }
 
     // ============================================================
-    // 🔥 玩家點擊更換髮型
+    // 🔥 玩家點擊更換髮型 (已修改：加入儲存功能)
     // ============================================================
     public void SelectHair(HairData hair)
     {
         if (hairController == null) return;
 
+        // 1. 更新視覺顯示
         hairController.hairUp = hair.hairUp;
         hairController.hairDown = hair.hairDown;
         hairController.hairLeft = hair.hairLeft;
@@ -125,5 +128,38 @@ public class HairSelectionUI : MonoBehaviour
         hairController.ForceUpdateHairSprite(0f, -1f);
 
         Debug.Log($"成功替換髮型：{hair.hairName}");
+
+        // 2. 儲存到 Firebase
+        SaveCurrentHairToFirebase(hair.hairID);
+    }
+
+    // ============================================================
+    // 🔥 [新增] 儲存當前裝備 ID 到 Firebase
+    // 路徑: users/UID/currentEquip/hair
+    // ============================================================
+    private void SaveCurrentHairToFirebase(int hairID)
+    {
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null)
+        {
+            Debug.LogError("尚未登入，無法儲存裝備資訊");
+            return;
+        }
+
+        string uid = currentUser.UserId;
+
+        // 設定路徑並寫入 ID
+        dbRef.Child("users").Child(uid).Child("currentEquip").Child("hair")
+             .SetValueAsync(hairID).ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("❌ 髮型儲存失敗：" + task.Exception);
+            }
+            else
+            {
+                Debug.Log($"✅ 髮型 ID [{hairID}] 已儲存至 currentEquip/hair");
+            }
+        });
     }
 }

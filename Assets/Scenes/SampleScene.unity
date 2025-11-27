@@ -10870,6 +10870,94 @@ PrefabInstance:
       propertyPath: obstacleLayer.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: allHairList.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: allShirtList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 85ab3748315b37949a3787ab9d2d84e8, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9372fdceb6bf54b4e96e030585f2619a, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 78ed365f2ce0eef44a950b56563048ed, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7362f3295186ad94797b19f4145d71a0, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a192484e5e74d014ba148f850d0cf571, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e5983547ed6ccfd43b8951592c89d28b, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e59273148c7a7ec4caba353056089dbd, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ef3b6d346112ef46b6e47b812b366c8, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1eaa3670786e68b428750e65458ef3df, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c938b241f55d67479dc0e5dba865a8f, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a6550a61b26710443820d67d26d785a5, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allHairList.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 269e1266a383dea4fa50537a164f7218, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 53891d1d0ca9b464581e6cf1e8baf6a4, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 736004fc0c04d254b9471ca414c08fe6, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ccb42fa38317c0947ae647951f193aca, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 62b1e51f5ca037a4fa4a0755176da4a0, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 97d51fb4064fe07429e8770b81088508, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0826c4f27ab87f84abde7894bdedfc69, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 29281dbc26e17b44fb31cb928c26f676, type: 2}
+    - target: {fileID: 3169574668936170966, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+      propertyPath: 'allShirtList.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d657b4b61aa81dc43a6704b0d8dbe7cb, type: 2}
     - target: {fileID: 6821265221780226025, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
       propertyPath: m_Name
       value: player

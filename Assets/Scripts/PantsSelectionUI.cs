@@ -48,7 +48,9 @@ public class PantsSelectionUI : MonoBehaviour
     // ============================================================
     IEnumerator LoadOwnedPantsFromFirebase()
     {
-        string uid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null) yield break;
+        string uid = currentUser.UserId;
 
         var task = dbRef.Child("users").Child(uid).Child("ownedItems").Child("pants")
                         .GetValueAsync();
@@ -97,12 +99,13 @@ public class PantsSelectionUI : MonoBehaviour
     }
 
     // ============================================================
-    // 🔥 玩家點擊更換褲子
+    // 🔥 玩家點擊更換褲子 (已修改：加入儲存功能)
     // ============================================================
     public void SelectPants(PantsData p)
     {
         if (pantsController == null) return;
 
+        // 1. 更新視覺顯示
         pantsController.pantsUp = p.pantsUp;
         pantsController.pantsDown = p.pantsDown;
         pantsController.pantsLeft = p.pantsLeft;
@@ -117,5 +120,38 @@ public class PantsSelectionUI : MonoBehaviour
         pantsController.ForceUpdatePantsSprite(0f, -1f);
 
         Debug.Log($"成功替換褲子：{p.pantsName}");
+
+        // 2. [新增] 儲存 ID 到 Firebase
+        SaveCurrentPantsToFirebase(p.pantsID);
+    }
+
+    // ============================================================
+    // 🔥 [新增] 儲存當前褲子 ID 到 Firebase
+    // 路徑: users/UID/currentEquip/pants
+    // ============================================================
+    private void SaveCurrentPantsToFirebase(int pantsID)
+    {
+        var currentUser = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (currentUser == null)
+        {
+            Debug.LogError("尚未登入，無法儲存褲子裝備");
+            return;
+        }
+
+        string uid = currentUser.UserId;
+
+        // 設定路徑並寫入 ID
+        dbRef.Child("users").Child(uid).Child("currentEquip").Child("pants")
+             .SetValueAsync(pantsID).ContinueWith(task =>
+             {
+                 if (task.IsFaulted)
+                 {
+                     Debug.LogError("❌ 褲子儲存失敗：" + task.Exception);
+                 }
+                 else
+                 {
+                     Debug.Log($"✅ 褲子 ID [{pantsID}] 已儲存至 currentEquip/pants");
+                 }
+             });
     }
 }

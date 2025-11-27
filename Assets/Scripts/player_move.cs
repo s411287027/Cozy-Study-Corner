@@ -295,25 +295,25 @@ public class player_move : MonoBehaviour
         // 3: Shirt 
         // 2: Pants 
         // 1: Shoes (最下層)
-        
+
         // 警告: 這需要您的 HairController, ShirtController, PantsController, ShoesController, 
         // FaceController 都有一個公共方法 public void UpdateSortingOrder(int newOrder) 
         // 且該方法必須設定 SpriteRenderer 的 sortingLayerName 和 sortingOrder。
 
         if (hairController != null)
-            hairController.UpdateSortingOrder(playerSortingOrder + 5); 
+            hairController.UpdateSortingOrder(playerSortingOrder + 5);
 
         if (faceController != null)
-            faceController.UpdateSortingOrder(playerSortingOrder + 4); 
+            faceController.UpdateSortingOrder(playerSortingOrder + 4);
 
         if (shirtController != null)
-            shirtController.UpdateSortingOrder(playerSortingOrder + 3); 
+            shirtController.UpdateSortingOrder(playerSortingOrder + 3);
 
         if (pantsController != null)
-            pantsController.UpdateSortingOrder(playerSortingOrder + 2); 
-        
+            pantsController.UpdateSortingOrder(playerSortingOrder + 2);
+
         if (shoesController != null)
-            shoesController.UpdateSortingOrder(playerSortingOrder + 1); 
+            shoesController.UpdateSortingOrder(playerSortingOrder + 1);
     }
 
 
@@ -418,7 +418,7 @@ public class player_move : MonoBehaviour
             return; // 不要重新啟用移動
         }
         else
-        {   
+        {
             // 在其他場景，確保 SpriteRenderer 重新啟用
             if (sr != null)
             {
@@ -462,8 +462,4 @@ public class player_move : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-
 }
-
-
