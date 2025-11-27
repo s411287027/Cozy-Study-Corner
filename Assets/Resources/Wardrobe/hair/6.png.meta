@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 70ee3735da49db142b57cb7ac9a4cffb
+guid: 7d84867a0f6786a4ea64228c980ebe96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4211353799504728378
-    second: "Hair-11a \u6B63\u9762_0"
+      213: 3395501946842323917
+    second: Hair-6a down_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Hair-11a \u6B63\u9762_0"
+      name: Hair-6a down_0
       rect:
         serializedVersion: 2
-        x: 677
-        y: 795
-        width: 245
-        height: 231
+        x: 629
+        y: 769
+        width: 329
+        height: 249
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ce670538044e85c0800000000000000
-      internalID: -4211353799504728378
+      spriteID: dcb1fafc70f3f1f20800000000000000
+      internalID: 3395501946842323917
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Hair-11a \u6B63\u9762_0": -4211353799504728378
+      Hair-6a down_0: 3395501946842323917
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

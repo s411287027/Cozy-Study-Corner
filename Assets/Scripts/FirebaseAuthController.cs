@@ -280,21 +280,21 @@ public class FirebaseController : MonoBehaviour
                     StudyAtHome = "",
                     currentEquip = new EquipData()
                     {
-                        hair = 0,
-                        pants = 0,
-                        shoes = 0,
-                        face = 0,
-                        shirt = -1
+                        hair = 1,
+                        pants = 1,
+                        shoes = 1,
+                        face = 1,
+                        shirt = 1
                     },
 
                     ownedItems = new OwnedItems()
                     {
-                        hair = new List<int> { 0 },
-                        pants = new List<int> { 0 },
-                        shoes = new List<int> { 0 },
-                        face = new List<int> { 0 },
-                        shirt = new List<int> { -1 },
-                        furniture = new List<int> { -1 } // 空的
+                        hair = new List<int> { 1 },
+                        pants = new List<int> { 1 },
+                        shoes = new List<int> { 1 },
+                        face = new List<int> { 1 },
+                        shirt = new List<int> { 1 },
+                        furniture = new List<int> { 6, 8, 10 } // 空的
                     },
                     Friends = new List<string>() { "init" },
                     FriendRequests = new FriendRequests()

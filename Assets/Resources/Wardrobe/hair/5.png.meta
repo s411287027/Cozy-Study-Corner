@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 3807a8a0a4948264981a91b18bb77018
+guid: 449a9870ef76bc84aaf6bda1b3d98107
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2255093583605429427
-    second: "Hair-3a \u6B63\u9762_0"
-  - first:
-      213: 8065408355645153655
-    second: "Hair-3a \u6B63\u9762_1"
-  - first:
-      213: 522936380032808794
-    second: "Hair-3a \u6B63\u9762_2"
-  - first:
-      213: -6169734686486579459
-    second: "Hair-3a \u6B63\u9762_3"
+      213: -2797342343252407475
+    second: "Hair-5a \u6B63\u9762_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Hair-3a \u6B63\u9762_1"
+      name: "Hair-5a \u6B63\u9762_0"
       rect:
         serializedVersion: 2
-        x: 652
-        y: 797
-        width: 290
-        height: 250
+        x: 692
+        y: 793
+        width: 210
+        height: 263
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77162b6ca261eef60800000000000000
-      internalID: 8065408355645153655
+      spriteID: d4b0843b5f7dd29d0800000000000000
+      internalID: -2797342343252407475
       vertices: []
       indices: 
       edges: []
@@ -134,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 672bf776d1fc8e74ea28371f71f501e8
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -144,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Hair-3a \u6B63\u9762_0": 2255093583605429427
-      "Hair-3a \u6B63\u9762_1": 8065408355645153655
-      "Hair-3a \u6B63\u9762_2": 522936380032808794
-      "Hair-3a \u6B63\u9762_3": -6169734686486579459
+      "Hair-5a \u6B63\u9762_0": -2797342343252407475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
