@@ -608,11 +608,11 @@ MonoBehaviour:
     nearY: -10
   - sceneName: CampScene
     baseY: 0
-    baseScale: 1.7
-    farScale: 1.7
-    nearScale: 2.5
-    farY: 10
-    nearY: -10
+    baseScale: 2
+    farScale: 2
+    nearScale: 6
+    farY: 15
+    nearY: -15
 --- !u!50 &7510175049499412044
 Rigidbody2D:
   serializedVersion: 5

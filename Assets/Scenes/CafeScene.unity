@@ -2945,7 +2945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 464685964}
-  - component: {fileID: 464685963}
+  - component: {fileID: 464685965}
   m_Layer: 0
   m_Name: SeatAvatarManager
   m_TagString: Untagged
@@ -2953,7 +2953,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &464685963
+--- !u!4 &464685964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464685962}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.43445, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &464685965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2962,9 +2977,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 464685962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8fa6dcb0fbb1144c89bedbe3f842d2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 18076787b800fb54cb6dc79b93da9afa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SeatAvatarManager
+  m_EditorClassIdentifier: Assembly-CSharp::SeatAvatar_Cafe
   seats:
   - seatName: 1-1
     seatTransform: {fileID: 2121022820}
@@ -2987,32 +3002,17 @@ MonoBehaviour:
     sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 782704322}
   - seatName: 3-2
-    seatTransform: {fileID: 487701069}
+    seatTransform: {fileID: 1740334988}
     sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 941609391}
   - seatName: 4-1
     seatTransform: {fileID: 224433324}
     sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 1984855970}
-  - seatName: 4-2
-    seatTransform: {fileID: 318256962}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
-    sitButton: {fileID: 1417044292}
---- !u!4 &464685964
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464685962}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 954.43445, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  - seatName: 4-1
+    seatTransform: {fileID: 0}
+    sitControllerPrefab: {fileID: 0}
+    sitButton: {fileID: 1984855970}
 --- !u!1 &470478360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10045,17 +10045,17 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1851018428}
     sortingOrder: 43
-    scale: {x: 2.4, y: 2.4, z: 2.4}
+    scale: {x: 2, y: 2, z: 2}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1549703529}
     sortingOrder: 47
-    scale: {x: 2.4, y: 2.4, z: 2.4}
+    scale: {x: 2, y: 2, z: 2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 2016891993}
     sortingOrder: 43
-    scale: {x: 2.4, y: 2.4, z: 2.4}
+    scale: {x: 2, y: 2, z: 2}
 --- !u!1 &1448218905
 GameObject:
   m_ObjectHideFlags: 0

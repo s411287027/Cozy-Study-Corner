@@ -732,12 +732,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 554899965}
     sortingOrder: 54
-    scale: {x: 1.8, y: 1.8, z: 1.8}
+    scale: {x: 2.1, y: 2.1, z: 2.1}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 418154695}
     sortingOrder: 56
-    scale: {x: 1.8, y: 1.8, z: 1.8}
+    scale: {x: 1.8, y: 1.8, z: 2.1}
 --- !u!4 &277378266
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,12 +1322,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1578547}
     sortingOrder: 85
-    scale: {x: 2, y: 2, z: 2}
+    scale: {x: 2.3, y: 2.3, z: 2.3}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1962675704}
     sortingOrder: 91
-    scale: {x: 2, y: 2, z: 2}
+    scale: {x: 2.3, y: 2.3, z: 2.3}
 --- !u!4 &474992370
 Transform:
   m_ObjectHideFlags: 0
@@ -2948,7 +2948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447673823}
-  - component: {fileID: 1447673822}
+  - component: {fileID: 1447673824}
   m_Layer: 0
   m_Name: SeatAvatarManager
   m_TagString: Untagged
@@ -2956,7 +2956,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1447673822
+--- !u!4 &1447673823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447673821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.43445, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1447673824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2965,9 +2980,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1447673821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8fa6dcb0fbb1144c89bedbe3f842d2e, type: 3}
+  m_Script: {fileID: 11500000, guid: e26fb5872cb881e4eb502592f9ee2b8d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SeatAvatarManager
+  m_EditorClassIdentifier: Assembly-CSharp::SeatAvatar_forest
   seats:
   - seatName: 1-1
     seatTransform: {fileID: 260008623}
@@ -2989,21 +3004,6 @@ MonoBehaviour:
     seatTransform: {fileID: 580302092}
     sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 2136432877}
---- !u!4 &1447673823
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447673821}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 954.43445, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1448797625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3852,12 +3852,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1160462020}
     sortingOrder: 85
-    scale: {x: 2, y: 2, z: 2}
+    scale: {x: 2.3, y: 2.3, z: 2.3}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 2085491792}
     sortingOrder: 91
-    scale: {x: 2, y: 2, z: 2}
+    scale: {x: 2.3, y: 2.3, z: 2.3}
 --- !u!4 &1821696383
 Transform:
   m_ObjectHideFlags: 0
@@ -4365,12 +4365,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1245505478}
     sortingOrder: 85
-    scale: {x: 2, y: 2, z: 2}
+    scale: {x: 2.3, y: 2.3, z: 2.3}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 961665165}
     sortingOrder: 91
-    scale: {x: 2, y: 2, z: 2}
+    scale: {x: 2.3, y: 2.3, z: 2.3}
 --- !u!4 &2128959160
 Transform:
   m_ObjectHideFlags: 0
@@ -4420,12 +4420,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 603651424}
     sortingOrder: 54
-    scale: {x: 1.8, y: 1.8, z: 1.8}
+    scale: {x: 2.1, y: 2.1, z: 2.1}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 539931268}
     sortingOrder: 56
-    scale: {x: 1.8, y: 1.8, z: 1.8}
+    scale: {x: 2.1, y: 2.1, z: 2.1}
 --- !u!4 &2136432878
 Transform:
   m_ObjectHideFlags: 0
