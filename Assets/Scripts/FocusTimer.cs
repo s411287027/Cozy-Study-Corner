@@ -25,10 +25,10 @@ public class FocusTimer : MonoBehaviour
 
     // ===== 內部狀態 =====
     private float remainingRaw = 0f;         // 剩餘時間（float 秒）
-    private int   remainingSeconds = 0;      // 剩餘時間（整數秒，用來顯示）
+    private int remainingSeconds = 0;      // 剩餘時間（整數秒，用來顯示）
 
     private float sessionRaw = 0f;           // 本輪已經跑的 float 秒
-    private int   sessionSeconds = 0;        // 本輪已跑的整數秒
+    private int sessionSeconds = 0;        // 本輪已跑的整數秒
 
     private bool isRunning = false;          // 是否正在倒數中
     private bool sessionActive = false;      // 這一輪是否已經開始（不管暫停與否）
@@ -301,14 +301,15 @@ public class FocusTimer : MonoBehaviour
         }
 
         // 4. 寫入 FirebaseDatabaseController 的 TotalCoins
-        if (coins > 0 && FirebaseDatabaseController.Instance != null && FirebaseDatabaseController.Instance.dts != null)
+        // 4. 實際加到 FirebaseDatabaseController
+        if (coins > 0 && FirebaseDatabaseController.Instance != null)
         {
-            FirebaseDatabaseController.Instance.dts.TotalCoins += coins;
-            FirebaseDatabaseController.Instance.SaveDataFn();
+            // 呼叫剛剛寫的新函式，只更新金幣
+            FirebaseDatabaseController.Instance.AddCoins(coins);
         }
         else if (coins > 0 && FirebaseDatabaseController.Instance == null)
         {
-            Debug.LogWarning("FocusTimer: FirebaseDatabaseController.Instance is null, cannot add coins.");
+            Debug.LogWarning("CountUpTimer: FirebaseDatabaseController.Instance is null, cannot add coins.");
         }
 
         // 5. 清掉 runtime 顯示

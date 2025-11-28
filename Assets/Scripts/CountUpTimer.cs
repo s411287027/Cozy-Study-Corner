@@ -20,10 +20,10 @@ public class CountUpTimer : MonoBehaviour
 
     // ===== 內部狀態 =====
     private float elapsedRaw = 0f;           // 真正累積的 float 時間
-    private int   elapsedSeconds = 0;        // 顯示用整數秒
-    private bool  isRunning = false;         // 是否正在計時
-    private bool  sessionActive = false;     // 是否有一輪正在進行
-    private bool  rewardedThisSession = false;
+    private int elapsedSeconds = 0;        // 顯示用整數秒
+    private bool isRunning = false;         // 是否正在計時
+    private bool sessionActive = false;     // 是否有一輪正在進行
+    private bool rewardedThisSession = false;
 
     void Start()
     {
@@ -185,10 +185,10 @@ public class CountUpTimer : MonoBehaviour
         }
 
         // 4. 實際加到 FirebaseDatabaseController.dts.TotalCoins
-        if (coins > 0 && FirebaseDatabaseController.Instance != null && FirebaseDatabaseController.Instance.dts != null)
+        if (coins > 0 && FirebaseDatabaseController.Instance != null)
         {
-            FirebaseDatabaseController.Instance.dts.TotalCoins += coins;
-            FirebaseDatabaseController.Instance.SaveDataFn();
+            // 呼叫剛剛寫的新函式，只更新金幣
+            FirebaseDatabaseController.Instance.AddCoins(coins);
         }
         else if (coins > 0 && FirebaseDatabaseController.Instance == null)
         {

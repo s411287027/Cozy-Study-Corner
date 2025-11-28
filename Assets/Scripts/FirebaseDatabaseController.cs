@@ -225,4 +225,16 @@ public class FirebaseDatabaseController : MonoBehaviour
         userRef.SetValueAsync(message);
     }
 
+    public void AddCoins(int amount)
+    {
+        // 1. 先更新本地端的數據，讓 UI 即時反應
+        dts.TotalCoins += amount;
+
+        // 2. 只更新 Firebase 上的 TotalCoins 欄位，不影響其他資料 (如 Friends)
+        dbRef.Child("users").Child(userId).Child("TotalCoins").SetValueAsync(dts.TotalCoins);
+
+        // 如果想要確保資料一致性，也可以像 UpdatePurchase 那樣用 UpdateChildrenAsync，
+        // 但因為這裡只改一個值，直接指名路徑 Child("TotalCoins") 最快且最安全。
+        Debug.Log($"已更新金幣: +{amount}, 目前總額: {dts.TotalCoins}");
+    }
 }
