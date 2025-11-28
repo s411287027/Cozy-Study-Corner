@@ -8974,42 +8974,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeatAvatarManager
   seats:
-  - seatName: Seat 1-1
-    seatTransform: {fileID: 1157216203}
+  - seatName: 1-1
+    seatTransform: {fileID: 494644939}
     sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
-  - seatName: 
-    seatTransform: {fileID: 0}
-    sitControllerPrefab: {fileID: 0}
+    sitButton: {fileID: 367918553}
+  - seatName: 1-2
+    seatTransform: {fileID: 899189934}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 2068016823}
+  - seatName: 1-3
+    seatTransform: {fileID: 1869113405}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 126490558}
+  - seatName: 1-4
+    seatTransform: {fileID: 1472222807}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 188223815}
+  - seatName: 2-1
+    seatTransform: {fileID: 652388942}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 1320504196}
+  - seatName: 2-2
+    seatTransform: {fileID: 965412794}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 183179771}
+  - seatName: 2-3
+    seatTransform: {fileID: 1792276969}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 931815533}
+  - seatName: 2-4
+    seatTransform: {fileID: 1135125021}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 1412544035}
+  - seatName: 3-1
+    seatTransform: {fileID: 1526554922}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 1197742715}
+  - seatName: 3-2
+    seatTransform: {fileID: 1561503037}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 147239762}
+  - seatName: 3-3
+    seatTransform: {fileID: 1247623154}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 360633562}
+  - seatName: 3-4
+    seatTransform: {fileID: 622312944}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 894747208}
 --- !u!1 &2055214832
 GameObject:
   m_ObjectHideFlags: 0

@@ -1155,7 +1155,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1132802206}
         m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: GoToCamp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

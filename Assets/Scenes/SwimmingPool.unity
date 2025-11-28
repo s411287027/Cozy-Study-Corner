@@ -837,6 +837,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &261474440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261474442}
+  - component: {fileID: 261474441}
+  m_Layer: 0
+  m_Name: SeatAvatarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &261474441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261474440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa6dcb0fbb1144c89bedbe3f842d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeatAvatarManager
+  seats:
+  - seatName: 1-1
+    seatTransform: {fileID: 2114317382}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 999088053}
+  - seatName: 1-2
+    seatTransform: {fileID: 807546634}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 1088707528}
+  - seatName: 1-3
+    seatTransform: {fileID: 1132826895}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 1985187101}
+  - seatName: 2-1
+    seatTransform: {fileID: 1851178426}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 1317953413}
+  - seatName: 2-2
+    seatTransform: {fileID: 1049500918}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 87693018}
+  - seatName: 2-3
+    seatTransform: {fileID: 1904237209}
+    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+    sitButton: {fileID: 2076537824}
+--- !u!4 &261474442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261474440}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.43445, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314198847
 GameObject:
   m_ObjectHideFlags: 0
@@ -6883,3 +6952,4 @@ SceneRoots:
   - {fileID: 1501527068}
   - {fileID: 805233396}
   - {fileID: 652755528}
+  - {fileID: 261474442}

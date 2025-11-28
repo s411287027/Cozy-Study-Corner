@@ -562,6 +562,7 @@ MonoBehaviour:
   - ForestScene
   - SwimmingPool
   - DressScene
+  - CampScene
   sceneConfigs:
   - sceneName: classroom
     baseY: 0
@@ -603,6 +604,13 @@ MonoBehaviour:
     baseScale: 2.8
     farScale: 2.8
     nearScale: 2.8
+    farY: 10
+    nearY: -10
+  - sceneName: CampScene
+    baseY: 0
+    baseScale: 1.7
+    farScale: 1.7
+    nearScale: 2.5
     farY: 10
     nearY: -10
 --- !u!50 &7510175049499412044
@@ -706,6 +714,7 @@ MonoBehaviour:
     originalPosition: {x: 0, y: 0, z: 0}
     originalSortingOrder: 0
     originalSprite: {fileID: 0}
+  originalBodyGameObject: {fileID: 0}
 --- !u!1 &2779427225180251471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,20 +1488,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSitController
   sitParts:
   - name: body
-    renderer: {fileID: 3110734243848785334}
+    renderer: {fileID: 216535139132025315}
     originalPosition: {x: 0, y: 0, z: 0}
     originalSortingOrder: 0
     originalSprite: {fileID: 0}
-  - name: body
-    renderer: {fileID: 3110734243848785334}
+  - name: hand
+    renderer: {fileID: 3768448225262188206}
     originalPosition: {x: 0, y: 0, z: 0}
     originalSortingOrder: 0
     originalSprite: {fileID: 0}
-  - name: led
-    renderer: {fileID: 5251314759025641574}
+  - name: leg
+    renderer: {fileID: 7334635244308384369}
     originalPosition: {x: 0, y: 0, z: 0}
     originalSortingOrder: 0
     originalSprite: {fileID: 0}
+  originalBodyGameObject: {fileID: 1490950892546104935}
 --- !u!1 &7541931647347401525
 GameObject:
   m_ObjectHideFlags: 0

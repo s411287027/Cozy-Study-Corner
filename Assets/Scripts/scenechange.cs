@@ -135,4 +135,9 @@ public class SceneChange : MonoBehaviour
     {
         SceneManager.LoadScene("DressScene");
     }
+
+    public void GoToCamp()
+    {
+        SceneManager.LoadScene("CampScene");
+    }
 }
