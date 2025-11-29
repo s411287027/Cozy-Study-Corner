@@ -177,31 +177,32 @@ public class FriendRoomController : MonoBehaviour
     // 5️⃣ 生成單個物品 UI (這裡修改路徑邏輯)
     private void CreateWardrobeItemUI(int id, string category)
     {
-        // 🔹 修改重點：路徑加上 category
-        // 假設你的圖片放在 Resources/Wardrobe/face/1
         string resourcePath = $"Wardrobe/{category}/{id}";
-
         Sprite sprite = Resources.Load<Sprite>(resourcePath);
 
         if (sprite == null)
         {
-            // 這裡可以幫你除錯，如果沒找到圖片會顯示路徑
-            Debug.LogWarning($"找不到圖片，路徑是: {resourcePath}");
+            Debug.LogWarning($"圖片遺失: {resourcePath}");
             return;
         }
 
-        // 生成物件
+        // 1. 建立物件
         GameObject newItem = new GameObject($"{category}_{id}", typeof(RectTransform), typeof(Image));
+
+        // 2. 設定父物件 (這會讓 Grid Layout Group 自動接管它的位置與大小)
         newItem.transform.SetParent(wardrobeContentParent, false);
 
-        // 設定圖片
+        // 3. 設定 Image 組件
         Image img = newItem.GetComponent<Image>();
         img.sprite = sprite;
-        img.preserveAspect = true; // 保持原本圖片比例，不會被拉伸
 
-        // 如果你有用 GridLayoutGroup，它會自動控制大小
-        // 如果沒有，你可以手動設定一個固定大小，例如 100x100
-        // RectTransform rt = newItem.GetComponent<RectTransform>();
-        // rt.sizeDelta = new Vector2(150, 150); 
+        // 關鍵：保持比例 (Preserve Aspect)
+        // 這樣就算格子是長方形，正方形的物品圖片也不會被拉扁，而是會置中縮放
+        //img.preserveAspect = true;
+
+        // 4. (選用) 稍微縮小圖片，不要貼滿格子的邊緣
+        // 如果覺得圖片貼著木框太擠，可以把圖片稍微縮小一點
+        // 這裡我們利用 RectTransform 的縮放
+        newItem.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
     }
 }

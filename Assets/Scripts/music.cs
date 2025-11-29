@@ -7,12 +7,12 @@ public class SceneMusicManager : MonoBehaviour
     [System.Serializable]
     public class SceneMusic
     {
-        public string sceneName;          // ³õ´º¦WºÙ
-        public AudioClip[] musicClips;    // ¸Ó³õ´ºªº­µ¼Ö¦Cªí
+        public string sceneName;
+        public AudioClip[] musicClips;
     }
 
-    public SceneMusic[] sceneMusics;      // ¦U³õ´ºªº­µ¼Ö³]©w
-    public float fadeDuration = 2f;       // ²H¤J²H¥X®É¶¡¡]¬í¡^
+    public SceneMusic[] sceneMusics;
+    public float fadeDuration = 2f;
 
     private AudioSource audioSource;
     private int currentTrack = 0;
@@ -21,7 +21,7 @@ public class SceneMusicManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject); // ³õ´º¤Á´«®É¤£¾P·´¦Û¤v
+        DontDestroyOnLoad(gameObject);
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.loop = false;
 
@@ -55,7 +55,7 @@ public class SceneMusicManager : MonoBehaviour
     {
         isFading = true;
 
-        // ²H¥XÂÂ­µ¼Ö
+        // ï¿½Hï¿½Xï¿½Â­ï¿½ï¿½ï¿½
         float startVolume = audioSource.volume;
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
@@ -65,11 +65,11 @@ public class SceneMusicManager : MonoBehaviour
         audioSource.volume = 0f;
         audioSource.Stop();
 
-        // ¼½©ñ·s³õ´º­µ¼Ö
+        // ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         currentSceneName = newScene;
         PlaySceneMusic(currentSceneName);
 
-        // ²H¤J·s­µ¼Ö
+        // ï¿½Hï¿½Jï¿½sï¿½ï¿½ï¿½ï¿½
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(0f, 1f, t / fadeDuration);
@@ -91,7 +91,7 @@ public class SceneMusicManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"[SceneMusicManager] ¦¹³õ´º¨S¦³³]©w­µ¼Ö: {sceneName}");
+            Debug.LogWarning($"[SceneMusicManager] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½ï¿½ï¿½: {sceneName}");
             audioSource.Stop();
         }
     }
