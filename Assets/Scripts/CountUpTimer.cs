@@ -164,8 +164,15 @@ public class CountUpTimer : MonoBehaviour
 
         rewardedThisSession = true;
 
+    
+
         // 1. 把這次秒數加到今天累積
         StudyStats.AddStudySecondsInt(elapsedSeconds);
+
+        if (FirebaseDatabaseController.Instance != null)
+        {
+            FirebaseDatabaseController.Instance.AddStudySecondsForToday(elapsedSeconds);
+        }
 
         // 2. 算金幣：每 secondsPerBlock 秒給 coinsPerBlock 金幣
         int blocks = elapsedSeconds / secondsPerBlock;

@@ -283,6 +283,11 @@ public class FocusTimer : MonoBehaviour
         // 1. 把這一輪秒數加入今天累積
         StudyStats.AddStudySecondsInt(sessionSeconds);
 
+        if (FirebaseDatabaseController.Instance != null)
+        {
+            FirebaseDatabaseController.Instance.AddStudySecondsForToday(sessionSeconds);
+        }
+
         // 2. 算金幣：每 secondsPerBlock 秒給 coinsPerBlock 金幣
         int blocks = sessionSeconds / secondsPerBlock;
         int coins = blocks * coinsPerBlock;

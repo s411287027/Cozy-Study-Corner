@@ -55,6 +55,7 @@ public class DataToSave
 
     public List<string> Friends = new List<string>(); // 好友 UID
     public FriendRequests FriendRequests = new FriendRequests();
+    public Dictionary<string, int> StudySecondsByDate = new Dictionary<string, int>();
 }
 
 [System.Serializable]
@@ -237,4 +238,33 @@ public class FirebaseDatabaseController : MonoBehaviour
         // 但因為這裡只改一個值，直接指名路徑 Child("TotalCoins") 最快且最安全。
         Debug.Log($"已更新金幣: +{amount}, 目前總額: {dts.TotalCoins}");
     }
+    public void AddStudySecondsForToday(int deltaSeconds)
+    {
+        if (dts == null)
+        {
+            Debug.LogWarning("AddStudySecondsForToday: dts is null");
+            return;
+        }
+
+        if (deltaSeconds <= 0) return;
+
+        // 取今天日期字串（用本地時間即可）
+        string today = System.DateTime.Now.ToString("yyyy-MM-dd");
+
+        if (dts.StudySecondsByDate == null)
+        {
+            dts.StudySecondsByDate = new Dictionary<string, int>();
+        }
+
+        if (!dts.StudySecondsByDate.ContainsKey(today))
+        {
+            dts.StudySecondsByDate[today] = 0;
+        }
+
+        dts.StudySecondsByDate[today] += deltaSeconds;
+
+        // 存回 Firebase
+        SaveDataFn();
+    }
+
 }
