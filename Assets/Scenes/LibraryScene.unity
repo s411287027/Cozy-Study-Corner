@@ -1054,36 +1054,150 @@ MonoBehaviour:
   seats:
   - seatName: 1-1
     seatTransform: {fileID: 307712230}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 485719732}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 1-2
     seatTransform: {fileID: 1300180119}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 23913494}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 1-3
     seatTransform: {fileID: 585511596}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 444744194}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 1-4
     seatTransform: {fileID: 612396807}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 616830126}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-1
     seatTransform: {fileID: 2126502304}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 1875906419}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-2
     seatTransform: {fileID: 320704572}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 284258454}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-3
     seatTransform: {fileID: 1539213772}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 2024331808}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-4
     seatTransform: {fileID: 1208094966}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 1250961920}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
+  avatarPrefab: {fileID: 6821265221780226025, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+  avatarDB: {fileID: 11400000, guid: df29bb89026861c469f1dc8744135a94, type: 2}
 --- !u!1 &208562344
 GameObject:
   m_ObjectHideFlags: 0

@@ -164,7 +164,7 @@ public class CountUpTimer : MonoBehaviour
 
         rewardedThisSession = true;
 
-    
+
 
         // 1. 把這次秒數加到今天累積
         StudyStats.AddStudySecondsInt(elapsedSeconds);

@@ -277,6 +277,7 @@ public class FirebaseController : MonoBehaviour
                     CrrLevel = 1,    // 初始等級
                     TomorrowReservationTime = "",
                     Message = "",
+                    StudySecondsForToday = "",
                     StudyAtHome = "",
                     currentEquip = new EquipData()
                     {

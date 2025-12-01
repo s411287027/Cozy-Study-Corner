@@ -1,15 +1,16 @@
 using UnityEngine;
 using Firebase.Database;
-using Firebase.Auth; // ⭐ 1. 為了隱藏走路小人，需要 Auth
+using Firebase.Auth;
+using Firebase.Extensions;
 using System.Collections.Generic;
 
-public class SeatAvatar_Cafe : MonoBehaviour
+public class SeatAvatar_Room : MonoBehaviour
 {
     [System.Serializable]
     public class SeatData
     {
         [Header("基本設定")]
-        public string seatName;
+        public string seatName;       // 必須對應資料庫裡存的字串 (例如 "Seat1")
         public Transform seatTransform;
         public SitButton sitButton;
 
@@ -18,24 +19,24 @@ public class SeatAvatar_Cafe : MonoBehaviour
         public Vector3 faceOffset = new Vector3(0, 2.75f, 0);
         public Vector3 shirtOffset = new Vector3(0, 0.12f, 0);
         public Vector3 sleeveOffset = new Vector3(0, 0.12f, 0);
-        public Vector3 pantsOffset = new Vector3(0, 0, 0);      // ⭐ 褲子位置
-        public Vector3 shoesOffset = new Vector3(0, 0, 0);      // ⭐ 鞋子位置
+        public Vector3 pantsOffset = new Vector3(0, 0, 0);
+        public Vector3 shoesOffset = new Vector3(0, 0, 0);
 
         [Header("個別縮放微調 (Scale)")]
         public Vector3 hairScale = new Vector3(2, 2, 1);
         public Vector3 faceScale = new Vector3(2, 2, 1);
         public Vector3 shirtScale = new Vector3(2, 2, 1);
         public Vector3 sleeveScale = new Vector3(2, 2, 1);
-        public Vector3 pantsScale = new Vector3(2, 2, 1);       // ⭐ 褲子縮放
-        public Vector3 shoesScale = new Vector3(2, 2, 1);       // ⭐ 鞋子縮放
+        public Vector3 pantsScale = new Vector3(2, 2, 1);
+        public Vector3 shoesScale = new Vector3(2, 2, 1);
 
         [Header("圖層順序微調 (Order Offset)")]
         public int hairOrder = 2;
         public int faceOrder = 1;
         public int shirtOrder = 1;
         public int sleeveOrder = 3;
-        public int pantsOrder = 1;      // ⭐ 褲子順序
-        public int shoesOrder = 1;      // ⭐ 鞋子順序
+        public int pantsOrder = 1;
+        public int shoesOrder = 1;
 
         // Runtime 變數
         [HideInInspector] public GameObject currentAvatarObj;
@@ -43,8 +44,8 @@ public class SeatAvatar_Cafe : MonoBehaviour
         [HideInInspector] public SpriteRenderer runtimeFace;
         [HideInInspector] public SpriteRenderer runtimeShirt;
         [HideInInspector] public SpriteRenderer runtimeSleeve;
-        [HideInInspector] public SpriteRenderer runtimePants;   // ⭐ 褲子 Renderer
-        [HideInInspector] public SpriteRenderer runtimeShoes;   // ⭐ 鞋子 Renderer
+        [HideInInspector] public SpriteRenderer runtimePants;
+        [HideInInspector] public SpriteRenderer runtimeShoes;
         [HideInInspector] public PlayerSitController runtimeController;
         [HideInInspector] public string currentUid;
     }
@@ -54,15 +55,14 @@ public class SeatAvatar_Cafe : MonoBehaviour
     [Header("必須設定：小人預製件")]
     public GameObject avatarPrefab;
 
-    [Header("共用圖片資料庫 (請拉入設定檔)")]
+    [Header("共用圖片資料庫")]
     public AvatarDatabase avatarDB;
 
     private DataSnapshot latestSnapshot;
     private bool needsUpdate = false;
     private DatabaseReference firebaseRef;
-
-    // 用來暫存走路的角色
     private GameObject myWalkingPlayer;
+    private string myUid; // 儲存自己的 ID
 
     private struct AppearanceTask
     {
@@ -71,24 +71,37 @@ public class SeatAvatar_Cafe : MonoBehaviour
         public int faceId;
         public int shirtId;
         public int sleeveId;
-        public int pantsId; // ⭐
-        public int shoesId; // ⭐
+        public int pantsId;
+        public int shoesId;
     }
     private Queue<AppearanceTask> pendingAppearanceUpdates = new Queue<AppearanceTask>();
     private object queueLock = new object();
 
     void Start()
     {
+        // 1. 先取得自己的 UID
+        if (FirebaseAuth.DefaultInstance.CurrentUser != null)
+        {
+            myUid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        }
+        else
+        {
+            Debug.LogError("尚未登入，無法取得 UID");
+            return;
+        }
+
         foreach (var seat in seats) seat.currentUid = "";
 
         if (avatarDB == null)
         {
-            Debug.LogError("❌ 錯誤：請在 SeatAvatar_Cafe 元件中放入 AvatarDatabase 設定檔！");
+            Debug.LogError("❌ 錯誤：請放入 AvatarDatabase！");
             return;
         }
 
-        Debug.Log("[SeatAvatar] 開始監聽 Cafe...");
-        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference("Seat/Coffee");
+        Debug.Log($"[SeatAvatar_Room] 開始監聽使用者: {myUid} 的讀書狀態...");
+
+        // ⭐ 修改監聽路徑：只監聽「我自己」的 StudyAtHome 狀態
+        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference($"users/{myUid}/StudyAtHome");
         firebaseRef.ValueChanged += OnSeatValueChanged;
     }
 
@@ -118,41 +131,33 @@ public class SeatAvatar_Cafe : MonoBehaviour
     private void ApplyAppearance(AppearanceTask task)
     {
         if (task.seatIndex < 0 || task.seatIndex >= seats.Length) return;
-
         SeatData targetSeat = seats[task.seatIndex];
 
         if (targetSeat.currentAvatarObj != null)
         {
-            // 1. 抓取身體 (body) 的 Sorting Order
+            // 抓取 Body Order
             SitButton.SitPartData bodyData = null;
             if (targetSeat.sitButton != null && targetSeat.sitButton.partsData != null)
             {
                 foreach (var part in targetSeat.sitButton.partsData)
                 {
-                    if (part.partName == "body")
-                    {
-                        bodyData = part;
-                        break;
-                    }
+                    if (part.partName == "body") { bodyData = part; break; }
                 }
             }
 
             Vector3 basePos = targetSeat.currentAvatarObj.transform.position;
             int baseOrder = 0;
-
             if (bodyData != null)
             {
                 if (bodyData.position != null) basePos = bodyData.position.position;
                 baseOrder = bodyData.sortingOrder;
             }
 
-            // 輔助函式：快速設定 Renderer
+            // 設定所有部位
             SetRenderer(targetSeat.runtimeHair, avatarDB.GetHair(task.hairId), basePos, targetSeat.hairOffset, targetSeat.hairScale, baseOrder + targetSeat.hairOrder);
             SetRenderer(targetSeat.runtimeFace, avatarDB.GetFace(task.faceId), basePos, targetSeat.faceOffset, targetSeat.faceScale, baseOrder + targetSeat.faceOrder);
             SetRenderer(targetSeat.runtimeShirt, avatarDB.GetShirt(task.shirtId), basePos, targetSeat.shirtOffset, targetSeat.shirtScale, baseOrder + targetSeat.shirtOrder);
             SetRenderer(targetSeat.runtimeSleeve, avatarDB.GetSleeve(task.sleeveId), basePos, targetSeat.sleeveOffset, targetSeat.sleeveScale, baseOrder + targetSeat.sleeveOrder);
-
-            // ⭐ 設定褲子和鞋子
             SetRenderer(targetSeat.runtimePants, avatarDB.GetPants(task.pantsId), basePos, targetSeat.pantsOffset, targetSeat.pantsScale, baseOrder + targetSeat.pantsOrder);
             SetRenderer(targetSeat.runtimeShoes, avatarDB.GetShoes(task.shoesId), basePos, targetSeat.shoesOffset, targetSeat.shoesScale, baseOrder + targetSeat.shoesOrder);
 
@@ -160,7 +165,6 @@ public class SeatAvatar_Cafe : MonoBehaviour
         }
     }
 
-    // 簡化代碼用的輔助函式
     private void SetRenderer(SpriteRenderer sr, Sprite sprite, Vector3 basePos, Vector3 offset, Vector3 scale, int order)
     {
         if (sr != null)
@@ -181,11 +185,11 @@ public class SeatAvatar_Cafe : MonoBehaviour
         needsUpdate = false;
     }
 
+    // ⭐ 重大修改：這裡不再跑迴圈找 UID，而是看 Snapshot 裡的值
     private void ProcessSeatUpdates(DataSnapshot snapshot)
     {
         string myUid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         bool amISitting = false; // ⭐ 標記：我是否坐在某個位置上
-
         for (int i = 0; i < seats.Length; i++)
         {
             var seat = seats[i];
@@ -193,9 +197,7 @@ public class SeatAvatar_Cafe : MonoBehaviour
 
             if (!string.IsNullOrEmpty(uid))
             {
-                // ⭐ 檢查：這個位置是不是我坐的？
                 if (uid == myUid) amISitting = true;
-
                 if (seat.currentUid == uid && seat.currentAvatarObj != null) continue;
 
                 seat.currentUid = uid;
@@ -207,21 +209,17 @@ public class SeatAvatar_Cafe : MonoBehaviour
 
                 seat.runtimeController = newAvatar.GetComponent<PlayerSitController>();
 
-                // ⭐ 綁定所有部位 (包含褲子鞋子)
+                // ⭐ 尋找對應的 Renderer (請確保 Prefab 裡面有這些名字)
                 seat.runtimeHair = FindRenderer(newAvatar.transform, "hair_sit");
                 seat.runtimeFace = FindRenderer(newAvatar.transform, "face_sit");
                 seat.runtimeShirt = FindRenderer(newAvatar.transform, "shirt_sit");
-                seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit");
-                seat.runtimePants = FindRenderer(newAvatar.transform, "pants_sit"); // ⭐
-                seat.runtimeShoes = FindRenderer(newAvatar.transform, "shoes_sit"); // ⭐
+                seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit"); // ⭐ 找袖子物件
 
                 // 隱藏初始顏色
-                HideRenderer(seat.runtimeHair);
-                HideRenderer(seat.runtimeFace);
-                HideRenderer(seat.runtimeShirt);
-                HideRenderer(seat.runtimeSleeve);
-                HideRenderer(seat.runtimePants);
-                HideRenderer(seat.runtimeShoes);
+                if (seat.runtimeHair != null) seat.runtimeHair.color = Color.clear;
+                if (seat.runtimeFace != null) seat.runtimeFace.color = Color.clear;
+                if (seat.runtimeShirt != null) seat.runtimeShirt.color = Color.clear;
+                if (seat.runtimeSleeve != null) seat.runtimeSleeve.color = Color.clear; // ⭐
 
                 if (seat.runtimeController != null && seat.sitButton != null)
                 {
@@ -240,8 +238,6 @@ public class SeatAvatar_Cafe : MonoBehaviour
                 }
             }
         }
-
-        // ⭐ 處理隱藏/顯示走路角色
         HandleMyWalkingPlayerVisibility(amISitting);
     }
 
@@ -250,18 +246,15 @@ public class SeatAvatar_Cafe : MonoBehaviour
         if (sr != null) sr.color = Color.clear;
     }
 
-    // ⭐ 控制走路角色的顯示邏輯
     private void HandleMyWalkingPlayerVisibility(bool isSitting)
     {
         if (myWalkingPlayer == null)
         {
-            // 根據你的截圖，角色名是 player(Clone)
             myWalkingPlayer = GameObject.Find("player(Clone)");
         }
 
         if (myWalkingPlayer != null)
         {
-            // 如果坐著，就隱藏走路角色；如果沒坐，就顯示
             if (myWalkingPlayer.activeSelf == isSitting)
             {
                 myWalkingPlayer.SetActive(!isSitting);
@@ -295,8 +288,6 @@ public class SeatAvatar_Cafe : MonoBehaviour
                 int.TryParse(equipSnapshot.Child("hair").Value?.ToString(), out hId);
                 int.TryParse(equipSnapshot.Child("face").Value?.ToString(), out fId);
                 int.TryParse(equipSnapshot.Child("shirt").Value?.ToString(), out sId);
-
-                // ⭐ 讀取褲子和鞋子
                 int.TryParse(equipSnapshot.Child("pants").Value?.ToString(), out pId);
                 int.TryParse(equipSnapshot.Child("shoes").Value?.ToString(), out shId);
             }
@@ -309,9 +300,9 @@ public class SeatAvatar_Cafe : MonoBehaviour
                     hairId = hId,
                     faceId = fId,
                     shirtId = sId,
-                    sleeveId = sId, // 袖子 ID 同衣服
-                    pantsId = pId,  // ⭐
-                    shoesId = shId  // ⭐
+                    sleeveId = sId,
+                    pantsId = pId,
+                    shoesId = shId
                 });
             }
         });

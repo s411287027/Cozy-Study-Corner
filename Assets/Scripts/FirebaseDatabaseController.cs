@@ -49,6 +49,7 @@ public class DataToSave
     public int CrrLevel;
     public string TomorrowReservationTime;
     public string Message;
+    public string StudySecondsForToday;
     public string StudyAtHome;
     public EquipData currentEquip = new EquipData();
     public OwnedItems ownedItems = new OwnedItems();
@@ -248,7 +249,7 @@ public class FirebaseDatabaseController : MonoBehaviour
 
         if (deltaSeconds <= 0) return;
 
-        // 取今天日期字串（用本地時間即可）
+        // 取今天日期字串
         string today = System.DateTime.Now.ToString("yyyy-MM-dd");
 
         if (dts.StudySecondsByDate == null)
@@ -261,10 +262,23 @@ public class FirebaseDatabaseController : MonoBehaviour
             dts.StudySecondsByDate[today] = 0;
         }
 
+        // 更新本地資料
         dts.StudySecondsByDate[today] += deltaSeconds;
+        int newValue = dts.StudySecondsByDate[today]; // 取得更新後的數值
 
-        // 存回 Firebase
-        SaveDataFn();
+        // ==========================================
+        // ⭐ 修改處：直接更新 Firebase 指定路徑，取代 SaveDataFn()
+        // ==========================================
+
+        // 1. 確保有拿到 UID
+        string uid = Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+
+        // 2. 拼湊路徑： users/UID/StudySecondsForToday/2025-12-01
+        // 這樣只會更新「今天」的秒數，不會影響歷史紀錄
+        string path = $"users/{uid}/StudySecondsForToday/{today}";
+
+        // 3. 只上傳這個數值
+        FirebaseDatabase.DefaultInstance.GetReference(path).SetValueAsync(newValue);
     }
 
 }
