@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
+using Firebase.Extensions; // ⭐ 1. 必須新增這個
 using System.Collections.Generic;
 
 public class SeatManager_Camp : MonoBehaviour
@@ -39,6 +40,13 @@ public class SeatManager_Camp : MonoBehaviour
             .ValueChanged += OnSeatDataChanged;
     }
 
+    private void OnDestroy()
+    {
+        // 養成好習慣，銷毀時移除監聽，避免報錯
+        if (dbRef != null)
+            dbRef.ValueChanged -= OnSeatDataChanged;
+    }
+
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
     {
         if (args.DatabaseError != null)
@@ -70,7 +78,10 @@ public class SeatManager_Camp : MonoBehaviour
                 }
                 else
                 {
-                    label.text = $"UID: {uid}";
+                    // ⭐ 2. 修改開始：這裡去抓名字
+                    label.text = "Loading...";
+                    UpdateLabelWithUserName(uid, label);
+                    // ⭐ 修改結束
 
                     if (uid == currentUID)
                     {
@@ -105,11 +116,39 @@ public class SeatManager_Camp : MonoBehaviour
         }
     }
 
+    // ⭐ 3. 新增讀取名字的函式
+    private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
+    {
+        // 請確認你的資料庫路徑是 users/UID/username
+        dbRef.Child("users").Child(targetUid).Child("UserName")
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                // 讀取失敗顯示 UID 當作備案
+                labelToUpdate.text = targetUid;
+                return;
+            }
+
+            if (task.Result.Exists)
+            {
+                labelToUpdate.text = task.Result.Value.ToString();
+            }
+            else
+            {
+                labelToUpdate.text = "Unknown";
+            }
+        });
+    }
+
     private void OnSitButtonClicked(string seatId)
     {
         if (currentSeat != null)
             return;
+
+        // 為了確保 UI 反應即時，這裡先關閉，Callback 回來再確認也行
         if (homeButton != null) homeButton.SetActive(false);
+
         string seatPath = $"Seat/Camp/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
     }
@@ -118,7 +157,9 @@ public class SeatManager_Camp : MonoBehaviour
     {
         if (seatId != currentSeat)
             return;
+
         if (homeButton != null) homeButton.SetActive(true);
+
         string seatPath = $"Seat/Camp/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;

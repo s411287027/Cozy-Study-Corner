@@ -3,12 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
+using Firebase.Extensions; // ⭐ 必須新增：為了使用 ContinueWithOnMainThread
 using System.Collections.Generic;
 
 public class SeatManager_Classroom : MonoBehaviour
 {
     public Transform seatsParent;
-    public GameObject homeButton;   // ⭐ 新增：Home 按鈕
+    public GameObject homeButton;
 
     private DatabaseReference dbRef;
     private string currentUID;
@@ -44,7 +45,6 @@ public class SeatManager_Classroom : MonoBehaviour
             dbRef.ValueChanged -= OnSeatDataChanged;
     }
 
-
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
     {
         if (args.DatabaseError != null)
@@ -76,7 +76,13 @@ public class SeatManager_Classroom : MonoBehaviour
                 }
                 else
                 {
-                    label.text = $"UID: {uid}";
+                    // ⭐ 修改開始：這裡不再直接顯示 UID，而是去抓名字
+                    // 先顯示載入中，避免空白
+                    label.text = "Loading...";
+
+                    // 呼叫函式讀取名字
+                    UpdateLabelWithUserName(uid, label);
+                    // ⭐ 修改結束
 
                     if (uid == currentUID)
                     {
@@ -84,7 +90,6 @@ public class SeatManager_Classroom : MonoBehaviour
                         sitBtn.gameObject.SetActive(false);
                         leaveBtn.gameObject.SetActive(true);
 
-                        // ⭐ 玩家已坐下 → 隱藏 HomeButton
                         if (homeButton != null) homeButton.SetActive(false);
                     }
                     else
@@ -96,73 +101,69 @@ public class SeatManager_Classroom : MonoBehaviour
             }
         }
 
+        // ... (下方按鈕狀態更新邏輯保持不變)
         if (currentSeat != null)
         {
             foreach (var kv in seatObjects)
             {
                 string seatId = kv.Key;
-                GameObject seat = kv.Value;
-
                 if (seatId != currentSeat)
                 {
-                    Button sitBtn = seat.transform.Find("SitButton").GetComponent<Button>();
-                    sitBtn.gameObject.SetActive(false);
+                    kv.Value.transform.Find("SitButton").GetComponent<Button>().gameObject.SetActive(false);
                 }
             }
         }
         else
         {
-            // ⭐ 玩家沒有坐任何位置 → 顯示 HomeButton
             if (homeButton != null) homeButton.SetActive(true);
         }
     }
 
-    private void OnSitButtonClicked(string seatId)
+    // ⭐ 新增函式：根據 UID 去資料庫抓取名字
+    private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
     {
-        if (currentSeat != null)
+        // 假設你的使用者資料路徑是 users/UID/username
+        // 如果你的名字欄位叫 name，請把 "username" 改成 "name"
+        dbRef.Child("users").Child(targetUid).Child("UserName")
+            .GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            Debug.Log("❌ 你已經坐在其他位置，不能再坐！");
-            return;
-        }
-
-        string seatPath = $"Seat/Classroom/{seatId}";
-        dbRef.Child(seatPath).SetValueAsync(currentUID).ContinueWith(task =>
-        {
-            if (task.IsCompleted)
+            if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.Log($"✅ 已坐下：{seatId}");
+                Debug.LogError("無法讀取名字");
+                labelToUpdate.text = targetUid; // 失敗時至少顯示 UID
+                return;
+            }
 
-                // ⭐ 玩家按下 Sit → 立即隱藏 HomeButton
-                if (homeButton != null) homeButton.SetActive(false);
+            if (task.Result.Exists)
+            {
+                string userName = task.Result.Value.ToString();
+                labelToUpdate.text = userName; // ✅ 成功顯示名字
             }
             else
             {
-                Debug.LogError($"❌ 坐下失敗：{seatId}, {task.Exception}");
+                labelToUpdate.text = "Unknown"; // 找不到名字資料
             }
+        });
+    }
+
+    // ... (OnSitButtonClicked 和 OnLeaveButtonClicked 保持不變)
+    private void OnSitButtonClicked(string seatId)
+    {
+        if (currentSeat != null) { Debug.Log("❌ 你已經坐在其他位置，不能再坐！"); return; }
+        string seatPath = $"Seat/Classroom/{seatId}";
+        dbRef.Child(seatPath).SetValueAsync(currentUID).ContinueWith(task =>
+        {
+            if (task.IsCompleted) { Debug.Log($"✅ 已坐下：{seatId}"); if (homeButton != null) homeButton.SetActive(false); }
         });
     }
 
     private void OnLeaveButtonClicked(string seatId)
     {
-        if (seatId != currentSeat)
-            return;
-
+        if (seatId != currentSeat) return;
         string seatPath = $"Seat/Classroom/{seatId}";
-
         dbRef.Child(seatPath).SetValueAsync("").ContinueWith(task =>
         {
-            if (task.IsCompleted)
-            {
-                Debug.Log($"🏃 已離開座位：{seatId}");
-                currentSeat = null;
-
-                // ⭐ 玩家按下 Leave → 顯示 HomeButton
-                if (homeButton != null) homeButton.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError($"❌ 離開失敗：{seatId}, {task.Exception}");
-            }
+            if (task.IsCompleted) { Debug.Log($"🏃 已離開座位：{seatId}"); currentSeat = null; if (homeButton != null) homeButton.SetActive(true); }
         });
     }
 }

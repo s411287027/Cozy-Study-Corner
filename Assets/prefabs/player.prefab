@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 3491881034397976439}
   - component: {fileID: 3110734243848785334}
   m_Layer: 3
-  m_Name: body_sit (1)
+  m_Name: hair_sit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 2654162170950188799}
   - component: {fileID: 3274476985454874308}
   m_Layer: 3
-  m_Name: hand_sit (1)
+  m_Name: face_sit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 1146774510877776512}
   - component: {fileID: 5251314759025641574}
   m_Layer: 3
-  m_Name: leg_sit (1)
+  m_Name: shirt_sit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

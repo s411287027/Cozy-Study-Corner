@@ -4,6 +4,7 @@ using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
 using System.Collections.Generic;
+using Firebase.Extensions;
 
 public class SeatManager_Room : MonoBehaviour
 {
@@ -69,7 +70,8 @@ public class SeatManager_Room : MonoBehaviour
                 }
                 else
                 {
-                    label.text = $"UID: {uid}";
+                    label.text = "Loading...";
+                    UpdateLabelWithUserName(uid, label);
 
                     if (uid == currentUID)
                     {
@@ -97,6 +99,28 @@ public class SeatManager_Room : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
+    {
+        dbRef.Child("users").Child(targetUid).Child("UserName")
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                labelToUpdate.text = targetUid;
+                return;
+            }
+
+            if (task.Result.Exists)
+            {
+                labelToUpdate.text = task.Result.Value.ToString();
+            }
+            else
+            {
+                labelToUpdate.text = "Unknown";
+            }
+        });
     }
 
     private void OnSitButtonClicked(string seatId)

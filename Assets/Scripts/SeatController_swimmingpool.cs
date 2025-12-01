@@ -3,11 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
+using Firebase.Extensions; // ⭐ 1. 必須新增這個命名空間
 using System.Collections.Generic;
 
 public class SeatManager_Swimmingpool : MonoBehaviour
 {
-    public Transform seatsParent;  // Coffee 場景的座位父物件
+    public Transform seatsParent;  // Swimmingpool 場景的座位父物件
     private DatabaseReference dbRef;
     private string currentUID;
     public GameObject homeButton;
@@ -33,10 +34,16 @@ public class SeatManager_Swimmingpool : MonoBehaviour
             leaveBtn.onClick.AddListener(() => OnLeaveButtonClicked(seatId));
         }
 
-        // 監聽 Coffee 資料變化
+        // 監聽 Swimmingpool 資料變化
         FirebaseDatabase.DefaultInstance
             .GetReference("Seat/Swimmingpool")
             .ValueChanged += OnSeatDataChanged;
+    }
+
+    private void OnDestroy()
+    {
+        if (dbRef != null)
+            dbRef.ValueChanged -= OnSeatDataChanged;
     }
 
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
@@ -70,7 +77,10 @@ public class SeatManager_Swimmingpool : MonoBehaviour
                 }
                 else
                 {
-                    label.text = $"UID: {uid}";
+                    // ⭐ 2. 修改：讀取名字
+                    label.text = "Loading...";
+                    UpdateLabelWithUserName(uid, label);
+                    // ⭐ 修改結束
 
                     if (uid == currentUID)
                     {
@@ -100,15 +110,41 @@ public class SeatManager_Swimmingpool : MonoBehaviour
             }
         }
         else
-        { if (homeButton != null) homeButton.SetActive(true); }
+        {
+            if (homeButton != null) homeButton.SetActive(true);
+        }
+    }
 
+    // ⭐ 3. 新增讀取名字函式
+    private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
+    {
+        dbRef.Child("users").Child(targetUid).Child("UserName")
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                labelToUpdate.text = targetUid;
+                return;
+            }
+
+            if (task.Result.Exists)
+            {
+                labelToUpdate.text = task.Result.Value.ToString();
+            }
+            else
+            {
+                labelToUpdate.text = "Unknown";
+            }
+        });
     }
 
     private void OnSitButtonClicked(string seatId)
     {
         if (currentSeat != null)
             return;
+
         if (homeButton != null) homeButton.SetActive(false);
+
         string seatPath = $"Seat/Swimmingpool/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
     }
@@ -117,7 +153,9 @@ public class SeatManager_Swimmingpool : MonoBehaviour
     {
         if (seatId != currentSeat)
             return;
+
         if (homeButton != null) homeButton.SetActive(true);
+
         string seatPath = $"Seat/Swimmingpool/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;

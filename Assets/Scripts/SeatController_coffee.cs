@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
+using Firebase.Extensions; // ⭐ 1. 必須新增這個命名空間
 using System.Collections.Generic;
 
 public class SeatManager_Coffee : MonoBehaviour
@@ -39,6 +40,13 @@ public class SeatManager_Coffee : MonoBehaviour
             .ValueChanged += OnSeatDataChanged;
     }
 
+    private void OnDestroy()
+    {
+        // 建議加上這個，切換場景時移除監聽，避免報錯
+        if (dbRef != null)
+            dbRef.ValueChanged -= OnSeatDataChanged;
+    }
+
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
     {
         if (args.DatabaseError != null)
@@ -70,7 +78,10 @@ public class SeatManager_Coffee : MonoBehaviour
                 }
                 else
                 {
-                    label.text = $"UID: {uid}";
+                    // ⭐ 2. 修改這裡：改成去抓名字
+                    label.text = "Loading...";
+                    UpdateLabelWithUserName(uid, label);
+                    // ⭐ 修改結束
 
                     if (uid == currentUID)
                     {
@@ -105,11 +116,37 @@ public class SeatManager_Coffee : MonoBehaviour
         }
     }
 
+    // ⭐ 3. 新增讀取名字的函式
+    private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
+    {
+        // 同樣假設路徑是 users/UID/username
+        dbRef.Child("users").Child(targetUid).Child("UserName")
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                labelToUpdate.text = targetUid; // 失敗顯示 UID
+                return;
+            }
+
+            if (task.Result.Exists)
+            {
+                labelToUpdate.text = task.Result.Value.ToString();
+            }
+            else
+            {
+                labelToUpdate.text = "Unknown";
+            }
+        });
+    }
+
     private void OnSitButtonClicked(string seatId)
     {
         if (currentSeat != null)
             return;
+
         if (homeButton != null) homeButton.SetActive(false);
+
         string seatPath = $"Seat/Coffee/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
     }
@@ -118,7 +155,9 @@ public class SeatManager_Coffee : MonoBehaviour
     {
         if (seatId != currentSeat)
             return;
+
         if (homeButton != null) homeButton.SetActive(true);
+
         string seatPath = $"Seat/Coffee/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;

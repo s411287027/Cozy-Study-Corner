@@ -507,7 +507,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -117
       objectReference: {fileID: 0}
     - target: {fileID: 814833546554043993, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -600,6 +600,10 @@ PrefabInstance:
     - target: {fileID: 4644360113544809626, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170136816852987857, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Pivot.x
@@ -1453,7 +1457,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -117
       objectReference: {fileID: 0}
     - target: {fileID: 814833546554043993, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1546,6 +1550,10 @@ PrefabInstance:
     - target: {fileID: 4644360113544809626, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170136816852987857, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Pivot.x
@@ -6680,7 +6688,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -118
       objectReference: {fileID: 0}
     - target: {fileID: 814833546554043993, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -6773,6 +6781,10 @@ PrefabInstance:
     - target: {fileID: 4644360113544809626, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170136816852987857, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Pivot.x
@@ -10670,6 +10682,10 @@ PrefabInstance:
     - target: {fileID: 4644360113544809626, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170136816852987857, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Pivot.x
@@ -15134,7 +15150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeatManager
   seatsParent: {fileID: 1778331001}
-  homeButton: {fileID: 0}
+  homeButton: {fileID: 1611887967}
 --- !u!4 &1866543837
 Transform:
   m_ObjectHideFlags: 0
@@ -16674,52 +16690,218 @@ MonoBehaviour:
   seats:
   - seatName: 1-1
     seatTransform: {fileID: 494644939}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 367918553}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 1-2
     seatTransform: {fileID: 899189934}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 2068016823}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 1-3
     seatTransform: {fileID: 1869113405}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 126490558}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 1-4
     seatTransform: {fileID: 1472222807}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 188223815}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-1
     seatTransform: {fileID: 652388942}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 1320504196}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-2
     seatTransform: {fileID: 965412794}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 183179771}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-3
     seatTransform: {fileID: 1792276969}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 931815533}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 2-4
     seatTransform: {fileID: 1135125021}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 1412544035}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 3-1
     seatTransform: {fileID: 1526554922}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 1197742715}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 3-2
     seatTransform: {fileID: 1561503037}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 147239762}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 3-3
     seatTransform: {fileID: 1247623154}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 360633562}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
   - seatName: 3-4
     seatTransform: {fileID: 622312944}
-    sitControllerPrefab: {fileID: 5469528885315527643, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
     sitButton: {fileID: 894747208}
+    hairOffset: {x: 0, y: 2.75, z: 0}
+    faceOffset: {x: 0, y: 2.75, z: 0}
+    shirtOffset: {x: 0, y: 0.12, z: 0}
+    hairScale: {x: 2, y: 2, z: 1}
+    faceScale: {x: 2, y: 2, z: 1}
+    shirtScale: {x: 2, y: 2, z: 1}
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
+  avatarPrefab: {fileID: 6821265221780226025, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
+  hairSprites:
+  - {fileID: 749024411796698662, guid: 100db5178aba37f41b9445d9719df177, type: 3}
+  - {fileID: 749024411796698662, guid: 100db5178aba37f41b9445d9719df177, type: 3}
+  - {fileID: 7627437197267415977, guid: 253b197402cc16448ade92b00a24ace6, type: 3}
+  - {fileID: 2255093583605429427, guid: e11f70a6a536c2e4fba2a64697fd8133, type: 3}
+  - {fileID: 1766474549230354426, guid: 352b4248b231b4240b844a1b2061e1d5, type: 3}
+  - {fileID: -2797342343252407475, guid: 3622a632634071d45bbda84b3af9037b, type: 3}
+  - {fileID: 3395501946842323917, guid: 040d18ad7a892f54bbc10d0e8e3a3f13, type: 3}
+  - {fileID: 5333521517884244093, guid: c6a84f5edfce3ae4a844b819dfd1791a, type: 3}
+  - {fileID: -4347460837272677342, guid: ef0f03959bcced64aab4122f836b5675, type: 3}
+  - {fileID: 2165410876637917722, guid: 84d5e868fbacb744fbf46e9a4aa0853c, type: 3}
+  - {fileID: -9005371299026855799, guid: 2342830faa4d3f94e8fa773fce86b575, type: 3}
+  - {fileID: -4211353799504728378, guid: 4d3ffc0c78b510c488819887ecea65da, type: 3}
+  - {fileID: 73193387889426960, guid: 7110cd7808f232b458e930779f4fc17a, type: 3}
+  faceSprites:
+  - {fileID: 3037873482306237581, guid: b1823868970930243a0075e48f9e1880, type: 3}
+  - {fileID: 3037873482306237581, guid: b1823868970930243a0075e48f9e1880, type: 3}
+  - {fileID: 7678662094576458126, guid: bd6e898606bc8654581a7a77d886a9b3, type: 3}
+  - {fileID: -7469470738588422091, guid: 39bc739fcef070d4a89920fe7ebfac68, type: 3}
+  - {fileID: -4066545148734885854, guid: 8f61445755c8cc846bfb1e5b716889f2, type: 3}
+  - {fileID: 7553783859987854149, guid: 4854a99d1ddaa2c4a8427729c06530aa, type: 3}
+  - {fileID: 5413044406942738623, guid: 98e3d65b0f5644146a2b86345659fa7d, type: 3}
+  - {fileID: 1354533647139122503, guid: ad35c531b0499544780a75e1c8605ffd, type: 3}
+  shirtSprites:
+  - {fileID: -4160174794612618643, guid: b12a389911eb47544ab21c9703b424d1, type: 3}
+  - {fileID: -4160174794612618643, guid: b12a389911eb47544ab21c9703b424d1, type: 3}
+  - {fileID: -6796732943196406255, guid: b97261993b2223140917b1eb187d8cae, type: 3}
+  - {fileID: -5833066490920402176, guid: 8c51f11d190d0a94aa884430f3ed06f0, type: 3}
+  - {fileID: -4633723119403631495, guid: 3295891f59f943f4c978c5237469d011, type: 3}
+  - {fileID: 6165033131111018687, guid: 5c38cc6c366fec64bae87e459bcbbeeb, type: 3}
+  - {fileID: 6729069448003156814, guid: b0ba588821ba45c49ac378e30da6a609, type: 3}
+  - {fileID: 2168702491233040204, guid: 19eaa9660bb077346b01844dc8a1cdbe, type: 3}
+  - {fileID: 9020138588883245759, guid: f8a19620caaa63646a72121a13d1af9f, type: 3}
 --- !u!1 &2055214832
 GameObject:
   m_ObjectHideFlags: 0
