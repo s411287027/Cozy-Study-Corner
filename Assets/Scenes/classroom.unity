@@ -10262,7 +10262,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1367592508
 Canvas:
   m_ObjectHideFlags: 0
@@ -16871,14 +16871,14 @@ MonoBehaviour:
   - seatName: 1-1
     seatTransform: {fileID: 494644939}
     sitButton: {fileID: 367918553}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.22, z: 0}
+    faceOffset: {x: 0.08, y: -1.26, z: 0}
+    shirtOffset: {x: 0.065, y: -1.41, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.41, z: 0}
+    hairScale: {x: 2, y: 2, z: 2}
+    faceScale: {x: 2, y: 2, z: 2}
+    shirtScale: {x: 2.1, y: 2.1, z: 2.1}
+    sleeveScale: {x: 2.1, y: 2.1, z: 2.1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16889,14 +16889,14 @@ MonoBehaviour:
   - seatName: 1-2
     seatTransform: {fileID: 899189934}
     sitButton: {fileID: 2068016823}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.22, z: 0}
+    faceOffset: {x: 0.08, y: -1.26, z: 0}
+    shirtOffset: {x: 0.065, y: -1.41, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.41, z: 0}
+    hairScale: {x: 2, y: 2, z: 2}
+    faceScale: {x: 2, y: 2, z: 2}
+    shirtScale: {x: 2.1, y: 2.1, z: 2.1}
+    sleeveScale: {x: 2.1, y: 2.1, z: 2.1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16907,14 +16907,14 @@ MonoBehaviour:
   - seatName: 1-3
     seatTransform: {fileID: 1869113405}
     sitButton: {fileID: 126490558}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.22, z: 0}
+    faceOffset: {x: 0.08, y: -1.26, z: 0}
+    shirtOffset: {x: 0.065, y: -1.41, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.41, z: 0}
+    hairScale: {x: 2, y: 2, z: 2}
+    faceScale: {x: 2, y: 2, z: 2}
+    shirtScale: {x: 2.1, y: 2.1, z: 2.1}
+    sleeveScale: {x: 2.1, y: 2.1, z: 2.1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16925,14 +16925,14 @@ MonoBehaviour:
   - seatName: 1-4
     seatTransform: {fileID: 1472222807}
     sitButton: {fileID: 188223815}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.22, z: 0}
+    faceOffset: {x: 0.08, y: -1.26, z: 0}
+    shirtOffset: {x: 0.065, y: -1.41, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.41, z: 0}
+    hairScale: {x: 2, y: 2, z: 2}
+    faceScale: {x: 2, y: 2, z: 2}
+    shirtScale: {x: 2.1, y: 2.1, z: 2.1}
+    sleeveScale: {x: 2.1, y: 2.1, z: 2.1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16943,14 +16943,14 @@ MonoBehaviour:
   - seatName: 2-1
     seatTransform: {fileID: 652388942}
     sitButton: {fileID: 1320504196}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.076, y: -1.1, z: 0}
+    faceOffset: {x: 0.08, y: -1.16, z: 0}
+    shirtOffset: {x: 0.065, y: -1.28, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.28, z: 0}
+    hairScale: {x: 1.8, y: 1.8, z: 1.8}
+    faceScale: {x: 1.8, y: 1.8, z: 1.8}
+    shirtScale: {x: 1.9, y: 1.9, z: 1.9}
+    sleeveScale: {x: 1.9, y: 1.9, z: 1.9}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16961,14 +16961,14 @@ MonoBehaviour:
   - seatName: 2-2
     seatTransform: {fileID: 965412794}
     sitButton: {fileID: 183179771}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.076, y: -1.1, z: 0}
+    faceOffset: {x: 0.08, y: -1.16, z: 0}
+    shirtOffset: {x: 0.065, y: -1.28, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.28, z: 0}
+    hairScale: {x: 1.8, y: 1.8, z: 1.8}
+    faceScale: {x: 1.8, y: 1.8, z: 1.8}
+    shirtScale: {x: 1.9, y: 1.9, z: 1.9}
+    sleeveScale: {x: 1.9, y: 1.9, z: 1.9}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16979,14 +16979,14 @@ MonoBehaviour:
   - seatName: 2-3
     seatTransform: {fileID: 1792276969}
     sitButton: {fileID: 931815533}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.076, y: -1.1, z: 0}
+    faceOffset: {x: 0.08, y: -1.16, z: 0}
+    shirtOffset: {x: 0.065, y: -1.28, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.28, z: 0}
+    hairScale: {x: 1.8, y: 1.8, z: 1.8}
+    faceScale: {x: 1.8, y: 1.8, z: 1.8}
+    shirtScale: {x: 1.9, y: 1.9, z: 1.9}
+    sleeveScale: {x: 1.9, y: 1.9, z: 1.9}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -16997,14 +16997,14 @@ MonoBehaviour:
   - seatName: 2-4
     seatTransform: {fileID: 1135125021}
     sitButton: {fileID: 1412544035}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.076, y: -1.1, z: 0}
+    faceOffset: {x: 0.08, y: -1.16, z: 0}
+    shirtOffset: {x: 0.065, y: -1.28, z: 0}
+    sleeveOffset: {x: 0.065, y: -1.28, z: 0}
+    hairScale: {x: 1.8, y: 1.8, z: 1.8}
+    faceScale: {x: 1.8, y: 1.8, z: 1.8}
+    shirtScale: {x: 1.9, y: 1.9, z: 1.9}
+    sleeveScale: {x: 1.9, y: 1.9, z: 1.9}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -17015,14 +17015,14 @@ MonoBehaviour:
   - seatName: 3-1
     seatTransform: {fileID: 1526554922}
     sitButton: {fileID: 1197742715}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.073, y: -0.97, z: 0}
+    faceOffset: {x: 0.076, y: -0.98, z: 0}
+    shirtOffset: {x: 0.073, y: -1.13, z: 0}
+    sleeveOffset: {x: 0.073, y: -1.13, z: 0}
+    hairScale: {x: 1.6, y: 1.6, z: 1.6}
+    faceScale: {x: 1.6, y: 1.6, z: 1.6}
+    shirtScale: {x: 1.7, y: 1.7, z: 1.7}
+    sleeveScale: {x: 1.7, y: 1.7, z: 1.7}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -17033,14 +17033,14 @@ MonoBehaviour:
   - seatName: 3-2
     seatTransform: {fileID: 1561503037}
     sitButton: {fileID: 147239762}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.073, y: -0.97, z: 0}
+    faceOffset: {x: 0.076, y: -0.98, z: 0}
+    shirtOffset: {x: 0.073, y: -1.13, z: 0}
+    sleeveOffset: {x: 0.073, y: -1.13, z: 0}
+    hairScale: {x: 1.6, y: 1.6, z: 1.6}
+    faceScale: {x: 1.6, y: 1.6, z: 1.6}
+    shirtScale: {x: 1.7, y: 1.7, z: 1.7}
+    sleeveScale: {x: 1.7, y: 1.7, z: 1.7}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -17051,14 +17051,14 @@ MonoBehaviour:
   - seatName: 3-3
     seatTransform: {fileID: 1247623154}
     sitButton: {fileID: 360633562}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.073, y: -0.97, z: 0}
+    faceOffset: {x: 0.076, y: -0.98, z: 0}
+    shirtOffset: {x: 0.073, y: -1.13, z: 0}
+    sleeveOffset: {x: 0.073, y: -1.13, z: 0}
+    hairScale: {x: 1.6, y: 1.6, z: 1.6}
+    faceScale: {x: 1.6, y: 1.6, z: 1.6}
+    shirtScale: {x: 1.7, y: 1.7, z: 1.7}
+    sleeveScale: {x: 1.7, y: 1.7, z: 1.7}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
@@ -17069,14 +17069,14 @@ MonoBehaviour:
   - seatName: 3-4
     seatTransform: {fileID: 622312944}
     sitButton: {fileID: 894747208}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.073, y: -0.97, z: 0}
+    faceOffset: {x: 0.076, y: -0.98, z: 0}
+    shirtOffset: {x: 0.073, y: -1.13, z: 0}
+    sleeveOffset: {x: 0.073, y: -1.13, z: 0}
+    hairScale: {x: 1.6, y: 1.6, z: 1.6}
+    faceScale: {x: 1.6, y: 1.6, z: 1.6}
+    shirtScale: {x: 1.7, y: 1.7, z: 1.7}
+    sleeveScale: {x: 1.7, y: 1.7, z: 1.7}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}

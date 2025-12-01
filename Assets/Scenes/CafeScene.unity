@@ -2785,55 +2785,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeatAvatar_Cafe
   seats:
-  - seatName: 1-1
-    seatTransform: {fileID: 2121022820}
-    sitButton: {fileID: 1477246716}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
-    hairOrder: 2
-    faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
-    pantsOrder: 1
-    shoesOrder: 1
-    currentAvatarObj: {fileID: 0}
-    runtimeHair: {fileID: 0}
-    runtimeFace: {fileID: 0}
-    runtimeShirt: {fileID: 0}
-    runtimeSleeve: {fileID: 0}
-    runtimePants: {fileID: 0}
-    runtimeShoes: {fileID: 0}
-    runtimeController: {fileID: 0}
-    currentUid: 
   - seatName: 1-2
     seatTransform: {fileID: 1183155866}
     sitButton: {fileID: 173990236}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.46, z: 0}
+    faceOffset: {x: 0.08, y: -1.46, z: 0}
+    shirtOffset: {x: 0.08, y: -1.54, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.55, z: 0}
+    pantsOffset: {x: 0.08, y: -1.46, z: 0}
+    shoesOffset: {x: 0.08, y: -1.36, z: 0}
+    hairScale: {x: 2.4, y: 2.4, z: 2.4}
+    faceScale: {x: 2.4, y: 2.4, z: 2.4}
+    shirtScale: {x: 2.4, y: 2.4, z: 2.4}
+    sleeveScale: {x: 2.4, y: 2.4, z: 2.4}
+    pantsScale: {x: 2.4, y: 2.4, z: 2.4}
+    shoesScale: {x: 2.4, y: 2.4, z: 2.4}
     hairOrder: 2
     faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
+    shirtOrder: 3
+    sleeveOrder: 5
     pantsOrder: 1
     shoesOrder: 1
     currentAvatarObj: {fileID: 0}
@@ -2845,55 +2815,25 @@ MonoBehaviour:
     runtimeShoes: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
-  - seatName: 2-1
-    seatTransform: {fileID: 422922882}
-    sitButton: {fileID: 1275778001}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
+  - seatName: 1-1
+    seatTransform: {fileID: 2121022820}
+    sitButton: {fileID: 1477246716}
+    hairOffset: {x: 0.08, y: -1.46, z: 0}
+    faceOffset: {x: 0.08, y: -1.46, z: 0}
+    shirtOffset: {x: 0.08, y: -1.56, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.56, z: 0}
+    pantsOffset: {x: 0.08, y: -1.46, z: 0}
+    shoesOffset: {x: 0.08, y: -1.36, z: 0}
+    hairScale: {x: 2.4, y: 2.4, z: 2.4}
+    faceScale: {x: 2.4, y: 2.4, z: 2.4}
+    shirtScale: {x: 2.4, y: 2.4, z: 2.4}
+    sleeveScale: {x: 2.4, y: 2.4, z: 2.4}
+    pantsScale: {x: 2.4, y: 2.4, z: 2.4}
+    shoesScale: {x: 2.4, y: 2.4, z: 2.4}
     hairOrder: 2
     faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
-    pantsOrder: 1
-    shoesOrder: 1
-    currentAvatarObj: {fileID: 0}
-    runtimeHair: {fileID: 0}
-    runtimeFace: {fileID: 0}
-    runtimeShirt: {fileID: 0}
-    runtimeSleeve: {fileID: 0}
-    runtimePants: {fileID: 0}
-    runtimeShoes: {fileID: 0}
-    runtimeController: {fileID: 0}
-    currentUid: 
-  - seatName: 2-2
-    seatTransform: {fileID: 1740334988}
-    sitButton: {fileID: 1237059113}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
-    hairOrder: 2
-    faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
+    shirtOrder: 3
+    sleeveOrder: 5
     pantsOrder: 1
     shoesOrder: 1
     currentAvatarObj: {fileID: 0}
@@ -2908,22 +2848,22 @@ MonoBehaviour:
   - seatName: 3-1
     seatTransform: {fileID: 556406494}
     sitButton: {fileID: 782704322}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.36, z: 0}
+    faceOffset: {x: 0.08, y: -1.36, z: 0}
+    shirtOffset: {x: 0.075, y: -1.42, z: 0}
+    sleeveOffset: {x: 0.075, y: -1.42, z: 0}
+    pantsOffset: {x: 0.08, y: -1.36, z: 0}
+    shoesOffset: {x: 0.08, y: -1.16, z: 0}
+    hairScale: {x: 2.2, y: 2.2, z: 2.2}
+    faceScale: {x: 2.2, y: 2.2, z: 2.2}
+    shirtScale: {x: 2.2, y: 2.2, z: 2.2}
+    sleeveScale: {x: 2.2, y: 2.2, z: 2.2}
+    pantsScale: {x: 2.2, y: 2.2, z: 2.2}
+    shoesScale: {x: 2.2, y: 2.2, z: 2.2}
     hairOrder: 2
     faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
+    shirtOrder: 3
+    sleeveOrder: 5
     pantsOrder: 1
     shoesOrder: 1
     currentAvatarObj: {fileID: 0}
@@ -2938,22 +2878,22 @@ MonoBehaviour:
   - seatName: 3-2
     seatTransform: {fileID: 1740334988}
     sitButton: {fileID: 941609391}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.36, z: 0}
+    faceOffset: {x: 0.08, y: -1.36, z: 0}
+    shirtOffset: {x: 0.075, y: -1.42, z: 0}
+    sleeveOffset: {x: 0.075, y: -1.42, z: 0}
+    pantsOffset: {x: 0.08, y: -1.36, z: 0}
+    shoesOffset: {x: 0.08, y: -1.16, z: 0}
+    hairScale: {x: 2.2, y: 2.2, z: 2.2}
+    faceScale: {x: 2.2, y: 2.2, z: 2.2}
+    shirtScale: {x: 2.2, y: 2.2, z: 2.2}
+    sleeveScale: {x: 2.2, y: 2.2, z: 2.2}
+    pantsScale: {x: 2.2, y: 2.2, z: 2.2}
+    shoesScale: {x: 2.2, y: 2.2, z: 2.2}
     hairOrder: 2
     faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
+    shirtOrder: 3
+    sleeveOrder: 5
     pantsOrder: 1
     shoesOrder: 1
     currentAvatarObj: {fileID: 0}
@@ -2968,22 +2908,22 @@ MonoBehaviour:
   - seatName: 4-1
     seatTransform: {fileID: 224433324}
     sitButton: {fileID: 1984855970}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.21, z: 0}
+    faceOffset: {x: 0.08, y: -1.21, z: 0}
+    shirtOffset: {x: 0.055, y: -1.27, z: 0}
+    sleeveOffset: {x: 0.055, y: -1.27, z: 0}
+    pantsOffset: {x: 0.08, y: -1.21, z: 0}
+    shoesOffset: {x: 0.08, y: -0.95, z: 0}
+    hairScale: {x: 2, y: 2, z: 2}
+    faceScale: {x: 2, y: 2, z: 2}
+    shirtScale: {x: 2, y: 2, z: 2}
+    sleeveScale: {x: 2, y: 2, z: 2}
+    pantsScale: {x: 2, y: 2, z: 2}
+    shoesScale: {x: 2, y: 2, z: 2}
     hairOrder: 2
     faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
+    shirtOrder: 3
+    sleeveOrder: 5
     pantsOrder: 1
     shoesOrder: 1
     currentAvatarObj: {fileID: 0}
@@ -2998,23 +2938,83 @@ MonoBehaviour:
   - seatName: 4-2
     seatTransform: {fileID: 318256962}
     sitButton: {fileID: 1417044292}
-    hairOffset: {x: 0, y: 2.75, z: 0}
-    faceOffset: {x: 0, y: 2.75, z: 0}
-    shirtOffset: {x: 0, y: 0.12, z: 0}
-    sleeveOffset: {x: 0, y: 0.12, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
-    shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
+    hairOffset: {x: 0.08, y: -1.21, z: 0}
+    faceOffset: {x: 0.08, y: -1.21, z: 0}
+    shirtOffset: {x: 0.055, y: -1.27, z: 0}
+    sleeveOffset: {x: 0.055, y: -1.27, z: 0}
+    pantsOffset: {x: 0.08, y: -1.21, z: 0}
+    shoesOffset: {x: 0.08, y: -0.95, z: 0}
+    hairScale: {x: 2, y: 2, z: 2}
+    faceScale: {x: 2, y: 2, z: 2}
+    shirtScale: {x: 2, y: 2, z: 2}
+    sleeveScale: {x: 2, y: 2, z: 2}
+    pantsScale: {x: 2, y: 2, z: 2}
+    shoesScale: {x: 2, y: 2, z: 2}
     hairOrder: 2
     faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
+    shirtOrder: 3
+    sleeveOrder: 5
     pantsOrder: 1
+    shoesOrder: 1
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimePants: {fileID: 0}
+    runtimeShoes: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
+  - seatName: 2-2
+    seatTransform: {fileID: 1740334988}
+    sitButton: {fileID: 1237059113}
+    hairOffset: {x: 0.08, y: -1.46, z: 0}
+    faceOffset: {x: 0.08, y: -1.53, z: 0}
+    shirtOffset: {x: 0.08, y: -1.55, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.56, z: 0}
+    pantsOffset: {x: 0.08, y: -1.46, z: 0}
+    shoesOffset: {x: 0.08, y: -1.36, z: 0}
+    hairScale: {x: 2.4, y: 2.4, z: 2.4}
+    faceScale: {x: 2.4, y: 2.4, z: 2.4}
+    shirtScale: {x: 2.4, y: 2.4, z: 2.4}
+    sleeveScale: {x: 2.4, y: 2.4, z: 2.4}
+    pantsScale: {x: 2.4, y: 2.4, z: 2.4}
+    shoesScale: {x: 2.4, y: 2.4, z: 2.4}
+    hairOrder: 2
+    faceOrder: 1
+    shirtOrder: 3
+    sleeveOrder: 8
+    pantsOrder: 2
+    shoesOrder: 1
+    currentAvatarObj: {fileID: 0}
+    runtimeHair: {fileID: 0}
+    runtimeFace: {fileID: 0}
+    runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
+    runtimePants: {fileID: 0}
+    runtimeShoes: {fileID: 0}
+    runtimeController: {fileID: 0}
+    currentUid: 
+  - seatName: 2-1
+    seatTransform: {fileID: 422922882}
+    sitButton: {fileID: 1275778001}
+    hairOffset: {x: 0.08, y: -1.56, z: 0}
+    faceOffset: {x: 0.08, y: -1.56, z: 0}
+    shirtOffset: {x: 0.08, y: -1.56, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.59, z: 0}
+    pantsOffset: {x: 0.08, y: -1.46, z: 0}
+    shoesOffset: {x: 0.08, y: -1.36, z: 0}
+    hairScale: {x: 2.5, y: 2.5, z: 2.5}
+    faceScale: {x: 2.5, y: 2.5, z: 2.5}
+    shirtScale: {x: 2.5, y: 2.5, z: 2.5}
+    sleeveScale: {x: 2.5, y: 2.5, z: 2.5}
+    pantsScale: {x: 2.5, y: 2.5, z: 2.5}
+    shoesScale: {x: 2.5, y: 2.5, z: 2.5}
+    hairOrder: 2
+    faceOrder: 1
+    shirtOrder: 3
+    sleeveOrder: 8
+    pantsOrder: 2
     shoesOrder: 1
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
@@ -4127,6 +4127,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -150
@@ -4190,6 +4194,10 @@ PrefabInstance:
     - target: {fileID: 4644360113544809626, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170136816852987857, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Pivot.x
@@ -7170,6 +7178,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -138
@@ -7465,6 +7477,10 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8101,6 +8117,10 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9109,6 +9129,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -150
@@ -9172,6 +9196,10 @@ PrefabInstance:
     - target: {fileID: 4644360113544809626, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170136816852987857, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Pivot.x
@@ -10187,6 +10215,10 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11220,7 +11252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11802,7 +11834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1624598892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12407,6 +12439,10 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129670236028199813, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -14155,7 +14191,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1891813845
 Canvas:
   m_ObjectHideFlags: 0

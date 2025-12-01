@@ -834,6 +834,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 178
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 177.78877
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 34.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 1-1
@@ -6367,24 +6383,24 @@ MonoBehaviour:
   - seatName: 1-1
     seatTransform: {fileID: 816075262}
     sitButton: {fileID: 278569696}
-    hairOffset: {x: 0, y: 0, z: 0}
-    faceOffset: {x: 0, y: 0, z: 0}
-    shirtOffset: {x: 0, y: 0, z: 0}
-    sleeveOffset: {x: 0, y: 0, z: 0}
+    hairOffset: {x: 0.04, y: -0.55, z: 0}
+    faceOffset: {x: 0.04, y: -0.55, z: 0}
+    shirtOffset: {x: 0.04, y: -0.55, z: 0}
+    sleeveOffset: {x: 0.04, y: -0.55, z: 0}
     pantsOffset: {x: 0, y: 0, z: 0}
     shoesOffset: {x: 0, y: 0, z: 0}
-    hairScale: {x: 2, y: 2, z: 1}
-    faceScale: {x: 2, y: 2, z: 1}
-    shirtScale: {x: 2, y: 2, z: 1}
-    sleeveScale: {x: 2, y: 2, z: 1}
-    pantsScale: {x: 2, y: 2, z: 1}
-    shoesScale: {x: 2, y: 2, z: 1}
-    hairOrder: 2
-    faceOrder: 1
-    shirtOrder: 1
-    sleeveOrder: 3
-    pantsOrder: 1
-    shoesOrder: 1
+    hairScale: {x: 0.9, y: 0.9, z: 0.9}
+    faceScale: {x: 0.9, y: 0.9, z: 0.9}
+    shirtScale: {x: 0.9, y: 0.9, z: 0.9}
+    sleeveScale: {x: 0.9, y: 0.9, z: 0.9}
+    pantsScale: {x: 0.9, y: 0.9, z: 0.9}
+    shoesScale: {x: 0.9, y: 0.9, z: 0.9}
+    hairOrder: 12
+    faceOrder: 11
+    shirtOrder: 31
+    sleeveOrder: 32
+    pantsOrder: 11
+    shoesOrder: 11
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}

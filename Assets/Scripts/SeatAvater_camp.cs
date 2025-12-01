@@ -133,7 +133,7 @@ public class SeatAvatar_camp : MonoBehaviour
                 targetSeat.runtimeHair.sprite = avatarDB.GetHair(task.hairId);
                 targetSeat.runtimeHair.transform.position = basePos + targetSeat.hairOffset;
                 targetSeat.runtimeHair.transform.localScale = targetSeat.hairScale;
-                targetSeat.runtimeHair.sortingOrder = baseOrder + 2;
+                targetSeat.runtimeHair.sortingOrder = baseOrder + 20;
                 targetSeat.runtimeHair.color = Color.white;
             }
 
@@ -155,7 +155,7 @@ public class SeatAvatar_camp : MonoBehaviour
                 targetSeat.runtimeShirt.sprite = avatarDB.GetShirt(task.shirtId);
                 targetSeat.runtimeShirt.transform.position = basePos + targetSeat.shirtOffset;
                 targetSeat.runtimeShirt.transform.localScale = targetSeat.shirtScale;
-                targetSeat.runtimeShirt.sortingOrder = baseOrder + 1;
+                targetSeat.runtimeShirt.sortingOrder = baseOrder + 3;
                 targetSeat.runtimeShirt.color = Color.white;
             }
 
@@ -168,7 +168,7 @@ public class SeatAvatar_camp : MonoBehaviour
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
                 // 袖子通常跟衣服同一層，或是比衣服高一層 (取決於你的美術)，這裡設為 +1 或 +2 皆可
-                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 3;
+                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 21;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
 

@@ -168,7 +168,7 @@ public class SeatAvatar_forest : MonoBehaviour
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
                 // 袖子通常跟衣服同一層，或是比衣服高一層 (取決於你的美術)，這裡設為 +1 或 +2 皆可
-                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 3;
+                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 7;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
 
