@@ -4877,6 +4877,7 @@ MonoBehaviour:
   messageInput: {fileID: 395436507}
   messageContent: {fileID: 226087425}
   messageItemPrefab: {fileID: 5521378670377165502, guid: fffaadd17fa816c4f8ede43cbc60a8f2, type: 3}
+  myMessageItemPrefab: {fileID: 5521378670377165502, guid: 62029c77a49cbae48aaa412a1270496d, type: 3}
 --- !u!4 &545253123
 Transform:
   m_ObjectHideFlags: 0
@@ -7950,6 +7951,7 @@ MonoBehaviour:
     CrrLevel: 20
     TomorrowReservationTime: 
     Message: 
+    StudySecondsForToday: 
     StudyAtHome: 
     currentEquip:
       hair: 0

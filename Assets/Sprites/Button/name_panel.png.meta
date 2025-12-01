@@ -103,10 +103,10 @@ TextureImporter:
       name: name_panel_0
       rect:
         serializedVersion: 2
-        x: 108
-        y: 79
-        width: 405
-        height: 265
+        x: 71
+        y: 414
+        width: 327
+        height: 138
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

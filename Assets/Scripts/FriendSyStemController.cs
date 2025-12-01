@@ -42,7 +42,9 @@ public class FriendSystemController : MonoBehaviour
     public TMP_Text infoMessageText;
     public TMP_InputField messageInput;
     public Transform messageContent;
+    [Header("Chat UI Prefabs")]
     public GameObject messageItemPrefab;
+    public GameObject myMessageItemPrefab;
 
     void Awake()
     {
@@ -386,20 +388,25 @@ public class FriendSystemController : MonoBehaviour
                 string from = msg.Child("from").Value.ToString();
                 string text = msg.Child("text").Value.ToString();
 
-                GameObject item = Instantiate(messageItemPrefab, messageContent);
-                TMP_Text t = item.GetComponentInChildren<TMP_Text>();
+                GameObject prefabToUse;
 
-                // 這裡可以依據是否為自己，改變文字顏色或對齊方式
                 if (from == myUid)
                 {
-                    t.text = $"<color=black>You:</color> {text}"; // 簡單上色區分
-                                                                  // 如果你有做靠右對齊的 Prefab 變體，可以在這裡控制
+                    // 如果是我傳的，用「我的 Prefab」(靠右)
+                    prefabToUse = myMessageItemPrefab;
                 }
                 else
                 {
-                    // 這裡顯示 Uid 比較醜，建議之後改成顯示 Friend Name
-                    t.text = $"<color=black>Friend:</color> {text}";
+                    // 如果是對方傳的，用「原本 Prefab」(靠左)
+                    prefabToUse = messageItemPrefab;
                 }
+
+                // 生成物件
+                GameObject item = Instantiate(prefabToUse, messageContent);
+
+                // 設定文字 (現代聊天軟體通常不需要顯示 "You:" 或 "Friend:"，靠左右區分即可)
+                TMP_Text t = item.GetComponentInChildren<TMP_Text>();
+                t.text = text;
             }
 
             // 3. ✅ 強制滾動到最底部 (顯示最新訊息)

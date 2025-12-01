@@ -543,7 +543,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.21121216
+      value: 8.4999695
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -1493,7 +1505,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.21121216
+      value: 5.9999695
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -5474,6 +5498,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 16.211163
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 2-4
@@ -6724,7 +6764,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.21121216
+      value: 16.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -8235,6 +8287,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.2111633
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90.29999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 3-1
@@ -8802,6 +8870,22 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.7887757
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -10627,6 +10711,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9.999811
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96.29999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 1-1
@@ -11499,6 +11599,22 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.7887754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -12961,6 +13077,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.2111635
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 3-4
@@ -13724,6 +13856,22 @@ PrefabInstance:
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
       value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 31.211163
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -14943,6 +15091,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.7887754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 2-2
@@ -15840,6 +16004,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10.788837
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -97.19999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92
+      objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
       value: Seat 2-1
@@ -16694,13 +16874,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 1-2
@@ -16709,13 +16892,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 1-3
@@ -16724,13 +16910,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 1-4
@@ -16739,13 +16928,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 2-1
@@ -16754,13 +16946,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 2-2
@@ -16769,13 +16964,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 2-3
@@ -16784,13 +16982,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 2-4
@@ -16799,13 +17000,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 3-1
@@ -16814,13 +17018,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 3-2
@@ -16829,13 +17036,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 3-3
@@ -16844,13 +17054,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   - seatName: 3-4
@@ -16859,13 +17072,16 @@ MonoBehaviour:
     hairOffset: {x: 0, y: 2.75, z: 0}
     faceOffset: {x: 0, y: 2.75, z: 0}
     shirtOffset: {x: 0, y: 0.12, z: 0}
+    sleeveOffset: {x: 0, y: 0.12, z: 0}
     hairScale: {x: 2, y: 2, z: 1}
     faceScale: {x: 2, y: 2, z: 1}
     shirtScale: {x: 2, y: 2, z: 1}
+    sleeveScale: {x: 2, y: 2, z: 1}
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}
     runtimeFace: {fileID: 0}
     runtimeShirt: {fileID: 0}
+    runtimeSleeve: {fileID: 0}
     runtimeController: {fileID: 0}
     currentUid: 
   avatarPrefab: {fileID: 6821265221780226025, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
