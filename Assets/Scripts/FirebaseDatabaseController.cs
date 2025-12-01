@@ -241,44 +241,73 @@ public class FirebaseDatabaseController : MonoBehaviour
     }
     public void AddStudySecondsForToday(int deltaSeconds)
     {
+        // 1. 基本檢查
         if (dts == null)
         {
-            Debug.LogWarning("AddStudySecondsForToday: dts is null");
-            return;
+            // 雖然 dts 為空，但我們仍然可以嘗試對資料庫進行累加，
+            // 只是無法更新本地顯示而已。
+            Debug.LogWarning("AddStudySecondsForToday: dts is null (Local UI might not update), but sending to Firebase.");
         }
 
         if (deltaSeconds <= 0) return;
 
-        // 取今天日期字串
         string today = System.DateTime.Now.ToString("yyyy-MM-dd");
 
-        if (dts.StudySecondsByDate == null)
+        // 2. 先更新本地端 (為了讓 UI 能夠即時跳動，看起來有反應)
+        if (dts != null)
         {
-            dts.StudySecondsByDate = new Dictionary<string, int>();
+            if (dts.StudySecondsByDate == null) dts.StudySecondsByDate = new Dictionary<string, int>();
+            if (!dts.StudySecondsByDate.ContainsKey(today)) dts.StudySecondsByDate[today] = 0;
+
+            dts.StudySecondsByDate[today] += deltaSeconds;
         }
 
-        if (!dts.StudySecondsByDate.ContainsKey(today))
-        {
-            dts.StudySecondsByDate[today] = 0;
-        }
-
-        // 更新本地資料
-        dts.StudySecondsByDate[today] += deltaSeconds;
-        int newValue = dts.StudySecondsByDate[today]; // 取得更新後的數值
-
         // ==========================================
-        // ⭐ 修改處：直接更新 Firebase 指定路徑，取代 SaveDataFn()
+        // ⭐ 修改處：使用 RunTransaction 進行「原子累加」
         // ==========================================
 
-        // 1. 確保有拿到 UID
         string uid = Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-
-        // 2. 拼湊路徑： users/UID/StudySecondsForToday/2025-12-01
-        // 這樣只會更新「今天」的秒數，不會影響歷史紀錄
         string path = $"users/{uid}/StudySecondsForToday/{today}";
+        DatabaseReference dateRef = FirebaseDatabase.DefaultInstance.GetReference(path);
 
-        // 3. 只上傳這個數值
-        FirebaseDatabase.DefaultInstance.GetReference(path).SetValueAsync(newValue);
+        // 執行交易
+        dateRef.RunTransaction(mutableData =>
+        {
+            // 1. 取得伺服器目前的值 (如果沒有值就是 0)
+            long currentServerValue = 0;
+            if (mutableData.Value != null)
+            {
+                // Firebase 的整數通常回傳為 long
+                try
+                {
+                    currentServerValue = long.Parse(mutableData.Value.ToString());
+                }
+                catch
+                {
+                    currentServerValue = 0;
+                }
+            }
+
+            // 2. 在伺服器的值上面「加上」你的秒數
+            long newServerValue = currentServerValue + deltaSeconds;
+
+            // 3. 設定回 mutableData
+            mutableData.Value = newServerValue;
+
+            // 4. 回傳成功，Firebase 會幫你處理寫入
+            return TransactionResult.Success(mutableData);
+        })
+        .ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("❌ 累加時間失敗: " + task.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                // Debug.Log("✅ 累加時間成功");
+            }
+        });
     }
 
 }
