@@ -106,12 +106,12 @@ TextureImporter:
       name: "Hair-5b \u5074\u9762_0"
       rect:
         serializedVersion: 2
-        x: 690
-        y: 790
-        width: 205
-        height: 228
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.45, y: 0.3}
+      pivot: {x: 0.49, y: 0.71}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

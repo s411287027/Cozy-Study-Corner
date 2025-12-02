@@ -124,12 +124,12 @@ TextureImporter:
       name: Hair-4c up_0
       rect:
         serializedVersion: 2
-        x: 644
-        y: 719
-        width: 311
-        height: 301
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.48, y: 0.45}
+      pivot: {x: 0.495, y: 0.717}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

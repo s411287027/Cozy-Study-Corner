@@ -103,12 +103,12 @@ TextureImporter:
       name: "Hair-9b \u6B63\u9762_0"
       rect:
         serializedVersion: 2
-        x: 682
-        y: 857
-        width: 228
-        height: 181
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.48, y: 0.05}
+      pivot: {x: 0.495, y: 0.717}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

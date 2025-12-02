@@ -103,12 +103,12 @@ TextureImporter:
       name: "Pants-2b\u80CC\u9762_0"
       rect:
         serializedVersion: 2
-        x: 704
-        y: 569
-        width: 167
-        height: 102
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
+      alignment: 9
+      pivot: {x: 0.4962, y: 0.5162}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: daf097d4fc92639488521a821e628345
     internalID: 0
     vertices: []
     indices: 

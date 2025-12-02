@@ -157,12 +157,12 @@ TextureImporter:
       name: Hair-3c right_0
       rect:
         serializedVersion: 2
-        x: 719
-        y: 768
-        width: 197
-        height: 235
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.38, y: 0.38}
+      pivot: {x: 0.495, y: 0.717}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -6385,8 +6385,8 @@ MonoBehaviour:
     sitButton: {fileID: 278569696}
     hairOffset: {x: 0.04, y: -0.55, z: 0}
     faceOffset: {x: 0.04, y: -0.55, z: 0}
-    shirtOffset: {x: 0.04, y: -0.55, z: 0}
-    sleeveOffset: {x: 0.04, y: -0.55, z: 0}
+    shirtOffset: {x: 0.038, y: -0.57, z: 0}
+    sleeveOffset: {x: 0.038, y: -0.57, z: 0}
     pantsOffset: {x: 0, y: 0, z: 0}
     shoesOffset: {x: 0, y: 0, z: 0}
     hairScale: {x: 0.9, y: 0.9, z: 0.9}
@@ -6397,7 +6397,7 @@ MonoBehaviour:
     shoesScale: {x: 0.9, y: 0.9, z: 0.9}
     hairOrder: 12
     faceOrder: 11
-    shirtOrder: 31
+    shirtOrder: 11
     sleeveOrder: 32
     pantsOrder: 11
     shoesOrder: 11

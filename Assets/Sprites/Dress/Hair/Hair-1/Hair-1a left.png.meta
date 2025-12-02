@@ -106,12 +106,12 @@ TextureImporter:
       name: Hair-1a left_0
       rect:
         serializedVersion: 2
-        x: 699
-        y: 712
-        width: 206
-        height: 283
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.45, y: 0.5}
+      pivot: {x: 0.495, y: 0.717}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

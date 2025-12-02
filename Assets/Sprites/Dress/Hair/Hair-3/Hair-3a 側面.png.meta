@@ -151,12 +151,12 @@ TextureImporter:
       name: "Hair-3a \u5074\u9762_0"
       rect:
         serializedVersion: 2
-        x: 684
-        y: 788
-        width: 200
-        height: 214
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.5, y: 0.32}
+      pivot: {x: 0.495, y: 0.717}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

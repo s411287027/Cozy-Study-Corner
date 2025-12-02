@@ -213,12 +213,14 @@ public class SeatAvatar_Room : MonoBehaviour
                 seat.runtimeHair = FindRenderer(newAvatar.transform, "hair_sit");
                 seat.runtimeFace = FindRenderer(newAvatar.transform, "face_sit");
                 seat.runtimeShirt = FindRenderer(newAvatar.transform, "shirt_sit");
+                seat.runtimePants = FindRenderer(newAvatar.transform, "pants_sit");
                 seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit"); // ⭐ 找袖子物件
 
                 // 隱藏初始顏色
                 if (seat.runtimeHair != null) seat.runtimeHair.color = Color.clear;
                 if (seat.runtimeFace != null) seat.runtimeFace.color = Color.clear;
                 if (seat.runtimeShirt != null) seat.runtimeShirt.color = Color.clear;
+                if (seat.runtimePants != null) seat.runtimePants.color = Color.clear;
                 if (seat.runtimeSleeve != null) seat.runtimeSleeve.color = Color.clear; // ⭐
 
                 if (seat.runtimeController != null && seat.sitButton != null)

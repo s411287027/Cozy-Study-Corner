@@ -103,12 +103,12 @@ TextureImporter:
       name: "Pants-5b \u5074\u9762_0"
       rect:
         serializedVersion: 2
-        x: 723
-        y: 548
-        width: 119
-        height: 126
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.52, y: 0.6}
+      pivot: {x: 0.4962, y: 0.5162}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

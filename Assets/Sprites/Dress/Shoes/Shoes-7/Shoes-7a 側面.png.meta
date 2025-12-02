@@ -103,12 +103,12 @@ TextureImporter:
       name: "Shoes-7a \u5074\u9762_0"
       rect:
         serializedVersion: 2
-        x: 741
-        y: 436
-        width: 84
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
+      alignment: 9
+      pivot: {x: 0.494, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9bbe99f154921c44a98e136e11ccb36b
     internalID: 0
     vertices: []
     indices: 

@@ -133,12 +133,12 @@ TextureImporter:
       name: "Shirt-3a \u5074\u9762_0"
       rect:
         serializedVersion: 2
-        x: 724
-        y: 660
-        width: 137
-        height: 142
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
+      alignment: 9
+      pivot: {x: 0.495, y: 0.605}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

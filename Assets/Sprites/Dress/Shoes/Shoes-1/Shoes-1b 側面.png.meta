@@ -106,12 +106,12 @@ TextureImporter:
       name: "Shoes-1b \u5074\u9762_0"
       rect:
         serializedVersion: 2
-        x: 706
-        y: 438
-        width: 146
-        height: 98
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.55, y: 0.45}
+      pivot: {x: 0.494, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

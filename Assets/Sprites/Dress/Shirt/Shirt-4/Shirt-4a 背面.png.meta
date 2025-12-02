@@ -106,12 +106,12 @@ TextureImporter:
       name: "Shirt-4a \u80CC\u9762_0"
       rect:
         serializedVersion: 2
-        x: 693
-        y: 649
-        width: 197
-        height: 150
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
+      alignment: 9
+      pivot: {x: 0.495, y: 0.605}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

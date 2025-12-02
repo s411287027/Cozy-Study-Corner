@@ -118,12 +118,12 @@ TextureImporter:
       name: Face-2 down_0
       rect:
         serializedVersion: 2
-        x: 736
-        y: 808
-        width: 119
-        height: 110
+        x: 0
+        y: 0
+        width: 1600
+        height: 1200
       alignment: 9
-      pivot: {x: 0.53, y: 0.66}
+      pivot: {x: 0.5, y: 0.73}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
