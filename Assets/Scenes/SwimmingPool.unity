@@ -1494,6 +1494,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &195841445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195841447}
+  - component: {fileID: 195841446}
+  m_Layer: 0
+  m_Name: GameManeger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &195841446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195841445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76b9e9bf14e6724991768182a3ba229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  seatController: {fileID: 261474443}
+--- !u!4 &195841447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195841445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 798.87915, y: 458.44293, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &205889287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +1928,7 @@ MonoBehaviour:
     currentUid: 
   avatarPrefab: {fileID: 6821265221780226025, guid: 5006ef692dde1084da87fb03416e1054, type: 3}
   avatarDB: {fileID: 11400000, guid: df29bb89026861c469f1dc8744135a94, type: 2}
+  currentRoomID: Room1
 --- !u!1 &266590662
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,6 +4516,52 @@ Transform:
   - {fileID: 1317953412}
   - {fileID: 87693017}
   - {fileID: 2076537823}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &664437871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664437873}
+  - component: {fileID: 664437872}
+  m_Layer: 0
+  m_Name: RoomTrafficControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &664437872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664437871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c86f2afa1ec934eba30ac4de204e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  avatarController: {fileID: 261474443}
+  interactionController: {fileID: 1501527069}
+--- !u!4 &664437873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664437871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 447.21442, y: 95.72508, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715430930
@@ -10565,6 +10657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   seatsParent: {fileID: 114767124}
   homeButton: {fileID: 632299165}
+  currentRoomID: Room1
 --- !u!1 &1508961216
 GameObject:
   m_ObjectHideFlags: 0
@@ -15096,3 +15189,5 @@ SceneRoots:
   - {fileID: 261474442}
   - {fileID: 266590663}
   - {fileID: 1822942655}
+  - {fileID: 664437873}
+  - {fileID: 195841447}

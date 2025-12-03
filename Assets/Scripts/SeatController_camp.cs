@@ -3,22 +3,28 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
-using Firebase.Extensions; // ⭐ 1. 必須新增這個
+using Firebase.Extensions; // 必須新增這個命名空間
 using System.Collections.Generic;
 
 public class SeatManager_Camp : MonoBehaviour
 {
-    public Transform seatsParent;  // Coffee 場景的座位父物件
-    private DatabaseReference dbRef;
-    private string currentUID;
+    public Transform seatsParent;
     public GameObject homeButton;
 
+    // ⭐ 修正 1: 新增房間變數
+    [Header("房間設定")]
+    public string currentRoomID = "Room1";
+
+    private DatabaseReference rootRef; // 根目錄 (用來查名字和寫入資料)
+    private DatabaseReference roomRef; // ⭐ 監聽座位用的 Reference
+
+    private string currentUID;
     private string currentSeat = null;
     private Dictionary<string, GameObject> seatObjects = new Dictionary<string, GameObject>();
 
     void Start()
     {
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        rootRef = FirebaseDatabase.DefaultInstance.RootReference;
         currentUID = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
         // 收集所有座位
@@ -34,17 +40,34 @@ public class SeatManager_Camp : MonoBehaviour
             leaveBtn.onClick.AddListener(() => OnLeaveButtonClicked(seatId));
         }
 
-        // 監聽 Coffee 資料變化
-        FirebaseDatabase.DefaultInstance
-            .GetReference("Seat/Camp")
-            .ValueChanged += OnSeatDataChanged;
+        // ⭐ 修正 2: 啟動時連線到預設房間
+        ConnectToRoom(currentRoomID);
     }
+
+    // ⭐ 修正 3: 核心函式：切換房間的邏輯 (供外部 RoomManager 呼叫)
+    public void ConnectToRoom(string roomId)
+    {
+        // 1. 如果之前有監聽別的房間，先取消監聽
+        if (roomRef != null)
+        {
+            roomRef.ValueChanged -= OnSeatDataChanged;
+        }
+
+        // 2. 更新房間 ID
+        currentRoomID = roomId;
+        Debug.Log($"[SeatManager_Camp] 切換操作目標至：{currentRoomID}");
+
+        // 3. 設定新的監聽路徑：Seat/Camp/RoomX
+        roomRef = FirebaseDatabase.DefaultInstance.GetReference($"Seat/Camp/{currentRoomID}");
+        roomRef.ValueChanged += OnSeatDataChanged;
+    }
+
 
     private void OnDestroy()
     {
-        // 養成好習慣，銷毀時移除監聽，避免報錯
-        if (dbRef != null)
-            dbRef.ValueChanged -= OnSeatDataChanged;
+        // ⭐ 修正 4: 移除 roomRef 的監聽
+        if (roomRef != null)
+            roomRef.ValueChanged -= OnSeatDataChanged;
     }
 
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
@@ -78,10 +101,8 @@ public class SeatManager_Camp : MonoBehaviour
                 }
                 else
                 {
-                    // ⭐ 2. 修改開始：這裡去抓名字
                     label.text = "Loading...";
                     UpdateLabelWithUserName(uid, label);
-                    // ⭐ 修改結束
 
                     if (uid == currentUID)
                     {
@@ -116,16 +137,14 @@ public class SeatManager_Camp : MonoBehaviour
         }
     }
 
-    // ⭐ 3. 新增讀取名字的函式
+    // 讀取名字的函式 (使用 ContinueWithOnMainThread)
     private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
     {
-        // 請確認你的資料庫路徑是 users/UID/username
-        dbRef.Child("users").Child(targetUid).Child("UserName")
+        rootRef.Child("users").Child(targetUid).Child("UserName")
             .GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
-                // 讀取失敗顯示 UID 當作備案
                 labelToUpdate.text = targetUid;
                 return;
             }
@@ -146,11 +165,12 @@ public class SeatManager_Camp : MonoBehaviour
         if (currentSeat != null)
             return;
 
-        // 為了確保 UI 反應即時，這裡先關閉，Callback 回來再確認也行
         if (homeButton != null) homeButton.SetActive(false);
 
-        string seatPath = $"Seat/Camp/{seatId}";
-        dbRef.Child(seatPath).SetValueAsync(currentUID);
+        // ⭐ 修正 5: 寫入路徑加入 Room ID
+        string seatPath = $"Seat/Camp/{currentRoomID}/{seatId}";
+
+        rootRef.Child(seatPath).SetValueAsync(currentUID);
     }
 
     private void OnLeaveButtonClicked(string seatId)
@@ -160,8 +180,10 @@ public class SeatManager_Camp : MonoBehaviour
 
         if (homeButton != null) homeButton.SetActive(true);
 
-        string seatPath = $"Seat/Camp/{seatId}";
-        dbRef.Child(seatPath).SetValueAsync("");
+        // ⭐ 修正 6: 寫入路徑加入 Room ID
+        string seatPath = $"Seat/Camp/{currentRoomID}/{seatId}";
+
+        rootRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;
     }
 }

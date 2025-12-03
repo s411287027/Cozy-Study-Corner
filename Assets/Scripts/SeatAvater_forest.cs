@@ -2,6 +2,9 @@ using UnityEngine;
 using Firebase.Database;
 using System.Collections.Generic;
 using Firebase.Auth;
+// 如果 LoadUserEquip 使用了 ContinueWithOnMainThread，則需要這個
+// using Firebase.Extensions; 
+
 public class SeatAvatar_forest : MonoBehaviour
 {
     [System.Serializable]
@@ -16,20 +19,20 @@ public class SeatAvatar_forest : MonoBehaviour
         public Vector3 hairOffset = new Vector3(0, 2.75f, 0);
         public Vector3 faceOffset = new Vector3(0, 2.75f, 0);
         public Vector3 shirtOffset = new Vector3(0, 0.12f, 0);
-        public Vector3 sleeveOffset = new Vector3(0, 0.12f, 0); // ⭐ 新增：袖子位置
+        public Vector3 sleeveOffset = new Vector3(0, 0.12f, 0);
 
         [Header("個別縮放微調 (Scale)")]
         public Vector3 hairScale = new Vector3(2, 2, 1);
         public Vector3 faceScale = new Vector3(2, 2, 1);
         public Vector3 shirtScale = new Vector3(2, 2, 1);
-        public Vector3 sleeveScale = new Vector3(2, 2, 1);      // ⭐ 新增：袖子縮放
+        public Vector3 sleeveScale = new Vector3(2, 2, 1);
 
         // Runtime 變數
         [HideInInspector] public GameObject currentAvatarObj;
         [HideInInspector] public SpriteRenderer runtimeHair;
         [HideInInspector] public SpriteRenderer runtimeFace;
         [HideInInspector] public SpriteRenderer runtimeShirt;
-        [HideInInspector] public SpriteRenderer runtimeSleeve;  // ⭐ 新增：袖子 Renderer
+        [HideInInspector] public SpriteRenderer runtimeSleeve;
         [HideInInspector] public PlayerSitController runtimeController;
         [HideInInspector] public string currentUid;
     }
@@ -42,6 +45,12 @@ public class SeatAvatar_forest : MonoBehaviour
     [Header("共用圖片資料庫 (請拉入設定檔)")]
     public AvatarDatabase avatarDB;
 
+    [Header("房間設定")]
+    public string currentRoomID = "Room1";
+
+    // 追蹤目前成功顯示的房間ID，用於延遲清除
+    private string lastDisplayedRoomID = "NOT_INITIALIZED";
+
     private DataSnapshot latestSnapshot;
     private bool needsUpdate = false;
     private DatabaseReference firebaseRef;
@@ -52,7 +61,7 @@ public class SeatAvatar_forest : MonoBehaviour
         public int hairId;
         public int faceId;
         public int shirtId;
-        public int sleeveId; // ⭐ 新增：袖子 ID
+        public int sleeveId;
     }
     private Queue<AppearanceTask> pendingAppearanceUpdates = new Queue<AppearanceTask>();
     private object queueLock = new object();
@@ -63,12 +72,57 @@ public class SeatAvatar_forest : MonoBehaviour
 
         if (avatarDB == null)
         {
+            Debug.LogError("❌ 錯誤：請在 SeatAvatar_forest 元件中放入 AvatarDatabase 設定檔！");
             return;
         }
 
-        Debug.Log("[SeatAvatar] 開始監聽...");
-        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference("Seat/Forest");
+        ConnectToRoom(currentRoomID);
+    }
+
+    // 核心函式：切換房間的邏輯 (修正閃爍問題)
+    public void ConnectToRoom(string roomID)
+    {
+        // 1. 如果原本有連線，先取消監聽
+        if (firebaseRef != null)
+        {
+            firebaseRef.ValueChanged -= OnSeatValueChanged;
+        }
+
+        // 2. 清空【換裝排程隊列】(因為舊排程對新房間無效)
+        lock (queueLock)
+        {
+            pendingAppearanceUpdates.Clear();
+        }
+
+        // 刪除 ClearVisualAvatars()，維持延遲清除邏輯
+
+        currentRoomID = roomID;
+        Debug.Log($"[SeatAvatar_Forest] 準備切換至房間：{currentRoomID}");
+
+        // 3. 設定新的監聽路徑：Seat/Forest/RoomX
+        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference($"Seat/Forest/{currentRoomID}");
         firebaseRef.ValueChanged += OnSeatValueChanged;
+    }
+
+    // 只清除畫面上視覺元素和引用
+    private void ClearVisualAvatars()
+    {
+        foreach (var seat in seats)
+        {
+            seat.currentUid = "";
+            if (seat.currentAvatarObj != null)
+            {
+                Destroy(seat.currentAvatarObj);
+                seat.currentAvatarObj = null;
+            }
+            // 清除所有執行期引用
+            seat.runtimeHair = null;
+            seat.runtimeFace = null;
+            seat.runtimeShirt = null;
+            seat.runtimeSleeve = null;
+            seat.runtimeController = null;
+        }
+        latestSnapshot = null;
     }
 
     private void OnDestroy()
@@ -99,6 +153,9 @@ public class SeatAvatar_forest : MonoBehaviour
         if (task.seatIndex < 0 || task.seatIndex >= seats.Length) return;
 
         SeatData targetSeat = seats[task.seatIndex];
+
+        // 防呆：如果物件在換裝排程期間被銷毀，則直接跳過
+        if (targetSeat.currentAvatarObj == null) return;
 
         if (targetSeat.currentAvatarObj != null)
         {
@@ -159,15 +216,14 @@ public class SeatAvatar_forest : MonoBehaviour
                 targetSeat.runtimeShirt.color = Color.white;
             }
 
-            // 6. 設定袖子 (⭐ 新增邏輯)
+            // 6. 設定袖子
             if (targetSeat.runtimeSleeve != null)
             {
                 targetSeat.runtimeSleeve.gameObject.SetActive(true);
-                targetSeat.runtimeSleeve.sprite = avatarDB.GetSleeve(task.sleeveId); // 從 DB 拿袖子
+                targetSeat.runtimeSleeve.sprite = avatarDB.GetSleeve(task.sleeveId);
 
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
-                // 袖子通常跟衣服同一層，或是比衣服高一層 (取決於你的美術)，這裡設為 +1 或 +2 皆可
                 targetSeat.runtimeSleeve.sortingOrder = baseOrder + 7;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
@@ -185,8 +241,20 @@ public class SeatAvatar_forest : MonoBehaviour
 
     private void ProcessSeatUpdates(DataSnapshot snapshot)
     {
+        // 延遲清除邏輯 - 只有在 Room ID 改變時，且非第一次啟動時，才清除
+        if (currentRoomID != lastDisplayedRoomID)
+        {
+            // 只有當上一個顯示的 ID 不是初始值時才執行清除
+            if (lastDisplayedRoomID != "NOT_INITIALIZED")
+            {
+                Debug.Log($"[SeatAvatar_Forest] 收到 {currentRoomID} 資料，清除舊房間 ({lastDisplayedRoomID}) 顯示...");
+                ClearVisualAvatars(); // 清除舊房間的小人
+            }
+            lastDisplayedRoomID = currentRoomID;
+        }
+
         string myUid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-        bool amISitting = false; // ⭐ 標記：我是否坐在某個位置上
+        bool amISitting = false;
         for (int i = 0; i < seats.Length; i++)
         {
             var seat = seats[i];
@@ -196,28 +264,32 @@ public class SeatAvatar_forest : MonoBehaviour
             {
                 if (uid == myUid) amISitting = true;
 
+                // 如果 UID 相同且物件存在，跳過
                 if (seat.currentUid == uid && seat.currentAvatarObj != null) continue;
 
                 seat.currentUid = uid;
+
+                // 銷毀舊物件
                 if (seat.currentAvatarObj != null) Destroy(seat.currentAvatarObj);
 
                 GameObject newAvatar = Instantiate(avatarPrefab, seat.seatTransform.position, Quaternion.identity);
                 seat.currentAvatarObj = newAvatar;
                 newAvatar.SetActive(false);
 
+                // 確保 runtimeController 拿到新的 Component
                 seat.runtimeController = newAvatar.GetComponent<PlayerSitController>();
 
-                // ⭐ 尋找對應的 Renderer (請確保 Prefab 裡面有這些名字)
+                // 尋找對應的 Renderer
                 seat.runtimeHair = FindRenderer(newAvatar.transform, "hair_sit");
                 seat.runtimeFace = FindRenderer(newAvatar.transform, "face_sit");
                 seat.runtimeShirt = FindRenderer(newAvatar.transform, "shirt_sit");
-                seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit"); // ⭐ 找袖子物件
+                seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit");
 
                 // 隱藏初始顏色
                 if (seat.runtimeHair != null) seat.runtimeHair.color = Color.clear;
                 if (seat.runtimeFace != null) seat.runtimeFace.color = Color.clear;
                 if (seat.runtimeShirt != null) seat.runtimeShirt.color = Color.clear;
-                if (seat.runtimeSleeve != null) seat.runtimeSleeve.color = Color.clear; // ⭐
+                if (seat.runtimeSleeve != null) seat.runtimeSleeve.color = Color.clear;
 
                 if (seat.runtimeController != null && seat.sitButton != null)
                 {
@@ -233,6 +305,7 @@ public class SeatAvatar_forest : MonoBehaviour
                     Destroy(seat.currentAvatarObj);
                     seat.currentAvatarObj = null;
                     seat.currentUid = "";
+                    seat.runtimeController = null; // 清空控制項
                 }
             }
         }
@@ -243,13 +316,11 @@ public class SeatAvatar_forest : MonoBehaviour
     {
         if (myWalkingPlayer == null)
         {
-            // 根據你的截圖，角色名是 player(Clone)
             myWalkingPlayer = GameObject.Find("player(Clone)");
         }
 
         if (myWalkingPlayer != null)
         {
-            // 如果坐著，就隱藏走路角色；如果沒坐，就顯示
             if (myWalkingPlayer.activeSelf == isSitting)
             {
                 myWalkingPlayer.SetActive(!isSitting);
@@ -283,10 +354,8 @@ public class SeatAvatar_forest : MonoBehaviour
                 int.TryParse(equipSnapshot.Child("hair").Value?.ToString(), out hId);
                 int.TryParse(equipSnapshot.Child("face").Value?.ToString(), out fId);
 
-                // 1. 抓取衣服 ID
                 int.TryParse(equipSnapshot.Child("shirt").Value?.ToString(), out sId);
 
-                // 2. ⭐ 修改這裡：袖子 ID 直接使用衣服的 ID (因為它們是同一套)
                 slId = sId;
             }
 
@@ -298,7 +367,7 @@ public class SeatAvatar_forest : MonoBehaviour
                     hairId = hId,
                     faceId = fId,
                     shirtId = sId,
-                    sleeveId = slId // 這裡就會傳入跟衣服一樣的 ID 去 Database 找圖片
+                    sleeveId = slId
                 });
             }
         });

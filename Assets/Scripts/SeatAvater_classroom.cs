@@ -41,6 +41,8 @@ public class SeatAvatar_classroom : MonoBehaviour
 
     [Header("共用圖片資料庫 (請拉入設定檔)")]
     public AvatarDatabase avatarDB;
+    [Header("房間設定")]
+    public string currentRoomID = "Room1";
 
     private DataSnapshot latestSnapshot;
     private bool needsUpdate = false;
@@ -66,10 +68,56 @@ public class SeatAvatar_classroom : MonoBehaviour
             Debug.LogError("❌ 錯誤：請在 SeatAvatar_classroom 元件中放入 AvatarDatabase 設定檔！");
             return;
         }
+        ConnectToRoom(currentRoomID);
+        //Debug.Log("[SeatAvatar] 開始監聽...");
+        //firebaseRef = FirebaseDatabase.DefaultInstance.GetReference("Seat/Classroom");
+        //firebaseRef.ValueChanged += OnSeatValueChanged;
+    }
 
-        Debug.Log("[SeatAvatar] 開始監聽...");
-        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference("Seat/Classroom");
+    public void ConnectToRoom(string roomID)
+    {
+        // 如果原本有連線，先取消監聽
+        if (firebaseRef != null)
+        {
+            firebaseRef.ValueChanged -= OnSeatValueChanged;
+            firebaseRef = null;
+        }
+
+        // 清空當前畫面上的所有人 (因為要換房間了)
+        ClearAllSeats();
+
+        currentRoomID = roomID;
+        Debug.Log($"[SeatAvatar] 切換至房間：{currentRoomID}");
+
+        // ⭐ 關鍵：路徑動態加入 roomID
+        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference($"Seat/Classroom/{currentRoomID}");
         firebaseRef.ValueChanged += OnSeatValueChanged;
+    }
+
+    // ⭐ 新增：清空所有座位的函式
+    private void ClearAllSeats()
+    {
+        // ⭐ 新增：切換房間時，清空等待中的換裝請求，避免舊資料干擾
+        lock (queueLock)
+        {
+            pendingAppearanceUpdates.Clear();
+        }
+
+        foreach (var seat in seats)
+        {
+            seat.currentUid = "";
+            if (seat.currentAvatarObj != null)
+            {
+                Destroy(seat.currentAvatarObj);
+                seat.currentAvatarObj = null;
+            }
+            // 清空 Runtime 變數防止殘留
+            seat.runtimeHair = null;
+            seat.runtimeFace = null;
+            seat.runtimeShirt = null;
+            seat.runtimeSleeve = null;
+        }
+        latestSnapshot = null;
     }
 
     private void OnDestroy()

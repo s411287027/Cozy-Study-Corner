@@ -2,6 +2,9 @@ using UnityEngine;
 using Firebase.Database;
 using System.Collections.Generic;
 using Firebase.Auth;
+// 建議加入
+// using Firebase.Extensions; 
+
 public class SeatAvatar_library : MonoBehaviour
 {
     [System.Serializable]
@@ -16,20 +19,20 @@ public class SeatAvatar_library : MonoBehaviour
         public Vector3 hairOffset = new Vector3(0, 2.75f, 0);
         public Vector3 faceOffset = new Vector3(0, 2.75f, 0);
         public Vector3 shirtOffset = new Vector3(0, 0.12f, 0);
-        public Vector3 sleeveOffset = new Vector3(0, 0.12f, 0); // ⭐ 新增：袖子位置
+        public Vector3 sleeveOffset = new Vector3(0, 0.12f, 0);
 
         [Header("個別縮放微調 (Scale)")]
         public Vector3 hairScale = new Vector3(2, 2, 1);
         public Vector3 faceScale = new Vector3(2, 2, 1);
         public Vector3 shirtScale = new Vector3(2, 2, 1);
-        public Vector3 sleeveScale = new Vector3(2, 2, 1);      // ⭐ 新增：袖子縮放
+        public Vector3 sleeveScale = new Vector3(2, 2, 1);
 
         // Runtime 變數
         [HideInInspector] public GameObject currentAvatarObj;
         [HideInInspector] public SpriteRenderer runtimeHair;
         [HideInInspector] public SpriteRenderer runtimeFace;
         [HideInInspector] public SpriteRenderer runtimeShirt;
-        [HideInInspector] public SpriteRenderer runtimeSleeve;  // ⭐ 新增：袖子 Renderer
+        [HideInInspector] public SpriteRenderer runtimeSleeve;
         [HideInInspector] public PlayerSitController runtimeController;
         [HideInInspector] public string currentUid;
     }
@@ -42,33 +45,82 @@ public class SeatAvatar_library : MonoBehaviour
     [Header("共用圖片資料庫 (請拉入設定檔)")]
     public AvatarDatabase avatarDB;
 
+    // ⭐ 修正 1: 新增房間變數
+    [Header("房間設定")]
+    public string currentRoomID = "Room1";
+
+    // ⭐ 修正 2: 延遲清除追蹤
+    private string lastDisplayedRoomID = "NOT_INITIALIZED";
+
     private DataSnapshot latestSnapshot;
     private bool needsUpdate = false;
     private DatabaseReference firebaseRef;
-
+    private GameObject myWalkingPlayer;
     private struct AppearanceTask
     {
         public int seatIndex;
         public int hairId;
         public int faceId;
         public int shirtId;
-        public int sleeveId; // ⭐ 新增：袖子 ID
+        public int sleeveId;
     }
     private Queue<AppearanceTask> pendingAppearanceUpdates = new Queue<AppearanceTask>();
     private object queueLock = new object();
-    private GameObject myWalkingPlayer;
+
     void Start()
     {
         foreach (var seat in seats) seat.currentUid = "";
 
         if (avatarDB == null)
         {
+            Debug.LogError("❌ 錯誤：請在 SeatAvatar_library 元件中放入 AvatarDatabase 設定檔！");
             return;
         }
 
-        Debug.Log("[SeatAvatar] 開始監聽...");
-        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference("Seat/Library");
+        // ⭐ 修正 3: 啟動時連線到預設房間
+        ConnectToRoom(currentRoomID);
+    }
+
+    // ⭐ 修正 4: 核心函式：切換房間的邏輯 (處理隊列清除)
+    public void ConnectToRoom(string roomID)
+    {
+        if (firebaseRef != null)
+        {
+            firebaseRef.ValueChanged -= OnSeatValueChanged;
+        }
+
+        lock (queueLock)
+        {
+            pendingAppearanceUpdates.Clear();
+        }
+
+        currentRoomID = roomID;
+        Debug.Log($"[SeatAvatar_Library] 準備切換至房間：{currentRoomID}");
+
+        // ⭐ 設定新的監聽路徑：Seat/Library/RoomX
+        firebaseRef = FirebaseDatabase.DefaultInstance.GetReference($"Seat/Library/{currentRoomID}");
         firebaseRef.ValueChanged += OnSeatValueChanged;
+    }
+
+    // ⭐ 修正 5: 只清除畫面上視覺元素和引用 (供延遲清除使用)
+    private void ClearVisualAvatars()
+    {
+        foreach (var seat in seats)
+        {
+            seat.currentUid = "";
+            if (seat.currentAvatarObj != null)
+            {
+                Destroy(seat.currentAvatarObj);
+                seat.currentAvatarObj = null;
+            }
+            // 清除所有執行期引用
+            seat.runtimeHair = null;
+            seat.runtimeFace = null;
+            seat.runtimeShirt = null;
+            seat.runtimeSleeve = null;
+            seat.runtimeController = null;
+        }
+        latestSnapshot = null;
     }
 
     private void OnDestroy()
@@ -99,6 +151,8 @@ public class SeatAvatar_library : MonoBehaviour
         if (task.seatIndex < 0 || task.seatIndex >= seats.Length) return;
 
         SeatData targetSeat = seats[task.seatIndex];
+
+        if (targetSeat.currentAvatarObj == null) return; // 安全檢查
 
         if (targetSeat.currentAvatarObj != null)
         {
@@ -159,7 +213,7 @@ public class SeatAvatar_library : MonoBehaviour
                 targetSeat.runtimeShirt.color = Color.white;
             }
 
-            // 6. 設定袖子 (⭐ 新增邏輯)
+            // 6. 設定袖子
             if (targetSeat.runtimeSleeve != null)
             {
                 targetSeat.runtimeSleeve.gameObject.SetActive(true);
@@ -185,6 +239,18 @@ public class SeatAvatar_library : MonoBehaviour
 
     private void ProcessSeatUpdates(DataSnapshot snapshot)
     {
+        // ⭐ 修正 6: 延遲清除邏輯
+        if (currentRoomID != lastDisplayedRoomID)
+        {
+            // 只有當上一個顯示的 ID 不是初始值時才執行清除
+            if (lastDisplayedRoomID != "NOT_INITIALIZED")
+            {
+                Debug.Log($"[SeatAvatar_Library] 收到 {currentRoomID} 資料，清除舊房間 ({lastDisplayedRoomID}) 顯示...");
+                ClearVisualAvatars(); // 清除舊房間的小人
+            }
+            lastDisplayedRoomID = currentRoomID;
+        }
+
         string myUid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         bool amISitting = false; // ⭐ 標記：我是否坐在某個位置上
         for (int i = 0; i < seats.Length; i++)
@@ -206,17 +272,17 @@ public class SeatAvatar_library : MonoBehaviour
 
                 seat.runtimeController = newAvatar.GetComponent<PlayerSitController>();
 
-                // ⭐ 尋找對應的 Renderer (請確保 Prefab 裡面有這些名字)
+                // ⭐ 尋找對應的 Renderer
                 seat.runtimeHair = FindRenderer(newAvatar.transform, "hair_sit");
                 seat.runtimeFace = FindRenderer(newAvatar.transform, "face_sit");
                 seat.runtimeShirt = FindRenderer(newAvatar.transform, "shirt_sit");
-                seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit"); // ⭐ 找袖子物件
+                seat.runtimeSleeve = FindRenderer(newAvatar.transform, "sleeve_sit");
 
                 // 隱藏初始顏色
                 if (seat.runtimeHair != null) seat.runtimeHair.color = Color.clear;
                 if (seat.runtimeFace != null) seat.runtimeFace.color = Color.clear;
                 if (seat.runtimeShirt != null) seat.runtimeShirt.color = Color.clear;
-                if (seat.runtimeSleeve != null) seat.runtimeSleeve.color = Color.clear; // ⭐
+                if (seat.runtimeSleeve != null) seat.runtimeSleeve.color = Color.clear;
 
                 if (seat.runtimeController != null && seat.sitButton != null)
                 {
@@ -232,6 +298,7 @@ public class SeatAvatar_library : MonoBehaviour
                     Destroy(seat.currentAvatarObj);
                     seat.currentAvatarObj = null;
                     seat.currentUid = "";
+                    seat.runtimeController = null;
                 }
             }
         }
@@ -242,13 +309,11 @@ public class SeatAvatar_library : MonoBehaviour
     {
         if (myWalkingPlayer == null)
         {
-            // 根據你的截圖，角色名是 player(Clone)
             myWalkingPlayer = GameObject.Find("player(Clone)");
         }
 
         if (myWalkingPlayer != null)
         {
-            // 如果坐著，就隱藏走路角色；如果沒坐，就顯示
             if (myWalkingPlayer.activeSelf == isSitting)
             {
                 myWalkingPlayer.SetActive(!isSitting);
@@ -284,7 +349,7 @@ public class SeatAvatar_library : MonoBehaviour
                 // 1. 抓取衣服 ID
                 int.TryParse(equipSnapshot.Child("shirt").Value?.ToString(), out sId);
 
-                // 2. ⭐ 修改這裡：袖子 ID 直接使用衣服的 ID (因為它們是同一套)
+                // 2. 袖子 ID 同衣服
                 slId = sId;
             }
 
@@ -296,7 +361,7 @@ public class SeatAvatar_library : MonoBehaviour
                     hairId = hId,
                     faceId = fId,
                     shirtId = sId,
-                    sleeveId = slId // 這裡就會傳入跟衣服一樣的 ID 去 Database 找圖片
+                    sleeveId = slId
                 });
             }
         });

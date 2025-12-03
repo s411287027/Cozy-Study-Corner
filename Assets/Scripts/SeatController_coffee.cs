@@ -3,22 +3,28 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
-using Firebase.Extensions; // ⭐ 1. 必須新增這個命名空間
+using Firebase.Extensions; // ⭐ 為了 ContinueWithOnMainThread
 using System.Collections.Generic;
 
 public class SeatManager_Coffee : MonoBehaviour
 {
-    public Transform seatsParent;  // Coffee 場景的座位父物件
-    private DatabaseReference dbRef;
-    private string currentUID;
+    public Transform seatsParent;
     public GameObject homeButton;
 
+    // ⭐ 房間變數
+    [Header("房間設定")]
+    public string currentRoomID = "Room1";
+
+    private DatabaseReference rootRef; // 根目錄 (用來查名字和寫入資料)
+    private DatabaseReference roomRef; // ⭐ 監聽座位用的 Reference
+
+    private string currentUID;
     private string currentSeat = null;
     private Dictionary<string, GameObject> seatObjects = new Dictionary<string, GameObject>();
 
     void Start()
     {
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        rootRef = FirebaseDatabase.DefaultInstance.RootReference;
         currentUID = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
 
         // 收集所有座位
@@ -34,17 +40,33 @@ public class SeatManager_Coffee : MonoBehaviour
             leaveBtn.onClick.AddListener(() => OnLeaveButtonClicked(seatId));
         }
 
-        // 監聽 Coffee 資料變化
-        FirebaseDatabase.DefaultInstance
-            .GetReference("Seat/Coffee")
-            .ValueChanged += OnSeatDataChanged;
+        // ⭐ 啟動時，連線到預設房間
+        ConnectToRoom(currentRoomID);
+    }
+
+    // ⭐ 核心函式：切換房間的邏輯 (供外部呼叫)
+    public void ConnectToRoom(string roomId)
+    {
+        // 1. 如果之前有監聽別的房間，先取消監聽
+        if (roomRef != null)
+        {
+            roomRef.ValueChanged -= OnSeatDataChanged;
+        }
+
+        // 2. 更新房間 ID
+        currentRoomID = roomId;
+        Debug.Log($"[SeatManager_Coffee] 切換操作目標至：{currentRoomID}");
+
+        // 3. 設定新的監聽路徑：Seat/Coffee/RoomX
+        roomRef = FirebaseDatabase.DefaultInstance.GetReference($"Seat/Coffee/{currentRoomID}");
+        roomRef.ValueChanged += OnSeatDataChanged;
     }
 
     private void OnDestroy()
     {
-        // 建議加上這個，切換場景時移除監聽，避免報錯
-        if (dbRef != null)
-            dbRef.ValueChanged -= OnSeatDataChanged;
+        // 移除 roomRef 的監聽
+        if (roomRef != null)
+            roomRef.ValueChanged -= OnSeatDataChanged;
     }
 
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
@@ -57,6 +79,7 @@ public class SeatManager_Coffee : MonoBehaviour
 
         currentSeat = null;
 
+        // Snapshot 現在是 RoomX 的資料
         foreach (var seatData in args.Snapshot.Children)
         {
             string seatId = seatData.Key;
@@ -78,10 +101,8 @@ public class SeatManager_Coffee : MonoBehaviour
                 }
                 else
                 {
-                    // ⭐ 2. 修改這裡：改成去抓名字
                     label.text = "Loading...";
                     UpdateLabelWithUserName(uid, label);
-                    // ⭐ 修改結束
 
                     if (uid == currentUID)
                     {
@@ -105,6 +126,7 @@ public class SeatManager_Coffee : MonoBehaviour
             {
                 if (kv.Key != currentSeat)
                 {
+                    // 只要我坐著，其他空位也隱藏坐下按鈕
                     Button sitBtn = kv.Value.transform.Find("SitButton").GetComponent<Button>();
                     sitBtn.gameObject.SetActive(false);
                 }
@@ -116,16 +138,14 @@ public class SeatManager_Coffee : MonoBehaviour
         }
     }
 
-    // ⭐ 3. 新增讀取名字的函式
     private void UpdateLabelWithUserName(string targetUid, TMP_Text labelToUpdate)
     {
-        // 同樣假設路徑是 users/UID/username
-        dbRef.Child("users").Child(targetUid).Child("UserName")
+        rootRef.Child("users").Child(targetUid).Child("UserName")
             .GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
-                labelToUpdate.text = targetUid; // 失敗顯示 UID
+                labelToUpdate.text = targetUid;
                 return;
             }
 
@@ -143,23 +163,45 @@ public class SeatManager_Coffee : MonoBehaviour
     private void OnSitButtonClicked(string seatId)
     {
         if (currentSeat != null)
+        {
+            Debug.Log("❌ 你已經坐在其他位置，不能再坐！");
             return;
+        }
 
         if (homeButton != null) homeButton.SetActive(false);
 
-        string seatPath = $"Seat/Coffee/{seatId}";
-        dbRef.Child(seatPath).SetValueAsync(currentUID);
+        // ⭐ 寫入路徑加入 Room ID
+        string seatPath = $"Seat/Coffee/{currentRoomID}/{seatId}";
+
+        rootRef.Child(seatPath).SetValueAsync(currentUID).ContinueWith(task =>
+        {
+            if (task.IsCompleted && !task.IsFaulted)
+            {
+                Debug.Log($"✅ 已在 {currentRoomID} 坐下：{seatId}");
+            }
+            else if (task.IsFaulted)
+            {
+                Debug.LogError($"❌ 坐下失敗：{task.Exception.Message}");
+            }
+        });
     }
 
     private void OnLeaveButtonClicked(string seatId)
     {
-        if (seatId != currentSeat)
-            return;
+        if (seatId != currentSeat) return;
 
         if (homeButton != null) homeButton.SetActive(true);
 
-        string seatPath = $"Seat/Coffee/{seatId}";
-        dbRef.Child(seatPath).SetValueAsync("");
-        currentSeat = null;
+        // ⭐ 寫入路徑加入 Room ID
+        string seatPath = $"Seat/Coffee/{currentRoomID}/{seatId}";
+
+        rootRef.Child(seatPath).SetValueAsync("").ContinueWith(task =>
+        {
+            if (task.IsCompleted && !task.IsFaulted)
+            {
+                Debug.Log($"🏃 已離開 {currentRoomID} 座位：{seatId}");
+                currentSeat = null;
+            }
+        });
     }
 }
