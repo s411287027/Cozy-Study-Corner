@@ -796,11 +796,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -175.9
+      value: -94
       objectReference: {fileID: 0}
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30.254
+      value: -38.682
       objectReference: {fileID: 0}
     - target: {fileID: 814833546554043993, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -832,23 +832,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 939784038840508743, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_text
-      value: Leave
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 178
+      value: -11.788818
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32
+      value: -172.30002
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 177.78877
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 34.3
+      value: -170
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -1965,8 +1965,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -804.6, y: -57}
-  m_SizeDelta: {x: 178.3209, y: 96.7938}
+  m_AnchoredPosition: {x: -804.6002, y: -60.1}
+  m_SizeDelta: {x: 178.32, y: 138.8437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341719478
 MonoBehaviour:
@@ -1989,8 +1989,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.58490634, g: 0.49019608, b: 0.74509805, a: 1}
-    m_HighlightedColor: {r: 0.37544316, g: 0.49306458, b: 0.7132075, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2044,8 +2044,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 503c4c1242b7e1f43a5db7cc33c626e0, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3170,8 +3170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -804.6, y: -203.72107}
-  m_SizeDelta: {x: 107.1812, y: 155.2729}
+  m_AnchoredPosition: {x: -804.6, y: -217.8}
+  m_SizeDelta: {x: 178.32, y: 152.7051}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513583700
 MonoBehaviour:
@@ -3324,7 +3324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: item
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6049,6 +6049,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   seatsParent: {fileID: 1206817207}
+  MapButton: {fileID: 1355119025}
+  ItemButton: {fileID: 341719476}
+  FriendButton: {fileID: 513583698}
+  ReservationButton: {fileID: 1093093823}
+  MessageButton: {fileID: 2022251737}
+  LogOutButton: {fileID: 1060275841}
+  StartTimeInputFil: {fileID: 132063274}
+  EndTimeInputFil: {fileID: 958571275}
+  MessInputFil: {fileID: 652086449}
 --- !u!4 &1029939280
 Transform:
   m_ObjectHideFlags: 0
@@ -6676,8 +6685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -799.56, y: -380}
-  m_SizeDelta: {x: 188.4002, y: 132.1084}
+  m_AnchoredPosition: {x: -804.5996, y: -380.30444}
+  m_SizeDelta: {x: 178.32, y: 132.7173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093093825
 MonoBehaviour:

@@ -106,10 +106,10 @@ TextureImporter:
       name: btn_friend_0
       rect:
         serializedVersion: 2
-        x: 272
-        y: 94
-        width: 129
-        height: 198
+        x: 0
+        y: 0
+        width: 440
+        height: 440
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

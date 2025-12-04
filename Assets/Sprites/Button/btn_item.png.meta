@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: c4e7aa95d9b5ee54ba4e75739c62b259
+guid: 503c4c1242b7e1f43a5db7cc33c626e0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5208931365468423270
-    second: btn_reservation_0
+      213: -6231639825100867160
+    second: btn_item_0
   - first:
-      213: 8558120204512588480
-    second: btn_reservation_1
+      213: -2496742061794214160
+    second: btn_item_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: btn_reservation_1
+      name: btn_item_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 440
-        height: 440
+        width: 500
+        height: 500
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c2f01fabfc84c670800000000000000
-      internalID: 8558120204512588480
+      spriteID: 8a97fa08894c489a0800000000000000
+      internalID: -6231639825100867160
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 99c33b95c665a5f44b99071a2696572c
+    spriteID: dd38169fb6152a64ea19d6d6480edbf7
     internalID: 0
     vertices: []
     indices: 
@@ -138,8 +138,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      btn_reservation_0: 5208931365468423270
-      btn_reservation_1: 8558120204512588480
+      btn_item_0: -6231639825100867160
+      btn_item_1: -2496742061794214160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

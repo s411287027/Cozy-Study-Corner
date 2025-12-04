@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: c4e7aa95d9b5ee54ba4e75739c62b259
+guid: 64291a45699859349b5f83a3cb6b21f7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5208931365468423270
-    second: btn_reservation_0
+      213: -3396801789971659377
+    second: book-3_0
   - first:
-      213: 8558120204512588480
-    second: btn_reservation_1
+      213: 8458952365467217626
+    second: book-3_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: btn_reservation_1
+      name: book-3_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 440
-        height: 440
+        x: 10
+        y: 33
+        width: 408
+        height: 280
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c2f01fabfc84c670800000000000000
-      internalID: 8558120204512588480
+      spriteID: f850450e4c22cd0d0800000000000000
+      internalID: -3396801789971659377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book-3_1
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 156
+        width: 267
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adeaf93eb5c346570800000000000000
+      internalID: 8458952365467217626
       vertices: []
       indices: 
       edges: []
@@ -128,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 99c33b95c665a5f44b99071a2696572c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -138,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      btn_reservation_0: 5208931365468423270
-      btn_reservation_1: 8558120204512588480
+      book-3_0: -3396801789971659377
+      book-3_1: 8458952365467217626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

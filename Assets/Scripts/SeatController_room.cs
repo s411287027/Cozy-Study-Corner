@@ -12,6 +12,16 @@ public class SeatManager_Room : MonoBehaviour
     private DatabaseReference dbRef;
     private string currentUID;
 
+    public GameObject MapButton;
+    public GameObject ItemButton;
+    public GameObject FriendButton;
+    public GameObject ReservationButton;
+    public GameObject MessageButton;
+    public GameObject LogOutButton;
+    public GameObject StartTimeInputFil;
+    public GameObject EndTimeInputFil;
+    public GameObject MessInputFil;
+
     private string currentSeat = null;
     private Dictionary<string, GameObject> seatObjects = new Dictionary<string, GameObject>();
 
@@ -130,6 +140,15 @@ public class SeatManager_Room : MonoBehaviour
 
         string seatPath = $"users/{currentUID}/StudyAtHome/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
+        MapButton.SetActive(false);
+        ItemButton.SetActive(false);
+        FriendButton.SetActive(false);
+        ReservationButton.SetActive(false);
+        MessageButton.SetActive(false);
+        LogOutButton.SetActive(false);
+        StartTimeInputFil.SetActive(false);
+        EndTimeInputFil.SetActive(false);
+        MessInputFil.SetActive(false);
     }
 
     private void OnLeaveButtonClicked(string seatId)
@@ -140,5 +159,14 @@ public class SeatManager_Room : MonoBehaviour
         string seatPath = $"users/{currentUID}/StudyAtHome/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;
+        MapButton.SetActive(true);
+        ItemButton.SetActive(true);
+        FriendButton.SetActive(true);
+        ReservationButton.SetActive(true);
+        MessageButton.SetActive(true);
+        LogOutButton.SetActive(true);
+        StartTimeInputFil.SetActive(true);
+        EndTimeInputFil.SetActive(true);
+        MessInputFil.SetActive(true);
     }
 }
