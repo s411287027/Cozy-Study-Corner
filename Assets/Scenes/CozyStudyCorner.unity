@@ -1262,6 +1262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SeatController
   seatsParent: {fileID: 0}
   homeButton: {fileID: 0}
+  currentRoomID: Room1
 --- !u!1 &97442791
 GameObject:
   m_ObjectHideFlags: 0
@@ -15062,6 +15063,105 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683693285}
   m_CullTransparentMesh: 1
+--- !u!1 &1694485806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1694485808}
+  - component: {fileID: 1694485807}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1694485807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694485806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43832d19f29906439284c92d0dfdd21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::music
+  sceneMusicsGroups:
+  - sceneNames:
+    - SampleScene
+    - DressScene
+    - Map
+    musicClips:
+    - {fileID: 8300000, guid: 4b110572c81ad054584083beff5f07b7, type: 3}
+    - {fileID: 8300000, guid: 35477734eca74ef43ab0f9ed328695fe, type: 3}
+    - {fileID: 8300000, guid: 4ff0689517c1f4748b1437fcd15f6f45, type: 3}
+    - {fileID: 8300000, guid: 4decb056ca8b7d04e9166980c67ccff3, type: 3}
+    - {fileID: 8300000, guid: 2adba301b42ba264b9978dac1acb0910, type: 3}
+    - {fileID: 8300000, guid: 8a590fad445dc2340bad69e8ac3899f0, type: 3}
+    - {fileID: 8300000, guid: 9e9c72e40e7985441bdd08b2909bcdb3, type: 3}
+  - sceneNames:
+    - classroom
+    musicClips:
+    - {fileID: 8300000, guid: 8cfe876eb0503114a9f7df5022643c75, type: 3}
+    - {fileID: 8300000, guid: d4fd5d2512de49144a883e46943e2adc, type: 3}
+    - {fileID: 8300000, guid: fc6d386356671a94789dc9abe368a7ce, type: 3}
+    - {fileID: 8300000, guid: b550a40b41cb82a48a5c28866ce67c8b, type: 3}
+  - sceneNames:
+    - CafeScene
+    musicClips:
+    - {fileID: 8300000, guid: fb2177cb5dcaf3642a72f0b435b6d3ec, type: 3}
+    - {fileID: 8300000, guid: c30fe80c5ba07de45bb8901da52256aa, type: 3}
+    - {fileID: 8300000, guid: 124ba5dddfaeed3408d8a2e0391dae0a, type: 3}
+    - {fileID: 8300000, guid: d197b36a154bd9a45ac0a4e360f52f9a, type: 3}
+    - {fileID: 8300000, guid: 054824372b097494bb4fab6f4f4547b0, type: 3}
+    - {fileID: 8300000, guid: bda5383637598944c9622d0eb3ebf773, type: 3}
+  - sceneNames:
+    - ForestScene
+    musicClips:
+    - {fileID: 8300000, guid: 92b0a1fc79a8bf64eab7075c1c46df14, type: 3}
+    - {fileID: 8300000, guid: 74f8929d293a426428e0e3ee6fdd9227, type: 3}
+    - {fileID: 8300000, guid: 9f163602693e49c4d838044bc24efe7c, type: 3}
+    - {fileID: 8300000, guid: 1fc6be8283cccec4ebc91a6d1d7ed0e1, type: 3}
+    - {fileID: 8300000, guid: caba1b8d17ad16748b9c196314baade6, type: 3}
+  - sceneNames:
+    - LibraryScene
+    musicClips:
+    - {fileID: 8300000, guid: 192c1c64dd7278149843816b6fe00f0b, type: 3}
+    - {fileID: 8300000, guid: 4a1ab591e423f3b499f84e9b60c56766, type: 3}
+    - {fileID: 8300000, guid: c6ba014cf23672a4198ca101299eeac7, type: 3}
+    - {fileID: 8300000, guid: 260c461e0cd6e9b428d66288674eca52, type: 3}
+  - sceneNames:
+    - CampScene
+    musicClips:
+    - {fileID: 8300000, guid: c534e36ba39a1ad4e84c0a6d63c24c41, type: 3}
+    - {fileID: 8300000, guid: 1af8f67707b24c448a19aa678ebf877b, type: 3}
+    - {fileID: 8300000, guid: 147179fac15711246bfc623ba4a92ff4, type: 3}
+  - sceneNames:
+    - CozyStudyCorner
+    musicClips:
+    - {fileID: 8300000, guid: f80b79ff469d37c4d80815285b3ac598, type: 3}
+  fadeDuration: 1
+--- !u!4 &1694485808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694485806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.69433, y: -0.7525, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714482911
 GameObject:
   m_ObjectHideFlags: 0
@@ -20042,3 +20142,4 @@ SceneRoots:
   - {fileID: 579810228}
   - {fileID: 1878880454}
   - {fileID: 545253123}
+  - {fileID: 1694485808}

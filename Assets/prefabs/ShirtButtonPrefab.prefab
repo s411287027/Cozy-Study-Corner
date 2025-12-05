@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 59.68872}
+  m_AnchoredPosition: {x: 0, y: 48.048}
   m_SizeDelta: {x: 0, y: -119.3775}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4537832023750422781
@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5454587}
   m_AnchorMax: {x: 0.5, y: 0.5454587}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -98}
-  m_SizeDelta: {x: 775.125, y: 775.125}
+  m_AnchoredPosition: {x: 1.2665, y: -111}
+  m_SizeDelta: {x: 716.8718, y: 716.8718}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1686756199725225479
 CanvasRenderer:
@@ -245,8 +245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5454587}
   m_AnchorMax: {x: 0.5, y: 0.5454587}
-  m_AnchoredPosition: {x: -0.00073719, y: 52.688}
-  m_SizeDelta: {x: 160.53, y: 35.328}
+  m_AnchoredPosition: {x: 1.2665, y: 40.866}
+  m_SizeDelta: {x: 158, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2288895090647193238
 CanvasRenderer:
@@ -269,14 +269,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13725491, g: 0.86666673, b: 0.4901961, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7013694841225498296, guid: 1f7d11bc2b593b84d88a771d76648489, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -326,7 +326,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.4965556}
   m_AnchorMax: {x: 0.5, y: 0.4965556}
   m_AnchoredPosition: {x: 0.2665, y: -58.8534}
-  m_SizeDelta: {x: 160.533, y: 153.7068}
+  m_SizeDelta: {x: 160, y: 158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3358749507875728016
 CanvasRenderer:
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.63740116, g: 0.98490566, b: 0.8039138, a: 1}
+  m_Color: {r: 1, g: 0.9843137, b: 0.94509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

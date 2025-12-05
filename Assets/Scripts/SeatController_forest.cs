@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
+using UnityEngine.EventSystems; // ⭐ 新 Input System 需要
+using UnityEngine.InputSystem;   // ⭐ 新 Input System 需要
 using Firebase.Extensions; // ⭐ 為了 ContinueWithOnMainThread
 
 using System.Collections.Generic;
@@ -39,6 +41,8 @@ public class SeatManager_Forest : MonoBehaviour
 
             sitBtn.onClick.AddListener(() => OnSitButtonClicked(seatId));
             leaveBtn.onClick.AddListener(() => OnLeaveButtonClicked(seatId));
+
+            
         }
 
         // ⭐ 啟動時，連線到預設房間
@@ -145,22 +149,22 @@ public class SeatManager_Forest : MonoBehaviour
         // 查名字跟房間無關，還是查 users/UID
         rootRef.Child("users").Child(targetUid).Child("UserName")
             .GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted || task.IsCanceled)
             {
-                labelToUpdate.text = targetUid;
-                return;
-            }
+                if (task.IsFaulted || task.IsCanceled)
+                {
+                    labelToUpdate.text = targetUid;
+                    return;
+                }
 
-            if (task.Result.Exists)
-            {
-                labelToUpdate.text = task.Result.Value.ToString();
-            }
-            else
-            {
-                labelToUpdate.text = "Unknown";
-            }
-        });
+                if (task.Result.Exists)
+                {
+                    labelToUpdate.text = task.Result.Value.ToString();
+                }
+                else
+                {
+                    labelToUpdate.text = "Unknown";
+                }
+            });
     }
 
     private void OnSitButtonClicked(string seatId)
@@ -209,4 +213,75 @@ public class SeatManager_Forest : MonoBehaviour
             }
         });
     }
+
+    
+
+
+    // 保存目前顯示按鈕的 ClickArea
+    private SeatClickArea activeClickArea = null;
+
+    // ⭐ 點擊座位顯示按鈕
+    public void OnSeatClicked(string seatId, SeatClickArea clickArea)
+    {
+        string path = $"Seat/Forest/{currentRoomID}/{seatId}";
+
+        rootRef.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (!task.IsCompleted || task.IsFaulted) return;
+
+            string uid = task.Result.Value?.ToString();
+
+            if (string.IsNullOrEmpty(uid) || uid == "null") return;
+            if (uid == currentUID) return;
+
+            // 隱藏上一個按鈕
+            if (activeClickArea != null && activeClickArea != clickArea)
+                activeClickArea.HideButtons();
+
+            clickArea.ShowButtons();
+            activeClickArea = clickArea;
+        });
+    }
+
+    // ⭐ 監聽全局點擊收起按鈕 (兼容新 Input System)
+    void Update()
+    {
+        if (activeClickArea == null) return;
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            // 判斷是否點擊在按鈕上
+            if (!IsPointerOverUIObject(activeClickArea.addFriendButton.gameObject) &&
+                !IsPointerOverUIObject(activeClickArea.stickyNoteButton.gameObject))
+            {
+                activeClickArea.HideButtons();
+                activeClickArea = null;
+            }
+        }
+    }
+
+
+
+    // ⭐ 判斷滑鼠是否在指定 UI 元件上
+    private bool IsPointerOverUIObject(GameObject obj)
+    {
+        if (obj == null) return false;
+
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+        foreach (var result in results)
+        {
+            if (result.gameObject == obj)
+                return true;
+        }
+        return false;
+    }
+
+
 }

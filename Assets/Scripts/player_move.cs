@@ -359,30 +359,59 @@ public class player_move : MonoBehaviour
     void FixedUpdate()
     {
         if (!canMove) return;
+
         Vector2 dir = targetPosition - rb.position;
+
+        // 如果已經到達目標點，直接套用偽3D縮放和排序
         if (dir.magnitude <= stopThreshold)
         {
             rb.position = targetPosition;
             ApplyPseudo3DScaleAndSorting();
             return;
         }
+
         Vector2 moveDir = dir.normalized;
-        float distance = moveSpeed * Time.fixedDeltaTime;
-        RaycastHit2D[] hits = new RaycastHit2D[1];
+
+        // 避免移動過頭
+        float distance = Mathf.Min(moveSpeed * Time.fixedDeltaTime, dir.magnitude);
+
+        // 檢測前方障礙物
+        RaycastHit2D[] hits = new RaycastHit2D[5];
         int hitCount = rb.Cast(moveDir, hits, distance);
         bool blocked = false;
-        if (hitCount > 0 && ((1 << hits[0].collider.gameObject.layer) & obstacleLayer) != 0) blocked = true;
+        Vector2 pushBack = Vector2.zero;
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            if (((1 << hits[i].collider.gameObject.layer) & obstacleLayer) != 0)
+            {
+                blocked = true;
+                pushBack += hits[i].normal * 0.01f;
+            }
+        }
 
         if (blocked)
         {
+            // 推開角色
+            rb.position += pushBack;
+
+            // 停止移動
             targetPosition = rb.position;
+
+            // 停止點擊指示器
             if (clickIndicatorInstance != null) clickIndicatorInstance.SetActive(false);
+
             ApplyPseudo3DScaleAndSorting();
             return;
         }
+
+        // 正常移動
         rb.MovePosition(rb.position + moveDir * distance);
+
         ApplyPseudo3DScaleAndSorting();
     }
+
+
 
     void ApplyPseudo3DScaleAndSorting()
     {

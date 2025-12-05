@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 64291a45699859349b5f83a3cb6b21f7
+guid: 4ba5d912e6feef545be692e7843bd6f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3396801789971659377
-    second: book-3_0
-  - first:
-      213: 8458952365467217626
-    second: book-3_1
+      213: -4231815789035133862
+    second: MfHvFw6jUY-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: book-3_0
+      name: MfHvFw6jUY-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 33
-        width: 601
-        height: 360
+        x: 4
+        y: 5
+        width: 252
+        height: 251
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f850450e4c22cd0d0800000000000000
-      internalID: -3396801789971659377
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: book-3_1
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 156
-        width: 267
-        height: 235
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: adeaf93eb5c346570800000000000000
-      internalID: 8458952365467217626
+      spriteID: a54eba306f19545c0800000000000000
+      internalID: -4231815789035133862
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 65ea29f3e0592ab48952c5168b0c0b66
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      book-3_0: -3396801789971659377
-      book-3_1: 8458952365467217626
+      MfHvFw6jUY-removebg-preview_0: -4231815789035133862
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

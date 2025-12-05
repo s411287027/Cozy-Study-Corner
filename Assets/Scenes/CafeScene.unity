@@ -537,6 +537,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.804953, y: 0.97460175}
   m_EdgeRadius: 0
+--- !u!1 &45606000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 45606001}
+  m_Layer: 6
+  m_Name: book_posc3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &45606001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45606000}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 1.1442622, y: 1.1147324, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 487701069}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &59771687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1314,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165757796}
   m_CullTransparentMesh: 1
+--- !u!1 &167747506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167747507}
+  m_Layer: 6
+  m_Name: 'book_posc2 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167747507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167747506}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 0.99318194, y: 0.946947, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1740334988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &168222932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,13 +1429,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 330887512}
-    sortingOrder: 67
+    sortingOrder: 68
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 483671265}
     sortingOrder: 63
     scale: {x: 2.4, y: 2.4, z: 2.4}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 456979192}
+    sortingOrder: 67
+    scale: {x: 1, y: 1, z: 1}
 --- !u!1 &224433323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1475,7 @@ Transform:
   - {fileID: 824525450}
   - {fileID: 429399308}
   - {fileID: 1531905967}
+  - {fileID: 878078253}
   m_Father: {fileID: 2029671715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &224433325
@@ -1899,6 +1967,7 @@ Transform:
   - {fileID: 1851018428}
   - {fileID: 1549703529}
   - {fileID: 2016891993}
+  - {fileID: 962598272}
   m_Father: {fileID: 2029671715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &318256963
@@ -2471,6 +2540,7 @@ Transform:
   - {fileID: 168222933}
   - {fileID: 1472951334}
   - {fileID: 1913630081}
+  - {fileID: 758130350}
   m_Father: {fileID: 1629890136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &422922883
@@ -2740,6 +2810,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449034583}
   m_CullTransparentMesh: 1
+--- !u!1 &456979191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456979192}
+  m_Layer: 6
+  m_Name: 'book_posc1 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456979192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456979191}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 1.0273573, y: 0.9852743, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1183155866}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464685962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,6 +3372,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478919129}
   m_CullTransparentMesh: 1
+--- !u!1 &480573254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480573255}
+  m_Layer: 6
+  m_Name: book_posb1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &480573255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480573254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2121022820}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &480607759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,6 +3546,7 @@ Transform:
   - {fileID: 127980912}
   - {fileID: 1586097137}
   - {fileID: 2102980995}
+  - {fileID: 45606001}
   m_Father: {fileID: 511677352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &487701070
@@ -3649,7 +3782,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 67
+  m_SortingOrder: 68
   m_Sprite: {fileID: 2688019658329937085, guid: 6e512221ec211a04f84bbbfc360271ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3919,6 +4052,7 @@ Transform:
   - {fileID: 925065662}
   - {fileID: 652527867}
   - {fileID: 470478361}
+  - {fileID: 634836335}
   m_Father: {fileID: 511677352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &556406495
@@ -4179,12 +4313,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 82.322
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -195
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 80.68
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -195
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -4755,6 +4897,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.7427368, y: 5.771784}
   m_EdgeRadius: 0
+--- !u!1 &634836334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634836335}
+  m_Layer: 6
+  m_Name: 'book_posb3 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &634836335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634836334}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 1.1468469, y: 1.1084349, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 556406494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &635446793
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,6 +5596,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710387819}
   m_CullTransparentMesh: 1
+--- !u!1 &758130349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758130350}
+  m_Layer: 6
+  m_Name: 'book_posb2 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758130350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758130349}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 0.96755385, y: 0.94554585, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 422922882}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770342435
 GameObject:
   m_ObjectHideFlags: 0
@@ -5745,13 +5949,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 652527867}
-    sortingOrder: 70
+    sortingOrder: 71
     scale: {x: 2.2, y: 2.2, z: 2.2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 470478361}
     sortingOrder: 66
     scale: {x: 2.2, y: 2.2, z: 2.2}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 634836335}
+    sortingOrder: 70
+    scale: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &806445776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6262,6 +6471,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842738166}
   m_CullTransparentMesh: 1
+--- !u!1 &878078252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 878078253}
+  m_Layer: 6
+  m_Name: 'book_posb4 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &878078253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878078252}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 1.2614346, y: 1.2360215, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 224433324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &897340973
 GameObject:
   m_ObjectHideFlags: 0
@@ -6560,13 +6800,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1586097137}
-    sortingOrder: 70
+    sortingOrder: 71
     scale: {x: 2.2, y: 2.2, z: 2.2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 2102980995}
     sortingOrder: 66
     scale: {x: 2.2, y: 2.2, z: 2.2}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 45606001}
+    sortingOrder: 70
+    scale: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &953158556
 GameObject:
   m_ObjectHideFlags: 0
@@ -6928,6 +7173,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962410348}
   m_CullTransparentMesh: 1
+--- !u!1 &962598271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962598272}
+  m_Layer: 6
+  m_Name: 'book_posc4 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962598272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962598271}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -1.7, z: 0}
+  m_LocalScale: {x: 1.3040866, y: 1.2393575, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 318256962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984519065
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,12 +7573,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 36.99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -174
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -174
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -7515,7 +7799,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 66
+  m_SortingOrder: 46
   m_TargetDisplay: 0
 --- !u!1 &1002126454
 GameObject:
@@ -7664,12 +7948,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 63.97498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -191
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 63.975
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -191
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -7882,7 +8174,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 91
+  m_SortingOrder: 68
   m_TargetDisplay: 0
 --- !u!1 &1061579401
 GameObject:
@@ -8372,12 +8664,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -92.299995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -140.29999
+      value: -183
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 236.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 144.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -92.3
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -183
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -8590,7 +8898,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 91
+  m_SortingOrder: 68
   m_TargetDisplay: 0
 --- !u!1 &1146373886
 GameObject:
@@ -9299,6 +9607,7 @@ Transform:
   - {fileID: 534693210}
   - {fileID: 330887512}
   - {fileID: 483671265}
+  - {fileID: 456979192}
   m_Father: {fileID: 1651088876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1183155867
@@ -9450,12 +9759,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -109.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -186.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -109
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -187
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -10148,13 +10465,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 2028256903}
-    sortingOrder: 85
+    sortingOrder: 86
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 416786131}
     sortingOrder: 78
     scale: {x: 2.4, y: 2.4, z: 2.4}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 167747507}
+    sortingOrder: 85
+    scale: {x: 1.1, y: 1.1, z: 1.1}
 --- !u!1 &1259070789
 GameObject:
   m_ObjectHideFlags: 0
@@ -10389,13 +10711,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1472951334}
-    sortingOrder: 85
+    sortingOrder: 86
     scale: {x: 2.5, y: 2.5, z: 2.5}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 1913630081}
     sortingOrder: 78
     scale: {x: 2.5, y: 2.5, z: 2.5}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 758130350}
+    sortingOrder: 85
+    scale: {x: 1.1, y: 1.1, z: 1.1}
 --- !u!1 &1291408406
 GameObject:
   m_ObjectHideFlags: 0
@@ -10604,12 +10931,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 63.975006
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -174
+      value: -230.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 63.975
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -174
+      value: -230
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -11292,13 +11627,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1549703529}
-    sortingOrder: 47
+    sortingOrder: 48
     scale: {x: 2, y: 2, z: 2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 2016891993}
     sortingOrder: 43
     scale: {x: 2, y: 2, z: 2}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 962598272}
+    sortingOrder: 47
+    scale: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &1448218905
 GameObject:
   m_ObjectHideFlags: 0
@@ -11520,13 +11860,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 535666087}
-    sortingOrder: 67
+    sortingOrder: 68
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 576947767}
     sortingOrder: 63
     scale: {x: 2.4, y: 2.4, z: 2.4}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 480573255}
+    sortingOrder: 67
+    scale: {x: 1, y: 1, z: 1}
 --- !u!1 &1480623152
 GameObject:
   m_ObjectHideFlags: 0
@@ -11705,12 +12050,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -140.29999
+      value: -171
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -171
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -11923,7 +12276,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 66
+  m_SortingOrder: 46
   m_TargetDisplay: 0
 --- !u!1 &1488986242
 GameObject:
@@ -12596,7 +12949,7 @@ Transform:
   m_GameObject: {fileID: 1629890134}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16, y: -9.97, z: 0}
+  m_LocalPosition: {x: -0.16, y: -8.88, z: 0}
   m_LocalScale: {x: 1.0040503, y: 0.9255492, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12868,7 +13221,7 @@ Transform:
   m_GameObject: {fileID: 1651088874}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.69919, y: -6.059713, z: 0}
+  m_LocalPosition: {x: -12.79, y: -5.68, z: 0}
   m_LocalScale: {x: 0.9759054, y: 0.8903411, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13007,12 +13360,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -80.571
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182433411017683071, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -176.29999
+      value: -219
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -78.88
       objectReference: {fileID: 0}
     - target: {fileID: 3303877860197525492, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -174
+      value: -219
       objectReference: {fileID: 0}
     - target: {fileID: 4076384690239106581, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_Name
@@ -13422,6 +13783,7 @@ Transform:
   - {fileID: 1296785918}
   - {fileID: 2028256903}
   - {fileID: 416786131}
+  - {fileID: 167747507}
   m_Father: {fileID: 1629890136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1740334989
@@ -14820,7 +15182,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1891813845
 Canvas:
   m_ObjectHideFlags: 0
@@ -14842,7 +15204,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 150
   m_TargetDisplay: 0
 --- !u!224 &1891813846
 RectTransform:
@@ -15302,13 +15664,18 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 429399308}
-    sortingOrder: 47
+    sortingOrder: 48
     scale: {x: 2, y: 2, z: 2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 1531905967}
     sortingOrder: 43
     scale: {x: 2, y: 2, z: 2}
+  - partName: book
+    sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
+    position: {fileID: 878078253}
+    sortingOrder: 47
+    scale: {x: 0.7, y: 0.7, z: 0.7}
 --- !u!1 &1987267653
 GameObject:
   m_ObjectHideFlags: 0
@@ -15692,7 +16059,7 @@ Transform:
   m_GameObject: {fileID: 2029671713}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.03, y: 0.51, z: 0}
+  m_LocalPosition: {x: 2.36, y: 1.41, z: 0}
   m_LocalScale: {x: 0.76878095, y: 0.71475536, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16445,6 +16812,7 @@ Transform:
   - {fileID: 1259070790}
   - {fileID: 535666087}
   - {fileID: 576947767}
+  - {fileID: 480573255}
   m_Father: {fileID: 1651088876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2121022821

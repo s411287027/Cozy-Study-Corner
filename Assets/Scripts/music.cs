@@ -5,38 +5,51 @@ using System.Collections;
 public class SceneMusicManager : MonoBehaviour
 {
     [System.Serializable]
-    public class SceneMusic
+    public class SceneMusicGroup
     {
-        public string sceneName;
+        public string[] sceneNames;   // 哪些場景共享這組音樂
         public AudioClip[] musicClips;
     }
 
-    public SceneMusic[] sceneMusics;
+    public SceneMusicGroup[] sceneMusicsGroups;
     public float fadeDuration = 2f;
 
     private AudioSource audioSource;
     private int currentTrack = 0;
-    private string currentSceneName = "";
+    private SceneMusicGroup audioPlayingGroup = null;
     private bool isFading = false;
+
+    public static SceneMusicManager Instance;
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.loop = false;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
 
-    void Start()
-    {
-        currentSceneName = SceneManager.GetActiveScene().name;
-        PlaySceneMusic(currentSceneName);
+        // 直接初始化並播放當前場景音樂
+        SceneMusicGroup initialGroup = GetMusicGroup(SceneManager.GetActiveScene().name);
+        if (initialGroup != null)
+        {
+            PlayMusicGroup(initialGroup, immediate: true);
+        }
     }
 
     void Update()
     {
-        if (!audioSource.isPlaying && !isFading && audioSource.clip != null)
+        if (!audioSource.isPlaying && !isFading && audioPlayingGroup != null && audioPlayingGroup.musicClips.Length > 0)
         {
             PlayNextTrack();
         }
@@ -44,65 +57,79 @@ public class SceneMusicManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string newScene = scene.name;
-        if (newScene != currentSceneName)
+        SceneMusicGroup newGroup = GetMusicGroup(scene.name);
+
+        // 如果是不同組才 fade
+        if (newGroup != null && newGroup != audioPlayingGroup)
         {
-            StartCoroutine(FadeToSceneMusic(newScene));
+            StartCoroutine(FadeToSceneMusic(newGroup));
         }
+        // 同組場景：不做任何事，保持音樂播放
     }
 
-    IEnumerator FadeToSceneMusic(string newScene)
+    IEnumerator FadeToSceneMusic(SceneMusicGroup newGroup)
     {
+        if (newGroup == null || newGroup.musicClips.Length == 0) yield break;
+
         isFading = true;
 
-        // �H�X�­���
+        // 淡出
         float startVolume = audioSource.volume;
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
             yield return null;
         }
-        audioSource.volume = 0f;
+
         audioSource.Stop();
 
-        // ����s��������
-        currentSceneName = newScene;
-        PlaySceneMusic(currentSceneName);
+        // 播放新組第一首曲目
+        currentTrack = 0;
+        audioSource.clip = newGroup.musicClips[currentTrack];
+        audioSource.Play();
 
-        // �H�J�s����
+        audioPlayingGroup = newGroup;
+
+        // 淡入
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(0f, 1f, t / fadeDuration);
             yield return null;
         }
-        audioSource.volume = 1f;
+
         isFading = false;
     }
 
-    void PlaySceneMusic(string sceneName)
+    void PlayMusicGroup(SceneMusicGroup group, bool immediate = false)
     {
-        SceneMusic musicSet = System.Array.Find(sceneMusics, s => s.sceneName == sceneName);
+        if (group == null || group.musicClips.Length == 0) return;
 
-        if (musicSet != null && musicSet.musicClips.Length > 0)
-        {
-            currentTrack = 0;
-            audioSource.clip = musicSet.musicClips[currentTrack];
-            audioSource.Play();
-        }
-        else
-        {
-            Debug.LogWarning($"[SceneMusicManager] �������S���]�w����: {sceneName}");
-            audioSource.Stop();
-        }
+        currentTrack = 0;
+        audioSource.clip = group.musicClips[currentTrack];
+        audioSource.Play();
+
+        if (immediate)
+            audioSource.volume = 1f;
+
+        audioPlayingGroup = group;
     }
 
     void PlayNextTrack()
     {
-        SceneMusic musicSet = System.Array.Find(sceneMusics, s => s.sceneName == currentSceneName);
-        if (musicSet == null || musicSet.musicClips.Length == 0) return;
+        if (audioPlayingGroup == null || audioPlayingGroup.musicClips.Length == 0) return;
 
-        currentTrack = (currentTrack + 1) % musicSet.musicClips.Length;
-        audioSource.clip = musicSet.musicClips[currentTrack];
+        currentTrack = (currentTrack + 1) % audioPlayingGroup.musicClips.Length;
+        audioSource.clip = audioPlayingGroup.musicClips[currentTrack];
         audioSource.Play();
+    }
+
+    SceneMusicGroup GetMusicGroup(string sceneName)
+    {
+        return System.Array.Find(sceneMusicsGroups, g => System.Array.Exists(g.sceneNames, s => s == sceneName));
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
