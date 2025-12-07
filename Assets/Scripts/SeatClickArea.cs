@@ -12,18 +12,18 @@ public class SeatClickArea : MonoBehaviour
 
     private void Awake()
     {
-        // ªì©lÁôÂÃ
+        // ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½
         if (addFriendButton != null) addFriendButton.gameObject.SetActive(false);
         if (stickyNoteButton != null) stickyNoteButton.gameObject.SetActive(false);
 
-        // ¸j©w«ö¶s¨Æ¥ó
+        // ï¿½jï¿½wï¿½ï¿½ï¿½sï¿½Æ¥ï¿½
         if (addFriendButton != null)
             addFriendButton.onClick.AddListener(OnAddFriendClicked);
 
         if (stickyNoteButton != null)
             stickyNoteButton.onClick.AddListener(OnStickyNoteClicked);
 
-        // ¸j©w ClickArea ¦Û¨­ªº Button
+        // ï¿½jï¿½w ClickArea ï¿½Û¨ï¿½ï¿½ï¿½ Button
         Button btn = GetComponent<Button>();
         if (btn != null)
             btn.onClick.AddListener(OnClickAreaClicked);
@@ -36,13 +36,13 @@ public class SeatClickArea : MonoBehaviour
 
     private void OnAddFriendClicked()
     {
-        Debug.Log($"¥[¦n¤Í¡G{seatId}");
+        Debug.Log($"ï¿½[ï¿½nï¿½Í¡G{seatId}");
         HideButtons();
     }
 
     private void OnStickyNoteClicked()
     {
-        Debug.Log($"¶Ç«K±øµ¹¡G{seatId}");
+        Debug.Log($"ï¿½Ç«Kï¿½ï¿½ï¿½ï¿½ï¿½G{seatId}");
         HideButtons();
     }
 
