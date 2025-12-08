@@ -815,7 +815,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545253122}
+      - m_Target: {fileID: 2092614114}
         m_TargetAssemblyTypeName: FriendSystemController, Assembly-CSharp
         m_MethodName: SendPrivateMessage
         m_Mode: 1
@@ -2150,6 +2150,8 @@ GameObject:
   - component: {fileID: 172816259}
   - component: {fileID: 172816261}
   - component: {fileID: 172816260}
+  - component: {fileID: 172816263}
+  - component: {fileID: 172816262}
   m_Layer: 5
   m_Name: FriendInfoPanel
   m_TagString: Untagged
@@ -2225,6 +2227,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172816258}
   m_CullTransparentMesh: 1
+--- !u!114 &172816262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172816258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &172816263
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172816258}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 501
+  m_TargetDisplay: 0
 --- !u!1 &206628593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,9 +2476,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1878880453}
-        m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: BackToMain
+      - m_Target: {fileID: 2092614114}
+        m_TargetAssemblyTypeName: FriendSystemController, Assembly-CSharp
+        m_MethodName: CloseFriendInfoPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2526,12 +2568,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210213019}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 958.6572, y: 542.1608, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226087424
 GameObject:
@@ -2967,6 +3009,8 @@ GameObject:
   - component: {fileID: 293907021}
   - component: {fileID: 293907023}
   - component: {fileID: 293907022}
+  - component: {fileID: 293907025}
+  - component: {fileID: 293907024}
   m_Layer: 5
   m_Name: FriendRoomPage
   m_TagString: Untagged
@@ -3035,6 +3079,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293907020}
   m_CullTransparentMesh: 1
+--- !u!114 &293907024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293907020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &293907025
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293907020}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 502
+  m_TargetDisplay: 0
 --- !u!1 &296509155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,7 +4923,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545253123}
-  - component: {fileID: 545253122}
   m_Layer: 0
   m_Name: FriendSystemController
   m_TagString: Untagged
@@ -4847,38 +4930,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &545253122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545253121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c854bb43aeaab2e478b87b7f08a5ea66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  dbController: {fileID: 848357059}
-  FriendSystemPanel: {fileID: 1268769998}
-  playerUIDText: {fileID: 702094654}
-  searchInput: {fileID: 1124096151}
-  resultText: {fileID: 1877463550}
-  requestListText: {fileID: 0}
-  addFriendButtonPrefab: {fileID: 615193229407670613, guid: 1cf2abc06043cf84e81a69392654b7b2, type: 3}
-  searchResultsContainer: {fileID: 1105488645}
-  friendRequestItemPrefab: {fileID: 5521378670377165502, guid: 96804c0fa6abc71459e0bc472866f3d7, type: 3}
-  requestListContainer: {fileID: 375204054}
-  friendListItemPrefab: {fileID: 1257903994555867452, guid: 7e44fdc26e3086546ad7e6fe9e4bf772, type: 3}
-  friendListContainer: {fileID: 1918255280}
-  friendInfoPanel: {fileID: 172816258}
-  infoNameText: {fileID: 917388562}
-  infoReservationText: {fileID: 1249073614}
-  infoMessageText: {fileID: 674565234}
-  messageInput: {fileID: 395436507}
-  messageContent: {fileID: 226087425}
-  messageItemPrefab: {fileID: 5521378670377165502, guid: fffaadd17fa816c4f8ede43cbc60a8f2, type: 3}
-  myMessageItemPrefab: {fileID: 5521378670377165502, guid: 62029c77a49cbae48aaa412a1270496d, type: 3}
 --- !u!4 &545253123
 Transform:
   m_ObjectHideFlags: 0
@@ -4888,11 +4939,11 @@ Transform:
   m_GameObject: {fileID: 545253121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 798.87915, y: 458.44293, z: 0}
+  m_LocalPosition: {x: 797.5364, y: 460.60376, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &553313432
 GameObject:
@@ -5132,11 +5183,11 @@ Transform:
   m_GameObject: {fileID: 579810226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.0739136, y: 0.6185913, z: 0}
+  m_LocalPosition: {x: -7.4166937, y: 2.7794313, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &579810229
 MonoBehaviour:
@@ -7982,12 +8033,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848357058}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 958.6572, y: 542.1608, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &858068861
 GameObject:
@@ -8574,7 +8625,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545253122}
+      - m_Target: {fileID: 2092614114}
         m_TargetAssemblyTypeName: FriendSystemController, Assembly-CSharp
         m_MethodName: CloseFriendInfoPanel
         m_Mode: 1
@@ -9174,12 +9225,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991345126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 958.6572, y: 542.1608, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993755239
 GameObject:
@@ -9893,7 +9944,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545253122}
+      - m_Target: {fileID: 2092614114}
         m_TargetAssemblyTypeName: FriendSystemController, Assembly-CSharp
         m_MethodName: SearchUser
         m_Mode: 1
@@ -9998,12 +10049,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098831954}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 758.53015, y: 506.26166, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 757.1874, y: 508.4225, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105488644
 GameObject:
@@ -11731,6 +11782,8 @@ GameObject:
   - component: {fileID: 1268769999}
   - component: {fileID: 1268770001}
   - component: {fileID: 1268770000}
+  - component: {fileID: 1268770003}
+  - component: {fileID: 1268770002}
   m_Layer: 5
   m_Name: FriendPage
   m_TagString: Untagged
@@ -11806,6 +11859,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268769998}
   m_CullTransparentMesh: 1
+--- !u!114 &1268770002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268769998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &1268770003
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268769998}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 500
+  m_TargetDisplay: 0
 --- !u!1 &1278033269
 GameObject:
   m_ObjectHideFlags: 0
@@ -12137,7 +12230,7 @@ RectTransform:
   - {fileID: 172816259}
   - {fileID: 293907021}
   - {fileID: 1405755300}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13086,6 +13179,8 @@ GameObject:
   - component: {fileID: 1405755300}
   - component: {fileID: 1405755302}
   - component: {fileID: 1405755301}
+  - component: {fileID: 1405755304}
+  - component: {fileID: 1405755303}
   m_Layer: 5
   m_Name: FriendWardrobePanel
   m_TagString: Untagged
@@ -13152,6 +13247,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405755299}
   m_CullTransparentMesh: 1
+--- !u!114 &1405755303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405755299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &1405755304
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405755299}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 503
+  m_TargetDisplay: 0
 --- !u!1 &1447754334
 GameObject:
   m_ObjectHideFlags: 0
@@ -13224,12 +13359,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447754334}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.34278, y: 2.16084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456147999
 GameObject:
@@ -15155,12 +15290,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694485806}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.69433, y: -0.7525, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0371099, y: 1.40834, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714482911
 GameObject:
@@ -17133,12 +17268,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878880452}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.34278, y: 2.16084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2092614115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899053240
 GameObject:
@@ -19263,6 +19398,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086829653}
   m_CullTransparentMesh: 1
+--- !u!1 &2092614113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092614115}
+  - component: {fileID: 2092614114}
+  m_Layer: 0
+  m_Name: Global_System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2092614114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092614113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c854bb43aeaab2e478b87b7f08a5ea66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  dbController: {fileID: 848357059}
+  FriendSystemPanel: {fileID: 1268769998}
+  playerUIDText: {fileID: 702094654}
+  searchInput: {fileID: 1124096151}
+  resultText: {fileID: 1877463550}
+  requestListText: {fileID: 0}
+  addFriendButtonPrefab: {fileID: 615193229407670613, guid: 1cf2abc06043cf84e81a69392654b7b2, type: 3}
+  searchResultsContainer: {fileID: 1105488645}
+  friendRequestItemPrefab: {fileID: 5521378670377165502, guid: 96804c0fa6abc71459e0bc472866f3d7, type: 3}
+  requestListContainer: {fileID: 375204054}
+  friendListItemPrefab: {fileID: 1257903994555867452, guid: 7e44fdc26e3086546ad7e6fe9e4bf772, type: 3}
+  friendListContainer: {fileID: 1918255280}
+  friendInfoPanel: {fileID: 172816258}
+  infoNameText: {fileID: 917388562}
+  infoReservationText: {fileID: 1249073614}
+  infoMessageText: {fileID: 674565234}
+  messageInput: {fileID: 395436507}
+  messageContent: {fileID: 226087425}
+  messageItemPrefab: {fileID: 5521378670377165502, guid: fffaadd17fa816c4f8ede43cbc60a8f2, type: 3}
+  myMessageItemPrefab: {fileID: 5521378670377165502, guid: 62029c77a49cbae48aaa412a1270496d, type: 3}
+  closeSystemButton: {fileID: 208266650}
+--- !u!4 &2092614115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092614113}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.34278, y: -2.16084, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1318064745}
+  - {fileID: 1098831956}
+  - {fileID: 848357060}
+  - {fileID: 991345128}
+  - {fileID: 210213021}
+  - {fileID: 579810228}
+  - {fileID: 1878880454}
+  - {fileID: 545253123}
+  - {fileID: 1694485808}
+  - {fileID: 1447754337}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2094559482
 GameObject:
   m_ObjectHideFlags: 0
@@ -20133,13 +20343,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1318064745}
-  - {fileID: 1447754337}
-  - {fileID: 1098831956}
-  - {fileID: 848357060}
-  - {fileID: 991345128}
-  - {fileID: 210213021}
-  - {fileID: 579810228}
-  - {fileID: 1878880454}
-  - {fileID: 545253123}
-  - {fileID: 1694485808}
+  - {fileID: 2092614115}
