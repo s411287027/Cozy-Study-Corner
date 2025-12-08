@@ -187,7 +187,7 @@ public class SeatAvatar_swimmingpool : MonoBehaviour
                 targetSeat.runtimeHair.sprite = avatarDB.GetHair(task.hairId);
                 targetSeat.runtimeHair.transform.position = basePos + targetSeat.hairOffset;
                 targetSeat.runtimeHair.transform.localScale = targetSeat.hairScale;
-                targetSeat.runtimeHair.sortingOrder = baseOrder + 2;
+                targetSeat.runtimeHair.sortingOrder = baseOrder + 10;
                 targetSeat.runtimeHair.color = Color.white;
             }
 
@@ -221,7 +221,7 @@ public class SeatAvatar_swimmingpool : MonoBehaviour
 
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
-                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 11;
+                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 16;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
 

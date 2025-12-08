@@ -224,7 +224,7 @@ public class SeatAvatar_forest : MonoBehaviour
 
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
-                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 7;
+                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 8;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
 

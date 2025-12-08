@@ -47,13 +47,13 @@ public class ShirtController : MonoBehaviour
     void Start()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "DressScene")
+        /*if (sceneName == "DressScene")
         {
             if (sr == null) sr = GetComponent<SpriteRenderer>();
             sr.sprite = shirtDown;
             enabled = false;
             return;
-        }
+        }*/
 
         playerTransform = transform.parent;
 
@@ -157,13 +157,13 @@ public class ShirtController : MonoBehaviour
                     Debug.Log($"Shirt: Idle. Displaying first frame for direction {currentMoveDir}");
             }
 
-            if (enabled)
-                enabled = false;
+            //if (enabled)
+            //    enabled = false;
             isMoving = false;
             return;
         }
-        if (!enabled)
-            enabled = true;
+        //if (!enabled)
+        //    enabled = true;
 
         isMoving = true;
 
@@ -240,6 +240,7 @@ public class ShirtController : MonoBehaviour
     public void ForceUpdateShirtSprite(float dirX, float dirY)
     {
         if (sr == null) sr = GetComponent<SpriteRenderer>();
+        isMoving = false;
 
         // 沿用 UpdateShirtDirection 的方向判斷邏輯
         string currentDir = "";
@@ -267,6 +268,7 @@ public class ShirtController : MonoBehaviour
         {
             ShowStaticShirt(currentDir);
         }
+        enabled = true;
     }
     public void UpdateSortingOrder(int newOrder)
     {

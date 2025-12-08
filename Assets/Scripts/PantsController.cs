@@ -47,13 +47,13 @@ public class PantsController : MonoBehaviour
     void Start()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "DressScene")
+        /*if (sceneName == "DressScene")
         {
             if (sr == null) sr = GetComponent<SpriteRenderer>();
             sr.sprite = pantsDown;
             enabled = false;
             return;
-        }
+        }*/
 
         playerTransform = transform.parent;
 
@@ -156,13 +156,13 @@ public class PantsController : MonoBehaviour
                     Debug.Log($"Pants: Idle. Displaying first frame for direction {currentMoveDir}");
             }
             
-            if (enabled)
-                enabled = false;
+            //if (enabled)
+            //    enabled = false;
             isMoving = false;
             return;
         }
-        if (!enabled)
-            enabled = true;
+        //if (!enabled)
+        //    enabled = true;
         isMoving = true;
 
         bool parentFlipped = playerTransform != null && playerTransform.localScale.x < 0f;
@@ -239,6 +239,8 @@ public class PantsController : MonoBehaviour
     {
         if (sr == null) sr = GetComponent<SpriteRenderer>();
 
+        isMoving = false;
+
         // 沿用 UpdatePantsDirection 的方向判斷邏輯
         string currentDir = "";
         if (Mathf.Abs(dirX) > Mathf.Abs(dirY))
@@ -265,6 +267,7 @@ public class PantsController : MonoBehaviour
         {
             ShowStaticPants(currentDir);
         }
+        enabled = true;
     }
     public void UpdateSortingOrder(int newOrder)
     {

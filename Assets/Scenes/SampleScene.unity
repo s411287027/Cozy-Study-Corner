@@ -1235,12 +1235,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1206817207}
     m_Modifications:
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -94
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 119112900612583666, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.682
+      value: -98
       objectReference: {fileID: 0}
     - target: {fileID: 814833546554043993, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1429,6 +1437,22 @@ PrefabInstance:
     - target: {fileID: 6248176903564916654, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181571539970396521, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181571539970396521, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181571539970396521, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181571539970396521, guid: db4b02f2b9efb674e82b65a26016f66c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9357,7 +9381,7 @@ MonoBehaviour:
     faceOffset: {x: 0.04, y: -0.55, z: 0}
     shirtOffset: {x: 0.038, y: -0.57, z: 0}
     sleeveOffset: {x: 0.038, y: -0.57, z: 0}
-    pantsOffset: {x: 0, y: 0, z: 0}
+    pantsOffset: {x: 0.04, y: -0.6, z: 0}
     shoesOffset: {x: 0, y: 0, z: 0}
     hairScale: {x: 0.9, y: 0.9, z: 0.9}
     faceScale: {x: 0.9, y: 0.9, z: 0.9}
@@ -9369,7 +9393,7 @@ MonoBehaviour:
     faceOrder: 11
     shirtOrder: 11
     sleeveOrder: 32
-    pantsOrder: 11
+    pantsOrder: 1
     shoesOrder: 11
     currentAvatarObj: {fileID: 0}
     runtimeHair: {fileID: 0}

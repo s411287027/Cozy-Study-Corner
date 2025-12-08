@@ -50,13 +50,13 @@ public class HairController : MonoBehaviour
     {
         //  在 DressScene 中關閉頭髮動態更新
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "DressScene")
+        /*if (sceneName == "DressScene")
         {
             if (sr == null) sr = GetComponent<SpriteRenderer>();
             sr.sprite = hairDown; // 強制顯示正面靜態圖
             enabled = false; // 停用整個 HairController
             return;
-        }
+        }*/
 
         playerTransform = transform.parent;
 
@@ -177,16 +177,16 @@ public class HairController : MonoBehaviour
                     Debug.Log($"Hair: Idle. Displaying first frame for direction {currentMoveDir}");
             }
 
-            if (enabled)
-                enabled = false;
+            //if (enabled)
+            //    enabled = false;
             // player_move 有傳 (0,0) -> 表示停止：保留最後一幀（不要改 sprite）
             isMoving = false;
             //.Log("Hair: Idle.");
             return;
         }
 
-        if (!enabled)
-            enabled = true;
+        //if (!enabled)
+        //    enabled = true;
         // 有輸入方向 -> 表示正在移動（要播放動畫）
         isMoving = true;
         //Debug.Log($"Hair: Moving, dir=({dirX:F2}, {dirY:F2}).");
@@ -275,6 +275,7 @@ public class HairController : MonoBehaviour
     public void ForceUpdateHairSprite(float dirX, float dirY)
     {
         if (sr == null) sr = GetComponent<SpriteRenderer>();
+        isMoving = false;
 
         // 沿用 UpdateHairDirection 的方向判斷邏輯
         string currentDir = "";
@@ -302,6 +303,7 @@ public class HairController : MonoBehaviour
         {
             ShowStaticHair(currentDir);
         }
+        enabled = true;
     }
     ///  UpdateSortingOrder 方法，由 player_move 呼叫來設定圖層。
     /// player_move 傳入的是身體的 Order in Layer。

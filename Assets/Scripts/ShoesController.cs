@@ -47,13 +47,13 @@ public class ShoesController : MonoBehaviour
     void Start()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "DressScene")
+        /*if (sceneName == "DressScene")
         {
             if (sr == null) sr = GetComponent<SpriteRenderer>();
             sr.sprite = shoesDown;
             enabled = false;
             return;
-        }
+        }*/
 
         playerTransform = transform.parent;
 
@@ -156,14 +156,14 @@ public class ShoesController : MonoBehaviour
                     Debug.Log($"Shoes: Idle. Displaying first frame for direction {currentMoveDir}");
             }
 
-            if (enabled)
-                enabled = false;
+            //if (enabled)
+            //    enabled = false;
             isMoving = false;
             return;
         }
 
-        if (!enabled)
-            enabled = true;
+        //if (!enabled)
+        //    enabled = true;
         isMoving = true;
 
         bool parentFlipped = playerTransform != null && playerTransform.localScale.x < 0f;
@@ -239,6 +239,7 @@ public class ShoesController : MonoBehaviour
     public void ForceUpdateShoesSprite(float dirX, float dirY)
     {
         if (sr == null) sr = GetComponent<SpriteRenderer>();
+        isMoving = false;
 
         // 沿用 UpdateShoesDirection 的方向判斷邏輯
         string currentDir = "";
@@ -266,6 +267,7 @@ public class ShoesController : MonoBehaviour
         {
             ShowStaticShoes(currentDir);
         }
+        enabled = true;
     }
     public void UpdateSortingOrder(int newOrder)
     {

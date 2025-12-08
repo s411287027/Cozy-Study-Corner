@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Firebase.Database;
 using Firebase.Auth;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class Pseudo3DConfig
@@ -59,6 +60,9 @@ public class player_move : MonoBehaviour
 
     [Header("場景偽3D配置")]
     public Pseudo3DConfig[] sceneConfigs;
+
+    [Header("換裝場景設定")]
+    public Vector3 dressScenePosition = new Vector3(0, 0, 0);
 
     private float baseY;
     private float baseScale;
@@ -129,19 +133,19 @@ public class player_move : MonoBehaviour
         StartCoroutine(LoadAndEquipFromFirebase());
 
         // 原本的 DressScene 邏輯 (只剩下鎖定移動的功能)
-        if (SceneManager.GetActiveScene().name == "DressScene")
+        /*if (SceneManager.GetActiveScene().name == "DressScene")
         {
             canMove = false;
             freezeHair = true;
             freezeShirt = true;
             freezePants = true;
             freezeShoes = true;
-            //freezeFace = true;
+            freezeFace = true;
             rb.linearVelocity = Vector2.zero;
             ani.SetFloat("Speed", 0);
 
             // 上面已經轉過正面了，這裡不用再寫一次
-        }
+        }*/
     }
 
     // ================================================================
@@ -499,19 +503,51 @@ public class player_move : MonoBehaviour
         if (clickIndicatorInstance != null) clickIndicatorInstance.SetActive(false);
         if (scene.name == "DressScene")
         {
+            // 1. 停止移動與物理運算
             canMove = false;
-            if (sr != null) sr.enabled = false;
-            if (hairController != null) hairController.ForceUpdateHairSprite(0f, -1f);
-            if (shirtController != null) shirtController.ForceUpdateShirtSprite(0f, -1f);
-            if (pantsController != null) pantsController.ForceUpdatePantsSprite(0f, -1f);
-            if (shoesController != null) shoesController.ForceUpdateShoesSprite(0f, -1f);
-            if (faceController != null) faceController.ForceUpdateFaceSprite(0f, -1f);
-            return;
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic; // 避免被其他東西推擠
+            
+            // 2. 停止動畫參數
+            if (ani != null)
+            {
+                ani.SetFloat("Speed", 0);
+                ani.SetFloat("Horizontal", 0);
+                ani.SetFloat("Vertical", -1); // 設為正面參數
+            }
+
+            // 3. 強制鎖定配件更新 (讓 Update 不再傳送方向給配件)
+            freezeHair = true;
+            freezeShirt = true;
+            freezePants = true;
+            freezeShoes = true;
+            freezeFace = true;
+
+            // 4. 強制將角色移到換裝場景的中間 (或指定位置)
+            transform.position = dressScenePosition;
+
+            // 5. 強制所有部位轉為正面 (0, -1)
+            ForceAllPartsToFront();
+
+            // 6. 隱藏點擊指示器
+            if (clickIndicatorInstance != null) clickIndicatorInstance.SetActive(false);
         }
         else
         {
+            // 離開換裝場景，恢復正常
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 0f;
+            // 稍微延遲恢復移動，避免場景剛載入就誤觸
+            Invoke(nameof(EnableMove), 0.1f);
+            
+            // 解除鎖定
+            freezeHair = false;
+            freezeShirt = false;
+            freezePants = false;
+            freezeShoes = false;
+            freezeFace = false;
+
             if (sr != null) sr.enabled = true;
-            freezeHair = false; freezeShirt = false; freezePants = false; freezeShoes = false; freezeFace = false;
         }
         Invoke(nameof(EnableMove), 0.01f);
     }
@@ -531,4 +567,24 @@ public class player_move : MonoBehaviour
 
     void EnableMove() { SetCanMove(true); }
     void OnDestroy() { SceneManager.sceneLoaded -= OnSceneLoaded; }
+
+    void ForceAllPartsToFront()
+    {
+        // 延遲一幀執行，確保所有 Controller 的 Script 已經準備好接收命令
+        StartCoroutine(ForceFrontRoutine());
+    }
+
+    IEnumerator ForceFrontRoutine()
+    {
+        yield return null; // 等一幀
+
+        // 強制更新所有部位為正面 (0f, -1f)
+        if (hairController != null) hairController.ForceUpdateHairSprite(0f, -1f);
+        if (shirtController != null) shirtController.ForceUpdateShirtSprite(0f, -1f);
+        if (pantsController != null) pantsController.ForceUpdatePantsSprite(0f, -1f);
+        if (shoesController != null) shoesController.ForceUpdateShoesSprite(0f, -1f);
+        if (faceController != null) faceController.ForceUpdateFaceSprite(0f, -1f);
+        
+        Debug.Log("已強制所有部位轉向正面 (DressScene Mode)");
+    }
 }

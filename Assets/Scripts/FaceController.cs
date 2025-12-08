@@ -51,13 +51,13 @@ public class FaceController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
 
         //  在 DressScene：Face 停住 + 面向前（Down）
-        if (sceneName == "DressScene")
+        /*if (sceneName == "DressScene")
         {
             if (sr != null) sr = GetComponent<SpriteRenderer>();
             sr.sprite = faceDown;
             enabled = false;
             return;
-        }
+        }*/
 
         playerTransform = transform.parent;
 
@@ -161,14 +161,14 @@ public class FaceController : MonoBehaviour
                     Debug.Log($"Face: Idle. Displaying first frame for direction {currentMoveDir}");
             }
             
-            if (enabled)
-                enabled = false;
+            //if (enabled)
+            //    enabled = false;
             isMoving = false;
             return;
         }
         // 有輸入方向 -> 表示正在移動（要播放動畫）
-        if (!enabled)
-            enabled = true;
+        //if (!enabled)
+        //    enabled = true;
         isMoving = true;
 
         // 修正 flip 狀態（若玩家左右翻轉）
@@ -253,6 +253,7 @@ public class FaceController : MonoBehaviour
     public void ForceUpdateFaceSprite(float dirX, float dirY)
     {
         if (sr == null) sr = GetComponent<SpriteRenderer>();
+        isMoving = false;
 
         // 沿用 UpdateFaceDirection 的方向判斷邏輯
         string currentDir = "";
@@ -280,7 +281,9 @@ public class FaceController : MonoBehaviour
         {
             ShowStaticFace(currentDir);
         }
+        enabled = true;
     }
+
     public void UpdateSortingOrder(int newOrder)
     {
         if (sr != null)
