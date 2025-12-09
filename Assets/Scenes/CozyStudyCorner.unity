@@ -9813,7 +9813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1878880453}
         m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: GoToMap
+        m_MethodName: GoToMap_shop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12205,7 +12205,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!224 &1318064745
 RectTransform:
@@ -19433,6 +19433,7 @@ MonoBehaviour:
   searchInput: {fileID: 1124096151}
   resultText: {fileID: 1877463550}
   requestListText: {fileID: 0}
+  closeSystemButton: {fileID: 208266650}
   addFriendButtonPrefab: {fileID: 615193229407670613, guid: 1cf2abc06043cf84e81a69392654b7b2, type: 3}
   searchResultsContainer: {fileID: 1105488645}
   friendRequestItemPrefab: {fileID: 5521378670377165502, guid: 96804c0fa6abc71459e0bc472866f3d7, type: 3}
@@ -19447,7 +19448,6 @@ MonoBehaviour:
   messageContent: {fileID: 226087425}
   messageItemPrefab: {fileID: 5521378670377165502, guid: fffaadd17fa816c4f8ede43cbc60a8f2, type: 3}
   myMessageItemPrefab: {fileID: 5521378670377165502, guid: 62029c77a49cbae48aaa412a1270496d, type: 3}
-  closeSystemButton: {fileID: 208266650}
 --- !u!4 &2092614115
 Transform:
   m_ObjectHideFlags: 0

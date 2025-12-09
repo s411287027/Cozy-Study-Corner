@@ -69,6 +69,13 @@ public class ShopController : MonoBehaviour
         RefreshOwnedItemsUI();
     }
 
+    public void CloseShopPanel()
+    {
+        if (shopPanel != null)
+        {
+            shopPanel.SetActive(false);
+        }
+    }
     private void InitializeShopItems()
     {
         // 你的 shopItems 初始化程式...
