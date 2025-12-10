@@ -224,7 +224,7 @@ public class SeatAvatar_camp : MonoBehaviour
 
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
-                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 21;
+                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 22;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
 
