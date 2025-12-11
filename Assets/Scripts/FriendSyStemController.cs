@@ -56,7 +56,8 @@ public class FriendSystemController : MonoBehaviour
 
     // ⭐ 新增：本地好友緩存 (解決 JsonUtility 讀取 List 失敗的問題)
     private List<string> _localFriendCache = new List<string>();
-
+    // 用來暫存「已寄出邀請」的 UID
+    private List<string> _sentRequestCache = new List<string>();
     void Awake()
     {
         // ⭐ 單例模式 + DontDestroyOnLoad
@@ -124,6 +125,7 @@ public class FriendSystemController : MonoBehaviour
 
         StartListeningForFriendRequests();
         LoadFriends();
+        LoadSentRequests();
     }
 
     // ==========================================
@@ -239,8 +241,56 @@ public class FriendSystemController : MonoBehaviour
 
         dbRef.Child("users").Child(targetUid)
             .Child("FriendRequests").Child("Received").Push().SetValueAsync(dbController.userId);
-
+        if (!_sentRequestCache.Contains(targetUid))
+        {
+            _sentRequestCache.Add(targetUid);
+        }
         resultText.text = "Success send invite.";
+    }
+
+    public bool CheckIsFriendOrRequested(string targetUid)
+    {
+        // 1. 檢查是否是自己
+        if (dbController != null && targetUid == dbController.userId) return true;
+
+        // 2. 檢查本地好友緩存
+        if (_localFriendCache != null && _localFriendCache.Contains(targetUid)) return true;
+
+        // 3. ⭐ 檢查我們手動載入的 Sent 名單 (這才是準確的)
+        if (_sentRequestCache != null && _sentRequestCache.Contains(targetUid))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // 專門用來讀取 Sent 資料夾，解決 dts 讀不到的問題
+    private void LoadSentRequests()
+    {
+        if (dbController == null || string.IsNullOrEmpty(dbController.userId)) return;
+
+        string path = $"users/{dbController.userId}/FriendRequests/Sent";
+
+        // 直接從 Firebase 抓取資料
+        if (dbRef == null) dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
+        dbRef.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted && task.Result.Exists)
+            {
+                _sentRequestCache.Clear(); // 清空舊資料
+                foreach (var child in task.Result.Children)
+                {
+                    // 這裡的 child.Value 就是目標 UID
+                    string uid = child.Value.ToString();
+                    if (uid != "init" && !_sentRequestCache.Contains(uid))
+                    {
+                        _sentRequestCache.Add(uid);
+                    }
+                }
+            }
+        });
     }
 
     // ==========================================

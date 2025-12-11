@@ -4964,6 +4964,7 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 2117840377}
   stickyNoteButton: {fileID: 1633742528}
+  addFriendButtonText: {fileID: 0}
 --- !u!114 &554728391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8551,6 +8552,7 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 0}
   stickyNoteButton: {fileID: 0}
+  addFriendButtonText: {fileID: 0}
 --- !u!114 &991766885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8653,6 +8655,7 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 140178911}
   stickyNoteButton: {fileID: 1679780718}
+  addFriendButtonText: {fileID: 0}
 --- !u!114 &1005715983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9358,6 +9361,7 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 743365530}
   stickyNoteButton: {fileID: 1835915253}
+  addFriendButtonText: {fileID: 0}
 --- !u!114 &1072199350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11472,7 +11476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1296640162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11511,6 +11515,7 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 660108199}
   stickyNoteButton: {fileID: 8176565}
+  addFriendButtonText: {fileID: 0}
 --- !u!114 &1296640164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18913,6 +18918,7 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 79095221}
   stickyNoteButton: {fileID: 1647432481}
+  addFriendButtonText: {fileID: 0}
 --- !u!114 &1612143602
 MonoBehaviour:
   m_ObjectHideFlags: 0

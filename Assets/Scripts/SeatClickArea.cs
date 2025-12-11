@@ -7,7 +7,7 @@ using Firebase.Extensions;
 public class SeatClickArea : MonoBehaviour
 {
     public string seatId;
-    public SeatManager_Forest manager; // 必須要在 Inspector 拉入或動態抓取
+    public SeatManager_Forest manager;
 
     [Header("UI Buttons")]
     public Button addFriendButton;
@@ -15,17 +15,14 @@ public class SeatClickArea : MonoBehaviour
 
     private void Awake()
     {
-        // 初始化：隱藏按鈕
         HideButtons();
 
-        // 綁定事件
         if (addFriendButton != null)
             addFriendButton.onClick.AddListener(OnAddFriendClicked);
 
         if (stickyNoteButton != null)
             stickyNoteButton.onClick.AddListener(OnStickyNoteClicked);
 
-        // 設定 ClickArea 本身的點擊 (點擊座位顯示選單)
         Button btn = GetComponent<Button>();
         if (btn != null)
             btn.onClick.AddListener(OnClickAreaClicked);
@@ -33,15 +30,14 @@ public class SeatClickArea : MonoBehaviour
 
     private void OnClickAreaClicked()
     {
-        // 通知 Manager 處理點擊邏輯 (Manager 會判斷是否顯示按鈕)
         manager?.OnSeatClicked(seatId, this);
     }
 
-    // ⭐⭐⭐ 重點修改：發送好友邀請邏輯 ⭐⭐⭐
+    // ⭐⭐⭐ [還原] 這邊完全恢復成你原本的邏輯，確保功能正常 ⭐⭐⭐
     private void OnAddFriendClicked()
     {
         Debug.Log($"[SeatClickArea] 嘗試加好友，座位: {seatId}");
-        HideButtons(); // 點擊後立刻隱藏選單
+        HideButtons();
 
         if (manager == null)
         {
@@ -49,12 +45,9 @@ public class SeatClickArea : MonoBehaviour
             return;
         }
 
-        // 1. 取得資料庫路徑 (配合 SeatManager_Forest 的結構)
-        // 路徑結構：Seat/Forest/{RoomID}/{SeatID}
         string currentRoom = manager.currentRoomID;
         string path = $"Seat/Forest/{currentRoom}/{seatId}";
 
-        // 2. 查詢該座位的 UID
         FirebaseDatabase.DefaultInstance.RootReference.Child(path)
             .GetValueAsync().ContinueWithOnMainThread(task =>
             {
@@ -66,23 +59,21 @@ public class SeatClickArea : MonoBehaviour
 
                 string targetUid = task.Result.Value?.ToString();
 
-                // 3. 驗證 UID 是否有效
                 if (string.IsNullOrEmpty(targetUid) || targetUid == "null")
                 {
-                    Debug.LogWarning("⚠️ 該座位目前沒有人 (資料庫值為空)");
+                    Debug.LogWarning("⚠️ 該座位目前沒有人");
                     return;
                 }
 
                 Debug.Log($"✅ 找到目標 UID: {targetUid}，準備發送邀請...");
 
-                // 4. 呼叫好友系統控制器發送邀請
                 if (FriendSystemController.Instance != null)
                 {
                     FriendSystemController.Instance.SendFriendRequest(targetUid);
                 }
                 else
                 {
-                    Debug.LogError("❌ FriendSystemController 尚未初始化！請確認場景中是否有該物件。");
+                    Debug.LogError("❌ FriendSystemController 尚未初始化！");
                 }
             });
     }
@@ -91,13 +82,58 @@ public class SeatClickArea : MonoBehaviour
     {
         Debug.Log($"[SeatClickArea] 點擊便條紙功能: {seatId}");
         HideButtons();
-        // 這裡未來可以擴充便條紙功能
     }
 
+    // ⭐⭐⭐ [修改] 顯示按鈕時，額外去檢查狀態來決定是否變灰 ⭐⭐⭐
     public void ShowButtons()
     {
-        if (addFriendButton != null) addFriendButton.gameObject.SetActive(true);
         if (stickyNoteButton != null) stickyNoteButton.gameObject.SetActive(true);
+
+        if (addFriendButton != null)
+        {
+            addFriendButton.gameObject.SetActive(true);
+            // 預設先開啟，等檢查結果回來再決定要不要關掉
+            addFriendButton.interactable = true;
+
+            // 呼叫檢查狀態的方法 (純視覺更新，不影響點擊邏輯)
+            CheckFriendStatusForUI();
+        }
+    }
+
+    // 這是新增的輔助方法，專門用來控制 UI 變灰
+    private void CheckFriendStatusForUI()
+    {
+        if (manager == null) return;
+        string currentRoom = manager.currentRoomID;
+        string path = $"Seat/Forest/{currentRoom}/{seatId}";
+
+        FirebaseDatabase.DefaultInstance.RootReference.Child(path)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted || task.IsCanceled) return;
+
+                string uidOnSeat = task.Result.Value?.ToString();
+
+                // 如果座位沒人，或是資料錯誤，或是 FriendSystemController 沒準備好
+                if (string.IsNullOrEmpty(uidOnSeat) || uidOnSeat == "null" || FriendSystemController.Instance == null)
+                {
+                    return;
+                }
+
+                // 使用剛剛在 FriendSystemController 新增的方法檢查
+                bool shouldDisable = FriendSystemController.Instance.CheckIsFriendOrRequested(uidOnSeat);
+
+                if (shouldDisable)
+                {
+                    if (addFriendButton != null)
+                    {
+                        addFriendButton.interactable = false; // 變灰且不能點
+                        // 如果你有 Text 組件想改文字，也可以在這裡改
+                        // var text = addFriendButton.GetComponentInChildren<TMPro.TMP_Text>();
+                        // if(text) text.text = "已添加";
+                    }
+                }
+            });
     }
 
     public void HideButtons()
