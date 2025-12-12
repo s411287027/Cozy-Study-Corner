@@ -1,10 +1,12 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using Firebase.Database;
 using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Extensions; // 必須新增這個命名空間
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SeatManager_Camp : MonoBehaviour
 {
@@ -200,5 +202,72 @@ public class SeatManager_Camp : MonoBehaviour
 
         rootRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;
+    }
+
+
+    // 保存目前顯示按鈕的 ClickArea
+    private SeatClickArea_Camp activeClickArea = null;
+
+    // ⭐ 點擊座位顯示按鈕
+    public void OnSeatClicked(string seatId, SeatClickArea_Camp clickArea)
+    {
+        string path = $"Seat/Camp/{currentRoomID}/{seatId}";
+
+        rootRef.Child(path).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (!task.IsCompleted || task.IsFaulted) return;
+
+            string uid = task.Result.Value?.ToString();
+
+            if (string.IsNullOrEmpty(uid) || uid == "null") return;
+            if (uid == currentUID) return;
+
+            // 隱藏上一個按鈕
+            if (activeClickArea != null && activeClickArea != clickArea)
+                activeClickArea.HideButtons();
+
+            clickArea.ShowButtons();
+            activeClickArea = clickArea;
+        });
+    }
+
+    // ⭐ 監聽全局點擊收起按鈕 (兼容新 Input System)
+    void Update()
+    {
+        if (activeClickArea == null) return;
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            // 判斷是否點擊在按鈕上
+            if (!IsPointerOverUIObject(activeClickArea.addFriendButton.gameObject) &&
+                !IsPointerOverUIObject(activeClickArea.stickyNoteButton.gameObject))
+            {
+                activeClickArea.HideButtons();
+                activeClickArea = null;
+            }
+        }
+    }
+
+
+
+    // ⭐ 判斷滑鼠是否在指定 UI 元件上
+    private bool IsPointerOverUIObject(GameObject obj)
+    {
+        if (obj == null) return false;
+
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+        foreach (var result in results)
+        {
+            if (result.gameObject == obj)
+                return true;
+        }
+        return false;
     }
 }

@@ -212,7 +212,7 @@ public class SeatAvatar_camp : MonoBehaviour
                 targetSeat.runtimeShirt.sprite = avatarDB.GetShirt(task.shirtId);
                 targetSeat.runtimeShirt.transform.position = basePos + targetSeat.shirtOffset;
                 targetSeat.runtimeShirt.transform.localScale = targetSeat.shirtScale;
-                targetSeat.runtimeShirt.sortingOrder = baseOrder + 3;
+                targetSeat.runtimeShirt.sortingOrder = baseOrder + 4;
                 targetSeat.runtimeShirt.color = Color.white;
             }
 

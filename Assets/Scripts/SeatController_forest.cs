@@ -232,10 +232,10 @@ public class SeatManager_Forest : MonoBehaviour
 
 
     // 保存目前顯示按鈕的 ClickArea
-    private SeatClickArea activeClickArea = null;
+    private SeatClickArea_Forest activeClickArea = null;
 
     // ⭐ 點擊座位顯示按鈕
-    public void OnSeatClicked(string seatId, SeatClickArea clickArea)
+    public void OnSeatClicked(string seatId, SeatClickArea_Forest clickArea)
     {
         string path = $"Seat/Forest/{currentRoomID}/{seatId}";
 

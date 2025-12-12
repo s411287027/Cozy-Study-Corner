@@ -221,8 +221,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.42078, y: 49.16974}
-  m_SizeDelta: {x: 1, y: 0.999833}
+  m_AnchoredPosition: {x: 139, y: 18.5}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8176565
 MonoBehaviour:
@@ -726,8 +726,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190.25916, y: 63.089478}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -120, y: 11}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &79095219
 MonoBehaviour:
@@ -1321,8 +1321,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190.25916, y: 63.089478}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -135, y: -0.24999}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &140178909
 MonoBehaviour:
@@ -4964,7 +4964,6 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 2117840377}
   stickyNoteButton: {fileID: 1633742528}
-  addFriendButtonText: {fileID: 0}
 --- !u!114 &554728391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5586,8 +5585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190.25916, y: 63.089478}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -129, y: 18}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660108197
 MonoBehaviour:
@@ -6680,8 +6679,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190.25916, y: 63.089478}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -141, y: 19}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &743365528
 MonoBehaviour:
@@ -8552,7 +8551,6 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 0}
   stickyNoteButton: {fileID: 0}
-  addFriendButtonText: {fileID: 0}
 --- !u!114 &991766885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8655,7 +8653,6 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 140178911}
   stickyNoteButton: {fileID: 1679780718}
-  addFriendButtonText: {fileID: 0}
 --- !u!114 &1005715983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9361,7 +9358,6 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 743365530}
   stickyNoteButton: {fileID: 1835915253}
-  addFriendButtonText: {fileID: 0}
 --- !u!114 &1072199350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11515,7 +11511,6 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 660108199}
   stickyNoteButton: {fileID: 8176565}
-  addFriendButtonText: {fileID: 0}
 --- !u!114 &1296640164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18918,7 +18913,6 @@ MonoBehaviour:
   manager: {fileID: 893326114}
   addFriendButton: {fileID: 79095221}
   stickyNoteButton: {fileID: 1647432481}
-  addFriendButtonText: {fileID: 0}
 --- !u!114 &1612143602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19300,8 +19294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.42078, y: 49.16974}
-  m_SizeDelta: {x: 1, y: 0.999833}
+  m_AnchoredPosition: {x: 146, y: 13.5}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633742528
 MonoBehaviour:
@@ -19573,8 +19567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.42078, y: 49.16974}
-  m_SizeDelta: {x: 1, y: 0.999833}
+  m_AnchoredPosition: {x: 141, y: 11.5}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647432481
 MonoBehaviour:
@@ -19841,8 +19835,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.42078, y: 49.16974}
-  m_SizeDelta: {x: 1, y: 0.999833}
+  m_AnchoredPosition: {x: 136, y: 0.25002}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679780718
 MonoBehaviour:
@@ -20824,7 +20818,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1797187765
 Canvas:
   m_ObjectHideFlags: 0
@@ -21023,8 +21017,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.42078, y: 49.16974}
-  m_SizeDelta: {x: 1, y: 0.999833}
+  m_AnchoredPosition: {x: 139, y: 18.5}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1835915253
 MonoBehaviour:
@@ -23018,8 +23012,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190.25916, y: 63.089478}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -142, y: 13}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2117840375
 MonoBehaviour:

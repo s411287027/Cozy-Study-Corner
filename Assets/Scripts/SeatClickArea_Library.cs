@@ -4,10 +4,10 @@ using Firebase.Database;
 using Firebase.Extensions;
 
 [RequireComponent(typeof(Button))]
-public class SeatClickArea : MonoBehaviour
+public class SeatClickArea_Library : MonoBehaviour
 {
     public string seatId;
-    public SeatManager_Forest manager;
+    public SeatManager_Library manager;
 
     [Header("UI Buttons")]
     public Button addFriendButton;
@@ -41,12 +41,12 @@ public class SeatClickArea : MonoBehaviour
 
         if (manager == null)
         {
-            Debug.LogError("❌ SeatClickArea 找不到 SeatManager_Forest 引用！");
+            Debug.LogError("❌ SeatClickArea_Library 找不到 SeatManager_Library 引用！");
             return;
         }
 
         string currentRoom = manager.currentRoomID;
-        string path = $"Seat/Forest/{currentRoom}/{seatId}";
+        string path = $"Seat/Library/{currentRoom}/{seatId}";
 
         FirebaseDatabase.DefaultInstance.RootReference.Child(path)
             .GetValueAsync().ContinueWithOnMainThread(task =>
@@ -80,7 +80,7 @@ public class SeatClickArea : MonoBehaviour
 
     private void OnStickyNoteClicked()
     {
-        Debug.Log($"[SeatClickArea] 點擊便條紙功能: {seatId}");
+        Debug.Log($"[SeatClickArea_Library] 點擊便條紙功能: {seatId}");
         HideButtons();
     }
 
@@ -105,7 +105,7 @@ public class SeatClickArea : MonoBehaviour
     {
         if (manager == null) return;
         string currentRoom = manager.currentRoomID;
-        string path = $"Seat/Forest/{currentRoom}/{seatId}";
+        string path = $"Seat/Library/{currentRoom}/{seatId}";
 
         FirebaseDatabase.DefaultInstance.RootReference.Child(path)
             .GetValueAsync().ContinueWithOnMainThread(task =>
