@@ -38,6 +38,17 @@ public class SeatManager_Classroom : MonoBehaviour
             // 注意：這裡 lambda 會抓到當下的 seatId
             sitBtn.onClick.AddListener(() => OnSitButtonClicked(seatId));
             leaveBtn.onClick.AddListener(() => OnLeaveButtonClicked(seatId));
+            // =========== ⭐ 防止閃爍：初始化時先全部隱藏 ===========
+            // 這樣在 Firebase 資料回來之前，畫面上就不會有殘留的圖片
+            Transform imageObj = seat.Find("Image");
+            Transform labelObj = seat.Find("Label");
+
+            if (imageObj != null) imageObj.gameObject.SetActive(false);
+            if (labelObj != null) labelObj.gameObject.SetActive(false);
+
+            // LeaveButton 也應該預設隱藏
+            leaveBtn.gameObject.SetActive(false);
+            // ===================================================
         }
 
         // ⭐ 修改：不再直接監聽，而是呼叫連線函式
@@ -96,11 +107,13 @@ public class SeatManager_Classroom : MonoBehaviour
                 Button sitBtn = seat.transform.Find("SitButton").GetComponent<Button>();
                 Button leaveBtn = seat.transform.Find("LeaveButton").GetComponent<Button>();
                 TMP_Text label = seat.transform.Find("Label").GetComponent<TMP_Text>();
-
+                Image seatImage = seat.transform.Find("Image").GetComponent<Image>();
                 bool isEmpty = string.IsNullOrEmpty(uid) || uid == "null";
 
                 if (isEmpty)
                 {
+                    if (seatImage != null) seatImage.gameObject.SetActive(false);
+                    if (label != null) label.gameObject.SetActive(false);
                     label.text = "No person";
                     leaveBtn.gameObject.SetActive(false);
                     // 只有當我還沒坐在任何位置時，才顯示「坐下」按鈕
@@ -108,6 +121,8 @@ public class SeatManager_Classroom : MonoBehaviour
                 }
                 else
                 {
+                    if (seatImage != null) seatImage.gameObject.SetActive(true);
+                    if (label != null) label.gameObject.SetActive(true);
                     label.text = "Loading...";
                     UpdateLabelWithUserName(uid, label);
 
