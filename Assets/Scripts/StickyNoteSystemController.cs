@@ -1,181 +1,149 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Firebase.Database;
-using Firebase.Extensions;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 public class StickyNoteSystemController : MonoBehaviour
 {
-    [Header("UI References")]
-    public GameObject stickyNotePanel;
-    public TMP_InputField messageInputField;
+    [Header("Send Panel")]
+    public GameObject sendPanel;
+    public TMP_InputField messageInput;
     public Button sendButton;
-    public Button closeButton;
+    public Button closeSendButton;
 
-    public GameObject receivedStickyNotesPanel;
-    public Transform receivedStickyNotesContainer;
+    [Header("Received Panel")]
+    public GameObject receivedPanel;
+    public Transform receivedContainer;
     public GameObject stickyNoteItemPrefab;
-    public TMP_Text receivedStickyNotesText;
+    public TMP_Text emptyHintText;          // 沒有收到時顯示（可不接）
+    public Button closeReceivedButton;
 
-    // 收到的便利貼
-    private List<StickyNote> receivedStickyNotes = new List<StickyNote>();
-
-    // Firebase Database 參考
-    private DatabaseReference dbRef;
-    private FirebaseDatabaseController dbController;
+    private string currentTargetUid;
 
     private void Awake()
     {
-        // 初始化 Firebase 資料庫參考
-        dbController = FirebaseDatabaseController.Instance;
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        if (sendPanel) sendPanel.SetActive(false);
+        if (receivedPanel) receivedPanel.SetActive(false);
+
+        if (sendButton) sendButton.onClick.AddListener(OnClickSend);
+        if (closeSendButton) closeSendButton.onClick.AddListener(() => { if (sendPanel) sendPanel.SetActive(false); });
+        if (closeReceivedButton) closeReceivedButton.onClick.AddListener(() => { if (receivedPanel) receivedPanel.SetActive(false); });
     }
 
-    // 顯示便利貼面板
-    public void ShowStickyNotePanel()
+    public void OpenSendPanel(string targetUid)
     {
-        stickyNotePanel.SetActive(true);
+        currentTargetUid = targetUid;
+        if (messageInput) messageInput.text = "";
+        if (sendPanel) sendPanel.SetActive(true);
     }
 
-    // 隱藏便利貼面板
-    public void HideStickyNotePanel()
+    private void OnClickSend()
     {
-        stickyNotePanel.SetActive(false);
+        if (string.IsNullOrEmpty(currentTargetUid)) return;
+        if (!messageInput) return;
+
+        string msg = messageInput.text.Trim();
+        if (string.IsNullOrEmpty(msg)) return;
+
+        if (StickyNoteDatabaseController.Instance == null)
+        {
+            Debug.LogError("StickyNoteDatabaseController.Instance is null");
+            return;
+        }
+
+        StickyNoteDatabaseController.Instance.SendStickyNote(currentTargetUid, msg);
+
+        if (sendPanel) sendPanel.SetActive(false);
     }
 
-    // 顯示收到的便利貼面板
-    public void ShowReceivedStickyNotesPanel()
+    // View 按鈕接這個
+    public void OpenReceivedPanel()
     {
-        // 先隱藏面板，然後再顯示
-        receivedStickyNotesPanel.SetActive(false);
-        receivedStickyNotesPanel.SetActive(true);
-        
-        // 加載收到的便利貼
+        if (receivedPanel) receivedPanel.SetActive(true);
         LoadReceivedStickyNotes();
     }
 
-    // 隱藏收到的便利貼面板
-    public void HideReceivedStickyNotesPanel()
+    private void LoadReceivedStickyNotes()
     {
-        receivedStickyNotesPanel.SetActive(false);
-    }
-
-    // 發送便利貼
-    public void SendStickyNote()
-    {
-        string message = messageInputField.text.Trim();
-        if (!string.IsNullOrEmpty(message))
+        if (receivedContainer == null || stickyNoteItemPrefab == null)
         {
-            // 建立新的便利貼物件
-            StickyNote newStickyNote = new StickyNote
-            {
-                senderUid = Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser.UserId,
-                message = message,
-                timestamp = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-            };
-
-            // 傳送到資料庫
-            StickyNoteDatabaseController.Instance.SaveStickyNote(newStickyNote);
-
-            // 清空輸入框
-            messageInputField.text = "";
-        }
-    }
-
-    // 加載收到的便利貼
-    public void LoadReceivedStickyNotes()
-    {
-        // 清空先前顯示的便利貼
-        foreach (Transform child in receivedStickyNotesContainer)
-        {
-            Destroy(child.gameObject);  // 刪除所有子物件
+            Debug.LogError("receivedContainer / stickyNoteItemPrefab 沒有指派");
+            return;
         }
 
-        // 從 Firebase 加載新的便利貼
-        dbRef.Child("stickyNotes").Child(dbController.userId).GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsCompleted)
-            {
-                if (task.Result.Exists)
-                {
-                    foreach (var stickyNote in task.Result.Children)
-                    {
-                        string senderUid = stickyNote.Child("senderUid").Value.ToString();
-                        string message = stickyNote.Child("message").Value.ToString();
-                        string timestamp = stickyNote.Child("timestamp").Value.ToString();
+        // 1) 清空舊 UI，避免重疊
+        for (int i = receivedContainer.childCount - 1; i >= 0; i--)
+            Destroy(receivedContainer.GetChild(i).gameObject);
 
-                        // 創建並顯示收到的便利貼項目
-                        CreateReceivedStickyNoteItem(senderUid, message, timestamp);
-                    }
-                }
-                else
-                {
-                    receivedStickyNotesText.text = "No sticky notes found."; // 如果沒有找到資料
-                }
-            }
-            else
+        if (emptyHintText) emptyHintText.gameObject.SetActive(false);
+
+        if (StickyNoteDatabaseController.Instance == null)
+        {
+            Debug.LogError("StickyNoteDatabaseController.Instance is null");
+            return;
+        }
+
+        // 2) 從 Firebase 拉資料
+        StickyNoteDatabaseController.Instance.LoadMyStickyNotes(notes =>
+        {
+            // notes 可能為空
+            if (notes == null || notes.Count == 0)
             {
-                Debug.LogError("Error loading sticky notes: " + task.Exception);
+                if (emptyHintText)
+                {
+                    emptyHintText.text = "No sticky notes received.";
+                    emptyHintText.gameObject.SetActive(true);
+                }
+                return;
             }
+
+            // 3) 排序：你要「越早越下面」= 最新在上、最舊在下 → DESC
+            notes.Sort((a, b) =>
+            {
+                DateTime ta = ParseTimeSafe(a.timestamp);
+                DateTime tb = ParseTimeSafe(b.timestamp);
+                return tb.CompareTo(ta); // DESC
+            });
+
+            // 4) 生成每一張便利貼
+            foreach (var n in notes)
+                CreateItem(n);
         });
     }
 
-    // 創建顯示收到的便利貼項目
-    private void CreateReceivedStickyNoteItem(string senderUid, string message, string timestamp)
+    private void CreateItem(StickyNote note)
     {
-        // 確保有物件可用
-        GameObject item = Instantiate(stickyNoteItemPrefab, receivedStickyNotesContainer);
-        TMP_Text senderText = item.transform.Find("SenderText")?.GetComponent<TMP_Text>();
-        TMP_Text messageText = item.transform.Find("MessageText")?.GetComponent<TMP_Text>();
-        TMP_Text timestampText = item.transform.Find("TimestampText")?.GetComponent<TMP_Text>();
+        GameObject item = Instantiate(stickyNoteItemPrefab, receivedContainer);
 
-        if (senderText != null)
+        // 用 Prefab 上的 StickyNoteItemUI（最穩）
+        var ui = item.GetComponent<StickyNoteItemUI>();
+        if (ui == null)
         {
-            senderText.text = "From: " + senderUid;
-        }
-        else
-        {
-            Debug.LogError("SenderText component not found in stickyNoteItemPrefab.");
+            Debug.LogError("stickyNoteItemPrefab 根物件上沒有 StickyNoteItemUI，請加上並拖好三個 TMP_Text");
+            return;
         }
 
-        if (messageText != null)
-        {
-            messageText.text = message;
-        }
-        else
-        {
-            Debug.LogError("MessageText component not found in stickyNoteItemPrefab.");
-        }
+        string sender = string.IsNullOrEmpty(note.senderUid) ? "(unknown)" : note.senderUid;
+        string msg    = string.IsNullOrEmpty(note.message)   ? "" : note.message;
+        string time   = string.IsNullOrEmpty(note.timestamp) ? "" : note.timestamp;
 
-        if (timestampText != null)
-        {
-            timestampText.text = timestamp;
-        }
-        else
-        {
-            Debug.LogError("TimestampText component not found in stickyNoteItemPrefab.");
-        }
+        ui.Set(sender, msg, time);
     }
 
-    private void OnEnable()
+    private DateTime ParseTimeSafe(string s)
     {
-        sendButton.onClick.AddListener(SendStickyNote);
-        closeButton.onClick.AddListener(HideStickyNotePanel);
-    }
+        if (string.IsNullOrEmpty(s)) return DateTime.MinValue;
 
-    private void OnDisable()
-    {
-        sendButton.onClick.RemoveListener(SendStickyNote);
-        closeButton.onClick.RemoveListener(HideStickyNotePanel);
-    }
-}
+        // 你存的是 "yyyy/MM/dd HH:mm:ss"
+        if (DateTime.TryParseExact(s, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out var dt))
+            return dt;
 
-// 便利貼資料模型
-public class StickyNote
-{
-    public string senderUid;
-    public string message;
-    public string timestamp;
+        // 退一步用一般 Parse
+        if (DateTime.TryParse(s, out dt)) return dt;
+
+        return DateTime.MinValue;
+    }
 }

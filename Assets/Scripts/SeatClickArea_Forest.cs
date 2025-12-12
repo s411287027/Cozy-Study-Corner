@@ -10,6 +10,7 @@ public class SeatClickArea_Forest : MonoBehaviour
     public SeatManager_Forest manager;
 
     [Header("UI Buttons")]
+    public StickyNoteSystemController stickyNoteUI;
     public Button addFriendButton;
     public Button stickyNoteButton;
 
@@ -82,7 +83,43 @@ public class SeatClickArea_Forest : MonoBehaviour
     {
         Debug.Log($"[SeatClickArea_Forest] 點擊便條紙功能: {seatId}");
         HideButtons();
+
+        if (manager == null)
+        {
+            Debug.LogError("❌ SeatClickArea_Forest 找不到 SeatManager_Forest 引用！");
+            return;
+        }
+        if (stickyNoteUI == null)
+        {
+            Debug.LogError("❌ stickyNoteUI 沒有指派！請在 Inspector 拖 StickyNoteSystemController 進來");
+            return;
+        }
+
+        string currentRoom = manager.currentRoomID;
+        string path = $"Seat/Forest/{currentRoom}/{seatId}";
+
+        FirebaseDatabase.DefaultInstance.RootReference.Child(path)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted || task.IsCanceled)
+                {
+                    Debug.LogError("❌ 查詢座位失敗");
+                    return;
+                }
+
+                string targetUid = task.Result.Value?.ToString();
+
+                if (string.IsNullOrEmpty(targetUid) || targetUid == "null")
+                {
+                    Debug.LogWarning("⚠️ 該座位目前沒有人");
+                    return;
+                }
+
+                // ✅ 打開「傳便利貼」UI，並設定目標 UID
+                stickyNoteUI.OpenSendPanel(targetUid);
+            });
     }
+
 
     // ⭐⭐⭐ [修改] 顯示按鈕時，額外去檢查狀態來決定是否變灰 ⭐⭐⭐
     public void ShowButtons()

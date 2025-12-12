@@ -1,52 +1,107 @@
 using UnityEngine;
 using Firebase.Database;
+using Firebase.Auth;
 using System;
 using System.Collections.Generic;
+using Firebase.Extensions;
 
 public class StickyNoteDatabaseController : MonoBehaviour
 {
     public static StickyNoteDatabaseController Instance;
 
     private DatabaseReference dbRef;
+    private FirebaseAuth auth;
 
     private void Awake()
     {
-        // 確保 Singleton 只初始化一次
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
-            dbRef = FirebaseDatabase.DefaultInstance.RootReference;
-            DontDestroyOnLoad(gameObject); // 保證在場景切換後不會被刪除
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject); // 若已經有實例則摧毀當前物件
-        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        auth = FirebaseAuth.DefaultInstance;
+        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
-    public void SaveStickyNote(StickyNote stickyNote)
+    // =========================
+    // 傳送便利貼
+    // =========================
+    public void SendStickyNote(string targetUid, string message)
     {
-        // 儲存便利貼到 Firebase
-        string path = $"stickyNotes/{stickyNote.senderUid}";
+        if (auth.CurrentUser == null)
+        {
+            Debug.LogError("❌ 尚未登入 Firebase");
+            return;
+        }
+
+        string senderUid = auth.CurrentUser.UserId;
+
+        string path = $"stickyNotes/{targetUid}";
         string key = dbRef.Child(path).Push().Key;
 
-        Dictionary<string, object> stickyNoteData = new Dictionary<string, object>
+        Dictionary<string, object> data = new Dictionary<string, object>
         {
-            { "senderUid", stickyNote.senderUid },
-            { "message", stickyNote.message },
-            { "timestamp", stickyNote.timestamp }
+            { "senderUid", senderUid },
+            { "message", message },
+            { "timestamp", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") }
         };
 
-        dbRef.Child(path).Child(key).SetValueAsync(stickyNoteData).ContinueWith(task =>
-        {
-            if (task.IsCompleted)
-            {
-                Debug.Log("Sticky Note saved successfully.");
-            }
-            else
-            {
-                Debug.LogError("Error saving sticky note: " + task.Exception);
-            }
-        });
+        dbRef.Child(path).Child(key).SetValueAsync(data);
     }
+
+    // =========================
+    // 讀取我收到的便利貼
+    // =========================
+    public void LoadMyStickyNotes(Action<List<StickyNote>> onResult)
+    {
+        if (auth.CurrentUser == null)
+        {
+            Debug.LogError("❌ 尚未登入 Firebase");
+            onResult?.Invoke(new List<StickyNote>());
+            return;
+        }
+
+        string myUid = auth.CurrentUser.UserId;
+
+        dbRef.Child("stickyNotes").Child(myUid)
+            .GetValueAsync()
+            .ContinueWithOnMainThread(task =>
+            {
+                List<StickyNote> result = new List<StickyNote>();
+
+                if (task.IsCompleted && task.Result != null && task.Result.Exists)
+                {
+                    foreach (var child in task.Result.Children)
+                    {
+                        string senderUid = child.Child("senderUid")?.Value?.ToString() ?? "";
+                        string message   = child.Child("message")?.Value?.ToString() ?? "";
+                        string timestamp = child.Child("timestamp")?.Value?.ToString() ?? "";
+
+                        if (string.IsNullOrEmpty(senderUid) && string.IsNullOrEmpty(message))
+                            continue;
+
+                        result.Add(new StickyNote
+                        {
+                            senderUid = senderUid,
+                            message = message,
+                            timestamp = timestamp
+                        });
+                    }
+                }
+
+                onResult?.Invoke(result);
+            });
+    }
+}
+
+[Serializable]
+public class StickyNote
+{
+    public string senderUid;
+    public string message;
+    public string timestamp;
 }
