@@ -473,7 +473,7 @@ public class FriendSystemController : MonoBehaviour
         RemoveRequest(fromUid, dbController.userId, "Received");
         RemoveRequest(dbController.userId, fromUid, "Sent");
 
-        resultText.text = "Accept！";
+        resultText.text = "Accept";
         LoadFriends();
     }
 
@@ -525,9 +525,9 @@ public class FriendSystemController : MonoBehaviour
         dbRef.Child("users").Child(fromUid).Child("UserName").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted && task.Result.Exists)
-                uidText.text = $"Request: {task.Result.Value}";
+                uidText.text = $"{task.Result.Value} sent you a friend request.";
             else
-                uidText.text = $"Request: {fromUid}";
+                uidText.text = $"{fromUid} sent you a friend request.";
         });
 
         acceptButton.onClick.AddListener(() => AcceptFriendRequest(fromUid));
