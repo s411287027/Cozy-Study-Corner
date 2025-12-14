@@ -116,7 +116,7 @@ public class SeatClickArea_Forest : MonoBehaviour
                 }
 
                 // ✅ 打開「傳便利貼」UI，並設定目標 UID
-                stickyNoteUI.OpenSendPanel(targetUid);
+                stickyNoteUI.OpenSendPanel(targetUid, "Forest");
             });
     }
 

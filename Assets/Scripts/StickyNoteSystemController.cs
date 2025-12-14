@@ -2,8 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
+using System.Collections.Generic;
+using Firebase.Database;
+using Firebase.Extensions;
 
 public class StickyNoteSystemController : MonoBehaviour
 {
@@ -17,24 +19,54 @@ public class StickyNoteSystemController : MonoBehaviour
     public GameObject receivedPanel;
     public Transform receivedContainer;
     public GameObject stickyNoteItemPrefab;
-    public TMP_Text emptyHintText;          // 沒有收到時顯示（可不接）
+    public TMP_Text emptyHintText;
     public Button closeReceivedButton;
 
+    [Header("Unread Badge (紅點)")]
+    public GameObject badgeRoot;   // 紅點 Image（整顆）
+    public TMP_Text badgeText;     // 紅點數字（可不接）
+
     private string currentTargetUid;
+    private string currentSourceScene;
+
+    // ====== realtime badge ======
+    private DatabaseReference myNotesRef;
+    private EventHandler<ChildChangedEventArgs> childAddedHandler;
+    private bool listening = false;
+
+    // 用來避免「初次掛監聽時把舊資料當新資料」
+    private bool initialSyncDone = false;
+    private HashSet<string> knownKeys = new HashSet<string>();
+    private int unreadCount = 0;
 
     private void Awake()
     {
         if (sendPanel) sendPanel.SetActive(false);
         if (receivedPanel) receivedPanel.SetActive(false);
 
+        if (badgeRoot) badgeRoot.SetActive(false);
+
         if (sendButton) sendButton.onClick.AddListener(OnClickSend);
         if (closeSendButton) closeSendButton.onClick.AddListener(() => { if (sendPanel) sendPanel.SetActive(false); });
         if (closeReceivedButton) closeReceivedButton.onClick.AddListener(() => { if (receivedPanel) receivedPanel.SetActive(false); });
+
+        // ✅ 建議：啟動就開始監聽（有登入才會成功）
+        StartListenNewNotes();
     }
 
-    public void OpenSendPanel(string targetUid)
+    private void OnDestroy()
     {
+        StopListenNewNotes();
+    }
+
+    // SeatClickArea 會呼叫這個
+    public void OpenSendPanel(string targetUid, string sourceScene)
+    {
+        Debug.Log("✅ OpenSendPanel called, source = " + sourceScene);
+
         currentTargetUid = targetUid;
+        currentSourceScene = sourceScene;
+
         if (messageInput) messageInput.text = "";
         if (sendPanel) sendPanel.SetActive(true);
     }
@@ -53,7 +85,7 @@ public class StickyNoteSystemController : MonoBehaviour
             return;
         }
 
-        StickyNoteDatabaseController.Instance.SendStickyNote(currentTargetUid, msg);
+        StickyNoteDatabaseController.Instance.SendStickyNote(currentTargetUid, msg, currentSourceScene);
 
         if (sendPanel) sendPanel.SetActive(false);
     }
@@ -63,6 +95,9 @@ public class StickyNoteSystemController : MonoBehaviour
     {
         if (receivedPanel) receivedPanel.SetActive(true);
         LoadReceivedStickyNotes();
+
+        // ✅ 看過就清紅點
+        ClearUnread();
     }
 
     private void LoadReceivedStickyNotes()
@@ -73,7 +108,7 @@ public class StickyNoteSystemController : MonoBehaviour
             return;
         }
 
-        // 1) 清空舊 UI，避免重疊
+        // 清空舊 UI
         for (int i = receivedContainer.childCount - 1; i >= 0; i--)
             Destroy(receivedContainer.GetChild(i).gameObject);
 
@@ -85,10 +120,8 @@ public class StickyNoteSystemController : MonoBehaviour
             return;
         }
 
-        // 2) 從 Firebase 拉資料
         StickyNoteDatabaseController.Instance.LoadMyStickyNotes(notes =>
         {
-            // notes 可能為空
             if (notes == null || notes.Count == 0)
             {
                 if (emptyHintText)
@@ -99,15 +132,14 @@ public class StickyNoteSystemController : MonoBehaviour
                 return;
             }
 
-            // 3) 排序：你要「越早越下面」= 最新在上、最舊在下 → DESC
+            // 最新在上、最舊在下
             notes.Sort((a, b) =>
             {
                 DateTime ta = ParseTimeSafe(a.timestamp);
                 DateTime tb = ParseTimeSafe(b.timestamp);
-                return tb.CompareTo(ta); // DESC
+                return tb.CompareTo(ta);
             });
 
-            // 4) 生成每一張便利貼
             foreach (var n in notes)
                 CreateItem(n);
         });
@@ -116,34 +148,118 @@ public class StickyNoteSystemController : MonoBehaviour
     private void CreateItem(StickyNote note)
     {
         GameObject item = Instantiate(stickyNoteItemPrefab, receivedContainer);
-
-        // 用 Prefab 上的 StickyNoteItemUI（最穩）
         var ui = item.GetComponent<StickyNoteItemUI>();
         if (ui == null)
         {
-            Debug.LogError("stickyNoteItemPrefab 根物件上沒有 StickyNoteItemUI，請加上並拖好三個 TMP_Text");
+            Debug.LogError("stickyNoteItemPrefab 根物件上沒有 StickyNoteItemUI");
             return;
         }
-
-        string sender = string.IsNullOrEmpty(note.senderUid) ? "(unknown)" : note.senderUid;
-        string msg    = string.IsNullOrEmpty(note.message)   ? "" : note.message;
-        string time   = string.IsNullOrEmpty(note.timestamp) ? "" : note.timestamp;
-
-        ui.Set(sender, msg, time);
+        ui.Set(note);
     }
 
     private DateTime ParseTimeSafe(string s)
     {
         if (string.IsNullOrEmpty(s)) return DateTime.MinValue;
 
-        // 你存的是 "yyyy/MM/dd HH:mm:ss"
         if (DateTime.TryParseExact(s, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out var dt))
             return dt;
 
-        // 退一步用一般 Parse
         if (DateTime.TryParse(s, out dt)) return dt;
-
         return DateTime.MinValue;
+    }
+
+    // =========================
+    // 紅點監聽（重點：不把舊資料算新）
+    // =========================
+    public void StartListenNewNotes()
+    {
+        if (listening) return;
+        if (StickyNoteDatabaseController.Instance == null) return;
+
+        myNotesRef = StickyNoteDatabaseController.Instance.GetMyStickyNotesRef();
+        if (myNotesRef == null)
+        {
+            // 可能還沒登入
+            Debug.LogWarning("StartListenNewNotes: myNotesRef null (not logged in yet?)");
+            return;
+        }
+
+        initialSyncDone = false;
+        knownKeys.Clear();
+
+        // 1) 先抓一次目前已有資料，這些不算新
+        myNotesRef.GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                Debug.LogError("Initial sync failed.");
+                return;
+            }
+
+            if (task.Result != null && task.Result.Exists)
+            {
+                foreach (var child in task.Result.Children)
+                    knownKeys.Add(child.Key);
+            }
+
+            // 2) 再掛 ChildAdded
+            childAddedHandler = (object sender, ChildChangedEventArgs args) =>
+            {
+                if (args.DatabaseError != null) return;
+                if (args.Snapshot == null || !args.Snapshot.Exists) return;
+
+                string key = args.Snapshot.Key;
+
+                // 初始化重播期間：只記錄 key，不加未讀
+                if (!initialSyncDone)
+                {
+                    knownKeys.Add(key);
+                    return;
+                }
+
+                // 真正新來的
+                if (knownKeys.Contains(key)) return;
+                knownKeys.Add(key);
+
+                // 如果正在看 receivedPanel，就不要增加紅點（你想要也可改）
+                if (receivedPanel != null && receivedPanel.activeInHierarchy)
+                    return;
+
+                unreadCount++;
+                UpdateBadge();
+            };
+
+            myNotesRef.ChildAdded += childAddedHandler;
+            listening = true;
+
+            // 3) 從此刻起才算新
+            initialSyncDone = true;
+        });
+    }
+
+    public void StopListenNewNotes()
+    {
+        if (!listening) return;
+
+        if (myNotesRef != null && childAddedHandler != null)
+            myNotesRef.ChildAdded -= childAddedHandler;
+
+        listening = false;
+        childAddedHandler = null;
+        myNotesRef = null;
+        initialSyncDone = false;
+    }
+
+    public void ClearUnread()
+    {
+        unreadCount = 0;
+        UpdateBadge();
+    }
+
+    private void UpdateBadge()
+    {
+        if (badgeRoot) badgeRoot.SetActive(unreadCount > 0);
+        if (badgeText) badgeText.text = unreadCount.ToString();
     }
 }

@@ -27,10 +27,15 @@ public class StickyNoteDatabaseController : MonoBehaviour
         dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
+    public string GetMyUid()
+    {
+        return auth.CurrentUser != null ? auth.CurrentUser.UserId : null;
+    }
+
     // =========================
     // 傳送便利貼
     // =========================
-    public void SendStickyNote(string targetUid, string message)
+    public void SendStickyNote(string targetUid, string message, string sourceScene)
     {
         if (auth.CurrentUser == null)
         {
@@ -47,7 +52,8 @@ public class StickyNoteDatabaseController : MonoBehaviour
         {
             { "senderUid", senderUid },
             { "message", message },
-            { "timestamp", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") }
+            { "timestamp", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") },
+            { "sourceScene", sourceScene }
         };
 
         dbRef.Child(path).Child(key).SetValueAsync(data);
@@ -60,7 +66,6 @@ public class StickyNoteDatabaseController : MonoBehaviour
     {
         if (auth.CurrentUser == null)
         {
-            Debug.LogError("❌ 尚未登入 Firebase");
             onResult?.Invoke(new List<StickyNote>());
             return;
         }
@@ -77,18 +82,13 @@ public class StickyNoteDatabaseController : MonoBehaviour
                 {
                     foreach (var child in task.Result.Children)
                     {
-                        string senderUid = child.Child("senderUid")?.Value?.ToString() ?? "";
-                        string message   = child.Child("message")?.Value?.ToString() ?? "";
-                        string timestamp = child.Child("timestamp")?.Value?.ToString() ?? "";
-
-                        if (string.IsNullOrEmpty(senderUid) && string.IsNullOrEmpty(message))
-                            continue;
-
                         result.Add(new StickyNote
                         {
-                            senderUid = senderUid,
-                            message = message,
-                            timestamp = timestamp
+                            key        = child.Key,
+                            senderUid   = child.Child("senderUid")?.Value?.ToString() ?? "",
+                            message     = child.Child("message")?.Value?.ToString() ?? "",
+                            timestamp   = child.Child("timestamp")?.Value?.ToString() ?? "",
+                            sourceScene = child.Child("sourceScene")?.Value?.ToString() ?? ""
                         });
                     }
                 }
@@ -96,12 +96,14 @@ public class StickyNoteDatabaseController : MonoBehaviour
                 onResult?.Invoke(result);
             });
     }
-}
 
-[Serializable]
-public class StickyNote
-{
-    public string senderUid;
-    public string message;
-    public string timestamp;
+    // =========================
+    // 給紅點用：拿到我的 stickyNotes reference
+    // =========================
+    public DatabaseReference GetMyStickyNotesRef()
+    {
+        var uid = GetMyUid();
+        if (string.IsNullOrEmpty(uid)) return null;
+        return FirebaseDatabase.DefaultInstance.GetReference("stickyNotes").Child(uid);
+    }
 }
