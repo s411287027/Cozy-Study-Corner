@@ -60,12 +60,16 @@ public class FriendSystemController : MonoBehaviour
     private List<string> _sentRequestCache = new List<string>();
     void Awake()
     {
+
+        
         // ⭐ 單例模式 + DontDestroyOnLoad
         if (Instance == null)
         {
             Instance = this;
             // 把掛載此腳本的物件 (連同它的 UI) 全部保留到下一關
             DontDestroyOnLoad(gameObject);
+            // ⭐ 新增：場景切換事件訂閱
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -77,6 +81,41 @@ public class FriendSystemController : MonoBehaviour
         if (FriendSystemPanel != null)
             FriendSystemPanel.SetActive(false);
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // ⭐ 只在特定場景才調整 Canvas
+        if (scene.name != "SampleScene") return;
+
+        Canvas myCanvas = GetComponent<Canvas>();
+        if (myCanvas == null)
+            myCanvas = GetComponentInChildren<Canvas>();
+        if (myCanvas == null) return;
+
+        Camera newCam = Camera.main; // 新場景主 Camera
+        if (myCanvas.renderMode == RenderMode.ScreenSpaceCamera)
+        {
+            myCanvas.worldCamera = newCam;
+        }
+
+        // 調整 Camera 尺寸 (如果是 Orthographic)
+        if (newCam != null && newCam.orthographic)
+        {
+            newCam.orthographicSize = 6f; // 這個只影響 MainScene
+        }
+
+        // World Space Canvas 調整 RectTransform
+        if (myCanvas.renderMode == RenderMode.WorldSpace)
+        {
+            RectTransform rt = myCanvas.GetComponent<RectTransform>();
+            if (rt != null)
+            {
+                rt.sizeDelta = new Vector2(1920, 1080); // 只在 MainScene 生效
+            }
+        }
+    }
+
+
 
     void Start()
     {
@@ -580,6 +619,7 @@ public class FriendSystemController : MonoBehaviour
 
     void OnDestroy()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         if (friendRequestRef != null)
             friendRequestRef.ValueChanged -= OnFriendRequestChanged;
     }

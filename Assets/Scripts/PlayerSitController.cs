@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSitController : MonoBehaviour
@@ -24,6 +25,10 @@ public class PlayerSitController : MonoBehaviour
 
     private bool isSitting = false;
 
+    // ⭐ 存人物方向（不是衣服）
+    private float savedH;
+    private float savedV;
+
     void Awake()
     {
         // ⭐ 修正點 3: 重新加入 GetComponent 邏輯，作為 fallback
@@ -49,6 +54,13 @@ public class PlayerSitController : MonoBehaviour
     {
         if (isSitting) return;
         isSitting = true;
+
+        // ⭐ 存 Animator 當下方向
+        if (ani != null)
+        {
+            ani.keepAnimatorControllerStateOnDisable = true;
+            ani.enabled = false;
+        }
 
         // ⭐ 修正點 4: 優先使用連結的 GameObject，如果 GameObject 為空，則嘗試使用 GetComponent 獲取的 sr。
         if (originalBodyGameObject != null)
@@ -106,5 +118,17 @@ public class PlayerSitController : MonoBehaviour
                 part.renderer.gameObject.SetActive(false);
             }
         }
+
+
+        // ⭐⭐ 關鍵：等 Animator 第一幀跑完，再設方向
+        StartCoroutine(RestoreDirectionAfterAnimator());
+    }
+
+    IEnumerator RestoreDirectionAfterAnimator()
+    {
+        yield return null; // ⭐ 一定要這一行
+
+        ani.SetFloat("Horizontal", savedH);
+        ani.SetFloat("Vertical", savedV);
     }
 }
