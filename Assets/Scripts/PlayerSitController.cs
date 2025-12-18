@@ -58,7 +58,7 @@ public class PlayerSitController : MonoBehaviour
         // ⭐ 存 Animator 當下方向
         if (ani != null)
         {
-            ani.keepAnimatorControllerStateOnDisable = true;
+            ani.keepAnimatorStateOnDisable = true;
             ani.enabled = false;
         }
 
