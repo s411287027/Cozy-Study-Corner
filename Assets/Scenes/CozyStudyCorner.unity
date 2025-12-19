@@ -15187,8 +15187,8 @@ MonoBehaviour:
     - CampScene
     pageNames: []
     musicClips:
-    - {fileID: 8300000, guid: c534e36ba39a1ad4e84c0a6d63c24c41, type: 3}
     - {fileID: 8300000, guid: 1af8f67707b24c448a19aa678ebf877b, type: 3}
+    - {fileID: 8300000, guid: c534e36ba39a1ad4e84c0a6d63c24c41, type: 3}
     - {fileID: 8300000, guid: 147179fac15711246bfc623ba4a92ff4, type: 3}
   - description: 
     sceneNames:
@@ -15199,6 +15199,15 @@ MonoBehaviour:
     - ForPage
     musicClips:
     - {fileID: 8300000, guid: f80b79ff469d37c4d80815285b3ac598, type: 3}
+  - description: 
+    sceneNames:
+    - SwimmingPool
+    pageNames: []
+    musicClips:
+    - {fileID: 8300000, guid: 1c69a8ed0ba1b9b45b9e0d38718bb561, type: 3}
+    - {fileID: 8300000, guid: 5c0df84df301b3b4a85f10f01b35cffa, type: 3}
+    - {fileID: 8300000, guid: 52fa23f520a946f4dafe81be02b410c6, type: 3}
+    - {fileID: 8300000, guid: eb62c2af2e2861f4f87e7937b9b5304e, type: 3}
   fadeDuration: 1
 --- !u!4 &1694485808
 Transform:
