@@ -221,7 +221,7 @@ public class SeatAvatar_swimmingpool : MonoBehaviour
 
                 targetSeat.runtimeSleeve.transform.position = basePos + targetSeat.sleeveOffset;
                 targetSeat.runtimeSleeve.transform.localScale = targetSeat.sleeveScale;
-                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 16;
+                targetSeat.runtimeSleeve.sortingOrder = baseOrder + 20;
                 targetSeat.runtimeSleeve.color = Color.white;
             }
 

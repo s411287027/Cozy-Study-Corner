@@ -20,9 +20,9 @@ MonoBehaviour:
   shirtRight: {fileID: 8441908770864004332, guid: ed95313a728fef344bc0433a97ff6170, type: 3}
   shirtUpFrames:
   - {fileID: -2310204999847530025, guid: 210c4cdd7e5967041b81eeb565041bce, type: 3}
-  - {fileID: -7869633803183286145, guid: 204999e6e896ea248b4b9ad246e00ae0, type: 3}
   - {fileID: -2310204999847530025, guid: 210c4cdd7e5967041b81eeb565041bce, type: 3}
-  - {fileID: 8889190656336719129, guid: 9af77f9d330c81c42ae9401e4ee7587a, type: 3}
+  - {fileID: -2310204999847530025, guid: 210c4cdd7e5967041b81eeb565041bce, type: 3}
+  - {fileID: -2310204999847530025, guid: 210c4cdd7e5967041b81eeb565041bce, type: 3}
   shirtDownFrames:
   - {fileID: -5833066490920402176, guid: 8c51f11d190d0a94aa884430f3ed06f0, type: 3}
   - {fileID: 6993676354271848360, guid: c3da924bb7b5aaf45ac90bef055e061c, type: 3}
