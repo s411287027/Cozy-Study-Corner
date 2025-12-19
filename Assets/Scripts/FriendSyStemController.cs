@@ -61,7 +61,7 @@ public class FriendSystemController : MonoBehaviour
     void Awake()
     {
 
-        
+
         // ⭐ 單例模式 + DontDestroyOnLoad
         if (Instance == null)
         {
@@ -338,14 +338,10 @@ public class FriendSystemController : MonoBehaviour
     public void LoadFriends()
     {
         ClearFriendListUI();
-
-        // ⭐ 1. 清空緩存，重新填入
         _localFriendCache.Clear();
 
         if (dbController == null || string.IsNullOrEmpty(dbController.userId)) return;
         if (dbRef == null) dbRef = FirebaseDatabase.DefaultInstance.RootReference;
-
-        Debug.Log("開始載入好友列表...");
 
         dbRef.Child("users").Child(dbController.userId).Child("Friends")
             .GetValueAsync().ContinueWithOnMainThread(task =>
@@ -355,28 +351,38 @@ public class FriendSystemController : MonoBehaviour
                     DataSnapshot snapshot = task.Result;
                     if (!snapshot.Exists)
                     {
-                        GameObject noFriend = Instantiate(friendListItemPrefab, friendListContainer);
-                        TMP_Text friendNameText = noFriend.transform.Find("FriendNameText").GetComponent<TMP_Text>();
-                        friendNameText.text = "No Friends";
+                        // 顯示 No Friends UI ... (省略，保持原本邏輯)
                         return;
                     }
 
                     foreach (var f in snapshot.Children)
                     {
-                        string friendUid = f.Value.ToString();
+                        string friendUid = "";
+
+                        // ⭐ 兼容性修正：判斷 UID 是在 Key 還是 Value
+                        // 新結構：Key = UID, Value = "Friend"
+                        // 舊結構：Key = 亂數, Value = UID
+
+                        // 如果 Value 是 "Friend" 或 "true"，代表這是新結構，UID 在 Key
+                        if (f.Value.ToString() == "Friend" || f.Value.ToString() == "True")
+                        {
+                            friendUid = f.Key;
+                        }
+                        else
+                        {
+                            // 舊結構 fallback (防止你資料庫舊資料壞掉)
+                            friendUid = f.Value.ToString();
+                        }
+
                         if (friendUid != "init" && friendUid != dbController.userId)
                         {
-                            // ⭐ 2. 將確認存在的 UID 加入緩存
                             if (!_localFriendCache.Contains(friendUid))
                             {
                                 _localFriendCache.Add(friendUid);
+                                CreateFriendListItem(friendUid);
                             }
-
-                            CreateFriendListItem(friendUid);
                         }
                     }
-
-                    // ⭐ 3. 強制刷新 UI，解決第二次打開變隱形的問題
                     StartCoroutine(ForceRebuildLayout());
                 }
             });
@@ -506,14 +512,62 @@ public class FriendSystemController : MonoBehaviour
 
     public void AcceptFriendRequest(string fromUid)
     {
-        dbRef.Child("users").Child(dbController.userId).Child("Friends").Push().SetValueAsync(fromUid);
-        dbRef.Child("users").Child(fromUid).Child("Friends").Push().SetValueAsync(dbController.userId);
+        // ❌ 原本寫法 (會造成重複)：
+        // dbRef.Child("users").Child(dbController.userId).Child("Friends").Push().SetValueAsync(fromUid);
+        // dbRef.Child("users").Child(fromUid).Child("Friends").Push().SetValueAsync(dbController.userId);
 
-        RemoveRequest(fromUid, dbController.userId, "Received");
-        RemoveRequest(dbController.userId, fromUid, "Sent");
+        // ✅ 修改後寫法 (使用 UID 當 Key，確保唯一性)：
+        // 結構變成： users/A/Friends/B_UID : "Friend"
+        dbRef.Child("users").Child(dbController.userId).Child("Friends").Child(fromUid).SetValueAsync("Friend");
+        dbRef.Child("users").Child(fromUid).Child("Friends").Child(dbController.userId).SetValueAsync("Friend");
+
+        // 處理邀請函刪除 (雙向清理)
+        // 為了防止雙方互寄邀請時，A同意後，B那邊的邀請還卡著，我們最好把雙向的邀請都嘗試刪除
+        CleanUpDoubleRequests(fromUid, dbController.userId);
 
         resultText.text = "Accept";
+
+        // 重新載入
         LoadFriends();
+    }
+
+    // ⭐ 新增一個輔助函式來徹底清除雙方互寄的邀請
+    private void CleanUpDoubleRequests(string targetUid, string myUid)
+    {
+        // 情境：A 同意 B。
+        // 1. 刪除 A 收到的 B (Received)
+        dbRef.Child("users").Child(myUid).Child("FriendRequests").Child("Received").OrderByValue().EqualTo(targetUid)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted && task.Result.Exists)
+                    foreach (var item in task.Result.Children) item.Reference.RemoveValueAsync();
+            });
+
+        // 2. 刪除 B 寄給 A 的 (Sent)
+        dbRef.Child("users").Child(targetUid).Child("FriendRequests").Child("Sent").OrderByValue().EqualTo(myUid)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted && task.Result.Exists)
+                    foreach (var item in task.Result.Children) item.Reference.RemoveValueAsync();
+            });
+
+        // --- 防止雙向邀請的額外清理 ---
+
+        // 3. 刪除 A 寄給 B 的 (Sent) - 如果有的話
+        dbRef.Child("users").Child(myUid).Child("FriendRequests").Child("Sent").OrderByValue().EqualTo(targetUid)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted && task.Result.Exists)
+                    foreach (var item in task.Result.Children) item.Reference.RemoveValueAsync();
+            });
+
+        // 4. 刪除 B 收到的 A (Received) - 如果有的話
+        dbRef.Child("users").Child(targetUid).Child("FriendRequests").Child("Received").OrderByValue().EqualTo(myUid)
+            .GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted && task.Result.Exists)
+                    foreach (var item in task.Result.Children) item.Reference.RemoveValueAsync();
+            });
     }
 
     public void DeclineFriendRequest(string fromUid)

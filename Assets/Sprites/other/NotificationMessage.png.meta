@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8aeb1cd42fe7b2b4d86a56615c710e37
+guid: 6942107affa29954a852d01f7c10c467
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7336063253936163824
-    second: chat_room_0
+      213: -1491451583420727649
+    second: NotificationMessage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chat_room_0
+      name: NotificationMessage_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 812
-        height: 895
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fb49ac49aeeec560800000000000000
-      internalID: 7336063253936163824
+      spriteID: f9e738adfac4d4be0800000000000000
+      internalID: -1491451583420727649
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 032b2c396de29dd44b953e75fcc57ad7
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      chat_room_0: 7336063253936163824
+      NotificationMessage_0: -1491451583420727649
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
