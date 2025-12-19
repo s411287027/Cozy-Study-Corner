@@ -17,6 +17,11 @@ public class SceneChange : MonoBehaviour
         SceneManager.LoadScene("classroom", LoadSceneMode.Single);
     }
 
+    public void QuitGame()
+    {
+        Debug.Log("Quit Game"); // 在 Editor 內測試用
+        Application.Quit();
+    }
     public void BackToMain()
     {
         SceneManager.LoadScene("SampleScene");
