@@ -295,7 +295,7 @@ public class FirebaseController : MonoBehaviour
                         shoes = new List<int> { 1 },
                         face = new List<int> { 1 },
                         shirt = new List<int> { 1 },
-                        furniture = new List<int> { 6, 8, 10 } // 空的
+                        furniture = new List<int> { 1, 4, 6, 8, 10, 17, 19, 21 } // 空的
                     },
                     Friends = new List<string>() { "init" },
                     FriendRequests = new FriendRequests()
