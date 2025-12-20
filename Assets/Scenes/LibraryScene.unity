@@ -1568,10 +1568,10 @@ MonoBehaviour:
   - seatName: 1-1
     seatTransform: {fileID: 307712230}
     sitButton: {fileID: 485719732}
-    hairOffset: {x: 0.08, y: -1.5, z: 0}
-    faceOffset: {x: 0.08, y: -1.5, z: 0}
-    shirtOffset: {x: 0.08, y: -1.56, z: 0}
-    sleeveOffset: {x: 0.08, y: -1.56, z: 0}
+    hairOffset: {x: 0.08, y: -1.52, z: 0}
+    faceOffset: {x: 0.08, y: -1.52, z: 0}
+    shirtOffset: {x: 0.08, y: -1.63, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.63, z: 0}
     hairScale: {x: 2.5, y: 2.5, z: 2.5}
     faceScale: {x: 2.5, y: 2.5, z: 2.5}
     shirtScale: {x: 2.5, y: 2.5, z: 2.5}
@@ -1586,10 +1586,10 @@ MonoBehaviour:
   - seatName: 1-2
     seatTransform: {fileID: 1300180119}
     sitButton: {fileID: 23913494}
-    hairOffset: {x: 0.08, y: -1.5, z: 0}
-    faceOffset: {x: 0.08, y: -1.5, z: 0}
-    shirtOffset: {x: 0.08, y: -1.56, z: 0}
-    sleeveOffset: {x: 0.08, y: -1.56, z: 0}
+    hairOffset: {x: 0.08, y: -1.52, z: 0}
+    faceOffset: {x: 0.08, y: -1.52, z: 0}
+    shirtOffset: {x: 0.08, y: -1.62, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.62, z: 0}
     hairScale: {x: 2.5, y: 2.5, z: 2.5}
     faceScale: {x: 2.5, y: 2.5, z: 2.5}
     shirtScale: {x: 2.5, y: 2.5, z: 2.5}
@@ -1604,10 +1604,10 @@ MonoBehaviour:
   - seatName: 1-3
     seatTransform: {fileID: 585511596}
     sitButton: {fileID: 444744194}
-    hairOffset: {x: 0.08, y: -1.5, z: 0}
-    faceOffset: {x: 0.08, y: -1.5, z: 0}
-    shirtOffset: {x: 0.08, y: -1.56, z: 0}
-    sleeveOffset: {x: 0.08, y: -1.56, z: 0}
+    hairOffset: {x: 0.08, y: -1.52, z: 0}
+    faceOffset: {x: 0.08, y: -1.52, z: 0}
+    shirtOffset: {x: 0.08, y: -1.6, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.6, z: 0}
     hairScale: {x: 2.5, y: 2.5, z: 2.5}
     faceScale: {x: 2.5, y: 2.5, z: 2.5}
     shirtScale: {x: 2.5, y: 2.5, z: 2.5}
@@ -1622,10 +1622,10 @@ MonoBehaviour:
   - seatName: 1-4
     seatTransform: {fileID: 612396807}
     sitButton: {fileID: 616830126}
-    hairOffset: {x: 0.08, y: -1.5, z: 0}
-    faceOffset: {x: 0.08, y: -1.5, z: 0}
-    shirtOffset: {x: 0.08, y: -1.56, z: 0}
-    sleeveOffset: {x: 0.08, y: -1.56, z: 0}
+    hairOffset: {x: 0.08, y: -1.52, z: 0}
+    faceOffset: {x: 0.08, y: -1.52, z: 0}
+    shirtOffset: {x: 0.08, y: -1.63, z: 0}
+    sleeveOffset: {x: 0.08, y: -1.63, z: 0}
     hairScale: {x: 2.5, y: 2.5, z: 2.5}
     faceScale: {x: 2.5, y: 2.5, z: 2.5}
     shirtScale: {x: 2.5, y: 2.5, z: 2.5}

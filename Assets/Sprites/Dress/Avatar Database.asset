@@ -47,7 +47,7 @@ MonoBehaviour:
   - {fileID: 499470227508053176, guid: 2d465448361173e4fab5e223c3f0c8c6, type: 3}
   sleeveSprites:
   - {fileID: -6207735005829165473, guid: 473a3686d969b4641aed6644e1e7275e, type: 3}
-  - {fileID: -6207735005829165473, guid: 473a3686d969b4641aed6644e1e7275e, type: 3}
+  - {fileID: -5300612597803245771, guid: a59b35d0b69e3ea43b67c6d89d0aa5b5, type: 3}
   - {fileID: -5300612597803245771, guid: a59b35d0b69e3ea43b67c6d89d0aa5b5, type: 3}
   - {fileID: -5878817031078071350, guid: d88c86beed0f53a4b80f4eee5ac3a1c7, type: 3}
   - {fileID: -6030876031761146370, guid: 84d8e527d12a2b24e93a0fdfabcda413, type: 3}

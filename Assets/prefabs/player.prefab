@@ -703,6 +703,7 @@ MonoBehaviour:
     nearScale: 6
     farY: 15
     nearY: -15
+  dressScenePosition: {x: 0, y: 0, z: 0}
 --- !u!50 &7510175049499412044
 Rigidbody2D:
   serializedVersion: 5
@@ -1105,7 +1106,7 @@ MonoBehaviour:
   - {fileID: 8555269896663764265, guid: 512c724328532ea49ac696bef3e09474, type: 3}
   faceRightFrames:
   - {fileID: -8045874827877089262, guid: 12190de52116dc84ea1be58e10c43cc6, type: 3}
-  animationInterval: 0.15
+  animationInterval: 0.1
   baseLocalOffset: {x: 0, y: 2.78, z: 0}
   movementThreshold: 0.001
   enableDebug: 0
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   - {fileID: -7764506355894228733, guid: 982cbf536450caf4a9023edef0368821, type: 3}
   - {fileID: -6720669963494291574, guid: bdb2456ac65eff44f963b75dd0173fd3, type: 3}
   - {fileID: -4390408405462441200, guid: 1a6437ee3118abc489886ce716dbd774, type: 3}
-  animationInterval: 0.05
+  animationInterval: 0.1
   baseLocalOffset: {x: -0.060000002, y: 0.19999981, z: 0}
   movementThreshold: 0.001
   enableDebug: 1
@@ -1547,7 +1548,7 @@ MonoBehaviour:
   - {fileID: -3170573814858498038, guid: 469e23ed9f4e5634ab700d62a208d7a9, type: 3}
   - {fileID: -6181436372494395509, guid: 4514384200506a14ab31bc84b468d97d, type: 3}
   - {fileID: -7179266534037893428, guid: e212422af64592644823926ac67fc845, type: 3}
-  animationInterval: 0.15
+  animationInterval: 0.1
   baseLocalOffset: {x: -0.09000003, y: 1.26, z: 0}
   movementThreshold: 0.001
   enableDebug: 1
@@ -1579,7 +1580,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.100000024, y: -1.2800002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.08, y: 1.08, z: 1.08}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6942094056548651886}
@@ -1678,7 +1679,7 @@ MonoBehaviour:
   - {fileID: 4465788055714104267, guid: f5f34f1aaf21cc14a876736addaba440, type: 3}
   - {fileID: 9062142038487498663, guid: 271e5aa61be7c364a95ed585daea0f30, type: 3}
   - {fileID: 1234931754793249965, guid: 23d2d99b7e2aa9048ab0fc67d65bc015, type: 3}
-  animationInterval: 0.05
+  animationInterval: 0.1
   baseLocalOffset: {x: -0.100000024, y: -1.2800002, z: 0}
   movementThreshold: 0.001
   enableDebug: 1
@@ -1914,7 +1915,7 @@ MonoBehaviour:
   - {fileID: -4969060760376158352, guid: 4032b027ab6579d43b333f4ead4f1c61, type: 3}
   - {fileID: 1427918710420765265, guid: 6554a2dd93c2bd44faa84a20e6bbf90e, type: 3}
   - {fileID: -7087723965929965937, guid: d9dda0f2049d96f4abc8c093bb278f55, type: 3}
-  animationInterval: 0.05
+  animationInterval: 0.1
   baseLocalOffset: {x: -0.100000024, y: 2.6, z: 0}
   movementThreshold: 0.001
   enableDebug: 1
