@@ -2009,7 +2009,7 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 554899965}
-    sortingOrder: 54
+    sortingOrder: 52
     scale: {x: 2.1, y: 2.1, z: 2.1}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
@@ -22147,7 +22147,7 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 603651424}
-    sortingOrder: 54
+    sortingOrder: 52
     scale: {x: 2.1, y: 2.1, z: 2.1}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}

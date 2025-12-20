@@ -1937,7 +1937,7 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 534693210}
-    sortingOrder: 63
+    sortingOrder: 62
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 483671265}
-    sortingOrder: 63
+    sortingOrder: 62
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
@@ -4889,7 +4889,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 68
+  m_SortingOrder: 69
   m_Sprite: {fileID: 2688019658329937085, guid: 6e512221ec211a04f84bbbfc360271ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7302,7 +7302,7 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 652527867}
-    sortingOrder: 71
+    sortingOrder: 73
     scale: {x: 2.2, y: 2.2, z: 2.2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
@@ -7312,7 +7312,7 @@ MonoBehaviour:
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
     position: {fileID: 634836335}
-    sortingOrder: 70
+    sortingOrder: 72
     scale: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &806445776
 GameObject:
@@ -8694,7 +8694,7 @@ MonoBehaviour:
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1586097137}
-    sortingOrder: 71
+    sortingOrder: 73
     scale: {x: 2.2, y: 2.2, z: 2.2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
@@ -8704,7 +8704,7 @@ MonoBehaviour:
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
     position: {fileID: 45606001}
-    sortingOrder: 70
+    sortingOrder: 72
     scale: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &953158556
 GameObject:
@@ -13494,7 +13494,7 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1296785918}
-    sortingOrder: 78
+    sortingOrder: 77
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
@@ -13504,7 +13504,7 @@ MonoBehaviour:
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 416786131}
-    sortingOrder: 78
+    sortingOrder: 77
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
@@ -13970,7 +13970,7 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 168222933}
-    sortingOrder: 78
+    sortingOrder: 77
     scale: {x: 2.5, y: 2.5, z: 2.5}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
@@ -13980,7 +13980,7 @@ MonoBehaviour:
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 1913630081}
-    sortingOrder: 78
+    sortingOrder: 77
     scale: {x: 2.5, y: 2.5, z: 2.5}
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
@@ -19931,17 +19931,17 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1851018428}
-    sortingOrder: 37
+    sortingOrder: 30
     scale: {x: 2, y: 2, z: 2}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 1549703529}
-    sortingOrder: 40
+    sortingOrder: 41
     scale: {x: 2, y: 2, z: 2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 2016891993}
-    sortingOrder: 37
+    sortingOrder: 30
     scale: {x: 2, y: 2, z: 2}
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
@@ -20317,7 +20317,7 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 1259070790}
-    sortingOrder: 63
+    sortingOrder: 62
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
@@ -20327,7 +20327,7 @@ MonoBehaviour:
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 576947767}
-    sortingOrder: 63
+    sortingOrder: 62
     scale: {x: 2.4, y: 2.4, z: 2.4}
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
@@ -30480,17 +30480,17 @@ MonoBehaviour:
   - partName: body
     sprite: {fileID: 21300000, guid: 15848d8fed79ad7448cbdc79226ce13e, type: 3}
     position: {fileID: 824525450}
-    sortingOrder: 37
+    sortingOrder: 30
     scale: {x: 2, y: 2, z: 2}
   - partName: hand
     sprite: {fileID: 21300000, guid: 221d8a959a404384c9c39dbe345e0e6e, type: 3}
     position: {fileID: 429399308}
-    sortingOrder: 40
+    sortingOrder: 41
     scale: {x: 2, y: 2, z: 2}
   - partName: leg
     sprite: {fileID: 21300000, guid: 7e4a88424cb1271438eb7f7d9c83da28, type: 3}
     position: {fileID: 1531905967}
-    sortingOrder: 37
+    sortingOrder: 30
     scale: {x: 2, y: 2, z: 2}
   - partName: book
     sprite: {fileID: -367219078638259364, guid: e18fc1d88b15299498270ebbcf6bb64a, type: 3}
