@@ -60,6 +60,25 @@ public class SeatManager_Room : MonoBehaviour
             .ValueChanged += OnSeatDataChanged;
     }
 
+    // ⭐ 新增：更新使用者狀態的輔助函式
+    private void UpdateUserStatus(string newStatus)
+    {
+        if (string.IsNullOrEmpty(currentUID)) return;
+
+        dbRef.Child("users").Child(currentUID).Child("Status")
+            .SetValueAsync(newStatus).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.LogError($"❌ 更新狀態為 {newStatus} 失敗: {task.Exception}");
+                }
+                else
+                {
+                    Debug.Log($"✅ 用戶狀態已更新為: {newStatus}");
+                }
+            });
+    }
+
     private void OnSeatDataChanged(object sender, ValueChangedEventArgs args)
     {
         if (args.DatabaseError != null)
@@ -152,7 +171,7 @@ public class SeatManager_Room : MonoBehaviour
     {
         if (currentSeat != null)
             return;
-
+        UpdateUserStatus("Studying");
         string seatPath = $"users/{currentUID}/StudyAtHome/{seatId}";
         dbRef.Child(seatPath).SetValueAsync(currentUID);
         MapButton.SetActive(false);
@@ -170,7 +189,7 @@ public class SeatManager_Room : MonoBehaviour
     {
         if (seatId != currentSeat)
             return;
-
+        UpdateUserStatus("Online");
         string seatPath = $"users/{currentUID}/StudyAtHome/{seatId}";
         dbRef.Child(seatPath).SetValueAsync("");
         currentSeat = null;

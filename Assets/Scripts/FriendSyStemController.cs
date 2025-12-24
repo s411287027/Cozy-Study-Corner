@@ -419,20 +419,34 @@ public class FriendSystemController : MonoBehaviour
         statusText.text = "Loading...";
 
         dbRef.Child("users").Child(friendUid).Child("Status")
-            .GetValueAsync().ContinueWithOnMainThread(statusTask =>
-            {
-                if (statusTask.IsCompleted && statusTask.Result.Exists)
-                {
-                    string status = statusTask.Result.Value.ToString();
-                    statusText.text = status;
-                    statusText.color = (status == "Online") ? Color.green : Color.gray;
-                }
-                else
-                {
-                    statusText.text = "Unknown";
-                    statusText.color = Color.gray;
-                }
-            });
+             .GetValueAsync().ContinueWithOnMainThread(statusTask =>
+             {
+                 if (statusTask.IsCompleted && statusTask.Result.Exists)
+                 {
+                     string status = statusTask.Result.Value.ToString();
+                     statusText.text = status;
+
+                     // ⭐ 修改顏色判斷邏輯
+                     if (status == "Online")
+                     {
+                         statusText.color = Color.green;
+                     }
+                     else if (status == "Studying")
+                     {
+                         // (1.0f, 0.5f, 0.0f) 是標準橘色
+                         statusText.color = new Color(0.0f, 0.0f, 1.0f);
+                     }
+                     else
+                     {
+                         statusText.color = Color.gray;
+                     }
+                 }
+                 else
+                 {
+                     statusText.text = "Unknown";
+                     statusText.color = Color.gray;
+                 }
+             });
 
         // Info Button 設定
         Button infoButton = item.transform.Find("InfoButton").GetComponent<Button>();

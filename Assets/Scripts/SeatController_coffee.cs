@@ -75,6 +75,24 @@ public class SeatManager_Coffee : MonoBehaviour
         roomRef.ValueChanged += OnSeatDataChanged;
     }
 
+    // ⭐ 新增：更新使用者狀態的輔助函式
+    private void UpdateUserStatus(string newStatus)
+    {
+        if (string.IsNullOrEmpty(currentUID)) return;
+
+        rootRef.Child("users").Child(currentUID).Child("Status")
+            .SetValueAsync(newStatus).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.LogError($"❌ 更新狀態為 {newStatus} 失敗: {task.Exception}");
+                }
+                else
+                {
+                    Debug.Log($"✅ 用戶狀態已更新為: {newStatus}");
+                }
+            });
+    }
     private void OnDestroy()
     {
         // 移除 roomRef 的監聽
@@ -195,6 +213,7 @@ public class SeatManager_Coffee : MonoBehaviour
             if (task.IsCompleted && !task.IsFaulted)
             {
                 Debug.Log($"✅ 已在 {currentRoomID} 坐下：{seatId}");
+                UpdateUserStatus("Studying");
             }
             else if (task.IsFaulted)
             {
@@ -218,6 +237,7 @@ public class SeatManager_Coffee : MonoBehaviour
             {
                 Debug.Log($"🏃 已離開 {currentRoomID} 座位：{seatId}");
                 currentSeat = null;
+                UpdateUserStatus("Online");
             }
         });
     }

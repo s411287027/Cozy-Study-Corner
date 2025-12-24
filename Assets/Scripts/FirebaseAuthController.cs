@@ -273,7 +273,7 @@ public class FirebaseController : MonoBehaviour
                 dbController.dts = new DataToSave()
                 {
                     UserName = Username,
-                    TotalCoins = 30000,   // 初始金幣
+                    TotalCoins = 3000,   // 初始金幣
                     CrrLevel = 1,    // 初始等級
                     TomorrowReservationTime = "",
                     Message = "",
@@ -422,7 +422,7 @@ public class FirebaseController : MonoBehaviour
                 DisplayName = Username,
                 PhotoUrl = new System.Uri("https://example.com/jane-q-user/profile.jpg"),
             };
-            user.UpdateUserProfileAsync(profile).ContinueWith(task =>
+            user.UpdateUserProfileAsync(profile).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCanceled)
                 {

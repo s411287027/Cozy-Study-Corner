@@ -75,6 +75,25 @@ public class SeatManager_Classroom : MonoBehaviour
         roomRef.ValueChanged += OnSeatDataChanged;
     }
 
+    // ⭐ 新增：更新使用者狀態的輔助函式
+    private void UpdateUserStatus(string newStatus)
+    {
+        if (string.IsNullOrEmpty(currentUID)) return;
+
+        rootRef.Child("users").Child(currentUID).Child("Status")
+            .SetValueAsync(newStatus).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.LogError($"❌ 更新狀態為 {newStatus} 失敗: {task.Exception}");
+                }
+                else
+                {
+                    Debug.Log($"✅ 用戶狀態已更新為: {newStatus}");
+                }
+            });
+    }
+
     private void OnDestroy()
     {
         // ⭐ 修改：移除正確的 listener
@@ -206,6 +225,7 @@ public class SeatManager_Classroom : MonoBehaviour
             {
                 Debug.Log($"✅ 已在 {currentRoomID} 坐下：{seatId}");
                 // UI 更新會由 OnSeatDataChanged 自動處理
+                UpdateUserStatus("Studying");
             }
         });
     }
@@ -223,6 +243,7 @@ public class SeatManager_Classroom : MonoBehaviour
             {
                 Debug.Log($"🏃 已離開 {currentRoomID} 座位：{seatId}");
                 currentSeat = null;
+                UpdateUserStatus("Online");
                 // UI 更新會由 OnSeatDataChanged 自動處理
             }
         });
