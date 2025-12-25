@@ -5108,8 +5108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8da8f6d9676384b8bfb9a71e011c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  userNameText: {fileID: 518385099}
-  coinsText: {fileID: 148520770}
+  userNameText: {fileID: 0}
+  coinsText: {fileID: 0}
   levelText: {fileID: 0}
   startTimeDropdown: {fileID: 0}
   endTimeDropdown: {fileID: 0}
@@ -8708,8 +8708,8 @@ MonoBehaviour:
   shopPanel: {fileID: 1390763826}
   shopItemPrefab: {fileID: 4963407675528233905, guid: e8b2d205adb3ee74e89b80d31163c712, type: 3}
   shopContent: {fileID: 170576375}
-  UserCoins_Text: {fileID: 0}
-  UserName_Text: {fileID: 0}
+  UserCoins_Text: {fileID: 148520770}
+  UserName_Text: {fileID: 518385099}
   UserLevel_Text: {fileID: 0}
   shopItems: []
 --- !u!4 &991345128
